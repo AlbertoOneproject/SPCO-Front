@@ -1,0 +1,103 @@
+<div class="content-container" data-ng-controller="viewrol.component">
+    <div *ngIf="!editar">
+        <ul class="breadcrumb">
+            <li><a href="/rol">Roles</a></li>
+            <li class="active">Ver Rol</li>
+        </ul>
+    </div>
+
+    <div *ngIf="editar">
+        <ul class="breadcrumb">
+            <li><a href="/rol">Roles</a></li>
+            <li class="active" *ngIf="currentRol">{{ currentRol.name }}</li>
+            <li class="active">Editar función</li>
+        </ul>
+    </div>
+
+    <api-validate></api-validate>
+    <form name="viewrolform" class="card well">
+        <div>
+            <table width="100%">
+                <tr>
+                    <td width="20%">Nombre</td>
+                    <td width="80%" *ngIf="currentRol">{{currentRol.name}}</td>
+                </tr>
+                <tr>
+                    <td>Descripción</td>
+                    <td *ngIf="currentRol">{{currentRol.description}}</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div class="pull-right" *ngIf="isDisabled">
+            <div class="btn-group" *ngIf="isEditar">
+                <button type="button" class="btn btn-primary" (click)="editRoles()" has-permission='UPDATE_USER'><i class="fa fa-edit "></i> &nbsp;&nbsp;
+<!--                <a data-ng-click="editRoles(); backupCheckValues()" class="btn btn-primary" has-permission='UPDATE_ROLE'><i class="fa fa-edit "></i>&nbsp;&nbsp; -->
+                    Editar
+                </button>
+            </div>
+            <div class="btn-group" *ngIf="!isRoleEnable">
+                <button type="button" class="btn btn-primary" (click)="disablerol()" has-permission='UPDATE_USER'><i class="fa fa-lock "></i> &nbsp;&nbsp;
+<!--                <a (click)="disablerol()" class="btn btn-danger" has-permission='DISABLE_ROLE'><i class="fa fa-lock "></i>&nbsp;&nbsp; -->
+                    Desactivar</button>
+            </div>
+            <div class="btn-group" *ngIf="isRoleEnable">
+                <button type="button" class="btn btn-primary" (click)="enablerol()" has-permission='UPDATE_USER'><i class="fa fa-unlock-alt "></i> &nbsp;&nbsp;
+<!--                <a (click)="enablerol()" class="btn btn-primary" has-permission='ENABLE_ROLE'><i class="fa fa-unlock-alt "></i>&nbsp;&nbsp; -->
+                    Activar</button>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" (click)="deleterol()" class="btn btn-danger" has-permission='DELETE_ROLE'><i class="fa fa-trash-o "></i> &nbsp;&nbsp;
+<!--                <a data-ng-click="deleteRolesConfirmation()" class="btn btn-danger" has-permission='DELETE_ROLE'><i class="fa fa-trash-o "></i>&nbsp;&nbsp; -->
+                        Eliminar</button>
+            </div>
+
+        </div>
+        <div class="form-group" *ngIf="!isDisabled" style="float: right">
+            <button type="button" class="btn btn-primary" (click)="selectAll(false)"><i class="fa fa-ok-sign "></i> &nbsp;&nbsp;
+                Seleccionar todo</button>
+            <!--            <a data-ng-click="selectAll(false)" class="btn btn-primary"><i class="fa fa-ok-sign "></i>Seleccionar todo</a>    -->
+            <button type="button" class="btn btn-default" (click)="selectAll(true)" class="btn btn-danger" has-permission='DELETE_ROLE'><i class="fa fa-remove-sign "></i>
+<!--        <a data-ng-click="selectAll(true)" class="btn btn-default"><i class="fa fa-remove-sign "></i>Deseleccionar todo</a>  -->
+            Deseleccionar todo</button>
+
+        </div>
+
+        <h3>Permisos:&nbsp;&nbsp;<strong *ngIf="groupings"></strong>
+        </h3>
+
+        <table width="100%">
+            <tr>
+                <td width="30%" valign="top">
+                    <table width="100%">
+                        <tbody>
+                            <tr *ngFor="let group of dataperm | groupBy: 'grouping'">
+                                <a (click)="showPermisos(group);"><span>{{group.key}}</span></a>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </td>
+                <td width="70%" valign="top" class="left-border">
+                    <form [formGroup]="form">
+                        <table width="100%">
+                            <tr *ngFor="let listapermisos of permisos">
+                                <!--                                <button mat-raised-button color="primary" [disabled]="!form2.valid">Submit</button> -->
+                                <td> <input id="cb" type="checkbox" (change)="onCheckBoxChanges(listapermisos.id, listapermisos.isChecked)" [checked]="listapermisos.isChecked" *ngIf="isDisabled" [disabled]="true">
+                                    <input id="cb" type="checkbox" (change)="onCheckBoxChanges(listapermisos.id, listapermisos.isChecked)" [checked]="listapermisos.isChecked" *ngIf="!isDisabled" [disabled]="false">
+                                    <!--                                <td><input id="{{listapermisos.code}}" type="checkbox" (change)="onChange(listapermisos.code, $event.target.checked)"> &nbsp;&nbsp; -->
+                                    &nbsp;&nbsp;<label for="{{listapermisos.code}}">{{(listapermisos.code)}}</label></td>
+
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <div class="col-md-offset-4" *ngIf="!isDisabled">
+            <a class="btn btn-default" (click)="cancel()">Cancelar</a>
+            <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+        </div>
+    </form>
+</div>

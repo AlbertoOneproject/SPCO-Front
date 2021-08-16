@@ -1,0 +1,32 @@
+<!-- *ngIf="currentUser" -->
+<nav class="navbar navbar-expand navbar-ligth bg-ligth" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav item nav-link" [routerLink]="['usuarios']">Usuarios</a>
+        <a class="nav-link" [routerLink]="['rol']">Roles</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
+<!-- main app container -->
+
+<!-- main app container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<!--<div class="jumbotron"> -->
+<!--    
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+-->
+<!-- </div> -->

@@ -1,0 +1,29 @@
+<ng-content></ng-content>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" [href]="linkNulo" (click)="primerPag()">|<</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" [href]="linkNulo" (click)="paginaAnt()">
+                < </a>
+        </li>
+        <li class="page-item" *ngFor="let pag of diminuiPaginacao(arrayPages)" [class.active]="pag == page">
+            <a class="page-link" [href]="linkNulo" (click)="mudaPag(pag)">
+        {{ pag }}
+      </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" [href]="linkNulo" (click)="proxPagina()">></a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" [href]="linkNulo" (click)="ultimaPag()">>|</a>
+        </li>
+        <!--        
+        <li class="page-item disabled">
+            <span class="page-link">Total: {{ totalPages }}</span>
+        </li>
+-->
+    </ul>
+</nav>

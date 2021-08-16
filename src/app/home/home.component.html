@@ -1,0 +1,36 @@
+<div class="content-container" ng-controller="home.component.ts">
+    <h1 class="card-header">Sistema de Planeación y Control de Operaciones</h1>
+</div>
+
+
+<div class="card mt-4">
+
+    <div class="card-body">
+        <h4>Bienvenido : </h4>
+        <!--        <label class="control-label col-sm-6" *ngIf="usuario">{{usuario.firstname }}&nbsp;{{usuario.lastname }}</label> -->
+
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+        </ul>
+
+        <br><br><br>
+    </div>
+</div>
+
+<!--
+
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users">
+            <li *ngFor="let usuarios of usuario">{{usuario.firstname}} {{usuario.lastname}}</li>
+        </ul>
+
+
+
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
+-->

@@ -1,0 +1,39 @@
+<div class="content-container" ng-controller="rol.component.ts">
+    <ul class="breadcrumb">
+        <li class="active">Roles </li>
+    </ul>
+    <div class="card">
+        <div class="content">
+            <div class="pull-right">
+                <div class="col-sm-10 col-md-10">
+                    <button type="button" text-align="right" class="btn btn-primary pull-right" (click)="altarol()"><i class="fa fa-plus "></i>
+                        &nbsp;&nbsp; Rol
+                    </button>
+                    <!--                    <a href="altarol" text-align="right" class="btn btn-primary pull-right"><i class="fa fa-plus "></i>&nbsp;&nbsp; Añadir Rol </a> -->
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr class="graybg">
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="pointer-main" *ngFor="let listarol of currentRol">
+                    <td class="pointer" (click)="routeTo(listarol.id)">{{listarol.name}}</td>
+                    <td class="pointer" (click)="routeTo(listarol.id)">{{listarol.description}}</td>
+                    <td class="pointer" data-ng-click="routeTo(role.id)">
+                        <div *ngIf="listarol.disable==false">Habilitado</div>
+                        <div *ngIf="listarol.disable==true">Desabilitado</div>
+                    </td>
+                </tr>
+            </tbody>
+            <app-paginacion [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">
+            </app-paginacion>
+        </table>
+    </div>
+</div>

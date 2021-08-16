@@ -1,0 +1,262 @@
+<div class="content-container">
+    <ul class="breadcrumb">
+        <li><a href="/usuarios">Usuarios</a></li>
+        <li class="active">Crear usuario</li>
+    </ul>
+    <form [formGroup]="altauserform">
+        <!-- <form name="createuserform" novalidate="" class="card form-horizontal well" ng-controller="CreateUserController"
+          rc-submit="submit()"> -->
+        <div class="container-body form-horizontal">
+            <api-validate></api-validate>
+            <fieldset>
+                <legend>Crear usuario</legend>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="username">Nombre de usuario<span
+	                    class="required">*</span></label>
+
+                    <mat-form-field class="col-sm-3">
+                        <input type="text" id="username" name="username" formControlName="username" placeholder="Usuario" class="form-control" required late-Validate [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Usuario es requerido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="firstname">Nombre<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="firstname" name="firstname" formControlName="firstname" class="form-control" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                    <!--  
+                    <div class="col-sm-3">
+                        <input type="text" id="codent" name="codent" ng-model="formData.codent" required
+                           ng-pattern="/^[0-9]+$/"  class="form-control"/>
+                     </div>
+                     <div class="col-sm-2">
+                        <span ng-show="createtiptarjform.codent.$invalid && createtiptarjform.codent.$dirty">
+                        <small class="required" ng-show="createtiptarjform.codent.$error.pattern">
+                        {{'label.mustbenumeric' | translate}}
+                        </small>
+                        </span>
+                     </div>                    
+
+				<div class="col-sm-2">
+				   <span ng-show="createtiptarjform.codmar.$invalid && createtiptarjform.codmar.$dirty">
+				   <small class="required" ng-show="createtiptarjform.codmar.$error.pattern">
+				   {{'label.mustbenumeric' | translate}}
+				   </small>
+				   </span>
+				</div>
+
+
+                    <div class="col-sm-3">
+                        <span ng-show="altauserform.firstname.$invalid && altauserform.firstname.$dirty">
+                        <small class="error required" ng-show="altauserform.firstname.$error.pattern">
+                            "El nombre no puede comenzar por un carácter especial o un número"
+                        </small>
+                    </span>
+                    </div>
+-->
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="lastname">Apellido(s)<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="lastname" name="lastname" formControlName="lastname" class="form-control" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                    <!--
+	            <div class="col-sm-3">
+                  <span ng-show="createuserform.lastname.$invalid && createuserform.lastname.$dirty">
+                      <small class="error required" ng-show="createuserform.lastname.$error.pattern">
+                          {{'validation.msg.client.name.cannot.start.specialchar.ornumber' | translate}}
+                      </small>
+                  </span>
+	                <form-validate valattributeform="createuserform" valattribute="lastname"/>
+                </div>
+-->
+                </div>
+                <div data-ng-switch on="sendPasswordToEmail">
+                    <div data-ng-switch-when="true">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Correo electrónico<span
+	                            class="required">*</span></label>
+
+                            <div class="col-sm-3">
+                                <input type="email" id="email" name="email" class="form-control" formControlName="email" required late-Validate/>
+                            </div>
+                            <!--
+	                    <div class="col-sm-3">
+	                        <form-validate valattributeform="createuserform" valattribute="email"/>
+                        </div>
+-->
+                        </div>
+                    </div>
+                    <!--
+                    <div data-ng-switch-when="false">
+                        <div class="form-group" data-ng-show="!formData.sendPasswordToEmail">
+                            <label class="control-label col-sm-2" for="email1">Correo electrónico</label>
+
+                            <div class="col-sm-3">
+                                <input type="email" id="email1" name="email1" class="form-control" formControlName="formData.email" />
+                            </div>
+                        </div>
+                    </div>
+-->
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">¿Quieres invalidar la normativa de caducidad de contraseñas?
+<!--
+                    <i class="fa fa-question-circle"
+                       uib-tooltip="wqq "
+                       tooltip-append-to-body="true">
+                    </i>
+-->                                        
+                </label>
+                    <div class="col-sm-3">
+                        <label class="checkbox">
+						<input type="checkbox" formControlName="passwordNeverExpires">
+					</label>
+                    </div>
+
+                </div>
+                <div data-ng-switch on="sendPasswordToEmail">
+                    <div data-ng-switch-when="false">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="password">Contraseña<span
+	                            class="required">*</span></label>
+
+                            <div class="col-sm-3">
+                                <input type="password" id="password" name="password" formControlName="password" class="form-control" required late-Validate>
+                            </div>
+                            <!--
+	                    <div class="col-sm-3">
+	                        <form-validate valattributeform="createuserform" valattribute="password"/>
+                        </div>
+-->
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="repeatPassword">Repetir contraseña<span
+	                            class="required">*</span></label>
+
+                            <div class="col-sm-3">
+                                <input type="password" id="repeatPassword" name="repeatPassword" class="form-control" formControlName="repeatPassword" required late-Validate>
+                            </div>
+                            <!--
+	                    <div class="col-sm-3">
+	                        <form-validate valattributeform="createuserform" valattribute="repeatPassword"/>
+                        </div>
+-->
+                        </div>
+                    </div>
+                </div>
+                <!--
+	        <div class="form-group">
+	            <label class="control-label col-sm-2">Oficina<span class="required">*</span></label>
+
+	            <div class="col-sm-3">
+	                <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control" name="officeId" data-ng-change="getOfficeStaff()"
+	                        ng-options="office.id as office.name for office in offices" value="{{office.id}}" required>
+	                    <option value="">--{{'--Seleccionar oficina--</option>
+	                </select>
+	            </div>
+                <form-validate valattributeform="createuserform" valattribute="officeId"/>
+	        </div>
+	        <div class="form-group">
+	            <label class="control-label col-sm-2">Personal</label>
+
+	            <div class="col-sm-3">
+	                <select chosen="staffs" id="staffId" ng-model="formData.staffId"  class="form-control"
+	                        ng-options="staff.id as staff.displayName for staff in staffs" value="{{staff.id}}">
+	                    <option value="">--Seleccionar personal--</option>
+	                </select>
+	            </div>
+            </div>
+-->
+
+                <!--
+<select multiple name="countries" [formControl]="countryControl">
+  <option *ngFor="let country of countries" [ngValue]="country">
+    {{ country.name }}
+  </option>
+</select>
+
+<select [(ngModel)]="foundLocations" multiple="multiple">
+    <option *ngFor="let locOption of locations" [ngValue]="locOption" >
+      {{ locOption }}
+    </option>
+</select>
+<div class="selectButtons">
+  <button (click)="selectThese()">></button>
+    <br/>
+  <button (click)="removeThese()"><</button>
+</div>
+<select [(ngModel)]="selectedLocations" multiple="multiple">
+    <option *ngFor="let chosen of pickedLocationItems" [ngValue]="chosen" >
+      {{ chosen }}
+    </option>
+</select>
+
+<mat-form-field>
+<mat-select [formControlName]="'category'"
+            [errorStateMatcher]="errorStateMatcher">
+    <mat-option *ngFor="let category of categories" [value]="category">
+        {{category.name}}
+    </mat-option>
+</mat-select>
+-->
+
+                <div class="form-group">
+                    <div class="col-sm-3 col-md-3 col-md-offset-1">
+                        <label class="control-label col-sm-12">Roles disponibles</label>
+                        <select ng-select formControlName="disponibles" class="form-control multiselectmin" multiple>
+						    <option *ngFor ="let listarol of roles ; let i = index;" [value]="listarol.id" (click)="addRole(i)">
+							{{listarol.name}}
+                            </option>
+                        </select>
+                        <!--
+                        <mat-form-field>
+                            <select formControlName="disponibles" multiple>
+                                <option *ngFor="let disponibles of roles" [value]="disponibles">
+                                    {{disponibles.name}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+-->
+
+                    </div>
+                    <!--
+                    <div class="col-sm-1 col-md-1 paddedtop25px" (click)="addRole()">
+                        <button type="button" class="btn btn-primary" ><i
+							class="fa fa-angle-double-right"></i></button>
+                        <br/>
+                        <button type="button" class="btn btn-primary" (click)="removeRole()"><i
+							class="fa fa-angle-double-left"></i></button>
+                    </div>
+-->
+                    <div class="col-sm-3 col-md-3">
+                        <label class="control-label col-sm-12">Roles seleccionados<span
+	                    class="required">*</span></label>
+                        <select ng-select formControlName="seleccionados" class="form-control multiselectmin" multiple>
+						<option *ngFor="let rolsel of rolessel, let j = index;" [value] ="rolsel.id" (click)="removeRole(j)">
+							{{rolsel.name}}
+						</option>
+                    </select>
+
+
+                        <!--                    <form-validate valattributeform="createuserform" valattribute="roles"/> -->
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-offset-3">
+                    <a id="cancel" href="/usuarios" class="btn btn-default">Cancelar</a>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
