@@ -1,0 +1,65 @@
+<div class="content-container" ng-controller="usuario.component.ts">
+    <ul class="breadcrumb">
+        <li class="active">Consulta de Apendice </li>
+    </ul>
+    <form [formGroup]="apeForm">
+
+        <div class="card">
+            <div class="toolbar">
+                <h4>Lista de Usuarios</h4>
+
+                <div class="col-12 text-right">
+                    <a class="btn btn-success btn-lg rounded-circle" href="/altaape">+</a>
+                </div>
+            </div>
+
+            <br>
+            <div class="content">
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="col-9">
+                            <input class="mr-sm-9" ng-model="filterText" formControlName="nombre" type="text" class="span marginbottom0px form-control" placeholder="Nombre">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4">
+                        <button type="button" text-align="right" class="btn btn-primary pull-right" (click)="buscar()" has-permission='UPDATE_USER'>
+                        &nbsp;&nbsp; Buscar
+                    </button>
+                    </div>
+
+                </div>
+            </div>
+            <hr/>
+            <table class="table">
+                <thead>
+                    <tr class="graybg">
+                        <th>ID1</th>
+                        <th>ID2</th>
+                        <th>IND VIS </th>
+                        <th>DESCR CORTA </th>
+                        <th>DESCRIPCION LARGA </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="pointer-main" *ngFor="let listaape of currentApe">
+                        <td class="pointer" (click)="routeTo(listaape.clvap,listaape.id1, listaape.id2)">{{listaape.id1}}</td>
+                        <td class="pointer" (click)="routeTo(listaape.clvap,listaape.id1, listaape.id2)">{{listaape.id2}}</td>
+                        <td class="pointer" (click)="routeTo(listaape.clvap,listaape.id1, listaape.id2)">{{listaape.indVis}}</td>
+                        <td class="pointer" (click)="routeTo(listaape.clvap,listaape.id1, listaape.id2)">{{listaape.desCorta}}</td>
+                        <td class="pointer" (click)="routeTo(listaape.clvap,listaape.id1, listaape.id2)">{{listaape.desLarga}}</td>
+                    </tr>
+                </tbody>
+                <!--                <app-paginacion [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">     
+                </app-paginacion>    -->
+            </table>
+            <div class="form-group">
+                <div class="col-04">
+                    <label class="mr-sm-04" for="inlineFormCustomSelect"> Item por página : </label>
+                    <input class="custom-select mr-sm-10" ng-model="filterText" formControlName="items" type="text" ng-keyup="onFilter()" class="span marginbottom0px form-control" placeholder="Items">
+                </div>
+            </div>
+        </div>
+    </form>

@@ -1,32 +1,75 @@
 <!-- *ngIf="currentUser" -->
+<!--
 <nav class="navbar navbar-expand navbar-ligth bg-ligth" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav item nav-link" [routerLink]="['usuarios']">Usuarios</a>
         <a class="nav-link" [routerLink]="['rol']">Roles</a>
+        <a class="nav-link" [routerLink]="['ape']">Catálogos</a>
+-->
+<!--    <select formControlName="numberOfTickets" class="form-control" (change)="onChangeTickets($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfTickets.errors }">     -->
+<!--
+        <select formControlName="listaallapl" class="form-control">
+            <option class="dropdown-item" disabled selected value="undefined">Catálogos</option>
+-->
+<!--            <option value=""></option> -->
+
+<!--        <option *ngFor ="let listaapl of apl ; let i = index;" [value]="listaapl.id" (click)="addRole(i)" href="/consultaDatosApe">         -->
+<!--
+                    <option 
+                        *ngFor="let listaapl of apl ; let i = index;" href="/ape"
+                        [value]="listaapl.id" 
+                        (click)="ConsApe(i)" 
+                        class="dropdown-item">{{listaapl.desCorta}}
+                    </option>
+                </select>
+        <span class="select-highlight"></span>
+        <span class="select-bar"></span>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
 </nav>
-<!-- main app container -->
-
-<!-- main app container -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 offset-sm-3">
-            <alert></alert>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
-
-<!--<div class="jumbotron"> -->
-<!--    
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 offset-sm-3">
-            <alert></alert>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
 -->
-<!-- </div> -->
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/usuarios">Usuarios <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/rol">Rol <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/ape">Catalogo<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Catálogos
+                </a >
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                    <a class="dropdown-item" href="/ape/{{listaapl.clvap}}" *ngFor="let listaapl of apl; let i = index;">
+                        {{listaapl.desCorta}}
+                    </a>
+    </div>
+    </li>
+    <span class="select-highlight"></span>
+    <span class="select-bar"></span>
+    <li class="nav-item">
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </li>
+    </ul>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

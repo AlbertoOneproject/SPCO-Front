@@ -6493,7 +6493,8 @@ tbody.collapse.in {
     list-style: none;
     font-size: 14px;
     text-align: left;
-    background-color: #fff;
+    /*background-color: #fff; */
+    background-color: red;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;

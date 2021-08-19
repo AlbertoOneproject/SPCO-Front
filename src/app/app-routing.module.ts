@@ -12,6 +12,9 @@ import { DeleteusrComponent } from './deleteusr/deleteusr.component';
 import { RolComponent } from './rol/rol.component';
 import { AltarolComponent } from './altarol/altarol.component';
 import { ViewrolComponent } from './viewrol/viewrol.component';
+import { ApeComponent } from './ape/ape.component';
+import { ViewapeComponent } from './viewape/viewape.component';
+//import { AltaapeComponent } from './altauser/altauser.component';
 
 
 const routes: Routes = [
@@ -29,6 +32,10 @@ const routes: Routes = [
   { path: 'rol', component: RolComponent },
   { path: 'altarol', component: AltarolComponent },  
   { path: 'viewrol/:id', component: ViewrolComponent },
+  //{ path: 'ape/:clvap', component: ApeComponent },
+  { path: 'ape', component: ApeComponent },
+  { path: 'consultaDatosApe/:clvap', component: ViewapeComponent },
+//  { path: 'altaape', component: AltaapeComponent },
   { path: '**', redirectTo: '' }
 ];
 

@@ -27,7 +27,9 @@ import { DisablerolComponent } from './disablerol/disablerol.component';
 import { EnablerolComponent } from './enablerol/enablerol.component';
 import { DeleterolComponent } from './deleterol/deleterol.component';
 import { PaginacionComponent } from './paginacion/paginacion.component';
-import { JwtInterceptor } from '../app/helpers/jwt.interceptor'
+import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
+import { ViewapeComponent } from './viewape/viewape.component';
+import { ApeComponent } from './ape/ape.component'
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { JwtInterceptor } from '../app/helpers/jwt.interceptor'
     DisablerolComponent,
     EnablerolComponent,
     DeleterolComponent,
-    PaginacionComponent
+    PaginacionComponent,
+    ViewapeComponent,
+    ApeComponent
   ],
   imports: [
     BrowserModule,
