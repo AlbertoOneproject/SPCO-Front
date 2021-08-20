@@ -16,8 +16,15 @@ export class SysdtapeService {
 
   }
 
+  altaape(altaape: Sysdtape){
+    return this.http.post<Sysdtape>(`${environment.SERVER_URL}/DetCatAp`,altaape)
+        .pipe(map(datapost => {
+  return datapost;
+      }));
+}
+
   apeconscve(clvap: string){
-    clvap = 'AP08';
+//    clvap = 'AP08';
     console.log("sysdtape.service.ts/apeconscve param ")
     console.log(clvap)
     let params = new HttpParams();
@@ -35,16 +42,19 @@ export class SysdtapeService {
       }));
   }
 
-  apeconscveidid(cveapidid: string){
+  //apeconscveidid(cveapidid: string){
+    apeconscveidid(cveap: string, id1:string, id2:string){
+      
     console.log("sysdtape.service.ts/apeconscveidid    param ")
-    console.log(cveapidid);
+    console.log(cveap);
+    console.log(id1);
+    console.log(id2);
 
     let params = new HttpParams();
 //    params = params.append('id', username);
-    params = params.append('id',cveapidid);
+    params = params.append('id',cveap);
     //return this.http.get<any>(`${environment.SERVER_URL}/Users/`, {params:params})
-    return this.http.get<Sysdtape>(`${environment.SERVER_URL}/DetCatAp/`+cveapidid, {})
-
+    return this.http.get<Sysdtape>(`${environment.SERVER_URL}/DetCatAp/Unico/`+cveap +'?id1=' + id1 + '&id2=' + id2, {})
     .pipe(map(listape => {
         if(listape){
            } 
@@ -70,4 +80,28 @@ export class SysdtapeService {
     return listapecve;
       }));
   }       //apeconscve
+
+  deleteapeid(cveap: string, id1:string, id2:string){
+    console.log("sysdtape.service.ts/deleteapeid    ")
+    console.log(cveap);
+    console.log(id1);
+    console.log(id2);
+    let params = new HttpParams();
+    params = params.append('id',cveap);
+    //return this.http.get<any>(`${environment.SERVER_URL}/Users/`, {params:params})
+    return this.http.delete<any>(`${environment.SERVER_URL}/DetCatAp/`+cveap +'?id1=' + id1 + '&id2=' + id2, {})
+          .pipe(map(datadel => {
+        return datadel;
+
+      }));
+  }      //deleteapeid
+
+  editape(editape: Sysdtape){
+    return this.http.put<Sysdtape>(`${environment.SERVER_URL}/DetCatAp`,editape)
+          .pipe(map(dataput => {
+        return dataput;
+      }));
+}
+
+
 }         //export

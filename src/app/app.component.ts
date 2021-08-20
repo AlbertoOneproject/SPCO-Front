@@ -34,34 +34,6 @@ export class AppComponent implements OnInit {
         tickets: new FormArray([])
     });
 }
-
-/*
-  consultaRoles() {    
-    this.rolService.rolcons()
-    .pipe(first())
-    .subscribe(
-        data => {
-            if (data.cr="00"){
-                this.roles = data.roles;
-                for (let i=0; i < this.roles.length; i++){
-                    for (let j=0; j < this.altausrrol.length; j++){
-                        if (this.altausrrol[j].roleId === this.roles[i].id) {
-                            this.rolessel.push(this.roles[i]);
-                            this.roles.splice(i, 1);
-                        }   }  }
-            }else{
-                this.loading = false;
-                this.msg = this.datawork.descripcion;
-                this.alertService.error(this.msg);
-            }   },
-        error => {
-            this.alertService.error("Error en la consulta de roles");
-            this.loading = false;
-        });
-  } // Cierre del método consultaroles
-  */
-
-  
   consultaDatosApl(){
     this.consapl.aplcons()
     .pipe(first())

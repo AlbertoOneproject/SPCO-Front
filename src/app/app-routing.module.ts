@@ -14,7 +14,8 @@ import { AltarolComponent } from './altarol/altarol.component';
 import { ViewrolComponent } from './viewrol/viewrol.component';
 import { ApeComponent } from './ape/ape.component';
 import { ViewapeComponent } from './viewape/viewape.component';
-//import { AltaapeComponent } from './altauser/altauser.component';
+import { EditapeComponent } from './editape/editape.component';
+import { AltaapeComponent } from './altaape/altaape.component';
 
 
 const routes: Routes = [
@@ -34,8 +35,9 @@ const routes: Routes = [
   { path: 'viewrol/:id', component: ViewrolComponent },
   //{ path: 'ape/:clvap', component: ApeComponent },
   { path: 'ape', component: ApeComponent },
-  { path: 'consultaDatosApe/:clvap', component: ViewapeComponent },
-//  { path: 'altaape', component: AltaapeComponent },
+  { path: 'consultaDatosApe', component: ViewapeComponent },
+  { path: 'editape', component: EditapeComponent },
+  { path: 'altaape', component: AltaapeComponent },
   { path: '**', redirectTo: '' }
 ];
 

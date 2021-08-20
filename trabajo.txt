@@ -1,0 +1,8 @@
+Titulo de la clvapl en la pantalla de ape.component.ts
+
+
+cUANDO mODIFICÓ ME MANDA ERROR DE *REQUIRED
+
+Cuando modifica no me guarda lo que se mostró en pantalla
+
+

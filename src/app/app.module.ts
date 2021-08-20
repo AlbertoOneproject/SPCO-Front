@@ -29,7 +29,10 @@ import { DeleterolComponent } from './deleterol/deleterol.component';
 import { PaginacionComponent } from './paginacion/paginacion.component';
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
 import { ViewapeComponent } from './viewape/viewape.component';
-import { ApeComponent } from './ape/ape.component'
+import { ApeComponent } from './ape/ape.component';
+import { DeleteapeComponent } from './deleteape/deleteape.component';
+import { EditapeComponent } from './editape/editape.component';
+import { AltaapeComponent } from './altaape/altaape.component'
 
 
 @NgModule({
@@ -53,7 +56,10 @@ import { ApeComponent } from './ape/ape.component'
     DeleterolComponent,
     PaginacionComponent,
     ViewapeComponent,
-    ApeComponent
+    ApeComponent,
+    DeleteapeComponent,
+    EditapeComponent,
+    AltaapeComponent
   ],
   imports: [
     BrowserModule,

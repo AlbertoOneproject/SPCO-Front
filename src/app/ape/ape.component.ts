@@ -5,6 +5,7 @@ import { AlertService, SysdtapeService } from './../service';
 import { first } from 'rxjs/operators';
 import { Sysdtape } from './../model';
 
+
 @Component({
   selector: 'app-ape',
   templateUrl: './ape.component.html',
@@ -21,6 +22,7 @@ export class ApeComponent implements OnInit {
   cve: string;
   returnUrl: string;
   cveapidid:string;
+  
 
   clvap:      string;
   id1:        string;
@@ -59,7 +61,7 @@ export class ApeComponent implements OnInit {
     //        this.consape.apeconscve(paramsthis.cve, this.page, this.perPage, this.perName);
 
     this.activatedRoute.params.subscribe( params =>{ 
-        this.consape.apeconscve(params['clvap'])
+         this.consape.apeconscve(this.route.snapshot.queryParamMap.get('clvap'))
         .pipe(first())
         .subscribe(
             data => {
@@ -94,7 +96,12 @@ export class ApeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Hola");
+    console.  log("Hola");
+
+//    const filter = this.route.snapshot.queryParamMap.get('clvap');
+ //   console.log(filter); // Pepperoni
+//    this.consape.apeconscve(this.route.snapshot.queryParamMap.get('clvap'))
+
     this.apeForm = this.formBuilder.group({
       'nombre':new FormControl('', [Validators.required]),
       'items': new FormControl('', [Validators.required])
@@ -142,15 +149,9 @@ get f() { return this.apeForm.controls; }
   }   // Cierre del método consultadatos
 
   routeTo(clvap:string, id1:string, id2:string): void {
-    console.log("ape.cpmponent.ts/routeTo clvap id1 id2");
-    console.log(clvap);
-    console.log(id1);
-    console.log(id2);
-    this.cveapidid = clvap+id1+id2
-    clvap = this.cveapidid;
-    console.log(this.cveapidid);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/consultaDatosApe';
-    this.router.navigate([this.returnUrl,clvap]); 
+    this.router.navigate([this.returnUrl,{clvap:clvap,id1:id1,id2:id2}]); 
+//    this.router.navigate([this.returnUrl,{clvap:"AP08",id1:"ZZ",id2:"Z"}]); 
   }   // Cierre del método routeTo
 
 
