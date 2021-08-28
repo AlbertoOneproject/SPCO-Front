@@ -22,6 +22,7 @@ export class ApeComponent implements OnInit {
   cve: string;
   returnUrl: string;
   cveapidid:string;
+  pantalla: {clvap_pant: string, desCorta_pant: string};
   
 
   clvap:      string;
@@ -42,9 +43,9 @@ export class ApeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private consape: SysdtapeService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService,
+
  
    // private rolService: RolService, 
    // private security: AppSecurity, 
@@ -60,13 +61,34 @@ export class ApeComponent implements OnInit {
     //        this.usuarioService.usuarioid(params['username'])
     //        this.consape.apeconscve(paramsthis.cve, this.page, this.perPage, this.perName);
 
+
+    
+//    this.route.params.subscribe(    (updatedParams) => {  
+//         this.clvap = updatedParams['clvap'];      
+//        this.desCorta = updatedParams['desCorta'];     
+//         console.log("entre");
+//        } );
+    activatedRoute.params.subscribe(val => {
+      // put the code from `ngOnInit` here
+             console.log("Parámetros de Elena  ")
+      console.log(val);
+    });
+
+
+    //this.activatedRoute.queryParams.subscribe(params => {
+    //this.clvap = params["clvap"];
+    //this.desCorta = params["desCorta"];
+   //     });
+    //    console.log("Parámetros de Elena  ")
+    //    console.log(this.clvap);
+     //   console.log(this.desCorta);
+
+
     this.activatedRoute.params.subscribe( params =>{ 
-         this.consape.apeconscve(this.route.snapshot.queryParamMap.get('clvap'))
+         this.consape.apeconscve(this.activatedRoute.snapshot.queryParamMap.get('clvap'))
         .pipe(first())
         .subscribe(
             data => {
-              console.log("Params");
-              console.log(params['clvap']);
               this.dataWork = data;
               console.log("ape.component.ts dataWork")
               console.log(this.dataWork)
@@ -95,9 +117,16 @@ export class ApeComponent implements OnInit {
       })
   }
 
-  ngOnInit(): void {
-    console.  log("Hola");
+  ngOnInit() {
+    console.log("Hola");    
+    //this.clvap_pant = this.route.snapshot.queryParamMap.get('clvap');
+    this.pantalla = {
+      clvap_pant: this.activatedRoute.snapshot.queryParamMap.get('clvap'),
+      desCorta_pant: this.activatedRoute.snapshot.queryParamMap.get('desCorta')
+    };
 
+    console.log(this.pantalla.clvap_pant);    
+    console.log(this.pantalla.desCorta_pant);    
 //    const filter = this.route.snapshot.queryParamMap.get('clvap');
  //   console.log(filter); // Pepperoni
 //    this.consape.apeconscve(this.route.snapshot.queryParamMap.get('clvap'))
@@ -149,7 +178,7 @@ get f() { return this.apeForm.controls; }
   }   // Cierre del método consultadatos
 
   routeTo(clvap:string, id1:string, id2:string): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/consultaDatosApe';
+    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/consultaDatosApe';
     this.router.navigate([this.returnUrl,{clvap:clvap,id1:id1,id2:id2}]); 
 //    this.router.navigate([this.returnUrl,{clvap:"AP08",id1:"ZZ",id2:"Z"}]); 
   }   // Cierre del método routeTo

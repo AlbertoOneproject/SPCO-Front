@@ -32,7 +32,14 @@ import { ViewapeComponent } from './viewape/viewape.component';
 import { ApeComponent } from './ape/ape.component';
 import { DeleteapeComponent } from './deleteape/deleteape.component';
 import { EditapeComponent } from './editape/editape.component';
-import { AltaapeComponent } from './altaape/altaape.component'
+import { AltaapeComponent } from './altaape/altaape.component';
+import { UsersComponent } from './users/users.component';
+import { AltasysuserComponent } from './altasysuser/altasysuser.component';
+import { ViewsysuserComponent } from './viewsysuser/viewsysuser.component';
+import { EditsysuserComponent } from './editsysuser/editsysuser.component';
+import { DeletesysuserComponent } from './deletesysuser/deletesysuser.component';
+import { ChangesyspswComponent } from './changesyspsw/changesyspsw.component';
+import { MsgokComponent } from './msgok/msgok.component'
 
 
 @NgModule({
@@ -59,7 +66,14 @@ import { AltaapeComponent } from './altaape/altaape.component'
     ApeComponent,
     DeleteapeComponent,
     EditapeComponent,
-    AltaapeComponent
+    AltaapeComponent,
+    UsersComponent,
+    AltasysuserComponent,
+    ViewsysuserComponent,
+    EditsysuserComponent,
+    DeletesysuserComponent,
+    ChangesyspswComponent,
+    MsgokComponent
   ],
   imports: [
     BrowserModule,

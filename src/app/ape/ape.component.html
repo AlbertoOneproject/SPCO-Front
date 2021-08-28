@@ -6,13 +6,17 @@
 
         <div class="card">
             <div class="toolbar">
-                <h4>Lista de Apendices {{currentApe[0].clvap}} </h4>
+                <h4>Lista de Apendices </h4>
                 <div class="col-12 text-right">
                     <a class="btn btn-success btn-lg rounded-circle" href="/altaape">+</a>
                 </div>
+                <div class="col-12 text-center">
+                    <h2>{{pantalla.desCorta_pant}}</h2>
+                    <br>
+                </div>
             </div>
-            <h3 class="bolder">{{currentApe[0].clvap}}&nbsp;{{currentApe[0].desCorta}}</h3>
-            <br>
+            <hr>
+
             <!--            
             <div class="content">
                 <div class="row">
@@ -56,11 +60,5 @@
                 <!--                <app-paginacion [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">     
                 </app-paginacion>    -->
             </table>
-            <div class="form-group">
-                <div class="col-04">
-                    <label class="mr-sm-04" for="inlineFormCustomSelect"> Item por página : </label>
-                    <input class="custom-select mr-sm-10" ng-model="filterText" formControlName="items" type="text" ng-keyup="onFilter()" class="span marginbottom0px form-control" placeholder="Items">
-                </div>
-            </div>
         </div>
     </form>

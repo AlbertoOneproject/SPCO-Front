@@ -1,0 +1,61 @@
+<div class="content-container" ng-controller="usuario.component.ts">
+    <ul class="breadcrumb">
+        <li class="active">Users </li>
+    </ul>
+    <form [formGroup]="usersForm">
+
+        <div class="card">
+            <div class="toolbar">
+                <h4>Lista de Users</h4>
+
+                <div class="col-12 text-right">
+                    <a class="btn btn-success btn-lg rounded-circle" href="/altasysuser">+</a>
+                </div>
+            </div>
+
+            <br>
+            <div class="content">
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="col-9">
+                            <input class="mr-sm-9" ng-model="filterText" formControlName="nombre" type="text" class="span marginbottom0px form-control" placeholder="Recinto">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4">
+                        <button type="button" text-align="right" class="btn btn-primary pull-right" (click)="buscar()" has-permission='UPDATE_USER'>
+                        &nbsp;&nbsp; Buscar
+                    </button>
+
+                        <!--                    <a href="altauser" text-align="right" class="btn btn-primary pull-right"><i class="fa fa-plus "></i>&nbsp;&nbsp; Crear </a>-->
+                        <!--                    <a [routerLink]="['altauser']" class="btn btn-primary pull-right"><i class="fa fa-plus "></i>&nbsp;&nbsp;Crear </a>-->
+
+                    </div>
+
+                </div>
+            </div>
+            <hr/>
+            <table class="table">
+                <thead>
+                    <tr class="graybg">
+                        <th>Empresa</th>
+                        <th>Recinto</th>
+                        <th>Ususario</th>
+                        <th>Perfil</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="pointer-main" *ngFor="let listausers of currentUser">
+                        <td class="pointer" (click)="routeTo(listausers.idUsuario)">{{listausers.idEmpresa}}</td>
+                        <td class="pointer" (click)="routeTo(listausers.idUsuario)">{{listausers.idRecinto}}</td>
+                        <td class="pointer" (click)="routeTo(listausers.idUsuario)">{{listausers.idUsuario}}</td>
+                        <td class="pointer" (click)="routeTo(listausers.idUsuario)">{{listausers.idPerfil}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-paginacion [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">
+            </app-paginacion>
+        </div>
+    </form>

@@ -30,25 +30,33 @@
 -->
 
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand navbar-ligth bg-ligth" *ngIf="currentUser">
+    <!--    <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/usuarios">Usuarios <span class="sr-only">(current)</span></a>
+                <a class="nav-link" [routerLink]="['users']">Users <span class="sr-only">(current)</span></a>
+            </li>
+            <!--
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="['usuarios']">Usuarios <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/rol">Rol <span class="sr-only">(current)</span></a>
+                <a class="nav-link" [routerLink]="['rol']">Rol <span class="sr-only">(current)</span></a>
             </li>
+-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Catálogos
                 </a >
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                    <a class="dropdown-item" href="/ape?clvap={{listaapl.clvap}}" *ngFor="let listaapl of apl; let i = index;">
+<!--                    <a class="dropdown-item" href="/ape?clvap={{listaapl.clvap}}&desCorta={{listaapl.desCorta}}" *ngFor="let listaapl of apl; let i = index;">  -->
+                <a class="dropdown-item" *ngFor="let listaapl of apl; let i = index;" (click)="invocaApe(listaapl)"> 
+<!--                    <a class="dropdown-item" [routerLink]="['ape']" [queryParams]= "{clvap:listaapl.clvap, desCorta:listaapl.desCorta}" *ngFor="let listaapl of apl; let i = index;">    -->                    
                         {{listaapl.desCorta}}
                     </a>
+                <!--                    <a class="nav-link" [routerLink]="['client']" [queryParams]="{'p': this.index - 1, 'list': this.listVisits[this.index - 1]}">Client Detail</a> -->
     </div>
     </li>
     <span class="select-highlight"></span>
@@ -58,7 +66,9 @@
     </li>
     </ul>
     </div>
+    <!--     </nav> -->
 </nav>
+
 
 <!-- main app container -->
 <div class="container">

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { LoginService, SysdtaplService } from './service';
-import { Login, Sysdtapl } from './model';
+import { Login, Sysdtapl, Rol } from './model';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 @Component({
@@ -13,9 +13,12 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 export class AppComponent implements OnInit {
   dynamicForm: FormGroup;
   currentUser: Login;
+  currentRol: Rol;
+  currentUserLog: Login;
   apesel: any = [];
   apl: Sysdtapl;
   dataapl: any=[];
+  
 
 
   constructor(
@@ -24,16 +27,40 @@ export class AppComponent implements OnInit {
       private authenticationService: LoginService,
       private consapl: SysdtaplService
   ) {
+//    this.currentUser = null;
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.authenticationService.currentUser.subscribe(x => this.currentUserLog = x);
   }
 
   ngOnInit() {
+//    this.currentUser = null;
     this.consultaDatosApl();
     this.dynamicForm = this.formBuilder.group({
         listaallapl: ['', Validators.required],
         tickets: new FormArray([])
     });
-}
+  }
+
+  invocaApe(value: any){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          "clvap": value.clvap,
+          "desCorta": value.desCorta
+      }
+    }
+   
+//    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+//     return false;
+//    }
+//    this.router.onSameUrlNavigation = 'reload';
+
+//    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+//    this.router.onSameUrlNavigation = 'reload';
+
+    this.router.navigate(['/ape'], navigationExtras).then (() => window.location.reload ());
+    //this.router.navigate(['/ape'], navigationExtras);
+  };
+
   consultaDatosApl(){
     this.consapl.aplcons()
     .pipe(first())
@@ -41,13 +68,7 @@ export class AppComponent implements OnInit {
         data => {
 //          if (data.cr="00"){          
             this.dataapl = data;
-            console.log ("app.component.ts/consultaDatosApl  dataapl ")
-            console.log(this.dataapl)
-            console.log(this.dataapl.cr)
             this.apl = this.dataapl.contenido;
-            console.log(this.dataapl.contenido)          
-            console.log(this.apl)          
-            console.log(this.apl[1].clvap)
         },
         error => {
 //          this.alertService.error("Error en la consulta de permisos");              
@@ -63,6 +84,8 @@ export class AppComponent implements OnInit {
 
   logout() {
       this.currentUser = null;
+      this.currentRol = null;
+      this.currentUserLog = null;
       this.authenticationService.logout();
       this.router.navigate(['/login']);
   }

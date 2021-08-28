@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { Login, Loginreceive} from './../model'
-
+import { Loginreceive} from './../model'
 import { AlertService, LoginService } from './../service';
 
 
@@ -16,11 +15,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error='';
-
   msg= '';
-  datawork: any=[];
-  descr= "Acceso autorizado";
-  loginrec: Loginreceive
 
 //  currentUser: Login;
 
@@ -46,12 +41,12 @@ export class LoginComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-}
+  }
 
 // convenience getter for easy access to form fields
-get f() { return this.loginForm.controls; }
+  get f() { return this.loginForm.controls; }
 
-onSubmit() {
+  onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -60,43 +55,26 @@ onSubmit() {
     }
 
     this.loading = true;
-/*     
-    console.log(this.returnUrl)
-
-    if(this.f.usuario.value=="Alberto"  && this.f.password.value=="Password"){
-      this.router.navigate(['/home']);
-        
-   
-      
-    }
-    else{
-      this.alertService.error("Verifique sus datos");
-      this.loading = false;
-    }
-*/
-    console.log(this.f.usuario.value)
     this.loginService.login(this.f.usuario.value, this.f.password.value)
         .pipe(first())
         .subscribe(
             data => {
-              this.datawork = data;
-              if (this.datawork.cr="00"){
-                this.loginrec = data;
-                if(this.loginrec.authenticated && this.loginrec.description == this.descr){
-                  this.router.navigate([this.returnUrl]);
-                }else{
-                  this.alertService.error(this.loginrec.description);
+              if (data.cr=="00"){
+                 if(data.authenticated){
+                    this.router.navigate([this.returnUrl]);
+                 }else{
                   this.loading = false;
-              }
+                  this.alertService.error("Usuario no autenticado");
+                 }
               }else{
                 this.loading = false;
-                this.msg = this.datawork.descripcion;
+                this.msg = data.descripcion;
                 this.alertService.error(this.msg);
               }
-            },
+            },            
             error => {
                 this.alertService.error("Error en el proceso de Login");
                 this.loading = false;
             });
-}
-}
+  }      // Cierre del método onSubmit
+}        // Cierre del método Principal

@@ -21,8 +21,6 @@ export class SysdtaplService {
       .pipe(map(listapl => {
         if(listapl){
           this.sysdtapl = listapl;
-          console.log("sysdtapl.service.ts/aplcons  Apl");
-          console.log(listapl);
              } 
     return this.sysdtapl;
       }));

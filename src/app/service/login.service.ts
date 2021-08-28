@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Login, Loginreceive} from '../model';
 import { Usuario } from '../model/usuario';
+import { User } from '../model/user';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -12,6 +13,7 @@ export class LoginService {
   error='';
   private currentUserSubject: BehaviorSubject<Login>;
   public currentUser: Observable<Login>;
+  public currentUserLog: Observable<Login>;
 
   constructor(private http: HttpClient) { 
     this.currentUserSubject = new BehaviorSubject<Login>(JSON.parse(localStorage.getItem('currentUserLog')));
@@ -35,12 +37,13 @@ export class LoginService {
     console.log("serv login: ")
     console.log(usuario);
 */    
-    return this.http.post<any>(`${environment.SERVER_URL}/Auth`, { 'user': usuario, 'password': password })
+    //return this.http.post<any>(`${environment.SERVER_URL}/Auth`, { 'user': usuario, 'password': password })
+    return this.http.post<any>(`${environment.SERVER_URL}/Logon`, { 'user': usuario, 'password': password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         if (user.authenticated) {
           localStorage.setItem('currentUserLog', JSON.stringify(user));
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          //localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('autorizacion', JSON.stringify(user.token));
           this.currentUserSubject.next(user);
         }
@@ -54,8 +57,11 @@ export class LoginService {
   
   logout() {
     // remove user from local storage to log user out
-    this.currentUser = null;
-    localStorage.removeItem('currentUser');
+    //this.currentUser = null;
+    this.currentUserLog = null;
+    //localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserLog');
+    localStorage.removeItem('autorizacion');
     this.currentUserSubject.next(null);
   }  
 }

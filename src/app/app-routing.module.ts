@@ -4,6 +4,10 @@ import { HomeComponent } from './home/home.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { LoginComponent } from './login';
+import { UsersComponent } from './users/users.component';
+import { AltasysuserComponent } from './altasysuser/altasysuser.component';
+import { ViewsysuserComponent } from './viewsysuser/viewsysuser.component';
+import { EditsysuserComponent } from './editsysuser/editsysuser.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AltauserComponent } from './altauser/altauser.component';
 import { EdituserComponent } from './edituser/edituser.component';
@@ -25,6 +29,10 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+  { path: 'users', component: UsersComponent },
+  { path: 'altasysuser', component: AltasysuserComponent },
+  { path: 'viewsysuser/:idUsuario', component: ViewsysuserComponent },
+  { path: 'editsysuser/:idUsuario', component: EditsysuserComponent },
   { path: 'usuarios', component: UsuarioComponent },
   { path: 'altauser', component: AltauserComponent },
   { path: 'edituser/:username', component: EdituserComponent },
@@ -33,7 +41,7 @@ const routes: Routes = [
   { path: 'rol', component: RolComponent },
   { path: 'altarol', component: AltarolComponent },  
   { path: 'viewrol/:id', component: ViewrolComponent },
-  //{ path: 'ape/:clvap', component: ApeComponent },
+//  { path: 'ape/:clvap', component: ApeComponent },
   { path: 'ape', component: ApeComponent },
   { path: 'consultaDatosApe', component: ViewapeComponent },
   { path: 'editape', component: EditapeComponent },
@@ -43,7 +51,14 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+//    onSameUrlNavigation: 'reload'    ],
   exports: [RouterModule]
+
+
+  
+
+
+
 })
 export class AppRoutingModule { }
 

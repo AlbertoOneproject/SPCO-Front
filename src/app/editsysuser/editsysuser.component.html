@@ -1,0 +1,78 @@
+<div class="content-container" ng-controller="editsysusercomponent">
+    <ul class="breadcrumb">
+        <li><a href="users">Users</a></li>
+        <li><a href="/viewsysuser/{{idUsuario}}">{{idUsuario}}</a></li>
+        <li class="active">Editar usuario</li>
+    </ul>
+    <form [formGroup]="editsysuserform">
+        <!--      <form name="edituserform" novalidate="" class="card form-horizontal well" rc-submit="submit()"> -->
+
+        <fieldset>
+            <div class="container-body form-horizontal">
+                <api-validate></api-validate>
+                <br>
+
+                <legend>Editar usuario</legend>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idEmpresa">Empresa:<span
+                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled="true" type="text" id="idEmpresa" name="idEmpresa" value="{{idEmpresa}}" formControlName="Empresa" class="form-control" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idRecinto">Recinto:<span
+                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled="true" type="text" id="idRecinto" name="idRecinto" value="{{idRecinto}}" formControlName="idRecinto" class="form-control" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idUsuario">Usuario:<span
+                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled="true" type="text" id="idUsuario" name="idUsuario" value="{{idUsuario}}" formControlName="idUsuario" class="form-control" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idPerfil">Perfil:<span
+                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="idPerfil" name="idPerfil" value="{{idPerfil}}" formControlName="idPerfil" class="form-control" minlength="1" maxlength="4" required late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="intentos">Intentos:<span
+                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="intentos" name="intentos" value="{{intentos}}" formControlName="intentos" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="1" required late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="estatus">Estatus:<span
+                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="estatus" name="estatus" value="{{estatus}}" formControlName="estatus" class="form-control" minlength="1" maxlength="1" required late-Validate/>
+                    </div>
+                </div>
+
+                <div class="col-md-offset-4">
+                    <button class="btn btn-default" (click)="cancelar(idUsuario)">Cancelar</button>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

@@ -7,13 +7,10 @@
 
     <div class="card-body">
         <h4>Bienvenido : </h4>
-        <!--        <label class="control-label col-sm-6" *ngIf="usuario">{{usuario.firstname }}&nbsp;{{usuario.lastname }}</label> -->
-
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
-
+        <!--<label class="control-label col-sm-6">Usuario:&nbsp;{{this.currentUserLog.idUsuario}}&nbsp;Empresa:&nbsp;{{this.currentUserLog.idEmpresa}}&nbsp;Recinto:&nbsp;{{this.currentUserLog.idRecinto}}</label>-->
+        <label class="control-label col-sm-6">Usuario:&nbsp;{{this.currentUserLog.idUsuario}}</label>
+        <label class="control-label col-sm-6">Empresa:&nbsp;{{this.currentUserLog.idEmpresa}}</label>
+        <label class="control-label col-sm-6">Recinto:&nbsp;{{this.currentUserLog.idRecinto}}</label>
         <br><br><br>
     </div>
 </div>
