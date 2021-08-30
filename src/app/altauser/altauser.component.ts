@@ -12,6 +12,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   templateUrl: './altauser.component.html'
 })
 export class AltauserComponent implements OnInit {
+  perfirl:boolean;
   altauserform: FormGroup;
   currentRol: Rol;
   roles= [];

@@ -3,8 +3,8 @@ import { Subscription, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { Login } from '../model';
-import { Usuario } from '../model';
+import { Login, } from '../model';
+//import { Usuario } from '../model';
 import { User } from '../model';
 import { LoginService } from '../service';
 import { UsersService } from '../service';
@@ -15,8 +15,8 @@ import { UsersService } from '../service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   loading = false;
-  usuari: Usuario;
-  usuario: Usuario;
+  //usuari: Usuario;
+  //usuario: Usuario;
   currentUserLog: Login;
   currentUser: Observable<Login>;
   currentUserSubscription: Subscription;
@@ -38,7 +38,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
       this.loading = true;
 //      this.usuari = JSON.parse(localStorage.getItem('currentUserLog'));
-//      let username = this.usuari["username"];
+//      let username = this.usuari["idUsuario"];
+//      console.log("home.component.ts ngOnInit usuari");
+//      console.log(this.usuari);
+//      console.log(username);
 //      this.usuarioService.usuarioid(username).pipe(first()).subscribe(user => {
 //      this.userService.user(username).pipe(first()).subscribe(user => {
 //      this.usuario = user;

@@ -1,15 +1,17 @@
 <div class="content-container" ng-controller="usuario.component.ts">
     <ul class="breadcrumb">
-        <li class="active">Users </li>
+        <li class="active">Usuarios</li>
     </ul>
     <form [formGroup]="usersForm">
 
         <div class="card">
             <div class="toolbar">
-                <h4>Lista de Users</h4>
-
-                <div class="col-12 text-right">
+                <h4>Lista de Usuarios</h4>
+                <div class="col-12 text-right" *ngIf="perfil">
                     <a class="btn btn-success btn-lg rounded-circle" href="/altasysuser">+</a>
+                </div>
+                <div class="col-12 text-right" *ngIf="!perfil">
+                    <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
                 </div>
             </div>
 

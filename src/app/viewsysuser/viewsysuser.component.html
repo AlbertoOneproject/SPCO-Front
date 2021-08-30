@@ -5,7 +5,7 @@
     </ul>
     <div class="card well">
         <div class="pull-right">
-            <div class="form-group">
+            <div class="form-group" *ngIf="perfil">
                 <button type="button" class="btn btn-primary" (click)="ireditsysuser(idUsuario)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
                     Editar código
                 </button>
@@ -17,6 +17,19 @@
                     Cambiar contraseña
                 </button>
             </div>
+            <div class="form-group" *ngIf="!perfil">
+                <button disabled type="button" class="btn btn-primary" (click)="ireditsysuser(idUsuario)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar código
+                </button>
+                <button disabled type="button" (click)="deletesysusr()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+                <button disabled type="button" class="btn btn-primary" (click)="changepsw()" has-permission='UPDATE_USER'><i class="fa fa-cog "></i>
+                    Cambiar contraseña
+                </button>
+            </div>
+
         </div>
         <h3 class="bolder">Usuario:&nbsp;&nbsp;&nbsp;{{idUsuario}}</h3>
         <div class="row">

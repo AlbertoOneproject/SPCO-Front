@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router, NavigationExtras} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { User } from '../model/user';
+import { Login, User } from '../model';
 import { first } from 'rxjs/operators';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EdituserComponent } from '../edituser/edituser.component';
@@ -18,6 +18,8 @@ import { AppSecurity } from '../app-security';
   styleUrls: ['./viewsysuser.component.css']
 })
 export class ViewsysuserComponent implements OnInit {
+  login: Login;
+  perfil: boolean;
   isDisabled: boolean;
   public currentSysUser: User;
   returnUrl: string;
@@ -98,6 +100,13 @@ ngOnInit(): void {
 /*    this.isDisabled = false;
   this.consultaSecurity();
   */
+  this.login = JSON.parse(localStorage.getItem('currentUserLog'));
+  let perfillogin = this.login["idPerfil"];
+  if (perfillogin=="US01"){
+      this.perfil=true;      
+  }else{
+      this.perfil=false;
+  }
 }
 
 consultaSecurity(){

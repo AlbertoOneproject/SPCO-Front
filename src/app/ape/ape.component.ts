@@ -89,15 +89,9 @@ export class ApeComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
-              this.dataWork = data;
-              console.log("ape.component.ts dataWork")
-              console.log(this.dataWork)
-              
+              this.dataWork = data;            
               if (this.dataWork.cr="00"){  
                   this.currentApe = this.dataWork.contenido;
-                  console.log("this.currentApe")
-                  console.log(this.currentApe)
-    
                   this.clvap      = this.currentApe.clvap,
                   this.id1        = this.currentApe.id1,
                   this.id2        = this.currentApe.id2,
@@ -124,7 +118,6 @@ export class ApeComponent implements OnInit {
       clvap_pant: this.activatedRoute.snapshot.queryParamMap.get('clvap'),
       desCorta_pant: this.activatedRoute.snapshot.queryParamMap.get('desCorta')
     };
-
     console.log(this.pantalla.clvap_pant);    
     console.log(this.pantalla.desCorta_pant);    
 //    const filter = this.route.snapshot.queryParamMap.get('clvap');

@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { AlertService, UsersService } from './../service';
 import { first } from 'rxjs/operators';
-import { User } from './../model'
+import { Login, User } from './../model'
 
 @Component({
   selector: 'app-users',
@@ -11,6 +11,8 @@ import { User } from './../model'
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  login: Login;
+  perfil: boolean;
   usersForm: FormGroup;
   page: number;
   perPage: number;
@@ -22,14 +24,12 @@ export class UsersComponent implements OnInit {
   msg= '';
   returnUrl: string;
 
-
   constructor(
     private usersService: UsersService,
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private route: ActivatedRoute,
     private router: Router,
-
 
   ) {
     this.page = 1;
@@ -43,6 +43,14 @@ export class UsersComponent implements OnInit {
       'items': new FormControl('', [Validators.required])
   });
       this.consultaUsers(this.page, this.perPage, this.perName);
+
+      this.login = JSON.parse(localStorage.getItem('currentUserLog'));
+      let perfillogin = this.login["idPerfil"];
+      if (perfillogin=="US01"){
+          this.perfil=true;      
+      }else{
+          this.perfil=false;
+      }
   }
 
 // convenience getter for easy access to form fields
