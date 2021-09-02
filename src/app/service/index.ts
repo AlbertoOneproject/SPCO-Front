@@ -7,3 +7,4 @@ export * from './permisos.service';
 export * from './rolperm.service';
 export * from './sysdtapl.service';
 export * from './sysdtape.service';
+export * from './prodymat.service';

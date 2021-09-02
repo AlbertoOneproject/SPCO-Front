@@ -1,0 +1,66 @@
+<div class="content-container" ng-controller="usuario.component.ts">
+    <ul class="breadcrumb">
+        <li class="active">Productos y Materiales</li>
+    </ul>
+    <form [formGroup]="prodymatForm">
+        <div class="col-12 text-right">
+
+            <!--            
+            <div class="card col-sm-2">
+                <h2>PRODUCTOS Y MATERIALES</h2>
+            </div>
+-->
+            <div class="card col-sm-10">
+                <div class="toolbar">
+                    <h4>Lista de Productos y Materiales</h4>
+                    <div class="col-12 text-right" *ngIf="perfil">
+                        <a class="btn btn-success btn-lg rounded-circle" href="/altaprodymat">+</a>
+                    </div>
+                    <div class="col-12 text-right" *ngIf="!perfil">
+                        <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
+                    </div>
+
+                    <div class="nav-item dropdown" style="text-align: left">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        TIPO
+                        </a >
+        
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+        <!--                    <a class="dropdown-item" href="/ape?clvap={{listaapl.clvap}}&desCorta={{listaapl.desCorta}}" *ngFor="let listaapl of apl; let i = index;">  -->
+                        <a class="dropdown-item" *ngFor="let listaprod of prod; let i = index;" (click)="consultaProdymat(listaprod.Tipo, 1, this.perPage, this.perName)"> 
+        <!--                    <a class="dropdown-item" [routerLink]="['ape']" [queryParams]= "{clvap:listaapl.clvap, desCorta:listaapl.desCorta}" *ngFor="let listaapl of apl; let i = index;">    -->                    
+                                {{listaprod.desc}}
+                            </a>
+                        <!--                    <a class="nav-link" [routerLink]="['client']" [queryParams]="{'p': this.index - 1, 'list': this.listVisits[this.index - 1]}">Client Detail</a> -->
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <hr/>
+            <table class="table">
+                <thead>
+                    <tr class="graybg" *ngIf="detalle">
+                        <th>Recinto</th>
+                        <th>Clave Prod</th>
+                        <th>Descripción Corta</th>
+                        <th>Unidad de Medida</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr class="pointer-main" *ngFor="let listprods of currentProdmat">
+                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.recinto}}</td>
+                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.clveProduc}}</td>
+                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.descCorta}}</td>
+                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.uM}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <app-paginacion style="text-align: left" [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">
+            </app-paginacion>
+        </div>
+</div>
+</form>

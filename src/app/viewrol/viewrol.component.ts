@@ -80,7 +80,7 @@ export class ViewrolComponent implements OnInit {
       .subscribe(
           data => {
               this.datawork = data;
-              if (this.datawork.cr="00"){
+              if (this.datawork.cr=="00"){
                 this.currentRol = this.datawork.roles;
                 this.id = this.currentRol.id; 
                 this.name = this.currentRol.name;
@@ -140,7 +140,7 @@ export class ViewrolComponent implements OnInit {
               this.datawork = data;
               console.log("rolperm ..... ")
               console.log(data)
-              if (this.datawork.cr="00"){
+              if (this.datawork.cr=="00"){
                 //this.currentRolPerm.push(data);
                 this.currentRolPerm = this.datawork.contenido;
                 console.log(this.currentRolPerm)
@@ -164,7 +164,7 @@ export class ViewrolComponent implements OnInit {
     .subscribe(
         data => {
           this.datawork = data;
-          if (this.datawork.cr="00"){
+          if (this.datawork.cr=="00"){
             console.log("consulta permperm  ..... ")
             console.log(this.datawork)
         
@@ -322,7 +322,7 @@ rolpermalta(idRol: string, idPerm: string){
         .subscribe(
             data => {
               this.datawork = data;
-              if (this.datawork.cr="00"){
+              if (this.datawork.cr=="00"){
                 //this.currentRolPerm.push(data);
                 this.currentRolPermalta = data;
                 this.enc_rolperm = true;
@@ -349,7 +349,7 @@ rolpermalta(idRol: string, idPerm: string){
         .subscribe(
             data => {
               this.datawork = data;
-              if (this.datawork.cr="00"){
+              if (this.datawork.cr=="00"){
                   this.currentRolPermdel = data;
                   this.enc_rolperm = true;
               }else{

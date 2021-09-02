@@ -67,7 +67,7 @@ export class AltauserComponent implements OnInit {
         data => {
           console.log("roles")
           console.log(data)
-          if (data.cr="00"){
+          if (data.cr=="00"){
              this.roles = data.roles;
             }else{
               this.loading = false;

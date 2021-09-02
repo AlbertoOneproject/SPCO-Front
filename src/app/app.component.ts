@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-//          if (data.cr="00"){          
+//          if (data.cr=="00"){          
             this.dataapl = data;
             this.apl = this.dataapl.contenido;
         },

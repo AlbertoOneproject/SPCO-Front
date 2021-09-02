@@ -81,7 +81,7 @@ export class EditsysuserComponent implements OnInit {
         .subscribe( 
             data => {
                 this.datawork = data;
-                if (this.datawork.cr="00"){
+                if (this.datawork.cr=="00"){
                     this.currentSysUser = this.datawork.contenido;
                     this.editsysuserform.controls['idEmpresa'].setValue(this.currentSysUser.idEmpresa);
                     this.editsysuserform.controls['idRecinto'].setValue(this.currentSysUser.idRecinto);

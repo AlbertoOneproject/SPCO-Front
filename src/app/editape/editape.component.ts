@@ -45,7 +45,7 @@ export class EditapeComponent implements OnInit {
           data => {
             this.dataWork = data;
             console.log("editape.component.ts Constructor ")
-            if (this.dataWork.cr="00"){  
+            if (this.dataWork.cr=="00"){  
                 this.currentApe = this.dataWork.contenido;
                 this.clvap      = this.currentApe[0].clvap,
                 this.id1        = this.currentApe[0].id1,
@@ -102,7 +102,7 @@ export class EditapeComponent implements OnInit {
           .subscribe(
               data => {
                 this.datawork = data;
-                if (this.datawork.cr="00"){
+                if (this.datawork.cr=="00"){
                     console.log("edit rol usr regreso")
                     console.log(this.datawork)
                     console.log(this.datawork.contenido.id)  

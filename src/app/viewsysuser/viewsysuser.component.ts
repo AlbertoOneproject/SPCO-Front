@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ActivatedRoute, Router, NavigationExtras} from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router} from '@angular/router';
 import { Login, User } from '../model';
 import { first } from 'rxjs/operators';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EdituserComponent } from '../edituser/edituser.component';
 import { DeletesysuserComponent } from '../deletesysuser/deletesysuser.component';
 import { ChangesyspswComponent } from '../changesyspsw/changesyspsw.component';
 import { MatDialog} from '@angular/material/dialog';
-import { AlertService, UsersService, RolService } from './../service';
+import { AlertService, UsersService } from './../service';
 import { AppSecurity } from '../app-security';
 
 @Component({
@@ -30,7 +26,6 @@ export class ViewsysuserComponent implements OnInit {
   altausrrol: any =[];
   altausrrolr: any =[];
 
-
   public idEmpresa:     string;
   public idRecinto:     string;
   public idUsuario:     string;
@@ -41,7 +36,6 @@ export class ViewsysuserComponent implements OnInit {
   public fecEst:        string;  
   public userMod:       string;
   public progUser:      string;
-
 
   public firsttimeLoginRemaining: boolean;
   public nonexpired: boolean;
@@ -55,11 +49,9 @@ export class ViewsysuserComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private usersService: UsersService, 
-    private rolService: RolService, 
     private security: AppSecurity, 
     private route: ActivatedRoute,
     private router: Router,
-//    private modalService: NgbModal,
     private dialog: MatDialog,
     private alertService: AlertService
   ) {
@@ -69,7 +61,7 @@ export class ViewsysuserComponent implements OnInit {
       .subscribe(
           data => {
             this.datawork = data;
-            if (this.datawork.cr="00"){  
+            if (this.datawork.cr=="00"){  
                 this.currentSysUser = this.datawork.contenido;
                 this.idEmpresa 	    = this.currentSysUser.idEmpresa;
                 this.idRecinto      = this.currentSysUser.idRecinto;

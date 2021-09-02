@@ -2,23 +2,22 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { first } from 'rxjs/operators';
-import { AlertService, UsersService } from './../service';
-
+import { AlertService, ProdymatService } from './../service';
 
 @Component({
-  selector: 'app-deletesysuser',
-  templateUrl: './deletesysuser.component.html',
-  styleUrls: ['./deletesysuser.component.css']
+  selector: 'app-deleteprodymat',
+  templateUrl: './deleteprodymat.component.html',
+  styleUrls: ['./deleteprodymat.component.css']
 })
-export class DeletesysuserComponent implements OnInit {
+export class DeleteprodymatComponent implements OnInit {
   idUsuario: string = ''; 
   returnUrl: string;
   loading = false;
   msg= '';
 
   constructor(
-    public dialogRef: MatDialogRef<DeletesysuserComponent>,@Inject (MAT_DIALOG_DATA) public data: any,
-    private usersService: UsersService,
+    public dialogRef: MatDialogRef<DeleteprodymatComponent>,@Inject (MAT_DIALOG_DATA) public data: any,
+    private prodymatService: ProdymatService,
     private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService
@@ -27,10 +26,10 @@ export class DeletesysuserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deletesysusr(idUsuario: string): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/users';
-    this.idUsuario = idUsuario;
-    this.usersService.deletesysusrid(idUsuario)
+  deleteprodymat(clveProduc: string): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/prodymat';
+    this.idUsuario = clveProduc;
+    this.prodymatService.deleteprodymat(clveProduc)
     .pipe(first())
     .subscribe(
         data => {

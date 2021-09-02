@@ -62,7 +62,7 @@ export class ViewuserComponent implements OnInit {
         .subscribe(
             data => {
               this.datawork = data;
-              if (this.datawork.cr="00"){  
+              if (this.datawork.cr=="00"){  
                   this.currentUser = this.datawork.contenido;
                   this.id = this.currentUser.id; 
                   this.isDeleted = this.currentUser.isDeleted;
@@ -115,9 +115,9 @@ export class ViewuserComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-          if (data.cr="00"){
+          if (data.cr=="00"){
             this.altausrrol = data.contenido;
-            if (this.altausrrol.cr="00"){
+            if (this.altausrrol.cr=="00"){
               for (let i=0; i < this.altausrrol.length; i++){ 
                 this.consultaRol(i);
               }
@@ -146,7 +146,7 @@ export class ViewuserComponent implements OnInit {
     .subscribe(
         data => {
           this.datawork = data;
-          if (this.datawork.cr="00"){
+          if (this.datawork.cr=="00"){
             this.altausrrolr = this.datawork.roles;
             this.rolessel.push(this.altausrrolr);
             this.isDisabled = false;

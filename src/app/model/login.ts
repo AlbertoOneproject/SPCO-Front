@@ -7,8 +7,8 @@ export class Login {
     idPerfil:      string;
     authenticated: boolean;
     bloqueado:     boolean;
+    estadoUsuario: string;
     token:         string
-
 
     contructor(login) {
         this.idEmpresa	   = login.idEmpresa,
@@ -17,6 +17,7 @@ export class Login {
         this.idPerfil      = login.idPerfil,
         this.authenticated = login.authenticated,
         this.bloqueado     = login.bloqueado,
+        this.estadoUsuario = login.estadoUsuario,
         this.token         = login.token
     }
         

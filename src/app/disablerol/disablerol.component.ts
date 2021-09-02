@@ -38,7 +38,7 @@ export class DisablerolComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-          if (this.data.cr="00"){
+          if (this.data.cr=="00"){
             this.router.navigate([this.returnUrl]);
             this.onNoClick();
           }else{

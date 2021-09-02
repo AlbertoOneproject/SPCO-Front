@@ -24,9 +24,6 @@ export class SysdtapeService {
 }
 
   apeconscve(clvap: string){
-//    clvap = 'AP08';
-    console.log("sysdtape.service.ts/apeconscve param ")
-    console.log(clvap)
     let params = new HttpParams();
 //    params = params.append('id', username);
     params = params.append('id',clvap);
@@ -43,13 +40,7 @@ export class SysdtapeService {
   }
 
   //apeconscveidid(cveapidid: string){
-    apeconscveidid(cveap: string, id1:string, id2:string){
-      
-    console.log("sysdtape.service.ts/apeconscveidid    param ")
-    console.log(cveap);
-    console.log(id1);
-    console.log(id2);
-
+    apeconscveidid(cveap: string, id1:string, id2:string){   
     let params = new HttpParams();
 //    params = params.append('id', username);
     params = params.append('id',cveap);
@@ -58,14 +49,12 @@ export class SysdtapeService {
     .pipe(map(listape => {
         if(listape){
            } 
-      
         return listape;
 
       }));
   }
 
   //Consulta una clave especifica 
-  //apeconscve(cve: string){
     apeconscves(cve, page, perPage, perName){
       this.cve = 'AP08';
 //    return this.http.get<Sysdtape>(`${environment.SERVER_URL}/DetCatAp/`+cve, {})
@@ -73,19 +62,12 @@ export class SysdtapeService {
       .pipe(map(listapecve => {
         if(listapecve){
           this.sysdtape = listapecve;
-          console.log("Ape");
-          console.log(listapecve);
-          console.log(this.sysdtape);
              } 
     return listapecve;
       }));
   }       //apeconscve
 
   deleteapeid(cveap: string, id1:string, id2:string){
-    console.log("sysdtape.service.ts/deleteapeid    ")
-    console.log(cveap);
-    console.log(id1);
-    console.log(id2);
     let params = new HttpParams();
     params = params.append('id',cveap);
     //return this.http.get<any>(`${environment.SERVER_URL}/Users/`, {params:params})

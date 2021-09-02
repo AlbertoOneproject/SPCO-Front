@@ -1,20 +1,20 @@
-import { Component,  Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AlertService, UsersService } from './../service';
+import { AlertService, ProdymatService } from './../service';
 
 @Component({
-  selector: 'app-msgok',
-  templateUrl: './msgok.component.html',
-  styleUrls: ['./msgok.component.css']
+  selector: 'app-msgokpm',
+  templateUrl: './msgokpm.component.html',
+  styleUrls: ['./msgokpm.component.css']
 })
-export class MsgokComponent {
+export class MsgokpmComponent implements OnInit {
   returnUrl: string;
   loading = false;
   msg= '';
 
   constructor(
-    public dialogRef: MatDialogRef<MsgokComponent>,@Inject (MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<MsgokpmComponent>,@Inject (MAT_DIALOG_DATA) public data: any,
     private route: ActivatedRoute,
     private router: Router,
   ) { }
@@ -23,7 +23,7 @@ export class MsgokComponent {
   }
 
   confirmar(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/users';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/prodymat';
     this.router.navigate([this.returnUrl]);  
     this.onNoClick();
   }

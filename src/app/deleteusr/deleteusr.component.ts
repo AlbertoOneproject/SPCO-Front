@@ -34,7 +34,7 @@ export class DeleteusrComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-          if (data.cr="00"){
+          if (data.cr=="00"){
             this.router.navigate([this.returnUrl]);
             this.onNoClick();
           }else{

@@ -90,7 +90,7 @@ export class ApeComponent implements OnInit {
         .subscribe(
             data => {
               this.dataWork = data;            
-              if (this.dataWork.cr="00"){  
+              if (this.dataWork.cr=="00"){  
                   this.currentApe = this.dataWork.contenido;
                   this.clvap      = this.currentApe.clvap,
                   this.id1        = this.currentApe.id1,
@@ -142,7 +142,7 @@ get f() { return this.apeForm.controls; }
     .subscribe(
         data => {
           this.dataape = data;
-          if (this.dataape.cr="00"){
+          if (this.dataape.cr=="00"){
             this.ape = this.dataape.contenido;
 
 //            this.page = data.contenido.page;

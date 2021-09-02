@@ -81,7 +81,7 @@ export class EdituserComponent implements OnInit {
         .subscribe( 
             data => {
                 this.datawork = data;
-                if (this.datawork.cr="00"){
+                if (this.datawork.cr=="00"){
                     this.currentUser = this.datawork.contenido;
                     this.edituserform.controls['username'].setValue(this.currentUser.username);
                     this.edituserform.controls['firstname'].setValue(this.currentUser.firstname);
@@ -121,7 +121,7 @@ export class EdituserComponent implements OnInit {
     .subscribe(
         data => {
             this.dataworkrol = data;
-            if (this.dataworkrol.cr="00"){
+            if (this.dataworkrol.cr=="00"){
                 this.altausrrol = data.contenido;
                 this.consultaRoles();
             }else{
@@ -141,7 +141,7 @@ export class EdituserComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-            if (data.cr="00"){
+            if (data.cr=="00"){
                 this.roles = data.roles;
                 for (let i=0; i < this.roles.length; i++){
                     for (let j=0; j < this.altausrrol.length; j++){
@@ -196,7 +196,7 @@ export class EdituserComponent implements OnInit {
           .subscribe(
               data => {
                 this.dataworkrol = data;
-                if (this.dataworkrol.cr="00"){
+                if (this.dataworkrol.cr=="00"){
                     console.log("edit rol usr regreso")
                     console.log(this.datawork)
                     console.log(this.datawork.contenido.id)                    

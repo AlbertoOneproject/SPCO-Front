@@ -55,7 +55,7 @@ get f() { return this.usuarioForm.controls; }
     .pipe(first())
     .subscribe(
         data => {
-          if (data.cr="00"){
+          if (data.cr=="00"){
             this.currentUser = data.contenido.users;
 //            this.router.navigate([this.returnUrl]);
               this.page = data.contenido.page;

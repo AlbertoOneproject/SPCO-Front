@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationExtras} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AlertService, SysdtapeService } from './../service';
 import { MatDialog} from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DeleteapeComponent } from '../deleteape/deleteape.component';
 import { Sysdtape } from './../model';
 
@@ -21,9 +21,8 @@ export class ViewapeComponent implements OnInit {
   dataWork: any=[];
   loading = false;
   msg= '';
-  returnUrl: string;
-  
-  
+
+  returnUrl: string; 
   clvap:      string;
   id1:        string;
   id2:        string;
@@ -33,13 +32,9 @@ export class ViewapeComponent implements OnInit {
 
   constructor(
     private consape: SysdtapeService,
-    private formBuilder: FormBuilder,
-
     private activatedRoute: ActivatedRoute,
-//    private security: AppSecurity, 
     private route: ActivatedRoute,
     private router: Router,
-//    private modalService: NgbModal,
     private dialog: MatDialog,
     private alertService: AlertService
     ) { 
@@ -50,7 +45,7 @@ export class ViewapeComponent implements OnInit {
         .subscribe(
             data => {
               this.dataWork = data;
-              if (this.dataWork.cr="00"){  
+              if (this.dataWork.cr=="00"){  
                   this.currentApe = this.dataWork.contenido;
                   this.clvap      = this.currentApe[0].clvap,
                   this.id1        = this.currentApe[0].id1,

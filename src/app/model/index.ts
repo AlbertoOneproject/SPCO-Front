@@ -7,3 +7,5 @@ export * from './permisos';
 export * from './rolperm';
 export * from './sysdtapl';
 export * from './sysdtape';
+export * from './catprod';
+export * from './prodymat';

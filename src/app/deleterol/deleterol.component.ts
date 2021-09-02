@@ -38,7 +38,7 @@ export class DeleterolComponent implements OnInit {
     .subscribe(
         data => {
           this.datawork = data;          
-          if (this.datawork.cr="00"){
+          if (this.datawork.cr=="00"){
             this.router.navigate([this.returnUrl]);
             this.onNoClick();
           }  

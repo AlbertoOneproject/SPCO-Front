@@ -53,7 +53,7 @@ export class RolComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-          if (data.cr="00"){
+          if (data.cr=="00"){
             console.log("Roles...")
             console.log(data)
             this.currentRol = data.contenido.roles;

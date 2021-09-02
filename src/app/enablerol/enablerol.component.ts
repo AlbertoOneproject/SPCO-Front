@@ -42,7 +42,7 @@ export class EnablerolComponent implements OnInit {
       .pipe(first())
       .subscribe(
           data => {
-            if (this.datawork.cr="00"){
+            if (this.datawork.cr=="00"){
                 this.router.navigate([this.returnUrl]);
                 this.onNoClick();
             }else{

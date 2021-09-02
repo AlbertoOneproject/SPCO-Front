@@ -1,0 +1,116 @@
+<div class="content-container">
+    <ul class="breadcrumb">
+        <li><a href="/prodymat">Prod y Mat</a></li>
+        <li class="active">Crear Producto y Materiales</li>
+    </ul>
+    <form [formGroup]="altaprodymat">
+        <!-- <form name="createuserform" novalidate="" class="card form-horizontal well" ng-controller="CreateUserController"
+          rc-submit="submit()"> -->
+        <div class="container-body form-horizontal">
+            <api-validate></api-validate>
+            <fieldset>
+                <legend>Crear Producto y Materiales</legend>
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="clveProduc">Clave de Producto:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="clveProduc" name="clveProduc" formControlName="clveProduc" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" required late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="tipProd">Tipo de Producto<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="tipProd" name="tipProd" formControlName="tipProd" class="form-control" minlength="1" maxlength="1" required late-Validate (change)="cambio($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="indVis">Indicador Visible<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <label *ngFor="let order of orders">
+                            <input formControlName="orders" type="radio" name="orders" [value]="order.id" />
+                            {{order.name}}&nbsp;&nbsp;
+                       </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="descCorta">Descripción Corta<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="descCorta" name="descCorta" formControlName="descCorta" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="descLarga">Descripción Larga<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="descLarga" name="descLarga" formControlName="descLarga" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="descCorIng">Descripción Corta en Inglés<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="descCorIng" name="descCorIng" formControlName="descCorIng" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="descLarIng">Descripción Larga en Inglés<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="descLarIng" name="descLarIng" formControlName="descLarIng" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Unidad de Medida<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallapl" id="listaallapl" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaapl of apl" 
+                                [value]="listaapl.id1" 
+                                >{{listaapl.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="tip_Mat">Tipo de Material</label>
+
+                    <div class="col-sm-3" *ngIf="material">
+                        <input type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" required late-Validate />
+                    </div>
+                    <div class="col-sm-3" *ngIf="!material">
+                        <input disabled type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" required late-Validate />
+                    </div>
+
+                </div>
+
+                <div class="col-md-offset-3">
+                    <a id="cancel" href="/prodymat" class="btn btn-default">Cancelar</a>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>

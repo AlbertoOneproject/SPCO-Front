@@ -39,7 +39,13 @@ import { ViewsysuserComponent } from './viewsysuser/viewsysuser.component';
 import { EditsysuserComponent } from './editsysuser/editsysuser.component';
 import { DeletesysuserComponent } from './deletesysuser/deletesysuser.component';
 import { ChangesyspswComponent } from './changesyspsw/changesyspsw.component';
-import { MsgokComponent } from './msgok/msgok.component'
+import { MsgokComponent } from './msgok/msgok.component';
+import { ProdymatComponent } from './prodymat/prodymat.component';
+import { AltaproymatComponent } from './altaproymat/altaproymat.component';
+import { ViewprodymatComponent } from './viewprodymat/viewprodymat.component';
+import { EditprodymatComponent } from './editprodymat/editprodymat.component';
+import { DeleteprodymatComponent } from './deleteprodymat/deleteprodymat.component';
+import { MsgokpmComponent } from './msgokpm/msgokpm.component'
 
 
 @NgModule({
@@ -73,7 +79,13 @@ import { MsgokComponent } from './msgok/msgok.component'
     EditsysuserComponent,
     DeletesysuserComponent,
     ChangesyspswComponent,
-    MsgokComponent
+    MsgokComponent,
+    ProdymatComponent,
+    AltaproymatComponent,
+    ViewprodymatComponent,
+    EditprodymatComponent,
+    DeleteprodymatComponent,
+    MsgokpmComponent
   ],
   imports: [
     BrowserModule,

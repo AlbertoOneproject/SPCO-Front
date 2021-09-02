@@ -58,7 +58,7 @@ get f() { return this.passForm.controls; }
         .pipe(first())
         .subscribe(
             data => {
-              if (data.cr="00"){
+              if (data.cr=="00"){
                 this.router.navigate([this.returnUrl,this.data.idUsuario]);
                 this.onNoClick();
                 this.alertSolicitante = true;        

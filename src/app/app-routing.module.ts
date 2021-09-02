@@ -8,6 +8,11 @@ import { UsersComponent } from './users/users.component';
 import { AltasysuserComponent } from './altasysuser/altasysuser.component';
 import { ViewsysuserComponent } from './viewsysuser/viewsysuser.component';
 import { EditsysuserComponent } from './editsysuser/editsysuser.component';
+import { ProdymatComponent } from './prodymat/prodymat.component';
+import { AltaproymatComponent } from './altaproymat/altaproymat.component';
+import { ViewprodymatComponent } from './viewprodymat/viewprodymat.component';
+import { EditprodymatComponent } from './editprodymat/editprodymat.component';
+
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AltauserComponent } from './altauser/altauser.component';
 import { EdituserComponent } from './edituser/edituser.component';
@@ -33,6 +38,11 @@ const routes: Routes = [
   { path: 'altasysuser', component: AltasysuserComponent },
   { path: 'viewsysuser/:idUsuario', component: ViewsysuserComponent },
   { path: 'editsysuser/:idUsuario', component: EditsysuserComponent },
+  { path: 'prodymat', component: ProdymatComponent },
+  { path: 'altaprodymat', component: AltaproymatComponent },
+  { path: 'viewprodymat/:clveProduc', component: ViewprodymatComponent },
+  { path: 'editprodymat/:clveProduc', component: EditprodymatComponent },
+
   { path: 'usuarios', component: UsuarioComponent },
   { path: 'altauser', component: AltauserComponent },
   { path: 'edituser/:username', component: EdituserComponent },
