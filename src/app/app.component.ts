@@ -5,6 +5,7 @@ import { LoginService, SysdtaplService } from './service';
 import { Login, Sysdtapl, Rol } from './model';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
