@@ -30392,3 +30392,32 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+ 
+
+#login-page {
+    height: 100%;
+    width: 100%;
+    padding: 10% 0%;
+}
+
+#login-form {
+    width: 30%;
+    /* height: 48%; */
+    margin: auto;
+    padding: 10px;
+    background: white;
+    border-radius: .5em;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 50%);
+    padding: 0% 0%;
+}
+
+.form-login {
+	display: block;
+	width: 100px;
+}
+.form-login input[type=email] {
+	width: 100px;
+}
+.form-login input[type=password] {
+	width: 100px;
+}

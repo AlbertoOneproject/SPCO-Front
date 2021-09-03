@@ -1,7 +1,17 @@
-<br><br><br>
-<h1>Sistema de Planeación y Control de Operaciones</h1>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <br>
+
+
+
+<section id="login-page">
+
+    <div id="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div style="padding: 2% 10% 2% 10%">
+            <legend style="text-align: center; padding-bottom: 20px;">
+                <span>
+                        <img class="brand logo top-margin" width="212" height="40" src="https://www.xtrategas.com/wp-content/uploads/2018/12/xtrategas-efectividad-de-negocio-logo-4.png" alt="Sitio contalink">
+                </span>
+                <h2>Sistema de Mensajeria Aduanal</h2>
+        </legend>
     <div class="form-group">
         <label for="usuario">Usuario</label>
         <input type="text" formControlName="usuario" placeholder="Usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }" />
@@ -17,10 +27,29 @@
         </div>
     </div>
     <div class="form-group">
-        <hr>
+      
         <button [disabled]="loading" class="btn btn-primary btn-block">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Iniciar sesión
         </button>
     </div>
+        </div>
 </form>
+<br>
+<br>
+<div style="text-align: center;">
+					
+
+
+    <p>
+      <a href="/password/new">¿Olvidaste tu contraseña?</a>
+    </p>
+  
+  
+  
+  
+                  </div>
+                  <br>
+</div>
+    
+</section>
