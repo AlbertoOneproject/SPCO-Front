@@ -19,13 +19,13 @@
             <div class="content">
                 <div class="row">
 
-                    <div class="form-group">
-                        <div class="col-9">
-                            <input class="mr-sm-9" ng-model="filterText" formControlName="nombre" type="text" class="span marginbottom0px form-control" placeholder="Recinto">
+                    <div class="form-group col-sm-4 col-md-4">
+                        <div >
+                            <input  ng-model="filterText" formControlName="nombre" type="text" class="form-control" placeholder="Recinto">
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-2 col-md-2">
                         <button type="button" text-align="right" class="btn btn-primary pull-right" (click)="buscar()" has-permission='UPDATE_USER'>
                         &nbsp;&nbsp; Buscar
                     </button>
