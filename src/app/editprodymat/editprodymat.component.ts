@@ -9,6 +9,13 @@ import { MatDialog} from '@angular/material/dialog';
 import { formatDate } from '@angular/common';
 import { of } from 'rxjs';
 
+interface Tipo {
+  Tipo: string;
+  desc: string;
+}
+
+
+
 @Component({
   selector: 'app-editprodymat',
   templateUrl: './editprodymat.component.html',
@@ -57,6 +64,12 @@ export class EditprodymatComponent implements OnInit {
   public userMod:       string;  
   public tip_Mat:       string;  
   
+  prod: Tipo[] = [
+    {Tipo: '6', desc: 'Productos'},
+    {Tipo: '7', desc: 'Materiales'},
+    {Tipo: '8', desc: 'Activo Fijo'}
+  ];
+
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     private consape: SysdtapeService,
@@ -157,6 +170,11 @@ consultaDatosProdymat(){
                       this.editprodymat.controls['gender'].setValue('S');
                     }else if(this.indVis == 'N'){
                       this.editprodymat.controls['gender'].setValue('N');
+                    }
+                    for (let i=0; i < this.prod.length; i++){ 
+                      if (this.prod[i].Tipo == this.tipProd){
+                        this.editprodymat.controls['tipProd'].setValue(this.prod[i].desc);
+                      }
                     }
                    
                 }else{

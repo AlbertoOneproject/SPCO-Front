@@ -17,18 +17,30 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="clveProduc" name="clveProduc" formControlName="clveProduc" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" required late-Validate/>
+                        <input type="text" id="clveProduc" name="clveProduc" formControlName="clveProduc" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="tipProd">Tipo de Producto<span
-	                    class="required">*</span></label>
+	                    >*</span></label>
 
-                    <div class="col-sm-3">
-                        <input type="text" id="tipProd" name="tipProd" formControlName="tipProd" class="form-control" minlength="1" maxlength="1" required late-Validate (change)="cambio($event)" />
+
+                    <div class="col-sm-3" *ngIf="tipProdparam">
+                        <input disabled type="text" id="tipProd" name="tipProd" formControlName="tipProd" class="form-control" minlength="1" maxlength="11" />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="!tipProdparam">
+                        <select formControlName="listaTipProd" id="listaTipProd" style="height: 180px" style="width: 185px" (change)="cambio($event)">
+                        <option 
+                            *ngFor="let listaTprod of listTipprod ; let i = index;" 
+                            [value]="listaTprod.Tipo" 
+                            >{{listaTprod.desc}}
+                        </option>
+                        </select>
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="indVis">Indicador Visible<span
@@ -98,10 +110,10 @@
                     <label class="control-label col-sm-2" for="tip_Mat">Tipo de Material</label>
 
                     <div class="col-sm-3" *ngIf="material">
-                        <input type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" required late-Validate />
+                        <input type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
                     </div>
                     <div class="col-sm-3" *ngIf="!material">
-                        <input disabled type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" required late-Validate />
+                        <input disabled type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
                     </div>
 
                 </div>

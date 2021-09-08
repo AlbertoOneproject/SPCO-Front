@@ -6,6 +6,11 @@ import { MatDialog} from '@angular/material/dialog';
 import { DeleteprodymatComponent } from '../deleteprodymat/deleteprodymat.component';
 import { Login, Prodymat } from './../model'
 
+interface Tipo {
+  Tipo: string;
+  desc: string;
+}
+
 
 @Component({
   selector: 'app-viewprodymat',
@@ -43,6 +48,12 @@ export class ViewprodymatComponent implements OnInit {
   hora:          string;
   userMod:       string;
   tip_Mat:       string;
+
+  prod: Tipo[] = [
+    {Tipo: '6', desc: 'Productos'},
+    {Tipo: '7', desc: 'Materiales'},
+    {Tipo: '8', desc: 'Activo Fijo'}
+  ];
 
   constructor(    
     private prodymatService: ProdymatService,
@@ -86,11 +97,15 @@ export class ViewprodymatComponent implements OnInit {
                 this.msg = this.dataWork.descripcion;
                 this.alertService.error(this.msg);
               }
-            },
+              for (let i=0; i < this.prod.length; i++){ 
+                if (this.prod[i].Tipo == this.tipProd){
+                  this.tipProd = this.prod[i].desc;
+                }
+              }
             error => {
               this.alertService.error("Error en al visualizar el usuario");
               this.loading = false;
-            });   
+            }});   
       })
   }
 
@@ -119,7 +134,7 @@ export class ViewprodymatComponent implements OnInit {
 
   ireditprod(clveProduc:string){
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/editprodymat';
-    this.router.navigate([this.returnUrl,clveProduc]);     
+    this.router.navigate([this.returnUrl,clveProduc]);  
   }
 
 }

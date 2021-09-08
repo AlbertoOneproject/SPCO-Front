@@ -45,7 +45,11 @@ import { AltaproymatComponent } from './altaproymat/altaproymat.component';
 import { ViewprodymatComponent } from './viewprodymat/viewprodymat.component';
 import { EditprodymatComponent } from './editprodymat/editprodymat.component';
 import { DeleteprodymatComponent } from './deleteprodymat/deleteprodymat.component';
-import { MsgokpmComponent } from './msgokpm/msgokpm.component'
+import { MsgokpmComponent } from './msgokpm/msgokpm.component';
+import { CteyprovComponent } from './cteyprov/cteyprov.component';
+import { ViewcteyprovComponent } from './viewcteyprov/viewcteyprov.component';
+import { AltacteyprovComponent } from './altacteyprov/altacteyprov.component';
+import { EditcteyprovComponent } from './editcteyprov/editcteyprov.component'
 
 
 @NgModule({
@@ -85,7 +89,11 @@ import { MsgokpmComponent } from './msgokpm/msgokpm.component'
     ViewprodymatComponent,
     EditprodymatComponent,
     DeleteprodymatComponent,
-    MsgokpmComponent
+    MsgokpmComponent,
+    CteyprovComponent,
+    ViewcteyprovComponent,
+    AltacteyprovComponent,
+    EditcteyprovComponent
   ],
   imports: [
     BrowserModule,

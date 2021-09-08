@@ -9,3 +9,5 @@ export * from './sysdtapl';
 export * from './sysdtape';
 export * from './catprod';
 export * from './prodymat';
+export * from './cteyprov';
+export * from './catcte';

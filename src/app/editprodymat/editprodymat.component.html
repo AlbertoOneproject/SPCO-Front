@@ -24,11 +24,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="tipProd">Tipo de Producto<span
-	                    class="required">*</span></label>
+                    <label class="control-label col-sm-2" for="tipProd">Tipo de Producto</label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="tipProd" name="tipProd" value="{{tipProd}}" formControlName="tipProd" class="form-control" minlength="1" maxlength="1" (change)="cambio($event)" required late-Validate/>
+                        <input disabled="true" type="text" id="tipProd" name="tipProd" formControlName="tipProd" class="form-control" minlength="1" maxlength="10" (change)="cambio($event)" required late-Validate/>
                     </div>
                 </div>
 
@@ -114,10 +113,7 @@
                     <label class="control-label col-sm-2" for="tip_Mat">Tipo de Material<span
 	                    class="required">*</span></label>
 
-                    <div class="col-sm-3" *ngIf="material">
-                        <input type="text" id="tip_Mat" name="tip_Mat" value="{{tip_Mat}}" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" required late-Validate />
-                    </div>
-                    <div class="col-sm-3" *ngIf="!material">
+                    <div class="col-sm-3">
                         <input disabled type="text" id="tip_Mat" name="tip_Mat" value="{{tip_Mat}}" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" required late-Validate />
                     </div>
                 </div>

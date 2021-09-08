@@ -1,0 +1,123 @@
+<div class="content-container" ng-controller="viewcteyprov.component">
+    <ul class="breadcrumb">
+        <li><a href="/cteyprov">Detalle de Clientes y Proveedores</a></li>
+        <li class="active">{{idCliProv}}&nbsp;{{nomDenov}}</li>
+    </ul>
+    <div class="card well">
+        <div class="pull-right">
+            <div class="form-group" *ngIf="perfil">
+                <button type="button" class="btn btn-primary" (click)="ireditcteyprov(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button type="button" (click)="deletecteyprov()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+            <div class="form-group" *ngIf="!perfil">
+                <button disabled type="button" class="btn btn-primary" (click)="ireditcteyprov(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button disabled type="button" (click)="deletecteyprov()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+        </div>
+        <h3 class="bolder">{{idCliProv}}&nbsp;{{nomDenov}}</h3>
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>Tipo: </td>
+                        <td>{{tipo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Empresa: </td>
+                        <td>{{empresa}}</td>
+                    </tr>
+                    <tr>
+                        <td>Recinto: </td>
+                        <td>{{recinto}}</td>
+                    </tr>
+                    <tr>
+                        <td>Numero de Identificación: </td>
+                        <td>{{idCliProv}}</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre : </td>
+                        <td>{{nomDenov}}</td>
+                    </tr>
+                    <tr>
+                        <td>Nacionalidad: </td>
+                        <td>{{nal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre Contacto: </td>
+                        <td>{{nomContacto}}</td>
+                    </tr>
+                    <tr>
+                        <td>INMEX_CVE_REC: </td>
+                        <td>{{immexCveRec}}</td>
+                    </tr>
+                    <tr>
+                        <td>RFC: </td>
+                        <td>{{rfc}}</td>
+                    </tr>
+                    <tr>
+                        <td>ID_TAX: </td>
+                        <td>{{idTax}}</td>
+                    </tr>
+                    <tr>
+                        <td>CURP: </td>
+                        <td>{{curp}}</td>
+                    </tr>
+                    <tr>
+                        <td>País: </td>
+                        <td>{{pais}}</td>
+                    </tr>
+                    <tr>
+                        <td>calle: </td>
+                        <td>{{calle}}</td>
+                    </tr>
+                    <tr>
+                        <td>Número Exterior: </td>
+                        <td>{{numExt}}</td>
+                    </tr>
+                    <tr>
+                        <td>Número Interior: </td>
+                        <td>{{numInte}}</td>
+                    </tr>
+                    <tr>
+                        <td>C.P.: </td>
+                        <td>{{cp}}</td>
+                    </tr>
+                    <tr>
+                        <td>Colonia: </td>
+                        <td>{{colonia}}</td>
+                    </tr>
+                    <tr>
+                        <td>Estado: </td>
+                        <td>{{estado}}</td>
+                    </tr>
+                    <tr>
+                        <td>Municipio: </td>
+                        <td>{{municipio}}</td>
+                    </tr>
+                    <tr>
+                        <td>Localidad: </td>
+                        <td>{{localidad}}</td>
+                    </tr>
+                    <tr>
+                        <td>Correo Electrónico: </td>
+                        <td>{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono: </td>
+                        <td>{{tel}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

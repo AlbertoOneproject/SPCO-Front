@@ -1,0 +1,251 @@
+<div class="content-container">
+    <ul class="breadcrumb">
+        <li><a href="/cteyprov">Ctes y Prov</a></li>
+        <li class="active">Crear Clientes y Proveedores</li>
+    </ul>
+    <form [formGroup]="altacteyprov">
+        <div class="container-body form-horizontal">
+            <api-validate></api-validate>
+            <fieldset>
+                <legend>Crear Clientes y Proveedores</legend>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="tipCte">Tipo :<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3" *ngIf="tipCteparam">
+                        <input disabled type="text" id="tipCte" name="tipCte" formControlName="tipCte" class="form-control" minlength="1" maxlength="11" />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="!tipCteparam">
+                        <select formControlName="listatipCte" id="listatipCte" style="height: 180px" style="width: 185px">
+                        <option 
+                            *ngFor="let listaTcte of listTipcte ; let i = index;" 
+                            [value]="listaTcte.Tipo" 
+                            >{{listaTcte.desc}}
+                        </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idCliProv">Numero de Identificación :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="idCliProv" name="idCliProv" formControlName="idCliProv" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nomDenov">Nombre :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="nomDenov" name="nomDenov" formControlName="nomDenov" class="form-control" minlength="1" maxlength="100" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nal">Nacionalidad :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <label *ngFor="let order of orders">
+                            <input formControlName="orders" type="radio" name="orders" [value]="order.id" />
+                            {{order.name}}&nbsp;&nbsp;
+                       </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nomContacto">Nombre Contacto :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="nomContacto" name="nomContacto" formControlName="nomContacto" class="form-control" minlength="1" maxlength="100" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="immexCveRec">INMEX_CVE_REC :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="immexCveRec" name="immexCveRec" formControlName="immexCveRec" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="8" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="rfc">RFC :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="rfc" name="rfc" formControlName="rfc" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="idTax">ID_TAX :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="idTax" name="idTax" formControlName="idTax" class="form-control" minlength="1" maxlength="20" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="curp">CURP :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="curp" name="curp" formControlName="curp" class="form-control" minlength="1" maxlength="18" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">País :<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallapl" id="listaallapl" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaapl of apl" 
+                                [value]="listaapl.id1" 
+                                >{{listaapl.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cp">C.P. :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="cp" name="cp" formControlName="cp" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="5" (change)="obtenCP($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Municipio :<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallmun" id="listaallmun" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listmpo of cvempo" 
+                                [value]="listmpo.id" 
+                                >{{listmpo.nombre}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!--
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="clveProduc">Clave de Producto:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="clveProduc" name="clveProduc" formControlName="clveProduc" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="indVis">Indicador Visible<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <label *ngFor="let order of orders">
+                            <input formControlName="orders" type="radio" name="orders" [value]="order.id" />
+                            {{order.name}}&nbsp;&nbsp;
+                       </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="descLarga">Descripción Larga<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="descLarga" name="descLarga" formControlName="descLarga" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="descCorIng">Descripción Corta en Inglés<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="descCorIng" name="descCorIng" formControlName="descCorIng" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Unidad de Medida<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallapl" id="listaallapl" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaapl of apl" 
+                                [value]="listaapl.id1" 
+                                >{{listaapl.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="tip_Mat">Tipo de Material</label>
+
+                    <div class="col-sm-3" *ngIf="material">
+                        <input type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
+                    </div>
+                    <div class="col-sm-3" *ngIf="!material">
+                        <input disabled type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
+                    </div>
+
+                </div>
+-->
+                <div class="col-md-offset-3">
+                    <a id="cancel" href="/prodymat" class="btn btn-default">Cancelar</a>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>

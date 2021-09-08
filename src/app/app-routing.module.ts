@@ -4,14 +4,22 @@ import { HomeComponent } from './home/home.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { LoginComponent } from './login';
+
 import { UsersComponent } from './users/users.component';
 import { AltasysuserComponent } from './altasysuser/altasysuser.component';
 import { ViewsysuserComponent } from './viewsysuser/viewsysuser.component';
 import { EditsysuserComponent } from './editsysuser/editsysuser.component';
+
 import { ProdymatComponent } from './prodymat/prodymat.component';
 import { AltaproymatComponent } from './altaproymat/altaproymat.component';
 import { ViewprodymatComponent } from './viewprodymat/viewprodymat.component';
 import { EditprodymatComponent } from './editprodymat/editprodymat.component';
+
+import { CteyprovComponent } from './cteyprov/cteyprov.component';
+import { ViewcteyprovComponent } from './viewcteyprov/viewcteyprov.component';
+import { AltacteyprovComponent } from './altacteyprov/altacteyprov.component';
+import { EditcteyprovComponent } from './editcteyprov/editcteyprov.component';
+
 
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AltauserComponent } from './altauser/altauser.component';
@@ -34,15 +42,22 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+
   { path: 'users', component: UsersComponent },
   { path: 'altasysuser', component: AltasysuserComponent },
   { path: 'viewsysuser/:idUsuario', component: ViewsysuserComponent },
   { path: 'editsysuser/:idUsuario', component: EditsysuserComponent },
+
   { path: 'prodymat', component: ProdymatComponent },
-  { path: 'altaprodymat', component: AltaproymatComponent },
+  { path: 'altaprodymat/:Tipo', component: AltaproymatComponent },
   { path: 'viewprodymat/:clveProduc', component: ViewprodymatComponent },
   { path: 'editprodymat/:clveProduc', component: EditprodymatComponent },
 
+  { path: 'cteyprov', component: CteyprovComponent },
+  { path: 'viewcteyprov/:idCliProv', component: ViewcteyprovComponent },
+  { path: 'altactesyprov/:Tipo', component: AltacteyprovComponent },
+  { path: 'editcteyprov/:clveProduc', component: EditcteyprovComponent },
+  
   { path: 'usuarios', component: UsuarioComponent },
   { path: 'altauser', component: AltauserComponent },
   { path: 'edituser/:username', component: EdituserComponent },

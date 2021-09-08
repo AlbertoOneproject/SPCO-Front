@@ -1,4 +1,4 @@
-<div class="content-container" ng-controller="usuario.component.ts">
+<div class="content-container" ng-controller="prodymat.component.ts">
     <ul class="breadcrumb">
         <li class="active">Productos y Materiales</li>
     </ul>
@@ -14,7 +14,7 @@
                 <div class="toolbar">
                     <h4>Lista de Productos y Materiales</h4>
                     <div class="col-12 text-right" *ngIf="perfil">
-                        <a class="btn btn-success btn-lg rounded-circle" href="/altaprodymat">+</a>
+                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altaprodymat',cveprod]">+</a>
                     </div>
                     <div class="col-12 text-right" *ngIf="!perfil">
                         <a disabled class="btn btn-success btn-lg rounded-circle">+</a>

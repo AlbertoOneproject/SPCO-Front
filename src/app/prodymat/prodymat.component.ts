@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Login, Catprod, Prodymat } from './../model'
+import { Login, Catprod} from './../model'
 import { ProdymatService } from './../service';
 import { first } from 'rxjs/operators';
 import { AlertService } from './../service';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 interface Tipo {
   Tipo: string;
@@ -30,7 +30,7 @@ export class ProdymatComponent implements OnInit {
   total: number;
   totalPages: number;
   msg= '';
-  cveprod: string;
+  cveprod: string = "0";
   returnUrl: string;
   currentProdmat: ProdymatService;
   currentuMDescripcion: any[];
@@ -56,19 +56,21 @@ export class ProdymatComponent implements OnInit {
   ngOnInit(): void {
     //this.catProdMat();
     this.prodymatForm = this.formBuilder.group({
-      'nombre':new FormControl('', [Validators.required]),
+      'listaprod':new FormControl('', [Validators.required]),
 
-  });
+    });
 
-  this.login = JSON.parse(localStorage.getItem('currentUserLog'));
-  let perfillogin = this.login["idPerfil"];
-  if (perfillogin=="US01"){
-      this.perfil=true;      
-  }else{
-      this.perfil=false;
+    this.login = JSON.parse(localStorage.getItem('currentUserLog'));
+    let perfillogin = this.login["idPerfil"];
+    if (perfillogin=="US01"){
+        this.perfil=true;      
+    }else{
+        this.perfil=false;
+    }
+    this.detalle=false;      
   }
-  this.detalle=false;      
-  }
+    // convenience getter for easy access to form fields
+    get f() { return this.prodymatForm.controls; }
 
   catProdMat(){
     this.prodymatService.catProdMat()
@@ -84,7 +86,9 @@ export class ProdymatComponent implements OnInit {
         });
   } // Cierre del método consultadatos
     consultaProdymat(cveprod:string, page: number, perPage: number, perName: string)  {    
-      this.cveprod = cveprod
+    this.cveprod = cveprod;
+    console.log("prodymat.component cveprod")
+    console.log(this.cveprod)
     this.prodymatService.Prodymatid(cveprod, page, perPage, perName)
     .pipe(first())
     .subscribe(
