@@ -29,6 +29,7 @@ export class CteyprovComponent implements OnInit {
   totalPages: number;
   msg= '';
   tipocte: string = "0";
+  opc:string="1";
   returnUrl: string;
   currentCteyprov: CteyprovService;
   currentuMDescripcion: any[];
@@ -68,6 +69,7 @@ export class CteyprovComponent implements OnInit {
     }
     console.log("creyprov.component.ts")
     console.log(this.perfil)
+
     this.detalle=false;      
   }
     // convenience getter for easy access to form fields
@@ -122,9 +124,9 @@ export class CteyprovComponent implements OnInit {
 
   routeTo(idCliProv:string): void {
     console.log("cteyprov.component.ts routeTo idCliProv")
-    console.log(idCliProv)
+    console.log(this.opc,idCliProv)
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewcteyprov';
-    this.router.navigate([this.returnUrl,idCliProv]);   
+    this.router.navigate([this.returnUrl,{opc:this.opc,idCliProv:idCliProv}]);   
   }  
   
   mudouPagina(evento) {

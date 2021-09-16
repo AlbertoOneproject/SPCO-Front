@@ -41,13 +41,15 @@ export class CteyprovService {
             return listctes;
           }));      
   }    // Cierre del método Prodymatid
-
-  cteyprovUnico(idCliProv){
+  
+  //apeconscveidid(cveap: string, id1:string, id2:string){   
+  cteyprovUnico(opc: string,idCliProv: string){
         let constPagLike = 'Cliente?'
         let consCteyprov = 'Id='
+        let constOpc = '&Opc='
         console.log("cteyprov.service cteyprovUnico parámetros")
-        console.log("/Cli/"+constPagLike+consCteyprov+idCliProv)
-        return this.http.get<any>(`${environment.SERVER_URL}/Cli/`+constPagLike+consCteyprov+idCliProv, {})
+        console.log("/Cli/"+constPagLike+consCteyprov+idCliProv+constOpc+opc)
+        return this.http.get<any>(`${environment.SERVER_URL}/Cli/`+constPagLike+consCteyprov+idCliProv+constOpc+opc, {})
           .pipe(map(listcte => {
             if(listcte){
               // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -62,7 +64,7 @@ export class CteyprovService {
     let constPagLike = 'CPMultiple?'
     let consCteyprov = 'cp='
     console.log("cteyprov.service cteyprovUnico parámetros")
-    console.log("/"+constPagLike+consCteyprov+cp)
+    console.log("/CP/"+constPagLike+consCteyprov+cp)
         return this.http.get<any>(`${environment.SERVER_URL}/CP/`+constPagLike+consCteyprov+cp, {})
           .pipe(map(listcp => {
             if(listcp){
@@ -79,6 +81,13 @@ export class CteyprovService {
           .pipe(map(datapost => {
     return datapost;
     }));
-  }      
+  }   
+  
+  editcteyprov(cteyprov: Cteyprov){
+    return this.http.put<Cteyprov>(`${environment.SERVER_URL}/Cli`,cteyprov)
+          .pipe(map(dataput => {
+        return dataput;
+      }));
+  } 
 
 }

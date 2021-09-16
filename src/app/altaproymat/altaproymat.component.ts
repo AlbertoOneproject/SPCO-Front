@@ -198,7 +198,7 @@ export class AltaproymatComponent implements OnInit {
             if (this.datawork.cr=="00"){
                 this.apl = this.datawork.contenido;
             }else {
-                this.alertService.error("Las contraseñas no coinciden");
+                this.alertService.error("Error al obtener información de indices de Medidas");
                 this.loading = false;
             }
           },

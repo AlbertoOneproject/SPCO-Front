@@ -25,6 +25,7 @@ export class ViewcteyprovComponent implements OnInit {
   dataWork: any=[];
   loading = false;
   msg     = '';
+  opc:string="0";
   returnUrl:  string; 
 
   recinto				: string;
@@ -78,21 +79,23 @@ export class ViewcteyprovComponent implements OnInit {
     private alertService:   AlertService
     ) { 
 
+      //this.sysdtapeService.apeconscveidid(params['clvap'],params['id1'],params['id2'])
       this.activatedRoute.params.subscribe( params =>{ 
-        this.cteyprovService.cteyprovUnico(params['idCliProv'])
+        this.cteyprovService.cteyprovUnico(params['opc'],params['idCliProv'])
         .pipe(first())
         .subscribe(
             data => {
               this.dataWork = data;
-              if (data.cr=="00"){  
-                  this.page = data.page;
-                  this.perPage = data.perPage;
-                  this.total = data.total;
-                  this.totalPages = data.totalPages;
+              if (data.cr=="00"){ 
+                  console.log("consulta único")                 
+                  console.log(this.dataWork)
+                  this.page            = data.page;
+                  this.perPage         = data.perPage;
+                  this.total           = data.total;
+                  this.totalPages      = data.totalPages;
                   this.currentCteyprov = data.contenido;
                   this.currentuMDescripcion = data.uMDescripcion;
-//                  this.currentCteyprov.uM = this.currentuMDescripcion
-
+//                this.currentCteyprov.uM = this.currentuMDescripcion
                   this.recinto			  = this.currentCteyprov.recinto			,  
                   this.empresa			  = this.currentCteyprov.empresa			,  
                   this.nomDenov		    = this.currentCteyprov.nomDenov		  ,    
@@ -139,7 +142,6 @@ export class ViewcteyprovComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
     this.login = JSON.parse(localStorage.getItem('currentUserLog'));
     let perfillogin = this.login["idPerfil"];
@@ -165,7 +167,7 @@ export class ViewcteyprovComponent implements OnInit {
 
   ireditcteyprov(idCliProv:string){
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/editcteyprov';
-    this.router.navigate([this.returnUrl,idCliProv]);  
+    this.router.navigate([this.returnUrl,{opc:this.opc,idCliProv:idCliProv}]);    
   }
 
 }

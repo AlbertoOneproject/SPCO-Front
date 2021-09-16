@@ -54,9 +54,9 @@ const routes: Routes = [
   { path: 'editprodymat/:clveProduc', component: EditprodymatComponent },
 
   { path: 'cteyprov', component: CteyprovComponent },
-  { path: 'viewcteyprov/:idCliProv', component: ViewcteyprovComponent },
+  { path: 'viewcteyprov', component: ViewcteyprovComponent },
   { path: 'altactesyprov/:Tipo', component: AltacteyprovComponent },
-  { path: 'editcteyprov/:clveProduc', component: EditcteyprovComponent },
+  { path: 'editcteyprov', component: EditcteyprovComponent },
   
   { path: 'usuarios', component: UsuarioComponent },
   { path: 'altauser', component: AltauserComponent },

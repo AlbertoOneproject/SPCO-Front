@@ -18,9 +18,9 @@
                     </div>
 
                     <div class="col-sm-3" *ngIf="!tipCteparam">
-                        <select formControlName="listatipCte" id="listatipCte" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaTipCte" id="listaTipCte" style="height: 180px" style="width: 185px">
                         <option 
-                            *ngFor="let listaTcte of listTipcte ; let i = index;" 
+                            *ngFor="let listaTcte of cteyprod" 
                             [value]="listaTcte.Tipo" 
                             >{{listaTcte.desc}}
                         </option>
@@ -52,7 +52,8 @@
 
                     <div class="col-sm-3">
                         <label *ngFor="let order of orders">
-                            <input formControlName="orders" type="radio" name="orders" [value]="order.id" />
+                            <input formControlName="orders" type="radio" name="orders" [value]="order.name" [checked]="order.name === 'Nacional'"
+                            />
                             {{order.name}}&nbsp;&nbsp;
                        </label>
                     </div>
@@ -81,7 +82,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="rfc" name="rfc" formControlName="rfc" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                        <input type="text" id="rfc" name="rfc" formControlName="rfc" class="form-control" minlength="1" maxlength="13" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
                     </div>
                 </div>
 
@@ -119,13 +120,28 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="cp">C.P. :<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="cp" name="cp" formControlName="cp" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="5" (change)="obtenCP($event)" />
+                        <input type="text" id="cp" name="cp" formControlName="cp" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="5" (change)="obtenEdo($event)" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Estado :<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaalledo" id="listaalledo" style="height: 180px" style="width: 185px" (change)="obtenMpo($event)">
+                        <option 
+                                *ngFor="let listedo of cveedo" 
+                                [value]="listedo.id" 
+                                >{{listedo.nombre}}
+                        </option>
+                    </select>
                     </div>
                 </div>
 
@@ -135,7 +151,7 @@
 
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallmun" id="listaallmun" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallmun" id="listaallmun" style="height: 180px" style="width: 185px" (change)="obtenCol($event)">
                         <option 
                                 *ngFor="let listmpo of cvempo" 
                                 [value]="listmpo.id" 
@@ -145,104 +161,85 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <!--
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="clveProduc">Clave de Producto:<span
-	                    class="required">*</span></label>
-
-                    <div class="col-sm-3">
-                        <input type="text" id="clveProduc" name="clveProduc" formControlName="clveProduc" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
-                    </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="indVis">Indicador Visible<span
-	                    class="required">*</span></label>
-
-                    <div class="col-sm-3">
-                        <label *ngFor="let order of orders">
-                            <input formControlName="orders" type="radio" name="orders" [value]="order.id" />
-                            {{order.name}}&nbsp;&nbsp;
-                       </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="descLarga">Descripción Larga<span
-	                    class="required">*</span></label>
-
-                    <div class="col-sm-3">
-                        <input type="text" id="descLarga" name="descLarga" formControlName="descLarga" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="descCorIng">Descripción Corta en Inglés<span
-	                    class="required">*</span></label>
-
-                    <div class="col-sm-3">
-                        <input type="text" id="descCorIng" name="descCorIng" formControlName="descCorIng" class="form-control" minlength="1" maxlength="40" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Unidad de Medida<span
+                    <label class="control-label col-sm-2">Localidad/Colonía :<span
 	                    class="required">*</span></label>
 
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallapl" id="listaallapl" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallloc" id="listaallloc" style="height: 180px" style="width: 185px">
                         <option 
-                                *ngFor="let listaapl of apl" 
-                                [value]="listaapl.id1" 
-                                >{{listaapl.desCorta}}
+                                *ngFor="let listloc of cvecol" 
+                                [value]="listloc.id" 
+                                >{{listloc.nombre}}
                         </option>
                     </select>
                     </div>
                 </div>
-
+                <!--
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="tip_Mat">Tipo de Material</label>
+                    <label class="control-label col-sm-2">Colonía :<span
+	                    class="required">*</span></label>
 
-                    <div class="col-sm-3" *ngIf="material">
-                        <input type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
-                    </div>
-                    <div class="col-sm-3" *ngIf="!material">
-                        <input disabled type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
-                    </div>
 
+                    <div class="col-sm-3">
+                        <select formControlName="listaallcol" id="listaallcol" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listcol of cvecol" 
+                                [value]="listcol.nombre" 
+                                >{{listcol.nombre}}
+                        </option>
+                    </select>
+                    </div>
                 </div>
 -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="calle">Calle :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="calle" name="calle" formControlName="calle" class="form-control" minlength="1" maxlength="80" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="numExt">Número Exterior :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="numExt" name="numExt" formControlName="numExt" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="numInte">Número Interior :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="numInte" name="numInte" formControlName="numInte" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Correo Electrónico :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="email" name="email" formControlName="email" class="form-control" minlength="1" maxlength="40" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="tel">Teléfono :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="tel" name="tel" formControlName="tel" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="40" />
+                    </div>
+                </div>
+
                 <div class="col-md-offset-3">
-                    <a id="cancel" href="/prodymat" class="btn btn-default">Cancelar</a>
+                    <a id="cancel" href="/cteyprov" class="btn btn-default">Cancelar</a>
                     <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
                 </div>
             </fieldset>
