@@ -90,4 +90,14 @@ export class CteyprovService {
       }));
   } 
 
+      //  Consulta de todos los Tipos de Productos
+  consRecinto(){
+    return this.http.get<any>(`${environment.SERVER_URL}/Recintos/ListaRecintos`, {})
+      .pipe(map(listrecintos => {
+        if(listrecintos){
+        } 
+      return listrecintos;
+      }));
+  } //Cierre del método consRecinto
+
 }

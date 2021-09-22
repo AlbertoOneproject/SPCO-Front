@@ -9,3 +9,4 @@ export * from './sysdtapl.service';
 export * from './sysdtape.service';
 export * from './prodymat.service';
 export * from './cteyprov.service';
+export * from './partes.service';

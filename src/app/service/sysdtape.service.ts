@@ -24,14 +24,15 @@ export class SysdtapeService {
 }
 
   apeconscve(clvap: string){
+    console.log("sysdtape.service.ts  apeconscve clvap");
+    console.log(clvap);
     let params = new HttpParams();
-//    params = params.append('id', username);
     params = params.append('id',clvap);
-    //return this.http.get<any>(`${environment.SERVER_URL}/Users/`, {params:params})
     return this.http.get<Sysdtape>(`${environment.SERVER_URL}/DetCatAp/`+clvap, {})
-
     .pipe(map(listape => {
         if(listape){
+          console.log("sysdtape.service.ts  apeconscve listape")
+          console.log(listape);
            } 
       
         return listape;

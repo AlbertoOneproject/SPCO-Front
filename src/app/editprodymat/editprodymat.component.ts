@@ -30,7 +30,9 @@ export class EditprodymatComponent implements OnInit {
   usuario: string;
   empresaa: string;
   recintoo: string;
-  apl: Sysdtape;
+  apC: Sysdtape;
+  apT: Sysdtape;
+  fracc: any[];
   editprodymat: FormGroup;
   usuari: Login
   currentProdymat: Prodymat;
@@ -47,22 +49,29 @@ export class EditprodymatComponent implements OnInit {
   msg= '';
   datawork: any=[];
   dataworkedit: any=[];
+  dataworkfracc: any=[];
   
-  public clveProduc:    string;  
-  public tipProd:       string;  
-  public indVis:        string;  
-  public descCorta:     string;  
-  public descLarga:     string;  
-  public descCorIng:    string;  
-  public descLarIng:    string;  
-  public uM:            string;  
-  public empresa:       string;  
-  public recinto:       string;  
-  public fechaAlta:     string;  
-  public fechaMod:      string;  
-  public hora:          string;  
-  public userMod:       string;  
-  public tip_Mat:       string;  
+  clveProduc:    string;
+  tipProd:       string;  
+  indVis:        string;
+  descCorta:     string;
+  descLarga:     string;
+  descCorIng:    string;
+  descLarIng:    string;
+  uMC:           string;
+  uMT:           string;
+  tipMat:        string;
+  empresa:       string;
+  recinto:       string;
+  fechaAlta:     string;
+  fechaMod:      string;
+  hora:          string;
+  userMod:       string;
+  convers:       number; 
+  costoUnitDLS:  number;
+  costoUnitMXP:  number;
+  fraccAranc:    string;
+  nico:          string; 
   
   prod: Tipo[] = [
     {Tipo: '6', desc: 'Productos'},
@@ -87,6 +96,7 @@ export class EditprodymatComponent implements OnInit {
      
   ngOnInit(): void {
     this.consultaDatosApl();
+    this.consultaFracc();
     this.formafb();
     this.consultaDatosProdymat();    
     this.usuari = JSON.parse(localStorage.getItem('currentUserLog'));
@@ -110,62 +120,82 @@ export class EditprodymatComponent implements OnInit {
         this.material = true;
     }else{
        this.material = false;
-       this.editprodymat.controls['tip_Mat'].setValue("");
+       this.editprodymat.controls['tipMat'].setValue("");
     }
    }
   
   formafb() {
     this.editprodymat = this.fb.group({
-      'clveProduc':  new FormControl('',[Validators.required]),
-      'tipProd':     new FormControl('',[Validators.required]),
-     'gender':       new FormControl('',[Validators.required]),
-      'orders':      new FormControl('',[Validators.required]),
-      'descCorta':   new FormControl('',[Validators.required]),
-      'descLarga':   new FormControl('',[Validators.required]),
-      'descCorIng':  new FormControl('',[Validators.required]),
-      'descLarIng':  new FormControl('',[Validators.required]),
-      'listaallapl': new FormControl('',[Validators.required]),
-      'fechaAlta':   new FormControl('',[Validators.required]),
-      'fechaMod':    new FormControl('',[Validators.required]),
-      'hora':        new FormControl('',[Validators.required]),      
-      'userMod':     new FormControl('',[Validators.required]),
-      'tip_Mat':     new FormControl('',[Validators.required])
+      'clveProduc':    new FormControl('',[Validators.required]),
+      'tipProd':       new FormControl('',[Validators.required]),
+      'gender':        new FormControl('',[Validators.required]),
+      'orders':        new FormControl('',[Validators.required]),
+      'descCorta':     new FormControl('',[Validators.required]),
+      'descLarga':     new FormControl('',[Validators.required]),
+      'descCorIng':    new FormControl('',[Validators.required]),
+      'descLarIng':    new FormControl('',[Validators.required]),
+      'listaallapC':   new FormControl('',[Validators.required]),
+      'listaallapT':   new FormControl('',[Validators.required]),
+      'listaallFracc': new FormControl('',[Validators.required]),
+      'tipMat':        new FormControl(''),
+      'convers':       new FormControl('',[Validators.required]),
+      'costoUnitDLS':  new FormControl('',[Validators.required]),
+      'costoUnitMXP':  new FormControl('',[Validators.required]),
+//      'fraccAranc':    new FormControl('',[Validators.required]),
+      'nico':          new FormControl('',[Validators.required]),
     }); 
   } // Cierre del método formafb
   
 consultaDatosProdymat(){
+    console.log("1")
     this.activatedRoutee.params.subscribe( params =>{ 
         this.prodymatService.prodymatUnico(params['clveProduc'])
         .pipe(first())
         .subscribe( 
             data => {
                 this.datawork = data;
+                console.log("2")
                 if (this.datawork.cr=="00"){
+                  console.log("3")
                     this.currentProdymat = this.datawork.contenido;
-                    this.editprodymat.controls['clveProduc'].setValue(this.currentProdymat.clveProduc);
-                    this.editprodymat.controls['tipProd'].setValue(this.currentProdymat.tipProd);
-                    this.editprodymat.controls['descCorta'].setValue(this.currentProdymat.descCorta);
-                    this.editprodymat.controls['descLarga'].setValue(this.currentProdymat.descLarga);
-                    this.editprodymat.controls['descCorIng'].setValue(this.currentProdymat.descCorIng);
-                    this.editprodymat.controls['descLarIng'].setValue(this.currentProdymat.descLarIng);
-                    this.editprodymat.controls['tip_Mat'].setValue(this.currentProdymat.tip_Mat);
+                    console.log("editprodymat currentProdymat")
+                    console.log(this.currentProdymat)
+                    this.editprodymat.controls['clveProduc'].setValue(this.currentProdymat.clveProduc)    ;
+                    this.editprodymat.controls['tipProd'].setValue(this.currentProdymat.tipProd)          ;
+                    this.editprodymat.controls['descCorta'].setValue(this.currentProdymat.descCorta)      ;
+                    this.editprodymat.controls['descLarga'].setValue(this.currentProdymat.descLarga)      ;
+                    this.editprodymat.controls['descCorIng'].setValue(this.currentProdymat.descCorIng)    ;
+                    this.editprodymat.controls['descLarIng'].setValue(this.currentProdymat.descLarIng)    ;
+                    this.editprodymat.controls['tipMat'].setValue(this.currentProdymat.tipMat)            ;
+                    this.editprodymat.controls['convers'].setValue(this.currentProdymat.convers)          ;
+                    this.editprodymat.controls['costoUnitDLS'].setValue(this.currentProdymat.costoUnitDLS);
+                    this.editprodymat.controls['costoUnitMXP'].setValue(this.currentProdymat.costoUnitMXP);
+//                    this.editprodymat.controls['fraccAranc'].setValue(this.currentProdymat.fraccAranc)    ;
+                    this.editprodymat.controls['nico'].setValue(this.currentProdymat.nico)                ;
 
-                    this.clveProduc			= this.currentProdymat.clveProduc;
-                    this.tipProd        = this.currentProdymat.tipProd   ;
-                    this.indVis         = this.currentProdymat.indVis    ;
-                    this.descCorta      = this.currentProdymat.descCorta ;
-                    this.descLarga      = this.currentProdymat.descLarga ;
-                    this.descCorIng     = this.currentProdymat.descCorIng;
-                    this.descLarIng     = this.currentProdymat.descLarIng;
-                    this.uM             = this.currentProdymat.uM        ;
-                    this.empresa        = this.currentProdymat.empresa   ;
-                    this.recinto        = this.currentProdymat.recinto   ;
-                    this.fechaAlta      = this.currentProdymat.fechaAlta ;
-                    this.fechaMod       = this.currentProdymat.fechaMod  ;
-                    this.hora           = this.currentProdymat.hora      ;
-                    this.userMod        = this.currentProdymat.userMod   ;
-                    this.tip_Mat        = this.currentProdymat.tip_Mat      
-                    
+                    this.clveProduc			= this.currentProdymat.clveProduc  ;
+                    this.tipProd        = this.currentProdymat.tipProd     ;
+                    this.indVis         = this.currentProdymat.indVis      ;
+                    this.descCorta      = this.currentProdymat.descCorta   ;
+                    this.descLarga      = this.currentProdymat.descLarga   ;
+                    this.descCorIng     = this.currentProdymat.descCorIng  ;
+                    this.descLarIng     = this.currentProdymat.descLarIng  ;
+                    this.uMC            = this.currentProdymat.uMC         ;
+                    this.uMT            = this.currentProdymat.uMT         ;
+                    this.tipMat         = this.currentProdymat.tipMat      ;       
+                    this.empresa        = this.currentProdymat.empresa     ;
+                    this.recinto        = this.currentProdymat.recinto     ;
+                    this.fechaAlta      = this.currentProdymat.fechaAlta   ;
+                    this.fechaMod       = this.currentProdymat.fechaMod    ;
+                    this.hora           = this.currentProdymat.hora        ;
+                    this.userMod        = this.currentProdymat.userMod     ;
+                    this.convers        = this.currentProdymat.convers     ;
+                    this.costoUnitDLS   = this.currentProdymat.costoUnitDLS;
+                    this.costoUnitMXP   = this.currentProdymat.costoUnitMXP;
+                    this.fraccAranc     = this.currentProdymat.fraccAranc  ;
+                    this.nico           = this.currentProdymat.nico        ;
+                    console.log("editprodymat consultaDatosProdymat fraccAranc");
+                    console.log(this.fraccAranc);
                     if(this.indVis == 'S'){
                       this.editprodymat.controls['gender'].setValue('S');
                     }else if(this.indVis == 'N'){
@@ -175,8 +205,7 @@ consultaDatosProdymat(){
                       if (this.prod[i].Tipo == this.tipProd){
                         this.editprodymat.controls['tipProd'].setValue(this.prod[i].desc);
                       }
-                    }
-                   
+                    }                   
                 }else{
                     this.loading = false;
                     this.msg     = this.datawork.descripcion;
@@ -194,7 +223,8 @@ consultaDatosProdymat(){
     get f() { return this.editprodymat.controls; }
   
   enviar() {
-    console.log("editsysuser enviar currentProdymat")
+    console.log("editprodymat enviar fraccAranc");
+    console.log(this.fraccAranc);
 /*    
     if (this.editsysuserform.invalid) {
         this.alertService.error("Es necesario capturar todos los campos que tienen * ");
@@ -226,28 +256,38 @@ consultaDatosProdymat(){
     armausuario(){
       //this.payLoad = JSON.stringify(this.form.value);
         this.currentProdymat = {
-            clveProduc    : this.f.clveProduc.value,
-            tipProd       : this.f.tipProd.value,  
-            indVis        : this.f.gender.value, 
-            descCorta     : this.f.descCorta.value, 
-            descLarga     : this.f.descLarga.value, 
-            descCorIng    : this.f.descCorIng.value, 
-            descLarIng    : this.f.descLarIng.value, 
-            uM            : this.f.listaallapl.value, 
-            empresa	      : this.empresa,
-            recinto       : this.recinto,
-            fechaAlta     : this.fechaAlta,
-            fechaMod      : this.curr,
-            hora          : this.curr1, 
+            clveProduc    : this.f.clveProduc.value     ,
+            tipProd       : this.tipProd                ,  
+            indVis        : this.f.gender.value         , 
+            descCorta     : this.f.descCorta.value      , 
+            descLarga     : this.f.descLarga.value      , 
+            descCorIng    : this.f.descCorIng.value     , 
+            descLarIng    : this.f.descLarIng.value     , 
+            uMC           : this.f.listaallapC.value    , 
+            uMT           : this.f.listaallapT.value    , 
+            tipMat        : this.f.tipMat.value         ,
+            empresa	      : this.empresa                ,
+            recinto       : this.recinto                ,
+            fechaAlta     : this.fechaAlta              ,
+            fechaMod      : this.curr                   ,
+            hora          : this.curr1                  , 
             userMod       : this.usuario.substring(0, 8),
-            tip_Mat       : this.f.tip_Mat.value
+            convers       : this.f.convers.value        ,
+            costoUnitDLS  : this.f.costoUnitDLS.value   ,
+            costoUnitMXP  : this.f.costoUnitMXP.value   ,
+            fraccAranc    : this.f.listaallFracc.value     ,
+            nico          : this.f.nico.value           ,
         }
-        if (this.f.listaallapl.value == ""){
-            this.currentProdymat.uM = this.uM
+        if (this.f.listaallapC.value == ""){
+            this.currentProdymat.uMC = this.uMC
         } 
+        if (this.f.listaallapT.value == ""){
+            this.currentProdymat.uMT = this.uMT
+      } 
+
     }     // Cierre del metodo armausuario
 
-    consultaDatosApl(){
+  consultaDatosApl(){
       this.clvap = 'AP07';
       this.consape.apeconscve(this.clvap)
       .pipe(first())
@@ -255,7 +295,8 @@ consultaDatosProdymat(){
           data => {
               this.datawork = data;
               if (this.datawork.cr=="00"){
-                  this.apl = this.datawork.contenido;
+                  this.apC = this.datawork.contenido;
+                  this.apT = this.datawork.contenido;
             }else {
               this.alertService.error("Las contraseñas no coinciden");
               this.loading = false;
@@ -264,7 +305,26 @@ consultaDatosProdymat(){
               this.alertService.error("Error en el Alta de Usuario");
               this.loading = false;
           }});
-    } // Cierre del método consultaDatosApl
+  } // Cierre del método consultaDatosApl
+
+  consultaFracc(){
+    this.prodymatService.obtenFracc()
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.dataworkfracc = data;
+            if (this.dataworkfracc.cr=="00"){
+                this.fracc = this.dataworkfracc.contenido;
+            }else {
+                this.alertService.error("Error al obtener información de la Fracción Arancelaria");
+                this.loading = false;
+            }
+          },
+          error => {
+            this.alertService.error("Error en la consulta de la Fracción Arancelaria");
+            this.loading = false;
+        });
+  } // Cierre del método consultaFracc  
 
     
   cancelar(clveProduc: string): void {

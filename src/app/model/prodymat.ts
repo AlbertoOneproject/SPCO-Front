@@ -6,15 +6,20 @@ export class Prodymat {
     descLarga:     string;
     descCorIng:    string;
     descLarIng:    string;
-    uM:            string;
+    uMC:           string;
+    uMT:           string;
+    tipMat:        string;
     empresa:       string;
     recinto:       string;
     fechaAlta:     string;
     fechaMod:      string;
     hora:          string;
     userMod:       string;
-    tip_Mat:       string
-
+    convers:       number; 
+    costoUnitDLS:  number;
+    costoUnitMXP:  number;
+    fraccAranc:    string;
+    nico:          string;
 
     constructor(prodymat) {
         this.clveProduc    = prodymat.clveProduc,
@@ -24,13 +29,19 @@ export class Prodymat {
         this.descLarga     = prodymat.descLarga, 
         this.descCorIng    = prodymat.descCorIng, 
         this.descLarIng    = prodymat.descLarIng, 
-        this.uM            = prodymat.uM, 
+        this.uMC           = prodymat.uMC, 
+        this.uMT           = prodymat.uMT, 
+        this.tipMat        = prodymat.tipMat
         this.empresa	   = prodymat.empresa,
         this.recinto       = prodymat.recinto,
         this.fechaAlta     = prodymat.fechaAlta, 
         this.fechaMod      = prodymat.fechaMod, 
         this.hora          = prodymat.hora, 
         this.userMod       = prodymat.userMod, 
-        this.tip_Mat       = prodymat.tip_Mat
+        this.convers       = prodymat.convers, 
+        this.costoUnitDLS  = prodymat.costoUnitDLS, 
+        this.costoUnitMXP  = prodymat.costoUnitMXP, 
+        this.fraccAranc    = prodymat.fraccAranc, 
+        this.nico          = prodymat.nico 
     }
 }

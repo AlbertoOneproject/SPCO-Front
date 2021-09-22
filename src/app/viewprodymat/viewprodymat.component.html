@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="viewprodymat.component">
     <ul class="breadcrumb">
-        <li><a href="/cteyprov">Detalle de Clientes y Proveedores</a></li>
+        <li><a href="/prodymat">Detalle de Productos y Materiales</a></li>
         <li class="active">{{clveProduc}}&nbsp;{{descCorta}}</li>
     </ul>
     <div class="card well">
@@ -57,8 +57,16 @@
                         <td>{{descLarIng}}</td>
                     </tr>
                     <tr>
-                        <td>Unidad de Medida: </td>
-                        <td>{{uM}}</td>
+                        <td>Unidad de Medida Comercial: </td>
+                        <td>{{uMC}}</td>
+                    </tr>
+                    <tr>
+                        <td>Unidad de Medida Tarífa: </td>
+                        <td>{{uMT}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo de Material: </td>
+                        <td>{{Tip_Mat}}</td>
                     </tr>
                     <tr>
                         <td>Empresa: </td>
@@ -85,8 +93,24 @@
                         <td>{{userMod}}</td>
                     </tr>
                     <tr>
-                        <td>Tipo de Material: </td>
-                        <td>{{tip_Mat}}</td>
+                        <td>Conversión: </td>
+                        <td>{{convers}}</td>
+                    </tr>
+                    <tr>
+                        <td>Costo Unitario en DLS: </td>
+                        <td>{{costoUnitDLS}}</td>
+                    </tr>
+                    <tr>
+                        <td>Costo Unitario en MXP: </td>
+                        <td>{{costoUnitMXP}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fracción Arancelaria: </td>
+                        <td>{{fraccAranc}}</td>
+                    </tr>
+                    <tr>
+                        <td>NICO: </td>
+                        <td>{{nico}}</td>
                     </tr>
                 </table>
             </div>

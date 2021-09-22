@@ -11,3 +11,4 @@ export * from './catprod';
 export * from './prodymat';
 export * from './cteyprov';
 export * from './catcte';
+export * from './partes';

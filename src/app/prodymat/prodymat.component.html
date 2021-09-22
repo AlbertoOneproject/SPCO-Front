@@ -4,8 +4,8 @@
     </ul>
     <form [formGroup]="prodymatForm">
         <div class=" text-right">
-            <div class="card" >
-                <div class="toolbar">   
+            <div class="card">
+                <div class="toolbar">
                     <h4>Lista de Productos y Materiales</h4>
                     <div class="col-12 text-right" *ngIf="perfil">
                         <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altaprodymat',cveprod]">+</a>
@@ -13,20 +13,22 @@
                     <div class="col-12 text-right" *ngIf="!perfil">
                         <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
                     </div>
-
-                    <div class="nav-item dropdown" style="text-align: left">
+                    <div class="col-02 text-right" class="nav-item dropdown" style="text-align: left">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         TIPO
                         </a >
-        
+                        <label for="uploader">{{descripcion}}</label>
+
+       
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
         <!--                    <a class="dropdown-item" href="/ape?clvap={{listaapl.clvap}}&desCorta={{listaapl.desCorta}}" *ngFor="let listaapl of apl; let i = index;">  -->
-                        <a class="dropdown-item" *ngFor="let listaprod of prod; let i = index;" (click)="consultaProdymat(listaprod.Tipo, 1, this.perPage, this.perName)"> 
+                        <a class="dropdown-item" *ngFor="let listaprod of prod; let i = index;" (click)="consultaProdymat(listaprod.Tipo, listaprod.desc, 1, this.perPage, this.perName)"> 
         <!--                    <a class="dropdown-item" [routerLink]="['ape']" [queryParams]= "{clvap:listaapl.clvap, desCorta:listaapl.desCorta}" *ngFor="let listaapl of apl; let i = index;">    -->                    
                                 {{listaprod.desc}}
                             </a>
                         <!--                    <a class="nav-link" [routerLink]="['client']" [queryParams]="{'p': this.index - 1, 'list': this.listVisits[this.index - 1]}">Client Detail</a> -->
                     </div>
+
 
                 </div>
             </div>

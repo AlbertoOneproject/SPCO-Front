@@ -1,0 +1,147 @@
+<div class="content-container" ng-controller="viewprodymat.component">
+    <ul class="breadcrumb">
+        <li><a href="/partes">Detalle de Apuntes Partes</a></li>
+        <li class="active">{{idCliProv}}&nbsp;{{numPart}}</li>
+    </ul>
+    <div class="card well">
+        <div class="pull-right">
+            <div class="form-group" *ngIf="perfil">
+                <button type="button" class="btn btn-primary" (click)="editparte(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button type="button" (click)="deleteparte()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+            <div class="form-group" *ngIf="!perfil">
+                <button disabled type="button" class="btn btn-primary" (click)="editparte(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button disabled type="button" (click)="deleteparte()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+        </div>
+        <h3 class="bolder">{{idCliProv}}&nbsp;{{numPart}}</h3>
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>Cliente: </td>
+                        <td>{{idCliProv}}</td>
+                    </tr>
+                    <tr>
+                        <td>Número de Parte: </td>
+                        <td>{{numPart}}</td>
+                    </tr>
+                    <tr>
+                        <td>Número de Pedimento: </td>
+                        <td>{{numPedimento}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de Alta: </td>
+                        <td>{{fechaAlta}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de Entrada: </td>
+                        <td>{{fechaEntrada}}</td>
+                    </tr>
+                    <tr>
+                        <td>Producto: </td>
+                        <td>{{producto}}</td>
+                    </tr>
+                    <tr>
+                        <td>País de Origen: </td>
+                        <td>{{paisOrigen}}</td>
+                    </tr>
+                    <tr>
+                        <td>Cantidad: </td>
+                        <td>{{cantidad}}</td>
+                    </tr>
+                    <tr>
+                        <td>Costo Unitario en DLS: </td>
+                        <td>{{costounitdls}}</td>
+                    </tr>
+                    <tr>
+                        <td>Costo Total en DLS: </td>
+                        <td>{{costoTotaldls}}</td>
+                    </tr>
+                    <tr>
+                        <td>Costo Unitario en MXP: </td>
+                        <td>{{costounitMXP}}</td>
+                    </tr>
+                    <tr>
+                        <td>Costo Total en MXP: </td>
+                        <td>{{costototalMXP}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo de Cambio: </td>
+                        <td>{{tipCambio}}</td>
+                    </tr>
+                    <tr>
+                        <td>Unidad de Medida Comercial: </td>
+                        <td>{{uMC}}</td>
+                    </tr>
+                    <tr>
+                        <td>Unidad de Medida Tarífa: </td>
+                        <td>{{uMT}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fracción Arancelaria: </td>
+                        <td>{{fraccAranc}}</td>
+                    </tr>
+                    <tr>
+                        <td>NICO: </td>
+                        <td>{{nico}}</td>
+                    </tr>
+                    <tr>
+                        <td>Neto Original: </td>
+                        <td>{{netoOriginal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Bruto Original: </td>
+                        <td>{{brutoOriginal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Neto Conv: </td>
+                        <td>{{netoConv}}</td>
+                    </tr>
+                    <tr>
+                        <td>Bruto Conv: </td>
+                        <td>{{brutoConv}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de Vencimiento: </td>
+                        <td>{{fechaVenc}}</td>
+                    </tr>
+                    <tr>
+                        <td>Empresa: </td>
+                        <td>{{empresa}}</td>
+                    </tr>
+                    <tr>
+                        <td>Recinto: </td>
+                        <td>{{recinto}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de Registro: </td>
+                        <td>{{fechaRegistro}}</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de Modificación: </td>
+                        <td>{{fechaMod}}</td>
+                    </tr>
+                    <tr>
+                        <td>Hora: </td>
+                        <td>{{hora}}</td>
+                    </tr>
+                    <tr>
+                        <td>Usuario de Modificación: </td>
+                        <td>{{userMod}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

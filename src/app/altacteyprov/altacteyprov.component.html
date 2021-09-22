@@ -52,7 +52,7 @@
 
                     <div class="col-sm-3">
                         <label *ngFor="let order of orders">
-                            <input formControlName="orders" type="radio" name="orders" [value]="order.name" [checked]="order.name === 'Nacional'"
+                            <input formControlName="orders" type="radio" name="orders" [value]="order.name"
                             />
                             {{order.name}}&nbsp;&nbsp;
                        </label>

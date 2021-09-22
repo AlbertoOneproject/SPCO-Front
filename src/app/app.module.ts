@@ -50,7 +50,9 @@ import { CteyprovComponent } from './cteyprov/cteyprov.component';
 import { ViewcteyprovComponent } from './viewcteyprov/viewcteyprov.component';
 import { AltacteyprovComponent } from './altacteyprov/altacteyprov.component';
 import { EditcteyprovComponent } from './editcteyprov/editcteyprov.component';
-import { MsgokcpComponent } from './msgokcp/msgokcp.component'
+import { MsgokcpComponent } from './msgokcp/msgokcp.component';
+import { PartesComponent } from './partes/partes.component';
+import { ViewpartesComponent } from './viewpartes/viewpartes.component'
 
 
 @NgModule({
@@ -95,7 +97,9 @@ import { MsgokcpComponent } from './msgokcp/msgokcp.component'
     ViewcteyprovComponent,
     AltacteyprovComponent,
     EditcteyprovComponent,
-    MsgokcpComponent
+    MsgokcpComponent,
+    PartesComponent,
+    ViewpartesComponent
   ],
   imports: [
     BrowserModule,

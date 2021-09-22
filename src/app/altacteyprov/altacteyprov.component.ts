@@ -347,12 +347,13 @@ export class AltacteyprovComponent implements OnInit {
       if (this.tipCteparam){
           this.currentCteyprov.tipo = this.cvePrMt
       }
-
+/*
       if (this.currentCteyprov.nal == "N"){
           this.currentCteyprov.nal = "Nacional"
       }else{
           this.currentCteyprov.nal = "Extranjero"
       }         
+*/      
   }     // Cierre del metodo armausuario
 
   msgokcp(): void {

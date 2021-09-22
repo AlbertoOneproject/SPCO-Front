@@ -91,31 +91,98 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Unidad de Medida<span
+                    <label class="control-label col-sm-2">Unidad de Medida Comercial<span
 	                    class="required">*</span></label>
 
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallapl" id="listaallapl" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallapC" id="listaallapC" style="height: 180px" style="width: 185px">
                         <option 
-                                *ngFor="let listaapl of apl" 
-                                [value]="listaapl.id1" 
-                                >{{listaapl.desCorta}}
+                                *ngFor="let listaapC of apC" 
+                                [value]="listaapC.id1" 
+                                >{{listaapC.desCorta}}
                         </option>
                     </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="tip_Mat">Tipo de Material</label>
+                    <label class="control-label col-sm-2">Unidad de Medida Tarífa<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallapT" id="listaallapT" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaapT of apT" 
+                                [value]="listaapT.id1" 
+                                >{{listaapT.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Tip_Mat">Tipo de Material</label>
 
                     <div class="col-sm-3" *ngIf="material">
-                        <input type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
+                        <input type="text" id="Tip_Mat" name="Tip_Mat" formControlName="Tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
                     </div>
                     <div class="col-sm-3" *ngIf="!material">
-                        <input disabled type="text" id="tip_Mat" name="tip_Mat" formControlName="tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
+                        <input disabled type="text" id="Tip_Mat" name="Tip_Mat" formControlName="Tip_Mat" class="form-control" minlength="1" maxlength="10" late-Validate />
                     </div>
+                </div>
 
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="costoUnitMXP">Costo Unitario (MX):<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="number" id="costoUnitMXP" name="costoUnitMXP" formControlName="costoUnitMXP" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="costoUnitDLS">Costo Unitario (DLS):<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="number" id="costoUnitDLS" name="costoUnitDLS" formControlName="costoUnitDLS" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="convers">Conversión:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="number" id="convers" name="convers" formControlName="convers" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" placeholder=1.00000 step=0.00001 />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Fracción Arancelaria:<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallFracc" id="listaallFracc" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listafracc of fracc" 
+                                [value]="listafracc.fraccion" 
+                                >{{listafracc.fraccion}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nico">NICO:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="nico" name="nico" formControlName="nico" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="02" />
+                    </div>
                 </div>
 
                 <div class="col-md-offset-3">

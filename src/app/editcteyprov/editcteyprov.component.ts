@@ -35,6 +35,7 @@ export class EditcteyprovComponent implements OnInit {
   empresaa: string;
   recintoo: string;
   apl: Sysdtape;
+  recintos: any[];
   editcteyprov: FormGroup;
   usuari: Login
   loading = false;
@@ -111,6 +112,7 @@ export class EditcteyprovComponent implements OnInit {
      
   ngOnInit(): void {
     this.consultaDatosApl();
+    this.consultaDatosRecinto();
     this.formafb();
     this.consultaDatosCteyprov(); 
     this.usuari = JSON.parse(localStorage.getItem('currentUserLog'));
@@ -147,11 +149,31 @@ export class EditcteyprovComponent implements OnInit {
               this.loading = false;
             }});
   } // Cierre del método consultaDatosApl
+
+  consultaDatosRecinto(){
+    this.cteyprovService.consRecinto()
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.datawork = data;
+            if (this.datawork.cr=="00"){
+                this.recintos = this.datawork.contenido;
+            }else{
+                this.alertService.error("Error al obtener claves de los países");
+                this.loading = false;
+            }
+            error => {
+              this.alertService.error("Error en el proceso de obtener las claves de países");
+              this.loading = false;
+            }});
+  } // Cierre del método consultaDatosApl
+
   
   formafb() {
     this.editcteyprov = this.fb.group({
       'tipCte':       new FormControl(''),
-//      'listaTipCte':  new FormControl(''),
+//      'listaTipCte':  new FormControl(''),listaallrto
+      'listaallrto':  new FormControl('',[Validators.required]),
       'idCliProv':    new FormControl('',[Validators.required]),
       'nomDenov':     new FormControl('',[Validators.required]),
       'gender':       new FormControl('',[Validators.required]),
@@ -188,31 +210,32 @@ export class EditcteyprovComponent implements OnInit {
                     this.currentCteyprov = this.datawork.contenido;
                     console.log("consultaDatosCteyprov Unico currentCteyprov")
                     console.log(this.currentCteyprov)
-                    this.editcteyprov.controls['tipCte'			].setValue(this.currentCteyprov.tipo				);
-//                    this.editcteyprov.controls['listaTipCte'].setValue(this.currentCteyprov.tipo	);
-                    this.editcteyprov.controls['idCliProv'	].setValue(this.currentCteyprov.idCliProv		);
-                    this.editcteyprov.controls['nomDenov'		].setValue(this.currentCteyprov.nomDenov		);
-//                    this.editcteyprov.controls['orders'			].setValue(this.currentCteyprov.nal					);
-                    this.editcteyprov.controls['nomContacto'].setValue(this.currentCteyprov.nomContacto	);
-                    this.editcteyprov.controls['immexCveRec'].setValue(this.currentCteyprov.immexCveRec	);
-                    this.editcteyprov.controls['rfc'				].setValue(this.currentCteyprov.rfc					);
-                    this.editcteyprov.controls['idTax'			].setValue(this.currentCteyprov.idTax				);
-                    this.editcteyprov.controls['curp'				].setValue(this.currentCteyprov.curp				);
-                    this.editcteyprov.controls['listaallapl'].setValue(this.currentCteyprov.país				);
-                    this.editcteyprov.controls['cp'					].setValue(this.currentCteyprov.cp					);
-                    this.editcteyprov.controls['listaalledo'].setValue(this.currentCteyprov.estado    	);
-                    this.editcteyprov.controls['listaallmun'].setValue(this.currentCteyprov.municipio		);
-                    this.editcteyprov.controls['listaallloc'].setValue(this.currentCteyprov.localidad		);
-//                    this.editcteyprov.controls['listaallcol'].setValue(this.currentCteyprov.colonia			);
-                    this.editcteyprov.controls['calle'			].setValue(this.currentCteyprov.calle				);
-                    this.editcteyprov.controls['numExt'			].setValue(this.currentCteyprov.numExt			);
-                    this.editcteyprov.controls['numInte'		].setValue(this.currentCteyprov.numInte			);
-                    this.editcteyprov.controls['email'			].setValue(this.currentCteyprov.email				);
-                    this.editcteyprov.controls['tel'				].setValue(this.currentCteyprov.tel					);
+                    this.editcteyprov.controls['tipCte'			].setValue(this.currentCteyprov.tipo				      );
+//                    this.editcteyprov.controls['listaTipCte'].setValue(this.currentCteyprov.tipo          	);
+                    this.editcteyprov.controls['listaallrto'].setValue(this.currentCteyprov.recinto.trim()          );
+                    this.editcteyprov.controls['idCliProv'	].setValue(this.currentCteyprov.idCliProv		      );
+                    this.editcteyprov.controls['nomDenov'		].setValue(this.currentCteyprov.nomDenov.trim()   );
+//                    this.editcteyprov.controls['orders'			].setValue(this.currentCteyprov.nal					    );
+                    this.editcteyprov.controls['nomContacto'].setValue(this.currentCteyprov.nomContacto.trim());
+                    this.editcteyprov.controls['immexCveRec'].setValue(this.currentCteyprov.immexCveRec	      );
+                    this.editcteyprov.controls['rfc'				].setValue(this.currentCteyprov.rfc	      				);
+                    this.editcteyprov.controls['idTax'			].setValue(this.currentCteyprov.idTax			      	);
+                    this.editcteyprov.controls['curp'				].setValue(this.currentCteyprov.curp      				);
+                    this.editcteyprov.controls['listaallapl'].setValue(this.currentCteyprov.país			      	);
+                    this.editcteyprov.controls['cp'					].setValue(this.currentCteyprov.cp	      				);
+                    this.editcteyprov.controls['listaalledo'].setValue(this.currentCteyprov.estado          	);
+                    this.editcteyprov.controls['listaallmun'].setValue(this.currentCteyprov.municipio      		);
+                    this.editcteyprov.controls['listaallloc'].setValue(this.currentCteyprov.localidad      		);
+//                    this.editcteyprov.controls['listaallcol'].setValue(this.currentCteyprov.colonia	      	);
+                    this.editcteyprov.controls['calle'			].setValue(this.currentCteyprov.calle.trim()      );
+                    this.editcteyprov.controls['numExt'			].setValue(this.currentCteyprov.numExt      			);
+                    this.editcteyprov.controls['numInte'		].setValue(this.currentCteyprov.numInte	      		);
+                    this.editcteyprov.controls['email'			].setValue(this.currentCteyprov.email.trim()      );
+                    this.editcteyprov.controls['tel'				].setValue(this.currentCteyprov.tel				      	);
 
-                    this.recinto			= this.currentCteyprov.recinto		  ;      
+                    this.recinto			= this.currentCteyprov.recinto.trim()		  ;      
                     this.empresa			= this.currentCteyprov.empresa		  ;      
-                    this.nomDenov		  = this.currentCteyprov.nomDenov	  	;        
+                    this.nomDenov		  = this.currentCteyprov.nomDenov     ;        
                     this.idCliProv		= this.currentCteyprov.idCliProv	  ;      
                     this.rfc					= this.currentCteyprov.rfc				  ;      
                     this.immexCveRec	= this.currentCteyprov.immexCveRec  ;       
@@ -222,7 +245,7 @@ export class EditcteyprovComponent implements OnInit {
                     this.pais				  = this.currentCteyprov.país			  	;        
                     this.colonia			= this.currentCteyprov.colonia		  ;      
                     this.curp				  = this.currentCteyprov.curp	  			;        
-                    this.estado			  = this.currentCteyprov.estado.trim()       ;  
+                    this.estado			  = this.currentCteyprov.estado       ;  
                     this.numExt			  = this.currentCteyprov.numExt		  	;        
                     this.numInte			= this.currentCteyprov.numInte		  ;      
                     this.cp					  = this.currentCteyprov.cp			  		;        
@@ -430,11 +453,12 @@ export class EditcteyprovComponent implements OnInit {
         municipio			: this.f.listaallmun.value,   
         email					: this.f.email.value,         
         tel						: this.f.tel.value,           
-                                                     
+        recinto       : this.f.listaallrto.value,                 
+
         tipo					: this.tipo,
         indAct        : this.indAct,
         empresa	      : this.empresa,               
-        recinto       : this.recinto,                
+//        recinto       : this.recinto,                
         fechaAlta     : this.curr,                   
         fechaMod      : this.curr,                   
         hora          : this.curr1,                  

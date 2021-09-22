@@ -33,14 +33,15 @@ export class ProdymatComponent implements OnInit {
   cveprod: string = "0";
   returnUrl: string;
   currentProdmat: ProdymatService;
-  currentuMDescripcion: any[];
+  currentuMCDescripcion: any[];
+  currentuMTDescripcion: any[];
+  descripcion:string="";
   prod: Tipo[] = [
     {Tipo: '6', desc: 'Productos'},
     {Tipo: '7', desc: 'Materiales'},
     {Tipo: '8', desc: 'Activo Fijo'}
   ];
 
-  
   constructor(
     private formBuilder: FormBuilder,
     private prodymatService: ProdymatService,
@@ -57,7 +58,6 @@ export class ProdymatComponent implements OnInit {
     //this.catProdMat();
     this.prodymatForm = this.formBuilder.group({
       'listaprod':new FormControl('', [Validators.required]),
-
     });
 
     this.login = JSON.parse(localStorage.getItem('currentUserLog'));
@@ -85,7 +85,8 @@ export class ProdymatComponent implements OnInit {
           this.loading = false;
         });
   } // Cierre del método consultadatos
-    consultaProdymat(cveprod:string, page: number, perPage: number, perName: string)  {    
+    consultaProdymat(cveprod:string, cvedesc:string, page: number, perPage: number, perName: string)  {    
+    this.descripcion = cvedesc;
     this.cveprod = cveprod;
     console.log("prodymat.component cveprod")
     console.log(this.cveprod)
@@ -100,9 +101,9 @@ export class ProdymatComponent implements OnInit {
               this.total = data.total;
               this.totalPages = data.totalPages;
               this.currentProdmat = data.objetoItem;
-              this.currentuMDescripcion = data.uMDescripcion;
-              for (let i=0; i < this.currentuMDescripcion.length; i++){ 
-                  this.currentProdmat[i].uM = this.currentuMDescripcion[i]
+              this.currentuMCDescripcion = data.uMCDescripcion;
+              for (let i=0; i < this.currentuMCDescripcion.length; i++){ 
+                  this.currentProdmat[i].uM = this.currentuMCDescripcion[i]
               }
           }else{
               this.loading = false;
@@ -123,7 +124,7 @@ export class ProdymatComponent implements OnInit {
   
 mudouPagina(evento) {
   this.perName = ""
-  this.consultaProdymat(this.cveprod, evento.valor, this.perPage, this.perName); 
+  this.consultaProdymat(this.cveprod, evento.cvedesc, evento.valor, this.perPage, this.perName); 
 }
 
 }

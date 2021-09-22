@@ -18,7 +18,7 @@ export class ProdymatService {
   //  Consulta de todos los Tipos de Productos
   catProdMat(){
     //return this.http.get<Sysdtapl>(`${environment.SERVER_URL}/CatProd`, {})
-    return this.http.get<any>(`${environment.SERVER_URL}/CatProd/TiposProd`, {})
+    return this.http.get<any>(`${environment.SERVER_URL}/CatProducto/TiposProd`, {})
       .pipe(map(listprod => {
         if(listprod){
         } 
@@ -27,24 +27,26 @@ export class ProdymatService {
     } //Cierre del método catProdMat
 
   Prodymatid(prod, page, perPage, perName ){
-  //return this.http.get<any>(`${environment.SERVER_URL}/Users`, {})
-      //let constPagLike = 'ProdPag?'
       let constPagLike = 'ProdPagUm?'
       let consRecinto = '&tipo='
       let constPag = 'pag?'
       let constPage = 'page='
       let constPerPage = '&perpage='
       this.auth = JSON.parse(localStorage.getItem('autorizacion'));
-      return this.http.get<any>(`${environment.SERVER_URL}/CatProd/`+constPagLike+constPage+page+constPerPage+perPage+consRecinto+prod, {})
+      console.log("prodymarid ")
+      console.log("/CatProducto/"+constPagLike+constPage+page+constPerPage+perPage+consRecinto+prod)
+      return this.http.get<any>(`${environment.SERVER_URL}/CatProducto/`+constPagLike+constPage+page+constPerPage+perPage+consRecinto+prod, {})
         .pipe(map(listprods => {
           if(listprods){
+            console.log("regreso de prodymatid")
+            console.log(listprods)
              }       
           return listprods;
         }));      
     }    // Cierre del método Prodymatid
-
+    
   altaprodymat(prodymat: Prodymat){
-      return this.http.post<Prodymat>(`${environment.SERVER_URL}/CatProd`,prodymat)
+      return this.http.post<Prodymat>(`${environment.SERVER_URL}/CatProducto`,prodymat)
           .pipe(map(datapost => {
       return datapost;
         }));
@@ -55,7 +57,7 @@ export class ProdymatService {
       let consRecinto = '&clave='
 
       this.auth = JSON.parse(localStorage.getItem('autorizacion'));
-      return this.http.get<any>(`${environment.SERVER_URL}/CatProd/`+constPagLike+consRecinto+clveProduc, {})
+      return this.http.get<any>(`${environment.SERVER_URL}/CatProducto/`+constPagLike+consRecinto+clveProduc, {})
         .pipe(map(listprods => {
           if(listprods){
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -63,25 +65,33 @@ export class ProdymatService {
           return listprods;
         }));      
     }    // Cierre del método Prodymatid
-    editprodymat(prodymat: Prodymat){
-      return this.http.put<Prodymat>(`${environment.SERVER_URL}/CatProd`,prodymat)
-            .pipe(map(dataput => {
-          return dataput;
-        }));
-    }  
 
-    deleteprodymat(clveProduc: string){
-      let params = new HttpParams();
-      let constPagLike = 'ProdUnico?'
-      let consClave = '&clave='
+  editprodymat(prodymat: Prodymat){
+    return this.http.put<Prodymat>(`${environment.SERVER_URL}/CatProducto`,prodymat)
+        .pipe(map(dataput => {
+      return dataput;
+    }));
+  }  
 
-      params = params.append('id',clveProduc);
-      return this.http.delete<any>(`${environment.SERVER_URL}/CatProd/`+constPagLike+consClave+clveProduc, {})
-            .pipe(map(datadel => {
-          return datadel;
+  deleteprodymat(clveProduc: string){
+    let params = new HttpParams();
+    let constPagLike = 'ProdUnico?'
+    let consClave = '&clave='
+
+    params = params.append('id',clveProduc);
+    return this.http.delete<any>(`${environment.SERVER_URL}/CatProducto/`+constPagLike+consClave+clveProduc, {})
+        .pipe(map(datadel => {
+      return datadel;
   
-        }));
-    }
+    }));
+  }
+
+  obtenFracc(){
+    return this.http.get<any>(`${environment.SERVER_URL}/Fracc`,{})
+          .pipe(map(datafracc => {
+        return datafracc;
+      }));
+  }  
 
       
 }

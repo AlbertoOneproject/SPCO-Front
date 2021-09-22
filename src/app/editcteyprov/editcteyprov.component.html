@@ -36,7 +36,24 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="idCliProv" name="idCliProv" formControlName="idCliProv" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                        <input disabled type="text" id="idCliProv" name="idCliProv" formControlName="idCliProv" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" required ng-pattern="/(^[A-z])[A-z.'-]*/"
+                            late-Validate/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Recinto :<span
+	                    class="required">*</span></label>
+
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallrto" id="listaallrto" style="height: 180px" style="width: 185px" value="{{recinto}}">
+                        <option 
+                                *ngFor="let listarto of recintos" 
+                                [value]="listarto.idRecinto" 
+                                >{{listarto.descRecinto}}
+                        </option>
+                    </select>
                     </div>
                 </div>
 

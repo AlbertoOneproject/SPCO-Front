@@ -21,7 +21,8 @@ export class ViewprodymatComponent implements OnInit {
   login: Login;
   perfil:boolean;
   currentProdmat: Prodymat;
-  currentuMDescripcion: string;
+  currentuMCDescripcion: string;
+  currentuMTDescripcion: string;
   dataWork: any=[];
   loading = false;
   msg     = '';
@@ -33,6 +34,7 @@ export class ViewprodymatComponent implements OnInit {
   total:      number;
   totalPages: number;
 
+
   clveProduc:    string;
   tipProd:       string;  
   indVis:        string;
@@ -40,14 +42,20 @@ export class ViewprodymatComponent implements OnInit {
   descLarga:     string;
   descCorIng:    string;
   descLarIng:    string;
-  uM:            string;
+  uMC:           string;
+  uMT:           string;
+  Tip_Mat:       string;
   empresa:       string;
   recinto:       string;
   fechaAlta:     string;
   fechaMod:      string;
   hora:          string;
   userMod:       string;
-  tip_Mat:       string;
+  convers:       number; 
+  costoUnitDLS:  number;
+  costoUnitMXP:  number;
+  fraccAranc:    string;
+  nico:          string;
 
   prod: Tipo[] = [
     {Tipo: '6', desc: 'Productos'},
@@ -70,28 +78,38 @@ export class ViewprodymatComponent implements OnInit {
             data => {
               this.dataWork = data;
               if (data.cr=="00"){  
+                  console.log("viewprodymat.component prodymatUnico data")
+                  console.log(data)
                   this.page = data.page;
                   this.perPage = data.perPage;
                   this.total = data.total;
                   this.totalPages = data.totalPages;
                   this.currentProdmat = data.contenido;
-                  this.currentuMDescripcion = data.uMDescripcion;
-                  this.currentProdmat.uM = this.currentuMDescripcion
-                  this.clveProduc			= this.currentProdmat.clveProduc,
-                  this.tipProd        = this.currentProdmat.tipProd   ,
-                  this.indVis         = this.currentProdmat.indVis    ,
-                  this.descCorta      = this.currentProdmat.descCorta ,
-                  this.descLarga      = this.currentProdmat.descLarga ,
-                  this.descCorIng     = this.currentProdmat.descCorIng,
-                  this.descLarIng     = this.currentProdmat.descLarIng,
-                  this.uM             = this.currentProdmat.uM        ,
-                  this.empresa        = this.currentProdmat.empresa   ,
-                  this.recinto        = this.currentProdmat.recinto   ,
-                  this.fechaAlta      = this.currentProdmat.fechaAlta ,
-                  this.fechaMod       = this.currentProdmat.fechaMod  ,
-                  this.hora           = this.currentProdmat.hora      ,
-                  this.userMod        = this.currentProdmat.userMod   ,
-                  this.tip_Mat        = this.currentProdmat.tip_Mat                     
+                  this.currentuMCDescripcion = data.uMCDescripcion;
+                  this.currentuMTDescripcion = data.uMTDescripcion;
+                  this.currentProdmat.uMC = this.currentuMCDescripcion
+                  this.currentProdmat.uMT = this.currentuMTDescripcion
+                  this.clveProduc			= this.currentProdmat.clveProduc  ,
+                  this.tipProd        = this.currentProdmat.tipProd     ,
+                  this.indVis         = this.currentProdmat.indVis      ,
+                  this.descCorta      = this.currentProdmat.descCorta   ,
+                  this.descLarga      = this.currentProdmat.descLarga   ,
+                  this.descCorIng     = this.currentProdmat.descCorIng  ,
+                  this.descLarIng     = this.currentProdmat.descLarIng  ,
+                  this.uMC            = this.currentProdmat.uMC        ,
+                  this.uMT            = this.currentProdmat.uMT        ,
+                  this.Tip_Mat        = this.currentProdmat.tipMat     ,                  
+                  this.empresa        = this.currentProdmat.empresa     ,
+                  this.recinto        = this.currentProdmat.recinto     ,
+                  this.fechaAlta      = this.currentProdmat.fechaAlta   ,
+                  this.fechaMod       = this.currentProdmat.fechaMod    ,
+                  this.hora           = this.currentProdmat.hora        ,
+                  this.userMod        = this.currentProdmat.userMod     ,
+                  this.convers        = this.currentProdmat.convers     ,
+                  this.costoUnitDLS   = this.currentProdmat.costoUnitDLS,
+                  this.costoUnitMXP   = this.currentProdmat.costoUnitMXP,
+                  this.fraccAranc     = this.currentProdmat.fraccAranc  ,
+                  this.nico           = this.currentProdmat.nico
               }else{
                 this.loading = false;
                 this.msg = this.dataWork.descripcion;

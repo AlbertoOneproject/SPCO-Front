@@ -32,10 +32,12 @@ export class AltaproymatComponent implements OnInit {
   submitted = false;
   msg= '';
   usuari: Login
-  apl: Sysdtape;
+  apC: Sysdtape;
+  apT: Sysdtape;
+  fracc: any[];
 
   datawork: any=[];
-  dataworkrol: any=[];
+  dataworkfracc: any=[];
   disponibles: any;
   selectedLocations: any = [];
   currString: string;
@@ -89,6 +91,7 @@ export class AltaproymatComponent implements OnInit {
   ngOnInit(): void {
         //this.clvap_pant = this.route.snapshot.queryParamMap.get('clvap');
     this.consultaDatosApl();
+    this.consultaFracc();
     this.submitted = true;
     this.formafb();
     this.usuari = JSON.parse(localStorage.getItem('currentUserLog'));
@@ -113,16 +116,22 @@ export class AltaproymatComponent implements OnInit {
 
   formafb() {
         this.altaprodymat = this.fb.group({
-          'clveProduc':   new FormControl('',[Validators.required]),
-          'tipProd':      new FormControl(''),
-          'listaTipProd': new FormControl(''),
-          'orders':       new FormControl('',[Validators.required]),
-          'descCorta':    new FormControl('',[Validators.required]),
-          'descLarga':    new FormControl('',[Validators.required]),
-          'descCorIng':   new FormControl('',[Validators.required]),
-          'descLarIng':   new FormControl('',[Validators.required]),
-          'listaallapl':  new FormControl('',[Validators.required]),
-          'tip_Mat':      new FormControl('')
+          'clveProduc':    new FormControl('',[Validators.required]),
+          'tipProd':       new FormControl(''),
+          'listaTipProd':  new FormControl(''),
+          'orders':        new FormControl('',[Validators.required]),
+          'descCorta':     new FormControl('',[Validators.required]),
+          'descLarga':     new FormControl('',[Validators.required]),
+          'descCorIng':    new FormControl('',[Validators.required]),
+          'descLarIng':    new FormControl('',[Validators.required]),
+          'listaallapC':   new FormControl('',[Validators.required]),
+          'listaallapT':   new FormControl('',[Validators.required]),
+          'Tip_Mat':       new FormControl(''),
+          'convers':       new FormControl('',[Validators.required]),
+          'costoUnitDLS':  new FormControl('',[Validators.required]),
+          'costoUnitMXP':  new FormControl('',[Validators.required]),
+          'listaallFracc': new FormControl('',[Validators.required]),
+          'nico':          new FormControl('',[Validators.required])
     }); 
   } // Cierre del método formafb
 
@@ -196,18 +205,40 @@ export class AltaproymatComponent implements OnInit {
         data => {
             this.datawork = data;
             if (this.datawork.cr=="00"){
-                this.apl = this.datawork.contenido;
+                console.log("consultaDatosApl datawork contenido")
+                console.log(data)
+                console.log(this.datawork)
+                this.apC = this.datawork.contenido;
+                this.apT = this.datawork.contenido;
             }else {
                 this.alertService.error("Error al obtener información de indices de Medidas");
                 this.loading = false;
             }
           },
           error => {
-            this.alertService.error("Error en el Alta de Usuario");
+            this.alertService.error("Error en el Consulta de Medidas");
             this.loading = false;
         });
   } // Cierre del método consultaDatosApl
-    
+
+  consultaFracc(){
+    this.prodymatService.obtenFracc()
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.dataworkfracc = data;
+            if (this.dataworkfracc.cr=="00"){
+                this.fracc = this.dataworkfracc.contenido;
+            }else {
+                this.alertService.error("Error al obtener información de la Fracción Arancelaria");
+                this.loading = false;
+            }
+          },
+          error => {
+            this.alertService.error("Error en la consulta de la Fracción Arancelaria");
+            this.loading = false;
+        });
+  } // Cierre del método consultaFracc  
     
   armausuario(){
       this.currentProdymat = {
@@ -218,14 +249,21 @@ export class AltaproymatComponent implements OnInit {
           descLarga     : this.f.descLarga.value, 
           descCorIng    : this.f.descCorIng.value, 
           descLarIng    : this.f.descLarIng.value, 
-          uM            : this.f.listaallapl.value, 
+          uMC           : this.f.listaallapC.value, 
+          uMT           : this.f.listaallapT.value, 
+          tipMat       : this.f.Tip_Mat.value,
           empresa	      : this.empresa,
           recinto       : this.recinto,
           fechaAlta     : this.curr,
           fechaMod      : this.curr,
           hora          : this.curr1, 
           userMod       : this.usuario.substring(0, 8),
-          tip_Mat       : this.f.tip_Mat.value
+          convers       : this.f.convers.value, 
+          costoUnitDLS  : this.f.costoUnitDLS.value, 
+          costoUnitMXP  : this.f.costoUnitMXP.value, 
+          fraccAranc    : this.f.listaallFracc.value, 
+          nico          : this.f.nico.value, 
+      
       }    
       if (this.tipProdparam){
           this.currentProdymat.tipProd = this.cvePrMt
