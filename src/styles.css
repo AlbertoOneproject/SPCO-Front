@@ -28224,7 +28224,7 @@ span.required {
 /* line 18, ../styles-dev/main/components/_navbar.scss */
 
 .navbar .navbar-brand img {
-    max-width: 80px;
+    max-width: 160px;
 }
 
 
@@ -30317,7 +30317,7 @@ Interactive Layer
 /* line 1, ../styles-dev/main/components/_loader.scss */
 
 .wrapper {
-    margin: 50px auto;
+    margin: 0px auto;
     height: 250px;
     width: 240px;
     position: relative;
@@ -31119,7 +31119,7 @@ _:-ms-lang(x),
 
 .topnavbar .navbar-nav>.nav-item>.nav-link {
     padding: 1.1rem .95rem;
-    font-size: .85rem;
+    /*font-size: .85rem;*/
 }
 
 .topnavbar .navbar-nav>.nav-item>.nav-link,
