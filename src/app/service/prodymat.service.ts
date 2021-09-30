@@ -33,8 +33,6 @@ export class ProdymatService {
       let constPage = 'page='
       let constPerPage = '&perpage='
       this.auth = JSON.parse(localStorage.getItem('autorizacion'));
-      console.log("prodymarid ")
-      console.log("/CatProducto/"+constPagLike+constPage+page+constPerPage+perPage+consRecinto+prod)
       return this.http.get<any>(`${environment.SERVER_URL}/CatProducto/`+constPagLike+constPage+page+constPerPage+perPage+consRecinto+prod, {})
         .pipe(map(listprods => {
           if(listprods){
@@ -93,5 +91,31 @@ export class ProdymatService {
       }));
   }  
 
+//  Función: Consulta todos los registros de la tabla SYS_CAT_PROD que corresponden a la empresa/recinto 
+//  Componentes que utilizan el servicio:
+//             - altapartes.component.ts  
+  prodymatTodos(opc){
+    console.log ("prodymatTodos opc")
+    console.log(opc)
+    let page          : number = 1;
+    let perPage       : number = 6;
+
+    let constPagLike  = 'ProdPagTotDesc?'
+    let constPage     = 'page='
+    let constPerPage  = '&perpage='
+    let consRecinto   = '&tipo='
+
+    this.auth = JSON.parse(localStorage.getItem('autorizacion'));
+    console.log("prodymat TODOS parámetros de envío")
+    console.log("/CatProducto/"+constPagLike+constPage+page+constPerPage+perPage+consRecinto+opc)
+    return this.http.get<any>(`${environment.SERVER_URL}/CatProducto/`+constPagLike+constPage+page+constPerPage+perPage+consRecinto+opc, {})
+      .pipe(map(listprods => {
+        if(listprods){
+          console.log("regreso de prodymatTODOS")
+          console.log(listprods)
+           }       
+        return listprods;
+      }));      
+  }    // Cierre del método ProdymatTodos
       
 }

@@ -31,8 +31,7 @@
 
 
 <!-- main app container -->
-<!--<div class="wrapper" *ngIf="currentUser">-->
-<div class="wrapper">
+<div class="wrapper" *ngIf="currentUser">
     <header class="topnavbar-wrapper">
         <!-- START Top Navbar-->
         <nav class="navbar topnavbar">
@@ -277,10 +276,25 @@
                             </li>
                         </ul>
                     </li>
+
                     <li class=" ">
-                        <a href="partes" title="Partes">
-                            <span data-localize="sidebar.nav.map.VECTOR">Aduanas Partes</span>
+                        <a href="#mapsp" title="Mapsp" data-toggle="collapse">
+                            <em class="icon-map"></em>
+                            <span data-localize="sidebar.nav.mapp.MAP">Recinto Entradas</span>
                         </a>
+                        <ul class="sidebar-nav sidebar-subnav collapse" id="mapsp">
+                            <li class="sidebar-subnav-header">Recinto Entradas</li>
+                            <li class=" ">
+                                <a href="partes" title="Aduana-Partes">
+                                    <span data-localize="sidebar.nav.mapp.GOOGLE">Aduana-Partes</span>
+                                </a>
+                            </li>
+                            <li class=" ">
+                                <a href="fatura" title="Factura-Partes">
+                                    <span data-localize="sidebar.nav.mapp.VECTOR">Facturas-Partes</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <hr>

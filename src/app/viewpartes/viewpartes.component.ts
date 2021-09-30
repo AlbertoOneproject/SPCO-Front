@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AlertService, ProdymatService } from './../service';
+import { AlertService, PartesService } from './../service';
 import { MatDialog} from '@angular/material/dialog';
-import { DeleteprodymatComponent } from '../deleteprodymat/deleteprodymat.component';
+import { DeleteparteComponent } from '../deleteparte/deleteparte.component';
 import { Login, Partes } from './../model'
 
 interface Tipo {
@@ -59,6 +59,8 @@ export class ViewpartesComponent implements OnInit {
   fechaMod      : string;
   hora          : string;
   userMod       : string;
+  currentuMCDescripcion: string="" ;
+  currentuMTDescripcion: string="";
 
 
   prod: Tipo[] = [
@@ -68,7 +70,7 @@ export class ViewpartesComponent implements OnInit {
   ];
 
   constructor(    
-    private prodymatService: ProdymatService,
+    private partesService: PartesService,
     private activatedRoute: ActivatedRoute,
     private route:          ActivatedRoute,
     private router:         Router,
@@ -76,19 +78,21 @@ export class ViewpartesComponent implements OnInit {
     private alertService:   AlertService
     ) { 
       this.activatedRoute.params.subscribe( params =>{ 
-        this.prodymatService.prodymatUnico(params['clveProduc'])
+        this.partesService.partesUnico(params['idCliProv'],params['parte'],params['pedimento'])
         .pipe(first())
         .subscribe(
             data => {
               this.dataWork = data;
               if (data.cr=="00"){  
-                  console.log("viewprodymat.component prodymatUnico data")
+                  console.log("viewpartes.component prodymatUnico data")
                   console.log(data)
-                  this.page            = data.page                       ;
-                  this.perPage         = data.perPage                    ;
-                  this.total           = data.total                      ;
-                  this.totalPages      = data.totalPages                 ;
-                  this.currentPartes   = data.contenido                  ;
+                  this.page                  = data.page                 ;
+                  this.perPage               = data.perPage              ;
+                  this.total                 = data.total                ;
+                  this.totalPages            = data.totalPages           ;
+                  this.currentPartes         = data.contenido            ;
+                  this.currentuMCDescripcion = data.uMCdescripcion       ;
+                  this.currentuMTDescripcion = data.uMTdescripcion       ;
 
                   this.idCliProv       = this.currentPartes.idCliProv    ,  
                   this.numPart         = this.currentPartes.numPart      ,  
@@ -105,6 +109,8 @@ export class ViewpartesComponent implements OnInit {
                   this.tipCambio       = this.currentPartes.tipCambio    ,  
                   this.uMC             = this.currentPartes.uMC          ,  
                   this.uMT             = this.currentPartes.uMT          ,  
+                  this.uMC             = this.currentuMCDescripcion      ,  
+                  this.uMT             = this.currentuMTDescripcion      ,  
                   this.fraccAranc      = this.currentPartes.fraccAranc   ,  
                   this.nico            = this.currentPartes.nico         ,  
                   this.netoOriginal    = this.currentPartes.netoOriginal ,  
@@ -147,10 +153,10 @@ export class ViewpartesComponent implements OnInit {
   }
 
   deleteparte(){
-    const dialogRef = this.dialog.open(DeleteprodymatComponent, {
+    const dialogRef = this.dialog.open(DeleteparteComponent, {
       width: '400px',
       height: '200px',
-      data: {idCliProv: this.idCliProv}
+      data: {idCliProv: this.idCliProv,numPart: this.numPart,numPedimento: this.numPedimento}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -158,9 +164,13 @@ export class ViewpartesComponent implements OnInit {
     });
   }
 
-  editparte(idCliProv:string){
+  editparte(idCliProv:string, numPart: string, numPedimento: string){
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/editpartes';
-    this.router.navigate([this.returnUrl,idCliProv]);  
+    console.log("voy para edit")
+    console.log(idCliProv)
+    console.log(numPart)
+    console.log(numPedimento)
+    this.router.navigate([this.returnUrl,{idCliProv: idCliProv, numPart: numPart, numPedimento: numPedimento}]);  
   }
 
 }

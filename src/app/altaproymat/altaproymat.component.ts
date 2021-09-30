@@ -90,7 +90,10 @@ export class AltaproymatComponent implements OnInit {
 
   ngOnInit(): void {
         //this.clvap_pant = this.route.snapshot.queryParamMap.get('clvap');
-    this.consultaDatosApl();
+    this.clvap = 'AP07';
+    this.consultaDatosApl(this.clvap);
+    this.clvap = 'AC07';
+    this.consultaDatosApl(this.clvap);
     this.consultaFracc();
     this.submitted = true;
     this.formafb();
@@ -197,7 +200,7 @@ export class AltaproymatComponent implements OnInit {
         return   
     } // Cierre del método enviar
 
-  consultaDatosApl(){
+  consultaDatosApl(clvap){
     this.clvap = 'AP07';
     this.consape.apeconscve(this.clvap)
     .pipe(first())
@@ -208,8 +211,12 @@ export class AltaproymatComponent implements OnInit {
                 console.log("consultaDatosApl datawork contenido")
                 console.log(data)
                 console.log(this.datawork)
-                this.apC = this.datawork.contenido;
-                this.apT = this.datawork.contenido;
+                if (clvap = 'AP07'){
+                    this.apC = this.datawork.contenido;
+                }
+                if (clvap = 'AC07'){
+                    this.apT = this.datawork.contenido;
+                }
             }else {
                 this.alertService.error("Error al obtener información de indices de Medidas");
                 this.loading = false;

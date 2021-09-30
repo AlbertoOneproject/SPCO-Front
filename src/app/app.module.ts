@@ -52,7 +52,11 @@ import { AltacteyprovComponent } from './altacteyprov/altacteyprov.component';
 import { EditcteyprovComponent } from './editcteyprov/editcteyprov.component';
 import { MsgokcpComponent } from './msgokcp/msgokcp.component';
 import { PartesComponent } from './partes/partes.component';
-import { ViewpartesComponent } from './viewpartes/viewpartes.component'
+import { ViewpartesComponent } from './viewpartes/viewpartes.component';
+import { AltaparteComponent } from './altaparte/altaparte.component';
+import { MsgokpComponent } from './msgokp/msgokp.component';
+import { DeleteparteComponent } from './deleteparte/deleteparte.component';
+import { EditparteComponent } from './editparte/editparte.component'
 
 
 @NgModule({
@@ -99,7 +103,11 @@ import { ViewpartesComponent } from './viewpartes/viewpartes.component'
     EditcteyprovComponent,
     MsgokcpComponent,
     PartesComponent,
-    ViewpartesComponent
+    ViewpartesComponent,
+    AltaparteComponent,
+    MsgokpComponent,
+    DeleteparteComponent,
+    EditparteComponent
   ],
   imports: [
     BrowserModule,

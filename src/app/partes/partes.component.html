@@ -9,7 +9,7 @@
                 <div class="toolbar">
                     <h4>Lista de Aduanas Partes</h4>
                     <div class="col-12 text-right" *ngIf="perfil">
-                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altapartes',cveparte]">+</a>
+                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altaparte',cveparte]">+</a>
                     </div>
                     <div class="col-12 text-right" *ngIf="!perfil">
                         <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
@@ -45,9 +45,9 @@
                 <tbody>
 
                     <tr class="pointer-main" *ngFor="let listpartes of currentPartes">
-                        <td class="pointer" (click)="routeTo(listpartes.idCliProv)">{{listpartes.recinto}}</td>
-                        <td class="pointer" (click)="routeTo(listpartes.idCliProv)">{{listpartes.numPart}}</td>
-                        <td class="pointer" (click)="routeTo(listpartes.idCliProv)">{{listpartes.fraccAranc}}</td>
+                        <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numPedimento)">{{listpartes.recinto}}</td>
+                        <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numPedimento)">{{listpartes.numPart}}</td>
+                        <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numPedimento)">{{listpartes.fraccAranc}}</td>
                     </tr>
 
                 </tbody>

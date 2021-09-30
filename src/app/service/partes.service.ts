@@ -47,6 +47,63 @@ export class PartesService {
            }       
         return listpartes;
       }));      
-  }    // Cierre del método Prodymatid
+  }    // Cierre del método PartesCte
+
+//  Función: Consulta el registro único de la tabla SYS_ADU_PART que pertenecen a un cliente/parte/pedimento
+//  Componentes que utilizan el servicio:
+//             - viewpartes.component.ts
+  partesUnico(idCte, parte, pedimento ){
+    //return this.http.get<any>(`${environment.SERVER_URL}/Users`, {})
+        let constPagLike  = 'ConsultaUm?'
+        let consCliente   = 'cliente='
+        let consParte     = '&parte='
+        let consPedimento = '&pedimento='  
+        this.auth = JSON.parse(localStorage.getItem('autorizacion'));
+        return this.http.get<any>(`${environment.SERVER_URL}/AduPart/`+constPagLike+consCliente+idCte+consParte+parte+consPedimento+pedimento, {})
+          .pipe(map(listparteU => {
+            if(listparteU){
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+               }       
+            return listparteU;
+          }));      
+      }    // Cierre del método partesUnico
+
+//  Función: Alta del registro en la tabla SYS_ADU_PART 
+//  Componentes que utilizan el servicio:
+//             - altapartes.component.ts  
+  altaprodymat(partes: Partes){
+    return this.http.post<Partes>(`${environment.SERVER_URL}/AduPart`,partes)
+        .pipe(map(datapost => {
+      return datapost;
+      }));
+  }
+
+//  Función: Borrar el registro en la tabla SYS_ADU_PART 
+//  Componentes que utilizan el servicio:
+//             - viewpartes.component.ts  
+  deletepartes(idCte, parte, pedimento){
+    let params = new HttpParams();
+    let constPagLike = 'BorraParte?'
+    let consCliente   = 'cliente='
+    let consParte     = '&parte='
+    let consPedimento = '&pedimento='  
+
+    params = params.append('id',idCte);
+    return this.http.delete<any>(`${environment.SERVER_URL}/AduPart/`+constPagLike+consCliente+idCte+consParte+parte+consPedimento+pedimento, {})
+        .pipe(map(datadel => {
+      return datadel;
   
+    }));
+  }
+
+//  Función: Modifica el registro en la tabla SYS_ADU_PART 
+//  Componentes que utilizan el servicio:
+//             - editpartes.component.ts  
+  editpartes(partes: Partes){
+    return this.http.put<Partes>(`${environment.SERVER_URL}/AduPart`,partes)
+        .pipe(map(dataput => {
+      return dataput;
+    }));
+  }  
+
 }

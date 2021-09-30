@@ -51,9 +51,9 @@ export class PartesComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
-    //this.page = 1;
-   // this.perPage = 6;
-   // this.perName = "";
+   //this.page = 1;
+   //this.perPage = 6;
+   //this.perName = "";
    }
 
   ngOnInit(): void {
@@ -105,10 +105,10 @@ export class PartesComponent implements OnInit {
       data => {
           if (data.cr=="00"){
               this.detalle       = true;       
-              this.page          = data.page;
-              this.perPage       = data.perPage;
-              this.total         = data.total;
-              this.totalPages    = data.totalPages;
+              this.page          = data.contenido.page;
+              this.perPage       = data.contenido.perPage;
+              this.total         = data.contenido.total;
+              this.totalPages    = data.contenido.totalPages;
               this.currentPartes = data.contenido.sysAduPartes;
 //              this.currentuMCDescripcion = data.uMCDescripcion;
 //              for (let i=0; i < this.currentuMCDescripcion.length; i++){ 
@@ -126,9 +126,9 @@ export class PartesComponent implements OnInit {
         });
   }  // Cierre del método consultaProdymat
 
-  routeTo(clveProduc:string): void {
+  routeTo(idCliProv:string, parte:string, pedimento:string) : void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewpartes';
-    this.router.navigate([this.returnUrl,clveProduc]);   
+    this.router.navigate([this.returnUrl,{idCliProv:idCliProv,parte:parte,pedimento:pedimento}]);   
   }  
   
   mudouPagina(evento) {

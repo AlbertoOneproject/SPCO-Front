@@ -21,6 +21,9 @@ import { AltacteyprovComponent } from './altacteyprov/altacteyprov.component';
 import { EditcteyprovComponent } from './editcteyprov/editcteyprov.component';
 
 import { PartesComponent } from './partes/partes.component';
+import { ViewpartesComponent } from './viewpartes/viewpartes.component';
+import { AltaparteComponent } from './altaparte/altaparte.component';
+import { EditparteComponent } from './editparte/editparte.component';
 
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AltauserComponent } from './altauser/altauser.component';
@@ -60,6 +63,9 @@ const routes: Routes = [
   { path: 'editcteyprov', component: EditcteyprovComponent },
   
   { path: 'partes', component: PartesComponent },
+  { path: 'viewpartes', component: ViewpartesComponent },
+  { path: 'altaparte/:Tipo', component: AltaparteComponent },
+  { path: 'editpartes', component: EditparteComponent },
 
   { path: 'usuarios', component: UsuarioComponent },
   { path: 'altauser', component: AltauserComponent },
