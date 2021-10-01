@@ -61,7 +61,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="number" id="tipCambio" name="tipCambio" formControlName="tipCambio" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                        <input type="number" id="tipCambio" name="tipCambio" formControlName="tipCambio" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 (change)="TipoCambio()" />
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
                         <select formControlName="listaallprod" id="listaallprod" value={{descEsp}} style="height: 180px" style="width: 185px" (change)="cambio($event)">
                         <option 
                                 *ngFor="let listaprod of dataProd; let i = index" 
-                                [value]="listaprod.clveProduc" 
+                                [value]="i" 
                                 >{{listaprod.descCorta}}
                         </option>
                     </select>

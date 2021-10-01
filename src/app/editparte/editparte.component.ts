@@ -35,7 +35,7 @@ export class EditparteComponent implements OnInit {
   datafact      : any[];
   MonManda      : boolean=false;
   factor        : number;
-  descEsp       : string;
+  descEsp       : number;
 
 
   material: boolean=false;
@@ -105,19 +105,11 @@ export class EditparteComponent implements OnInit {
     private alertService              : AlertService,
     private dialog                    : MatDialog,
   ) { 
-// mimic async orders
-    this.orders = this.getOrders();
   }
      
   ngOnInit(): void {
-    console.log("entre")
     this.clvap = 'AP04';
     this.consultaDatosApl(this.clvap);
-    this.clvap = 'AP07';
-    this.consultaDatosApl(this.clvap);
-    this.clvap = 'AC07';
-    this.consultaDatosApl(this.clvap);
-    this.consultaFracc();
     this.formafb();
     this.consultaDatosPartes();
 //    this.consultaProdymat();
@@ -130,12 +122,6 @@ export class EditparteComponent implements OnInit {
     this.recinto = recinto;
   }
 
-  getOrders() {
-    return [
-      { id: "S", name: "SI" },
-      { id: "N", name: "NO" }
-    ];
-  }
   consultaDatosApl(clvap){
     this.consape.apeconscve(this.clvap)
     .pipe(first())
@@ -143,22 +129,8 @@ export class EditparteComponent implements OnInit {
         data => {
             this.datawork = data;
             if (this.datawork.cr=="00"){
-              console.log("datawork")
-              console.log(this.datawork)
               if (clvap =='AP04'){
                 this.dataPais = this.datawork.contenido;
-                console.log("paises")
-                console.log(this.dataPais)
-              }
-              if (clvap =='AP07'){
-                this.datauMC = this.datawork.contenido;
-                console.log("uMC")
-                console.log(this.datauMC)
-              }
-              if (clvap =='AC07'){
-                this.datauMT = this.datawork.contenido;
-                console.log("uMT")
-                console.log(this.datauMT)
               }
           }else {
             this.msg = this.datawork.descripcion;
@@ -170,25 +142,6 @@ export class EditparteComponent implements OnInit {
             this.loading = false;
         }});
 } // Cierre del método consultaDatosApl
-
-consultaFracc(){
-  this.prodymatService.obtenFracc()
-  .pipe(first())
-  .subscribe(
-      data => {
-          this.dataworkfracc = data;
-          if (this.dataworkfracc.cr=="00"){
-              this.datosFracc = this.dataworkfracc.contenido;
-          }else {
-              this.alertService.error("Error al obtener información de la Fracción Arancelaria");
-              this.loading = false;
-          }
-        },
-        error => {
-          this.alertService.error("Error en la consulta de la Fracción Arancelaria");
-          this.loading = false;
-      });
-} // Cierre del método consultaFracc  
 
 
 formafb() {
@@ -225,19 +178,12 @@ consultaDatosPartes(){
         .subscribe( 
             data => {
                 this.dataworkPartes = data;
-                console.log("datawork")
-                console.log(this.dataworkPartes)
                 if (this.dataworkPartes.cr=="00"){
-                    console.log("entre en 00")
                     this.currentPartes = this.dataworkPartes.contenido;
-                    console.log("editpartes currentPartes")
-                    console.log(this.currentPartes)
                     this.editparte.controls['idCliProv'    ].setValue(this.currentPartes.idCliProv	  );
                     this.editparte.controls['numPart'      ].setValue(this.currentPartes.numPart      );
                     this.editparte.controls['numPedimento' ].setValue(this.currentPartes.numPedimento );
                     this.editparte.controls['fechaEntrada' ].setValue(this.currentPartes.fechaEntrada );
-//                    this.editparte.controls['listaallpais' ].setValue(this.currentPartes.paisOrigen   );
-//                    this.editparte.controls['listaallprod' ].setValue(this.currentPartes.             );
                     this.editparte.controls['producto'     ].setValue(this.currentPartes.producto     );
                     this.editparte.controls['cantidad'     ].setValue(this.currentPartes.cantidad     );
                     this.editparte.controls['costoUnitMXP' ].setValue(this.currentPartes.costounitMXP );
@@ -245,8 +191,6 @@ consultaDatosPartes(){
                     this.editparte.controls['costoUnitDLS' ].setValue(this.currentPartes.costounitdls );
                     this.editparte.controls['costoTotaldls'].setValue(this.currentPartes.costoTotaldls);
                     this.editparte.controls['tipCambio'    ].setValue(this.currentPartes.tipCambio    );
-//                    this.editparte.controls['uMC'          ].setValue(this.currentPartes.uMC          );
-//                    this.editparte.controls['uMT'          ].setValue(this.currentPartes.uMT          );
                     this.editparte.controls['fraccAranc'   ].setValue(this.currentPartes.fraccAranc   );
                     this.editparte.controls['netoOriginal' ].setValue(this.currentPartes.netoOriginal );
                     this.editparte.controls['brutoOriginal'].setValue(this.currentPartes.brutoOriginal);
@@ -311,15 +255,18 @@ consultaDatosPartes(){
                 this.datafact        = this.dataworkprod.contenido.lFactor
                 for (let i=0; i < this.dataworkprod.contenido.sysCatProductos.length; i++){
                   if (this.dataworkprod.contenido.sysCatProductos[i].clveProduc == this.currentPartes.producto){
-//                      this.descEsp = this.dataworkprod.contenido.sysCatProductos[i].descCorta
-                      this.descEsp = "descripción cortaaaaa";
-                      this.descEsp = this.dataworkprod.contenido.sysCatProductos[i].clveProduc
-                      console.log("descEsp")
-                      console.log(this.descEsp)
+                      if (this.dataworkprod.contenido.sysCatProductos[i].monedaMandataria == "MXP"){
+                        this.MonManda = true;
+                      }else{
+                        this.MonManda = false;
+                      }
+                      this.descEsp = i;
                       this.editparte.controls['descIngles'   ].setValue(this.dataworkprod.contenido.sysCatProductos[i].descCorIng);
                       this.editparte.controls['uMC'          ].setValue(this.dataworkprod.contenido.lDescripUMC[i]);
                       this.editparte.controls['uMT'          ].setValue(this.dataworkprod.contenido.lDescripUMT[i]);
+                      this.factor = this.dataworkprod.contenido.lFactor[i];
                       this.f.listaallprod.patchValue(this.descEsp);
+                      
                   }
                 }
             }else {
@@ -373,11 +320,23 @@ consultaDatosPartes(){
       this.editparte.controls['costoTotaldls'].setValue(CTotalDLS);
       this.editparte.controls['costototalMXP'].setValue(CTotalMxp);
     }
+
+    this.netoConvertido
+    this.brutoConvertido
   }    // Cierre del método cambio
+
+  TipoCambio(){
+    if (this.MonManda){
+        this.TotalMXP();
+        this.TotalUSD();
+    }else{
+      this.TotalUSD();
+      this.TotalMXP();
+    }    
+  }
 
 
   TotalMXP(){
-
     let CUnitUSD = this.f.costoUnitMXP.value / this.f.tipCambio.value ;
     this.editparte.controls['costoUnitDLS'].setValue(CUnitUSD);
 
@@ -401,63 +360,58 @@ consultaDatosPartes(){
 
 
   netoConvertido(){
-    console.log("factor")
-    console.log(this.factor)
     let NetoConv     = this.factor * this.f.netoOriginal.value
     this.editparte.controls['netoConv'].setValue(NetoConv);
   }    // Cierre del método netoConvertido
 
 
   brutoConvertido(){
-    console.log("factor")
-    console.log(this.factor)
     let BrutoConv    = this.factor * this.f.brutoOriginal.value
     this.editparte.controls['brutoConv'].setValue(BrutoConv);
   }    // Cierre del método brutoConvertido
 
-    enviar() {   
-      if (this.editparte.invalid) {
-          this.alertService.error("Es necesario capturar todos los campos que tienen * ");
-          this.loading = false;
-          return;
-      }    
-          if (this.f.fechaEntrada.value <= this.curr) {
-            if (this.f.fechaVenc.value > this.curr){
-                this.armausuario();
-                this.loading = true;
-                this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewpartes';
-                this.partesService.editpartes(this.currentPartes)
-                  .pipe(first())
-                  .subscribe(
-                      data => {
-                          this.dataworkedit = data;
-                          if (this.dataworkedit.cr=="00"){
-                            this.msgokp();
-                        }else{
-                          this.loading = false;
-                          this.msg     = this.datawork.descripcion;
-                          this.alertService.error(this.msg);
-                        }
-                      error => {
-                        this.alertService.error("Error en la Edición de Aduana Partes");
-                        this.loading = false;
-                      }
-                    });
-              }else{
-                this.alertService.error("La fecha de Vencimiento debe ser Mayor a la fecha de hoy");
+  enviar() {
+    if (this.editparte.invalid) {
+      this.alertService.error("Es necesario capturar todos los campos que tienen * ");
+      this.loading = false;
+      return;
+    }
+    if (this.f.fechaEntrada.value <= this.curr) {
+      if (this.f.fechaVenc.value > this.curr) {
+        this.armausuario();
+        this.loading = true;
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewpartes';
+        this.partesService.editpartes(this.currentPartes)
+          .pipe(first())
+          .subscribe(
+            data => {
+              this.dataworkedit = data;
+              if (this.dataworkedit.cr == "00") {
+                this.msgokp();
+              } else {
+                this.loading = false;
+                this.msg = this.datawork.descripcion;
+                this.alertService.error(this.msg);
+              }
+              error => {
+                this.alertService.error("Error en la Edición de Aduana Partes");
                 this.loading = false;
               }
-          } else{
-                this.alertService.error("La fecha de Entrada debe ser Menor o Igual a la fecha de hoy");
-                this.loading = false;
-          }        
-          return   
-      } // Cierre del método enviar
+            });
+      } else {
+        this.alertService.error("La fecha de Vencimiento debe ser Mayor a la fecha de hoy");
+        this.loading = false;
+      }
+    } else {
+      this.alertService.error("La fecha de Entrada debe ser Menor o Igual a la fecha de hoy");
+      this.loading = false;
+    }
+    return
+  } // Cierre del método enviar
 
 
   
     armausuario(){
-      //this.payLoad = JSON.stringify(this.form.value);
       this.currentPartes = {
         idCliProv	    : this.f.listaallCte.value,
         numPart  	    : this.f.numPart.value,

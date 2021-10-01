@@ -133,6 +133,7 @@ export class AltaproymatComponent implements OnInit {
           'convers':       new FormControl('',[Validators.required]),
           'costoUnitDLS':  new FormControl('',[Validators.required]),
           'costoUnitMXP':  new FormControl('',[Validators.required]),
+          'monedaMandataria':  new FormControl('',[Validators.required]),
           'listaallFracc': new FormControl('',[Validators.required]),
           'nico':          new FormControl('',[Validators.required])
     }); 
@@ -268,6 +269,7 @@ export class AltaproymatComponent implements OnInit {
           convers       : this.f.convers.value, 
           costoUnitDLS  : this.f.costoUnitDLS.value, 
           costoUnitMXP  : this.f.costoUnitMXP.value, 
+          monedaMandataria: this.f.monedaMandataria.value,
           fraccAranc    : this.f.listaallFracc.value, 
           nico          : this.f.nico.value, 
       

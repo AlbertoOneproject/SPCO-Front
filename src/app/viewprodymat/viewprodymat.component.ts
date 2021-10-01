@@ -54,6 +54,7 @@ export class ViewprodymatComponent implements OnInit {
   convers:       number; 
   costoUnitDLS:  number;
   costoUnitMXP:  number;
+  monedaMandataria:  string;
   fraccAranc:    string;
   nico:          string;
 
@@ -108,6 +109,7 @@ export class ViewprodymatComponent implements OnInit {
                   this.convers        = this.currentProdmat.convers     ,
                   this.costoUnitDLS   = this.currentProdmat.costoUnitDLS,
                   this.costoUnitMXP   = this.currentProdmat.costoUnitMXP,
+                  this.monedaMandataria = this.currentProdmat.monedaMandataria  ;
                   this.fraccAranc     = this.currentProdmat.fraccAranc  ,
                   this.nico           = this.currentProdmat.nico
               }else{

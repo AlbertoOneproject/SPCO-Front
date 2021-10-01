@@ -93,6 +93,16 @@
                     </div>
                 </div>
 
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="monedaMandataria">Moneda Mandataria <span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="monedaMandataria" name="monedaMandataria" value="{{monedaMandataria}}" formControlName="monedaMandataria" class="form-control" minlength="1" maxlength="3" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate/>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="descLarIng">Unidad de Medida Comercial<span
 	                    class="required">*</span></label>

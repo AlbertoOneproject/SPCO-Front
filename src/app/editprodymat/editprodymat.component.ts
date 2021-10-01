@@ -70,6 +70,7 @@ export class EditprodymatComponent implements OnInit {
   convers:       number; 
   costoUnitDLS:  number;
   costoUnitMXP:  number;
+  monedaMandataria : string;
   fraccAranc:    string;
   nico:          string; 
   
@@ -141,6 +142,7 @@ export class EditprodymatComponent implements OnInit {
       'convers':       new FormControl('',[Validators.required]),
       'costoUnitDLS':  new FormControl('',[Validators.required]),
       'costoUnitMXP':  new FormControl('',[Validators.required]),
+      'monedaMandataria':  new FormControl('',[Validators.required]),
 //      'fraccAranc':    new FormControl('',[Validators.required]),
       'nico':          new FormControl('',[Validators.required]),
     }); 
@@ -170,6 +172,7 @@ consultaDatosProdymat(){
                     this.editprodymat.controls['convers'].setValue(this.currentProdymat.convers)          ;
                     this.editprodymat.controls['costoUnitDLS'].setValue(this.currentProdymat.costoUnitDLS);
                     this.editprodymat.controls['costoUnitMXP'].setValue(this.currentProdymat.costoUnitMXP);
+                    this.editprodymat.controls['monedaMandataria'].setValue(this.currentProdymat.monedaMandataria);
 //                    this.editprodymat.controls['fraccAranc'].setValue(this.currentProdymat.fraccAranc)    ;
                     this.editprodymat.controls['nico'].setValue(this.currentProdymat.nico)                ;
 
@@ -192,7 +195,8 @@ consultaDatosProdymat(){
                     this.convers        = this.currentProdymat.convers     ;
                     this.costoUnitDLS   = this.currentProdymat.costoUnitDLS;
                     this.costoUnitMXP   = this.currentProdymat.costoUnitMXP;
-                    this.fraccAranc     = this.currentProdymat.fraccAranc  ;
+                    this.costoUnitMXP   = this.currentProdymat.costoUnitMXP;
+                    this.monedaMandataria = this.currentProdymat.monedaMandataria  ;
                     this.nico           = this.currentProdymat.nico        ;
                     console.log("editprodymat consultaDatosProdymat fraccAranc");
                     console.log(this.fraccAranc);
@@ -275,6 +279,7 @@ consultaDatosProdymat(){
             convers       : this.f.convers.value        ,
             costoUnitDLS  : this.f.costoUnitDLS.value   ,
             costoUnitMXP  : this.f.costoUnitMXP.value   ,
+            monedaMandataria: this.f.monedaMandataria.value,
             fraccAranc    : this.f.listaallFracc.value     ,
             nico          : this.f.nico.value           ,
         }
