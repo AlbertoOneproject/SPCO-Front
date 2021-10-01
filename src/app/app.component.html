@@ -50,16 +50,7 @@
             <!-- END navbar header-->
             <!-- START Left navbar-->
             <ul class="navbar-nav mr-auto flex-row">
-                <li class="nav-item">
-                    <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
-                    <a class="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
-                        <em class="fas fa-bars"></em>
-                    </a>
-                    <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
-                    <a class="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
-                        <em class="fas fa-bars"></em>
-                    </a>
-                </li>
+
                 <!-- START User avatar toggle-->
                 <li class="nav-item d-none d-md-block">
                     <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
@@ -86,11 +77,7 @@
                     </a>
                 </li>
                 <!-- Fullscreen (only desktops)-->
-                <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="#" data-toggle-fullscreen="">
-                        <em class="fas fa-expand"></em>
-                    </a>
-                </li>
+
                 <!-- START Alert menu-->
                 <li class="nav-item dropdown dropdown-list">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
@@ -239,7 +226,7 @@
                     </li>
                     <li class=" ">
                         <a href="#multilevel" title="Multilevel" data-toggle="collapse" class="collapsed" aria-expanded="false">
-                            <em class="far fa-folder-open"></em>
+                            <em class="icon-magnifier"></em>
                             <span>Apendices</span>
                         </a>
                         <ul class="sidebar-nav sidebar-subnav collapse" id="multilevel" style="">
@@ -278,9 +265,9 @@
                     </li>
 
                     <li class=" ">
-                        <a href="#mapsp" title="Mapsp" data-toggle="collapse">
-                            <em class="icon-map"></em>
-                            <span data-localize="sidebar.nav.mapp.MAP">Recinto Entradas</span>
+                        <a href="partes" title="Partes">
+                            <em class="icon-notebook"></em>
+                            <span data-localize="sidebar.nav.map.VECTOR">Aduanas Partes</span>
                         </a>
                         <ul class="sidebar-nav sidebar-subnav collapse" id="mapsp">
                             <li class="sidebar-subnav-header">Recinto Entradas</li>
@@ -300,6 +287,7 @@
                     <hr>
                     <li class="">
                         <a href="#" title="Maps" data-toggle="collapse" (click)="logout()">
+                            <em class="icon-user"></em>
                             <span data-localize="sidebar.heading.COMPONENTS">Salir del Sistema</span>
                         </a>
                     </li>

@@ -61,6 +61,7 @@ export class ViewpartesComponent implements OnInit {
   userMod       : string;
   currentuMCDescripcion: string="" ;
   currentuMTDescripcion: string="";
+  currentuPaisDescripcion: string="";
 
 
   prod: Tipo[] = [
@@ -86,13 +87,15 @@ export class ViewpartesComponent implements OnInit {
               if (data.cr=="00"){  
                   console.log("viewpartes.component prodymatUnico data")
                   console.log(data)
-                  this.page                  = data.page                 ;
-                  this.perPage               = data.perPage              ;
-                  this.total                 = data.total                ;
-                  this.totalPages            = data.totalPages           ;
-                  this.currentPartes         = data.contenido            ;
-                  this.currentuMCDescripcion = data.uMCdescripcion       ;
-                  this.currentuMTDescripcion = data.uMTdescripcion       ;
+                  this.page                    = data.page                 ;
+                  this.perPage                 = data.perPage              ;
+                  this.total                   = data.total                ;
+                  this.totalPages              = data.totalPages           ;
+                  this.currentPartes           = data.contenido            ;
+                  this.currentuMCDescripcion   = data.uMCdescripcion       ;
+                  this.currentuMTDescripcion   = data.uMTdescripcion       ;
+                  this.currentuPaisDescripcion = data.paisdescripcion    ;
+
 
                   this.idCliProv       = this.currentPartes.idCliProv    ,  
                   this.numPart         = this.currentPartes.numPart      ,  
@@ -110,7 +113,8 @@ export class ViewpartesComponent implements OnInit {
                   this.uMC             = this.currentPartes.uMC          ,  
                   this.uMT             = this.currentPartes.uMT          ,  
                   this.uMC             = this.currentuMCDescripcion      ,  
-                  this.uMT             = this.currentuMTDescripcion      ,  
+                  this.uMT             = this.currentuMTDescripcion      , 
+                  this.paisOrigen      = this.currentuPaisDescripcion    , 
                   this.fraccAranc      = this.currentPartes.fraccAranc   ,  
                   this.nico            = this.currentPartes.nico         ,  
                   this.netoOriginal    = this.currentPartes.netoOriginal ,  

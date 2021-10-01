@@ -85,10 +85,10 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallprod" id="listaallprod" style="height: 180px" style="width: 185px" (change)="cambio($event)">
+                        <select formControlName="listaallprod" id="listaallprod" value={{descEsp}} style="height: 180px" style="width: 185px" (change)="cambio($event)">
                         <option 
                                 *ngFor="let listaprod of dataProd; let i = index" 
-                                [value]="i" 
+                                [value]="listaprod.clveProduc" 
                                 >{{listaprod.descCorta}}
                         </option>
                     </select>

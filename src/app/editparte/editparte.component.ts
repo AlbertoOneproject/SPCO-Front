@@ -28,12 +28,14 @@ export class EditparteComponent implements OnInit {
   datauMT       : any[]=[];
   opc           : string = '0';
   dataworkprod  : any=[];
+  dataworkPartes: any=[]
   dataProd      : Prodymat;
   datadesMC     : any[];
   datadesMT     : any[];
   datafact      : any[];
   MonManda      : boolean=false;
   factor        : number;
+  descEsp       : string;
 
 
   material: boolean=false;
@@ -116,16 +118,9 @@ export class EditparteComponent implements OnInit {
     this.clvap = 'AC07';
     this.consultaDatosApl(this.clvap);
     this.consultaFracc();
-    this.consultaProdymat();
     this.formafb();
     this.consultaDatosPartes();
-    console.log("datos obtenido")    
-    console.log(this.paisOrigen)
-//    console.log(this.dataworkprod.contenido.sysCatProductos.descCorIng)
-    console.log(this.f.descIngles.value)
-    console.log(this.f.uMC.value)
-    console.log(this.f.uMT.value)
-    console.log()
+//    this.consultaProdymat();
     this.usuari = JSON.parse(localStorage.getItem('currentUserLog'));
     let usuario = this.usuari["idUsuario"];
     let empresa = this.usuari["idEmpresa"];
@@ -195,44 +190,6 @@ consultaFracc(){
       });
 } // Cierre del método consultaFracc  
 
-consultaProdymat(){    
-  this.prodymatService.prodymatTodos(this.opc)
-  .pipe(first())
-  .subscribe(
-      data => {
-          this.dataworkprod = data;
-          if (this.dataworkprod.cr=="00"){
-              console.log("editparte.component consultaProdymat dataworkprod data/dataworkprod")
-              console.log(data)
-              console.log(this.dataworkprod)
-              this.dataProd    = this.dataworkprod.contenido.sysCatProductos;
-              this.datadesMC   = this.dataworkprod.contenido.lDescripUMC
-              this.datadesMT   = this.dataworkprod.contenido.lDescripuMT
-              this.datafact    = this.dataworkprod.contenido.lFactor
-              for (let i=0; i < this.dataworkprod.contenido.sysCatProductos.length; i++){
-                console.log("entre al for")
-                console.log(this.dataworkprod.contenido.sysCatProductos[i].clveProduc)
-                console.log(this.currentPartes.producto)
-                if (this.dataworkprod.contenido.sysCatProductos[i].clveProduc == this.currentPartes.producto){
-                  console.log("entre al if if")
-                  console.log(this.dataworkprod.contenido.sysCatProductos[i].descCorIng)
-                  console.log(this.dataworkprod.contenido.lDescripUMC[i])
-                  console.log(this.dataworkprod.contenido.lDescripuMT[i])
-                  this.editparte.controls['descIngles'   ].setValue(this.dataworkprod.contenido.sysCatProductos[i].descCorIng);
-                  this.editparte.controls['uMC'          ].setValue(this.dataworkprod.contenido.lDescripUMC[i]);
-                  this.editparte.controls['uMT'          ].setValue(this.dataworkprod.contenido.lDescripuMT[i]);
-                }
-              }
-          }else {
-              this.alertService.error("Error al obtener información de Productos");
-              this.loading = false;
-          }
-        },
-        error => {
-          this.alertService.error("Error en el Consulta de Prodcutos");
-          this.loading = false;
-      });
-} // Cierre del método consultaProdymat
 
 formafb() {
   this.editparte = this.fb.group({
@@ -267,12 +224,12 @@ consultaDatosPartes(){
         .pipe(first())
         .subscribe( 
             data => {
-                this.datawork = data;
+                this.dataworkPartes = data;
                 console.log("datawork")
-                console.log(this.datawork)
-                if (this.datawork.cr=="00"){
+                console.log(this.dataworkPartes)
+                if (this.dataworkPartes.cr=="00"){
                     console.log("entre en 00")
-                    this.currentPartes = this.datawork.contenido;
+                    this.currentPartes = this.dataworkPartes.contenido;
                     console.log("editpartes currentPartes")
                     console.log(this.currentPartes)
                     this.editparte.controls['idCliProv'    ].setValue(this.currentPartes.idCliProv	  );
@@ -326,9 +283,7 @@ consultaDatosPartes(){
                     this.fechaMod        = this.currentPartes.fechaMod     ,        
                     this.hora            = this.currentPartes.hora         ,        
                     this.userMod         = this.currentPartes.userMod      , 
-
-                    console.log("editprodymat consultaDatosProdymat fraccAranc");
-                    console.log(this.fraccAranc);
+                    this.consultaProdymat();
                 }else{
                     this.loading = false;
                     this.msg     = this.datawork.descripcion;
@@ -342,9 +297,44 @@ consultaDatosPartes(){
         })
   }     // Cierre del método consultaSysUser
      
-// convenience getter for easy access to form fields
-  get f() { return this.editparte.controls; }
 
+  consultaProdymat(){    
+    this.prodymatService.prodymatTodos(this.opc)
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.dataworkprod = data;
+            if (this.dataworkprod.cr=="00"){
+                this.dataProd        = this.dataworkprod.contenido.sysCatProductos;
+                this.datadesMC       = this.dataworkprod.contenido.lDescripUMC
+                this.datadesMT       = this.dataworkprod.contenido.lDescripUMT
+                this.datafact        = this.dataworkprod.contenido.lFactor
+                for (let i=0; i < this.dataworkprod.contenido.sysCatProductos.length; i++){
+                  if (this.dataworkprod.contenido.sysCatProductos[i].clveProduc == this.currentPartes.producto){
+//                      this.descEsp = this.dataworkprod.contenido.sysCatProductos[i].descCorta
+                      this.descEsp = "descripción cortaaaaa";
+                      this.descEsp = this.dataworkprod.contenido.sysCatProductos[i].clveProduc
+                      console.log("descEsp")
+                      console.log(this.descEsp)
+                      this.editparte.controls['descIngles'   ].setValue(this.dataworkprod.contenido.sysCatProductos[i].descCorIng);
+                      this.editparte.controls['uMC'          ].setValue(this.dataworkprod.contenido.lDescripUMC[i]);
+                      this.editparte.controls['uMT'          ].setValue(this.dataworkprod.contenido.lDescripUMT[i]);
+                      this.f.listaallprod.patchValue(this.descEsp);
+                  }
+                }
+            }else {
+                this.alertService.error("Error al obtener información de Productos");
+                this.loading = false;
+            }
+          },
+          error => {
+            this.alertService.error("Error en el Consulta de Prodcutos");
+            this.loading = false;
+        });
+  } // Cierre del método consultaProdymat
+
+  // convenience getter for easy access to form fields
+  get f() { return this.editparte.controls; }
   
   cambio(id1: any){
     this.editparte.controls['uMC'].setValue(this.dataworkprod.contenido.lDescripUMC[id1.target.value]);
@@ -425,38 +415,46 @@ consultaDatosPartes(){
     this.editparte.controls['brutoConv'].setValue(BrutoConv);
   }    // Cierre del método brutoConvertido
 
-
-
-  enviar() {
-    console.log("editprodymat enviar fraccAranc");
-    console.log(this.fraccAranc);
-/*    
-    if (this.editsysuserform.invalid) {
-        this.alertService.error("Es necesario capturar todos los campos que tienen * ");
-        this.loading = false;
-        return;
-    }
-    */
-        this.armausuario();
-        console.log(this.currentPartes)
-        this.loading = true;
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewpartes';
-        this.partesService.editpartes(this.currentPartes)
-          .pipe(first())
-          .subscribe(
-              data => {
-                this.dataworkedit = data;
-                if (this.dataworkedit.cr=="00"){
-                    this.msgokp();                    
-                }
-              },
-              error => {
-                this.alertService.error("Error al enviar el usuario");
+    enviar() {   
+      if (this.editparte.invalid) {
+          this.alertService.error("Es necesario capturar todos los campos que tienen * ");
+          this.loading = false;
+          return;
+      }    
+          if (this.f.fechaEntrada.value <= this.curr) {
+            if (this.f.fechaVenc.value > this.curr){
+                this.armausuario();
+                this.loading = true;
+                this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewpartes';
+                this.partesService.editpartes(this.currentPartes)
+                  .pipe(first())
+                  .subscribe(
+                      data => {
+                          this.dataworkedit = data;
+                          if (this.dataworkedit.cr=="00"){
+                            this.msgokp();
+                        }else{
+                          this.loading = false;
+                          this.msg     = this.datawork.descripcion;
+                          this.alertService.error(this.msg);
+                        }
+                      error => {
+                        this.alertService.error("Error en la Edición de Aduana Partes");
+                        this.loading = false;
+                      }
+                    });
+              }else{
+                this.alertService.error("La fecha de Vencimiento debe ser Mayor a la fecha de hoy");
                 this.loading = false;
-              });    
-               
-      
-    } //     Cierre del metodo enviar
+              }
+          } else{
+                this.alertService.error("La fecha de Entrada debe ser Menor o Igual a la fecha de hoy");
+                this.loading = false;
+          }        
+          return   
+      } // Cierre del método enviar
+
+
   
     armausuario(){
       //this.payLoad = JSON.stringify(this.form.value);

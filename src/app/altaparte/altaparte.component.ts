@@ -260,7 +260,7 @@ export class AltaparteComponent implements OnInit {
         this.loading = false;
         return;
     }    
-        if (this.f.fechaEntrada.value >= this.curr) {
+        if (this.f.fechaEntrada.value <= this.curr) {
           if (this.f.fechaVenc.value > this.curr){
               this.armausuario();
               this.loading = true;
@@ -278,16 +278,16 @@ export class AltaparteComponent implements OnInit {
                         this.alertService.error(this.msg);
                       }
                     error => {
-                      this.alertService.error("Error en el Alta de Productos y Materiales");
+                      this.alertService.error("Error en el Alta de Aduana Partes");
                       this.loading = false;
                     }
                   });
             }else{
-              this.alertService.error("La fecha de Vencimiento debe ser Mayoy a la fecha de hoy");
+              this.alertService.error("La fecha de Vencimiento debe ser Mayor a la fecha de hoy");
               this.loading = false;
             }
         } else{
-              this.alertService.error("La fecha de Entrada debe ser Mayor o Igual a la fecha de hoy");
+              this.alertService.error("La fecha de Entrada debe ser Menor o Igual a la fecha de hoy");
               this.loading = false;
         }        
         return   
