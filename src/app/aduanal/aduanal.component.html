@@ -1,0 +1,57 @@
+<div class="content-container" ng-controller="aduanal.component.ts">
+    <ul class="breadcrumb">
+        <li class="active">Agentes Aduanales</li>
+    </ul>
+
+    <form [formGroup]="aduanalForm">
+        <div class=" text-right">
+            <div class="card">
+                <div class="toolbar">
+                    <h4>Lista de Agentes Aduanales</h4>
+                    <div class="col-12 text-right" *ngIf="perfil">
+                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altaaduanal',idCliProv]">+</a>
+                    </div>
+                    <div class="col-12 text-right" *ngIf="!perfil">
+                        <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
+                    </div>
+
+                    <div class="col-04 text-right" class="nav-item dropdown" style="text-align: left">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        AGENTE
+                        </a >
+       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                                <a class="dropdown-item" *ngFor="let listaAduanal of dataListAduanal; let i = index;" (click)="consultaAduanal(listaAduanal)"> 
+                                        {{listaAduanal}}
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr/>
+        <table class="table">
+            <thead>
+                <tr class="graybg" style="text-align: center" *ngIf="detalle">
+                    <th style="text-align: center">Recinto</th>
+                    <th style="text-align: center">Agente Aduanal</th>
+                    <th style="text-align: center">Nombre del Agente Aduanal</th>
+                    <th style="text-align: center">R.F.C.</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr class="pointer-main" *ngFor="let listaduanal of currentAduanal">
+                    <td style="text-align: center" class="pointer" (click)="routeTo(listaduanal.numPat)">{{listaduanal.recinto}}</td>
+                    <td style="text-align: center" class="pointer" (click)="routeTo(listaduanal.numPat)">{{listaduanal.numPat}}</td>
+                    <td style="text-align: center" class="pointer" (click)="routeTo(listaduanal.numPat)">{{listaduanal.nomAgAdu}}</td>
+                    <td style="text-align: center" class="pointer" (click)="routeTo(listaduanal.numPat)">{{listaduanal.rFC}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <app-paginacion *ngIf="paginacion" style="text-align: left" [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">
+        </app-paginacion>
+</div>
+</form>

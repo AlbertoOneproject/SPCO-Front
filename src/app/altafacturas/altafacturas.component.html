@@ -1,0 +1,312 @@
+<div class="content-container">
+    <ul class="breadcrumb">
+        <li><a href="/facturas">Facturas Partes</a></li>
+        <li class="active">Crear Registro en Facturas Partes</li>
+    </ul>
+    <form [formGroup]="altafacturas">
+        <div class="container-body form-horizontal">
+            <api-validate></api-validate>
+            <fieldset>
+                <legend>Crear Factura Partes</legend>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Número de Cliente: <span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallCte" id="listaallCte" style="height: 180px" style="width: 185px" (change)="catPartCte($event)">
+                        <option 
+                                *ngFor="let listaCte of dataCli" 
+                                [value]="listaCte.idCliProv" 
+                                >{{listaCte.idCliProv}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Número de Parte: <span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallPartes" id="listaallPartes" style="height: 180px" style="width: 185px" (change)="obtenPedimento($event)">
+                        <option 
+                                *ngFor="let listaPart of dataPart" 
+                                [value]="listaPart" 
+                                >{{listaPart}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Número de Pedimento Entrada: <span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallPedimento" id="listaallPedimento" style="height: 180px" style="width: 185px" (change)="completarPartes($event)">
+                        <option 
+                                *ngFor="let listaPedimento of dataPedimento" 
+                                [value]="listaPedimento.numPedimento" 
+                                >{{listaPedimento.numPedimento}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Clave de Pedimento :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallcLVPedi" id="listaallcLVPedi" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listacLVPedi of datacLVPedi" 
+                                [value]="listacLVPedi.id1" 
+                                >{{listacLVPedi.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <!--
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="numPart">Número de Parte:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="numPart" name="numPart" formControlName="numPart" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                    </div>
+                </div>
+-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="numFact">Número de Factura:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="numFact" name="numFact" formControlName="numFact" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="iDImpoEexpo">ID Imp/Exp:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <label *ngFor="let order of orders">
+                            <input formControlName="orders" type="radio" name="orders" [value]="order.id"
+                            />
+                            {{order.name}}&nbsp;&nbsp;
+                       </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="fechaEntrada">Fecha de Entrada:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="date" id="fechaEntrada" name="fechaEntrada" formControlName="fechaEntrada" class="form-control" min="2021-01-01" max="9999-12-31" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="tipCambio">Tipo de Cambio:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="number" id="tipCambio" name="tipCambio" formControlName="tipCambio" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">País :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallpais" id="listaallpais" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listapais of dataPais" 
+                                [value]="listapais.id1" 
+                                >{{listapais.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Numero de Patente :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallnumPate" id="listaallnumPate" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listanumPate of datanumPate" 
+                                [value]="listanumPate.id1" 
+                                >{{listanumPate.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Aduana :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaalladuana" id="listaalladuana" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaaduana of dataaduana" 
+                                [value]="listaaduana.id1" 
+                                >{{listaaduana.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">INCOTERM :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallincoterm" id="listaallincoterm" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaincoterm of dataincoterm" 
+                                [value]="listaincoterm.id1" 
+                                >{{listaincoterm.desCorta}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nUMPlacaTr">Número de Placa:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="nUMPlacaTr" name="nUMPlacaTr" formControlName="nUMPlacaTr" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nUMGuia">Número de Guía:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="nUMGuia" name="nUMGuia" formControlName="nUMGuia" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="20" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Transportista :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaalltransport" id="listaalltransport" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listatransport of datatransport" 
+                                [value]="listatransport" 
+                                >{{listatransport}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="contCaja">Contenedor - Caja :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="contCaja" name="contCaja" formControlName="contCaja" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="12" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="selloCand1">Sello - Candado 1 :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="selloCand1" name="selloCand1" formControlName="selloCand1" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="21" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="selloCand2">Sello - Candado 2 :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="selloCand2" name="selloCand2" formControlName="selloCand2" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="21" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="selloCand3">Sello - Candado 3 :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="selloCand3" name="selloCand3" formControlName="selloCand3" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="21" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="NombChofTR">Nombre Chofer :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="NombChofTR" name="NombChofTR" formControlName="NombChofTR" class="form-control" minlength="1" maxlength="60" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="po">PO :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="po" name="po" formControlName="po" class="form-control" minlength="1" maxlength="5" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Cliente Origen :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallclieOrig" id="listaallclieOrig" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaclieOrig of dataclieOrig" 
+                                [value]="listaclieOrig" 
+                                >{{listaclieOrig}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Cliente Destino :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallclieDest" id="listaallclieDest" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaclieDest of dataclieDest" 
+                                [value]="listaclieDest" 
+                                >{{listaclieDest}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="observaciones">Observaciones :<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" id="observaciones" name="observaciones" formControlName="observaciones" class="form-control" minlength="1" maxlength="250" />
+                    </div>
+                </div>
+                <div class="col-md-offset-3">
+                    <a id="cancel" href="/prodymat" class="btn btn-default">Cancelar</a>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>

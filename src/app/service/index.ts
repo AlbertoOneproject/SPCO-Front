@@ -10,3 +10,5 @@ export * from './sysdtape.service';
 export * from './prodymat.service';
 export * from './cteyprov.service';
 export * from './partes.service';
+export * from './facturas.service';
+export * from './aduanal.service';

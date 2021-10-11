@@ -56,7 +56,18 @@ import { ViewpartesComponent } from './viewpartes/viewpartes.component';
 import { AltaparteComponent } from './altaparte/altaparte.component';
 import { MsgokpComponent } from './msgokp/msgokp.component';
 import { DeleteparteComponent } from './deleteparte/deleteparte.component';
-import { EditparteComponent } from './editparte/editparte.component'
+import { EditparteComponent } from './editparte/editparte.component';
+import { FacturasComponent } from './facturas/facturas.component';
+import { ViewfacturasComponent } from './viewfacturas/viewfacturas.component';
+import { AltafacturasComponent } from './altafacturas/altafacturas.component';
+import { MsgokfComponent } from './msgokf/msgokf.component';
+import { DeletefacturaComponent } from './deletefactura/deletefactura.component';
+import { AduanalComponent } from './aduanal/aduanal.component';
+import { ViewaduanalComponent } from './viewaduanal/viewaduanal.component';
+import { DeleteaduanalComponent } from './deleteaduanal/deleteaduanal.component';
+import { AltaaduanalComponent } from './altaaduanal/altaaduanal.component';
+import { EditaduanalComponent } from './editaduanal/editaduanal.component';
+import { MsgokaduanalComponent } from './msgokaduanal/msgokaduanal.component'
 
 
 @NgModule({
@@ -107,7 +118,18 @@ import { EditparteComponent } from './editparte/editparte.component'
     AltaparteComponent,
     MsgokpComponent,
     DeleteparteComponent,
-    EditparteComponent
+    EditparteComponent,
+    FacturasComponent,
+    ViewfacturasComponent,
+    AltafacturasComponent,
+    MsgokfComponent,
+    DeletefacturaComponent,
+    AduanalComponent,
+    ViewaduanalComponent,
+    DeleteaduanalComponent,
+    AltaaduanalComponent,
+    EditaduanalComponent,
+    MsgokaduanalComponent
   ],
   imports: [
     BrowserModule,

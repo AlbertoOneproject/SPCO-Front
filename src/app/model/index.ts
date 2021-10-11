@@ -12,3 +12,5 @@ export * from './prodymat';
 export * from './cteyprov';
 export * from './catcte';
 export * from './partes';
+export * from './facturas';
+export * from './aduanal';

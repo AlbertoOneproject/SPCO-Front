@@ -71,7 +71,7 @@ export class PartesService {
 //  Función: Alta del registro en la tabla SYS_ADU_PART 
 //  Componentes que utilizan el servicio:
 //             - altapartes.component.ts  
-  altaprodymat(partes: Partes){
+  altapartes(partes: Partes){
     return this.http.post<Partes>(`${environment.SERVER_URL}/AduPart`,partes)
         .pipe(map(datapost => {
       return datapost;
@@ -105,5 +105,52 @@ export class PartesService {
       return dataput;
     }));
   }  
+
+//  Función: Consulta de todos los registros de partes de la tabla SYS_ADU_PART 
+//  Componentes que utilizan el servicio:
+//             - facturas.component.ts
+catPartsinCte(){
+  return this.http.get<any>(`${environment.SERVER_URL}/AduPart/AduPartCliPag`, {})
+    .pipe(map(listPartes => {
+    if(listPartes){
+      console.log("Regreso del catálogo de Partes")
+      console.log(listPartes)
+    } 
+    return listPartes;
+    }));
+} //Cierre del método catClientes  
+
+//  Función: Consulta de todos los registros de partes de la tabla SYS_ADU_PART que pertenecen a un numero de cliente
+//  Componentes que utilizan el servicio:
+//             - altafacturas.component.ts
+catPartCte(idCte){
+  let constPagLike  = 'PartCliUnico?'
+  let consCliente   = 'cliente='
+  return this.http.get<any>(`${environment.SERVER_URL}/AduPart/`+constPagLike+consCliente+idCte, {})
+    .pipe(map(listPartCte => {
+    if(listPartCte){
+      console.log("Regreso en catPartCte")
+      console.log(listPartCte)
+    } 
+    return listPartCte;
+    }));
+} //Cierre del método catPartCte  
+
+//  Función: Consulta de todos los registros de partes de la tabla SYS_ADU_PART que pertenecen a un numero de cliente y parte
+//  Componentes que utilizan el servicio:
+//             - altafacturas.component.ts
+catPartes(idCte, numParte){
+  let constPagLike  = 'PartCliente?'
+  let consCliente   = 'cliente='
+  let consParte     = '&parte='
+  return this.http.get<any>(`${environment.SERVER_URL}/AduPart/`+constPagLike+consCliente+idCte+consParte+numParte, {})
+    .pipe(map(listPartes => {
+    if(listPartes){
+      console.log("Regreso en catPartes")
+      console.log(listPartes)
+    } 
+    return listPartes;
+    }));
+} //Cierre del método catPartCte  
 
 }

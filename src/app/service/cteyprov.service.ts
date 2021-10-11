@@ -100,4 +100,22 @@ export class CteyprovService {
       }));
   } //Cierre del método consRecinto
 
+
+//  Función: Consulta de los regs de la tabla SYS_CAT_CLI que sean de un tipo en especifico 
+//  Componentes que utilizan el servicio:
+//             - altafacturas.component.ts
+  consTipoCte(tipo){
+    let constTipoCli = 'CliTipoCli?'
+    let consTipo = 'tipo='
+    console.log("consTipoCte")
+    console.log("/Cli/"+constTipoCli+consTipo+tipo);
+    return this.http.get<any>(`${environment.SERVER_URL}/Cli/`+constTipoCli+consTipo+tipo, {})
+      .pipe(map(listTipoCte => {
+        if(listTipoCte){
+          console.log("Regreso de Tipo de Cliente")
+          console.log(listTipoCte)
+        } 
+        return listTipoCte;
+    }));
+  } //Cierre del método consTipoCte  
 }

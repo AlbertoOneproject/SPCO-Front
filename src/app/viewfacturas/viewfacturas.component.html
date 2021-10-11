@@ -1,0 +1,212 @@
+<div class="content-container" ng-controller="viewfacturas.component">
+    <ul class="breadcrumb">
+        <li><a href="/facturas">Detalle de Factura Partes</a></li>
+        <li class="active">{{idCliProv}}&nbsp;{{numPart}}&nbsp;{{numFact}}</li>
+    </ul>
+    <div class="card well">
+        <div class="pull-right">
+            <div class="form-group" *ngIf="perfil">
+                <button type="button" class="btn btn-primary" (click)="editparte(idCliProv, numPart, numFact)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button type="button" (click)="deletefactura()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+            <div class="form-group" *ngIf="!perfil">
+                <button disabled type="button" class="btn btn-primary" (click)="editparte(idCliProv, numPart, numFact)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button disabled type="button" (click)="deletefactura()" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+        </div>
+        <h3 class="bolder">{{idCliProv}}&nbsp;{{numPart}}</h3>
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>idCliProv :</td>
+                        <td>{{idCliProv }}</td>
+                    </tr>
+                    <tr>
+                        <td>numPart :</td>
+                        <td>{{numPart }}</td>
+                    </tr>
+                    <tr>
+                        <td>numFact :</td>
+                        <td>{{numFact }}</td>
+                    </tr>
+                    <tr>
+                        <td>iDImpoEexpo :</td>
+                        <td>{{iDImpoEexpo }}</td>
+                    </tr>
+                    <tr>
+                        <td>fechaEntrada :</td>
+                        <td>{{fechaEntrada }}</td>
+                    </tr>
+                    <tr>
+                        <td>tipoCambio :</td>
+                        <td>{{tipoCambio }}</td>
+                    </tr>
+                    <tr>
+                        <td>paisFact :</td>
+                        <td>{{paisFact }}</td>
+                    </tr>
+                    <tr>
+                        <td>numPedimentoEntrada :</td>
+                        <td>{{numPedimentoEntrada }}</td>
+                    </tr>
+                    <tr>
+                        <td>numPedimentoSalida :</td>
+                        <td>{{numPedimentoSalida }}</td>
+                    </tr>
+                    <tr>
+                        <td>cLVPedi :</td>
+                        <td>{{cLVPedi }}</td>
+                    </tr>
+                    <tr>
+                        <td>numPate :</td>
+                        <td>{{numPate }}</td>
+                    </tr>
+                    <tr>
+                        <td>aduana :</td>
+                        <td>{{aduana }}</td>
+                    </tr>
+                    <tr>
+                        <td>producto :</td>
+                        <td>{{producto }}</td>
+                    </tr>
+                    <tr>
+                        <td>cantidad :</td>
+                        <td>{{cantidad }}</td>
+                    </tr>
+                    <tr>
+                        <td>costounitdls :</td>
+                        <td>{{costounitdls }}</td>
+                    </tr>
+                    <tr>
+                        <td>costoTotaldls :</td>
+                        <td>{{costoTotaldls }}</td>
+                    </tr>
+                    <tr>
+                        <td>costounitMXP :</td>
+                        <td>{{costounitMXP }}</td>
+                    </tr>
+                    <tr>
+                        <td>costototalMXP :</td>
+                        <td>{{costototalMXP }}</td>
+                    </tr>
+                    <tr>
+                        <td>unidadDeMedida :</td>
+                        <td>{{unidadDeMedida }}</td>
+                    </tr>
+                    <tr>
+                        <td>fraccAranc :</td>
+                        <td>{{fraccAranc }}</td>
+                    </tr>
+                    <tr>
+                        <td>netoOriginal :</td>
+                        <td>{{netoOriginal }}</td>
+                    </tr>
+                    <tr>
+                        <td>brutoOriginal :</td>
+                        <td>{{brutoOriginal }}</td>
+                    </tr>
+                    <tr>
+                        <td>netoConv :</td>
+                        <td>{{netoConv }}</td>
+                    </tr>
+                    <tr>
+                        <td>brutoConv :</td>
+                        <td>{{brutoConv }}</td>
+                    </tr>
+                    <tr>
+                        <td>transport :</td>
+                        <td>{{transport }}</td>
+                    </tr>
+                    <tr>
+                        <td>clieOrig :</td>
+                        <td>{{clieOrig }}</td>
+                    </tr>
+                    <tr>
+                        <td>clieDest :</td>
+                        <td>{{clieDest }}</td>
+                    </tr>
+                    <tr>
+                        <td>iNCOTERM :</td>
+                        <td>{{iNCOTERM }}</td>
+                    </tr>
+                    <tr>
+                        <td>nUMPlacaTr :</td>
+                        <td>{{nUMPlacaTr }}</td>
+                    </tr>
+                    <tr>
+                        <td>nUMGuia :</td>
+                        <td>{{nUMGuia }}</td>
+                    </tr>
+                    <tr>
+                        <td>contCaja :</td>
+                        <td>{{contCaja }}</td>
+                    </tr>
+                    <tr>
+                        <td>selloCand1 :</td>
+                        <td>{{selloCand1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>selloCand2 :</td>
+                        <td>{{selloCand2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>selloCand3 :</td>
+                        <td>{{selloCand3 }}</td>
+                    </tr>
+                    <tr>
+                        <td>nombChofTr :</td>
+                        <td>{{nombChofTr }}</td>
+                    </tr>
+                    <tr>
+                        <td>pO :</td>
+                        <td>{{pO }}</td>
+                    </tr>
+                    <tr>
+                        <td>empresa :</td>
+                        <td>{{empresa }}</td>
+                    </tr>
+                    <tr>
+                        <td>recinto :</td>
+                        <td>{{recinto }}</td>
+                    </tr>
+                    <tr>
+                        <td>observaciones :</td>
+                        <td>{{observaciones }}</td>
+                    </tr>
+                    <tr>
+                        <td>fechaAlta :</td>
+                        <td>{{fechaAlta }}</td>
+                        +
+                    </tr>
+                    <tr>
+                        <td>fechaMod :</td>
+                        <td>{{fechaMod }}</td>
+                    </tr>
+                    <tr>
+                        <td>hora :</td>
+                        <td>{{hora }}</td>
+                    </tr>
+                    <tr>
+                        <td>userMod :</td>
+                        <td>{{userMod }}</td>
+                    </tr>
+                    <tr>
+                        <td>estatus :</td>
+                        <td>{{estatus }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

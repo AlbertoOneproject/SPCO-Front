@@ -2,22 +2,22 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { first } from 'rxjs/operators';
-import { AlertService, PartesService } from './../service';
+import { AlertService, FacturasService } from './../service';
 
 @Component({
-  selector: 'app-deleteparte',
-  templateUrl: './deleteparte.component.html',
-  styleUrls: ['./deleteparte.component.css']
+  selector: 'app-deletefactura',
+  templateUrl: './deletefactura.component.html',
+  styleUrls: ['./deletefactura.component.css']
 })
-export class DeleteparteComponent implements OnInit {
+export class DeletefacturaComponent implements OnInit {
   idUsuario: string = ''; 
   returnUrl: string;
   loading = false;
   msg= '';
 
   constructor( 
-  public dialogRef: MatDialogRef<DeleteparteComponent>,@Inject (MAT_DIALOG_DATA) public data: any,
-  private partesService: PartesService,
+  public dialogRef: MatDialogRef<DeletefacturaComponent>,@Inject (MAT_DIALOG_DATA) public data: any,
+  private facturasService: FacturasService,
   private route: ActivatedRoute,
   private router: Router,
   private alertService: AlertService
@@ -26,10 +26,9 @@ export class DeleteparteComponent implements OnInit {
 ngOnInit(): void {
 }
 
-deletepartes(idCliProv: string, numPart: string, numPedimento:string) : void {
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/partes';
-//  this.idUsuario = clveProduc;
-  this.partesService.deletepartes(idCliProv,numPart, numPedimento)
+deletefactura(idCliProv: string, numPart: string, numFact:string) : void {
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturas';
+  this.facturasService.deletefactura(idCliProv,numPart, numFact)
   .pipe(first())
   .subscribe(
       data => {
@@ -43,7 +42,7 @@ deletepartes(idCliProv: string, numPart: string, numPedimento:string) : void {
         }
       },
       error => {
-        this.alertService.error("Error en el borrado de Partes");
+        this.alertService.error("Error en el borrado de Facturas");
         this.loading = false;
       });    
   }

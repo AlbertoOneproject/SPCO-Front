@@ -265,7 +265,7 @@ export class AltaparteComponent implements OnInit {
               this.armausuario();
               this.loading = true;
               this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/partes';
-              this.partesService.altaprodymat(this.currentPartes)
+              this.partesService.altapartes(this.currentPartes)
                 .pipe(first())
                 .subscribe(
                     data => {

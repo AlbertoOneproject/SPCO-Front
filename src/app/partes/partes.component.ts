@@ -81,8 +81,6 @@ export class PartesComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-          console.log("partes.component catClientes data")
-          console.log(data)
           if (data.cr=="00"){          
              this.dataCli = data.contenido;
              console.log(this.dataCli)
@@ -96,9 +94,6 @@ export class PartesComponent implements OnInit {
   consultaPartes(cveparte:string, page: number, perPage: number, perName: string)  {    
 //    this.descripcion = cvedesc;
     this.cveparte = cveparte;
-    console.log("prodymat.component cveparte")
-    console.log(this.cveparte)
-    console.log(this.recinto)
     this.partesService.PartesCte(cveparte, this.recinto, page, perPage, perName)
     .pipe(first())
     .subscribe(
