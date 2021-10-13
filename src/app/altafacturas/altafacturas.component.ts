@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, LOCALE_ID  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertService, PartesService, FacturasService, CteyprovService,SysdtapeService, ProdymatService } from './../service';
+import { AlertService, PartesService, FacturasService, CteyprovService,SysdtapeService, ProdymatService, AduanalService } from './../service';
 import { Facturas,Partes, Prodymat, Sysdtape, Login } from '../model'
 import { first } from 'rxjs/operators';
 import { MsgokfComponent } from './../msgokf/msgokf.component'
@@ -66,6 +66,7 @@ export class AltafacturasComponent implements OnInit {
     private fb                      : FormBuilder,
     private partesService           : PartesService, 
     private facturasService         : FacturasService, 
+    private aduanalService          : AduanalService,
     private alertService            : AlertService,
     private route                   : ActivatedRoute,
     private router                  : Router,
@@ -90,6 +91,7 @@ export class AltafacturasComponent implements OnInit {
     this.tipo      = '5';
     this.consultaTipoCte(this.tipo);
     this.formafb();
+    this.llenaAduanal();
     this.usuari    = JSON.parse(localStorage.getItem('currentUserLog'));
     let usuario    = this.usuari["idUsuario"];
     let empresa    = this.usuari["idEmpresa"];
@@ -216,6 +218,31 @@ export class AltafacturasComponent implements OnInit {
     }); 
   } // Cierre del método formafb
 
+  llenaAduanal()  {    
+    this.aduanalService.llenaAduanal(1, 6)
+    .pipe(first())
+    .subscribe(
+      data => {
+        console.log("llenaAduanal   Data")  
+        console.log(data)        
+
+          if (data.cr=="00"){
+            
+              this.datanumPate  = data.contenido.sysAgads;
+              console.log("llenaAduanal currentAduanal")
+              console.log(this.datanumPate)  
+          }else{
+              this.loading = false;
+              this.msg = data.descripcion;
+              this.alertService.error(this.msg);
+        }
+      },
+        error => {
+            this.alertService.error("No hay conexión con la Base de Datos");
+            this.loading = false;
+        });
+  }  // Cierre del método llenaAduanal
+  
 
   catPartCte(id1: any){
     console.log("catPartsinCte  id1")

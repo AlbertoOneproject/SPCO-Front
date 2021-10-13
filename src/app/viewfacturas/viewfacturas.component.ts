@@ -146,6 +146,12 @@ export class ViewfacturasComponent implements OnInit {
                   this.hora                    = this.currentFacturas.hora               ,
                   this.userMod                 = this.currentFacturas.userMod            ,
                   this.estatus                 = this.currentFacturas.estatus            
+                  if(this.iDImpoEexpo == "1"){
+                     this.iDImpoEexpo = "Importación"
+                  }
+                  if(this.iDImpoEexpo == "2"){
+                     this.iDImpoEexpo = "Exportación"
+                  }
               }else{
                 this.loading = false;
                 this.msg = this.dataWork.descripcion;

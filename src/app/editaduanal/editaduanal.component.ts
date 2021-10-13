@@ -39,7 +39,6 @@ export class EditaduanalComponent implements OnInit {
   usuari: Login
   loading = false;
   returnUrl: string;
-  editsysuserform: FormGroup;
   altausrrol: any =[];
   orders = [];
   clvap: string;
@@ -173,7 +172,7 @@ export class EditaduanalComponent implements OnInit {
       'nomAgAdu':      new FormControl('',[Validators.required]),
       'rFC':           new FormControl('',[Validators.required]),
       'cURP':          new FormControl('',[Validators.required]),
-      'listaallpais':  new FormControl('',[Validators.required]),
+      'listaallpais':  new FormControl(''),
       'calle':         new FormControl('',[Validators.required]),          
       'numExt':        new FormControl('',[Validators.required]),          
       'numINT':        new FormControl('',[Validators.required]),          
@@ -222,10 +221,10 @@ export class EditaduanalComponent implements OnInit {
                     this.numExt       = this.currentAduanal.numExt    ; 
                     this.numINT       = this.currentAduanal.numINT    ; 
                     this.cP           = this.currentAduanal.cP        ; 
-                    this.colonia      = this.currentAduanal.colonia   ; 
-                    this.estado       = this.currentAduanal.estado    ; 
-                    this.municipio    = this.currentAduanal.municipio ; 
-                    this.localidad    = this.currentAduanal.localidad ; 
+                    this.colonia      = this.currentAduanal.colonia.trim()   ; 
+                    this.estado       = this.currentAduanal.estado.trim(); 
+                    this.municipio    = this.currentAduanal.municipio.trim(); 
+                    this.localidad    = this.currentAduanal.localidad.trim(); 
                     this.eMail        = this.currentAduanal.eMail     ; 
                     this.tel          = this.currentAduanal.tel       ; 
                     this.idAct        = this.currentAduanal.idAct     ; 
@@ -263,6 +262,9 @@ export class EditaduanalComponent implements OnInit {
   }
   obtenEdop(cp: any){
     this.obtenEdo(cp.target.value)
+    this.estado = "";
+    this.municipio = "";
+    this.colonia = "";
   }
 
   obtenEdo(cp: any){
@@ -287,13 +289,18 @@ export class EditaduanalComponent implements OnInit {
                      console.log(this.datacp[i].cEstado)
                      if (this.datacp[i-1].cEstado != this.datacp[i].cEstado){
                          console.log("entre a diferentes Edo")
+                         console.log(this.estado)
                          this.dataEdo.push({id:this.datacp[i].cEstado,nombre:this.datacp[i].dEstado});
+                         this.f.listaalledo.patchValue(this.estado);
                      }
                    }else{
-                    console.log("entre a iguales Edo")
+                    console.log("entre a i = 1 ")
+                    console.log(this.datacp[i].cEstado)
+                    console.log(this.estado)
                     this.dataEdo.push({id:this.datacp[i].cEstado,nombre:this.datacp[i].dEstado});
+                    this.f.listaalledo.patchValue(this.estado);
                     if (this.datacp[i].cEstado == this.estado ){
-                      console.log(" SI SON IGUALES")
+                      console.log(" SI SON IGUALESssssssssssssssssssss")
                     }
                    }
               }
@@ -315,35 +322,52 @@ export class EditaduanalComponent implements OnInit {
     return   
     }       // Cierre del método obtenCP  
 
+
   obtenMpop(listedoid: any){
+    console.log("obtenMpop")
       console.log(listedoid.target.value)
       this.obtenMpo(listedoid.target.value)  
   }
 
   obtenMpo(listedoid: any){
+    console.log("obtenMpo")
+    console.log(listedoid)
       this.dataMpo = [];
       for (let i=0; i < this.datacp.length; i++) { 
         if (this.datacp[i].cEstado == listedoid){
           if (i>0){
             if (this.datacp[i-1].cMnpio != this.datacp[i].cMnpio){
+                console.log("Mpo diferentes")
+                console.log(this.datacp[i-1].cMnpio)
+                console.log(this.datacp[i].cMnpio)
                 this.dataMpo.push({id:this.datacp[i].cMnpio,nombre:this.datacp[i].dMnpio});
+                this.f.listaallmpo.patchValue(this.municipio);
+            }else{
+                console.log("Mpo igualessssssssss")
+                console.log(this.datacp)
+                console.log(this.datacp[i-1].cMnpio)
+                console.log(this.datacp[i].cMnpio)
+//               this.dataMpo.push({id:this.datacp[i].cMnpio,nombre:this.datacp[i].dMnpio});
+ //              this.f.listaallmpo.patchValue(this.municipio);
             }
-          }else{
-           this.dataMpo.push({id:this.datacp[i].cMnpio,nombre:this.datacp[i].dMnpio});
-          }
-        }
-        this.obtenCol(this.municipio.trim())
+         }else{
+          this.dataMpo.push({id:this.datacp[i].cMnpio,nombre:this.datacp[i].dMnpio});
+          this.f.listaallmpo.patchValue(this.municipio);
+       }
       }
+      }
+      this.obtenCol(this.municipio.trim())
   }
   
   obtenColp(listmpoid: any){
+    console.log("obten Colp")
     console.log(listmpoid.target.value)
-    this.obtenMpo(listmpoid.target.value)  
+    this.obtenCol(listmpoid.target.value)  
   }
 
   obtenCol(listmpoid: any){
     this.dataCol = [];
-    console.log("obtenCol")
+    console.log("obten Col")
     console.log(listmpoid)
     for (let i=0; i < this.datacp.length; i++) { 
       if (this.datacp[i].cMnpio == listmpoid){
@@ -352,27 +376,42 @@ export class EditaduanalComponent implements OnInit {
           console.log(this.datacp[i].idAsentaCpcons)
           if (this.datacp[i-1].idAsentaCpcons != this.datacp[i].idAsentaCpcons){
               console.log("entre a diferentes col")
+              //console.log(this.colonia)
               this.dataCol.push({id:this.datacp[i].idAsentaCpcons,nombre:this.datacp[i].dAsenta});
+    //          this.f.listaallcol.patchValue(this.colonia);
+          }else{
+              console.log("entre a iguales col")
+//              console.log(this.colonia)
+//              this.dataCol.push({id:this.datacp[i].idAsentaCpcons,nombre:this.datacp[i].dAsenta});
+  //            this.f.listaallcol.patchValue(this.colonia);
           }
         }else{
-         console.log("entre a iguales col")
-         this.dataCol.push({id:this.datacp[i].idAsentaCpcons,nombre:this.datacp[i].dAsenta});
+          this.dataCol.push({id:this.datacp[i].idAsentaCpcons,nombre:this.datacp[i].dAsenta});
+//          this.f.listaallcol.patchValue(this.localidad);
         }
       }
     }
+    console.log(this.localidad)
+    console.log(this.colonia)
+    this.f.listaallcol.patchValue(this.localidad);
   }    
 
   enviar() {
-    console.log("editsysuser enviar currentProdymat")
-/*    
-    if (this.editsysuserform.invalid) {
+
+    if (this.editaduanal.invalid) {
         this.alertService.error("Es necesario capturar todos los campos que tienen * ");
         this.loading = false;
         return;
     }
-    */
+   
         this.armausuario();
-        console.log(this.currentCteyprov)
+
+        for (let i=0; i < this.dataCol.length; i++) {
+          if (this.dataCol[i].id == this.currentAduanal.localidad){
+            this.currentAduanal.colonia = this.dataCol[i].nombre;
+          }
+        }
+        console.log(this.currentAduanal)
         this.loading = true;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/aduanal';
         this.aduanalService.editaduanal(this.currentAduanal)
@@ -401,21 +440,24 @@ export class EditaduanalComponent implements OnInit {
       numExt       					: this.f.numExt.value ,
       numINT       					: this.f.numINT.value ,
       cP           					: this.f.cP.value ,
-      colonia      					: this.f.listaallcol.value ,
+      colonia      					: this.f.listaallcol.value ,  
       estado       					: this.f.listaalledo.value ,
       municipio    					: this.f.listaallmpo.value ,
-      localidad    					: this.f.listaallcol.value ,
+      localidad    					: this.f.listaallcol.value ,  
       eMail        					: this.f.eMail.value ,
       tel          					: this.f.tel.value ,
                                                      
       idAct                 : this.indAct,
       empresa	              : this.empresa,               
       recinto               : this.recinto,                
-      fechaAlta             : this.curr,                   
+      fechaAlta             : this.fechaAlta,
       fechaMod              : this.curr,                   
       hora                  : this.curr1,                  
       userMod               : this.usuario.substring(0, 8)   
       }    
+      if (this.currentAduanal.pais == ""){
+        this.currentAduanal.pais = this.pais;
+      }
   }     // Cierre del metodo armausuario
     
   cancelar(clveProduc: string): void {

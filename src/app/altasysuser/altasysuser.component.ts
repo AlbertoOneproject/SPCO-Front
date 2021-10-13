@@ -65,8 +65,7 @@ export class AltasysuserComponent implements OnInit {
           'password':  new FormControl('',[Validators.required]),
           'repeatPassword':  new FormControl('',[Validators.required]),
           'intentos':  new FormControl('',[Validators.required]),
-          'estatus':   new FormControl('',[Validators.required]),
-          'userMod':   new FormControl('',[Validators.required])
+          'estatus':   new FormControl('',[Validators.required])
     }); 
   } // Cierre del método formafb
 

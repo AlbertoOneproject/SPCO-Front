@@ -13,7 +13,7 @@
                             class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="numPat" name="numPat" formControlName="numPat" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="4" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate
+                        <input disabled type="text" id="numPat" name="numPat" formControlName="numPat" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="4" required ng-pattern="/(^[A-z])[A-z.'-]*/" late-Validate
                         />
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                     <label class="control-label col-sm-2" for="cP">C.P. :<span class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="cP" name="cP" formControlName="cP" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="5" (change)="obtenEdo($event)" />
+                        <input type="text" id="cP" name="cP" formControlName="cP" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="5" (change)="obtenEdop($event)" />
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                     <label class="control-label col-sm-2">Estado :<span class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaalledo" id="listaalledo" style="height: 180px" style="width: 185px" (change)="obtenMpo($event)" value="{{estado}}">
+                        <select formControlName="listaalledo" id="listaalledo" style="height: 180px" style="width: 185px" (change)="obtenMpop($event)" value="{{estado}}">
                             <option *ngFor="let listedo of dataEdo" [value]="listedo.id">{{listedo.nombre}}
                             </option>
                         </select>
@@ -106,7 +106,7 @@
                     <label class="control-label col-sm-2">Municipio :<span class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallmpo" id="listaallmpo" style="height: 180px" style="width: 185px" (change)="obtenCol($event)" value="{{municipio}}">
+                        <select formControlName="listaallmpo" id="listaallmpo" style="height: 180px" style="width: 185px" (change)="obtenColp($event)" value="{{municipio}}">
                             <option *ngFor="let listmpo of dataMpo" [value]="listmpo.id">{{listmpo.nombre}}
                             </option>
                         </select>
@@ -117,7 +117,7 @@
                     <label class="control-label col-sm-2">Localidad/Colonía :<span class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallcol" id="listaallcol" style="height: 180px" style="width: 185px" value="{{localidad}}">
+                        <select formControlName="listaallcol" id="listaallcol" style="height: 180px" style="width: 185px" value="{{localidad}">
                             <option *ngFor="let listcol of dataCol" [value]="listcol.id">{{listcol.nombre}}
                             </option>
                         </select>

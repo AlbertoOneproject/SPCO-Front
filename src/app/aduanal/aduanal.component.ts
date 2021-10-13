@@ -18,7 +18,6 @@ export class AduanalComponent implements OnInit {
   recinto         : string = "";
   login           : Login;  
   aduanalForm     : FormGroup;
-  paginacion      : boolean;
   detalle         : boolean;
   perfil          :boolean;
   loading         = false;
@@ -63,7 +62,6 @@ export class AduanalComponent implements OnInit {
         this.perfil=false;
     }
     this.detalle=false;      
-    this.paginacion=false;
   }
     // convenience getter for easy access to form fields
     get f() { return this.aduanalForm.controls; }
@@ -78,7 +76,6 @@ export class AduanalComponent implements OnInit {
 
             if (data.cr=="00"){
                 this.detalle         = true;     
-                this.paginacion      = true;  
                 
                 this.page            = data.contenido.page;
                 this.perPage         = data.contenido.perPage;
@@ -129,9 +126,7 @@ export class AduanalComponent implements OnInit {
             console.log("consultaAduanal data")
             console.log(data)  
               this.detalle       = true;   
-              this.paginacion    = true;
-              console.log(this.paginacion)  
-              
+           
               this.page          = 1;
               this.perPage       = 6;
               this.total         = 4;

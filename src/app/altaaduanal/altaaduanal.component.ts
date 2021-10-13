@@ -153,8 +153,7 @@ export class AltaaduanalComponent implements OnInit {
         });
   } // Cierre del método consultaDatosApl 
 
-  
-  obtenEdo(cp: any){
+    obtenEdo(cp: any){
     this.dataEdo = [];
     this.dataMpo = [];
     this.dataCol = [];
@@ -178,7 +177,8 @@ export class AltaaduanalComponent implements OnInit {
                        this.dataEdo.push({id:this.datacp[i].cEstado,nombre:this.datacp[i].dEstado});
                    }
                  }else{
-                  console.log("entre a iguales")
+                  console.log("obtenEdo     i = 1")
+                  console.log(this.datacp[i].cEstado)
                   this.dataEdo.push({id:this.datacp[i].cEstado,nombre:this.datacp[i].dEstado});
                  }
             }
@@ -248,6 +248,11 @@ export class AltaaduanalComponent implements OnInit {
     }
         console.log ("altaaduanal.component.ts enviar armausuario")    
         this.armausuario();
+        for (let i=0; i < this.dataCol.length; i++) {
+          if (this.dataCol[i].id == this.currentAduanal.localidad){
+            this.currentAduanal.colonia = this.dataCol[i].nombre;
+          }
+        }
         console.log ("altaaduanal.component.ts enviar currentAduanal")
         console.log(this.currentAduanal)
         this.loading = true;
