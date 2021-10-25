@@ -7,11 +7,11 @@ import { AlertService } from './../service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-facturas',
-  templateUrl: './facturas.component.html',
-  styleUrls: ['./facturas.component.css']
+  selector: 'app-facturasal',
+  templateUrl: './facturasal.component.html',
+  styleUrls: ['./facturasal.component.css']
 })
-export class FacturasComponent implements OnInit {
+export class FacturasalComponent implements OnInit {
   dataCli         : any[]=[];
   dataPart        : any[]=[];
   recinto         : string = "";
@@ -40,7 +40,7 @@ export class FacturasComponent implements OnInit {
     private route           : ActivatedRoute,
     private router          : Router,
   ) {
-   }
+  }
 
   ngOnInit(): void {
     this.catClientes();
@@ -125,7 +125,7 @@ export class FacturasComponent implements OnInit {
 
 
   routeTo(idCliProv:string, numParte:string, numFact:string) : void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewfacturas';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewfacturasal';
     this.router.navigate([this.returnUrl,{cliente:idCliProv,parte:numParte,factura:numFact}]);   
   }  
  

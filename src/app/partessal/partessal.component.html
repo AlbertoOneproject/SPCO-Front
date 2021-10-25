@@ -1,4 +1,4 @@
-<div class="content-container" ng-controller="partes.component.ts">
+<div class="content-container" ng-controller="partessal.component.ts">
     <ul class="breadcrumb">
         <li class="active">Aduanas Partes</li>
     </ul>
@@ -7,20 +7,14 @@
         <div class=" text-right">
             <div class="card">
                 <div class="toolbar">
-                    <h4>Lista de Aduanas Partes</h4>
-                    <div class="col-12 text-right" *ngIf="perfil">
-                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altaparte',cveparte]">+</a>
-                    </div>
-                    <div class="col-12 text-right" *ngIf="!perfil">
-                        <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
-                    </div>
+                    <h4>Lista de Aduanas Partes Salida</h4>
 
                     <div class="col-09 text-right" class="nav-item dropdown" style="text-align: left">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         CLIENTE
                         </a >
                         <label for="uploader">{{descripcion}}</label>
-      
+       
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
                                 <a class="dropdown-item" *ngFor="let listaCtes of dataCli; let i = index;" (click)="consultaPartes(listaCtes.idCliProv, 1, this.perPage, this.perName)"> 
                                         {{listaCtes.idCliProv}}

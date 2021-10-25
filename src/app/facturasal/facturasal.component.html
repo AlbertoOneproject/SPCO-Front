@@ -1,0 +1,68 @@
+<div class="content-container" ng-controller="facturasal.component.ts">
+    <ul class="breadcrumb">
+        <li class="active">Facturas Partes</li>
+    </ul>
+
+    <form [formGroup]="facturasForm">
+        <div class=" text-right">
+            <div class="card">
+                <div class="toolbar">
+                    <h4>Lista de Facturas Partes Salida</h4>
+                    <div class="col-12 text-right" *ngIf="perfil">
+                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altafacturasal',idCliProv]">+</a>
+                    </div>
+                    <div class="col-12 text-right" *ngIf="!perfil">
+                        <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
+                    </div>
+
+                    <div class="col-04 text-right" class="nav-item dropdown" style="text-align: left">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        CLIENTE
+                        </a >
+       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                                <a class="dropdown-item" *ngFor="let listaCtes of dataCli; let i = index;" (click)="consultaFacturas(listaCtes.idCliProv,'0000000000', 1, this.perPage, this.perName)"> 
+                                        {{listaCtes.idCliProv}}
+                            </a>
+                    </div>
+                </div>
+
+
+                <div class="col-04 text-right" class="nav-item dropdown" style="text-align: left">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdoP" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                PARTE
+                                </a >
+               
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdoP" >
+                            <a class="dropdown-item" *ngFor="let listaPart of dataPart; let i = index;" (click)="consultaFacturas(listaPart.idCliProv,listaPart.numPart, 1, this.perPage, this.perName)"> 
+                                                {{listaPart.numPart}}
+                            </a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr/>
+        <table class="table">
+            <thead>
+                <tr class="graybg" *ngIf="detalle">
+                    <th>Número de Parte</th>
+                    <th>Número de Factura</th>
+                    <th>Número de Pedimento</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr class="pointer-main" *ngFor="let listpartes of currentFacturas">
+                    <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numPart}}</td>
+                    <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numFact}}</td>
+                    <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numPedimentoEntrada}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <app-paginacion style="text-align: left" [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">
+        </app-paginacion>
+</div>
+</div>
+</form>

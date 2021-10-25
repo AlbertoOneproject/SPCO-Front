@@ -22,10 +22,7 @@ export class EditparteComponent implements OnInit {
   CurrentDate = new Date();
   curr = formatDate(this.CurrentDate, 'yyyy-MM-dd' ,this.locale);
   curr1 = formatDate(this.CurrentDate, 'hh:mm:ss' ,this.locale);
-  progUserc     ='ALTAPART';
   dataPais      : any[]=[];
-  datauMC       : any[]=[];
-  datauMT       : any[]=[];
   opc           : string = '0';
   dataworkprod  : any=[];
   dataworkPartes: any=[]
@@ -37,31 +34,17 @@ export class EditparteComponent implements OnInit {
   factor        : number;
   descEsp       : number;
 
-
-  material: boolean=false;
-  usuario: string;
-  empresaa: string;
-  recintoo: string;
-  apC: Sysdtape;
-  apT: Sysdtape;
-  datosFracc   : any[];
-  editparte: FormGroup;
-  usuari: Login
-  currentPartes: Partes;
-  loading = false;
-  returnUrl: string;
-  editparteform: FormGroup;
-  altausrrol: any =[];
-  orders = [];
-  clvap: string;
+  usuario       : string;
+  editparte     : FormGroup;
+  usuari        : Login
+  currentPartes : Partes;
+  loading       = false;
+  returnUrl     : string;
+  clvap         : string;
   
-  disponibles: any;
-  selectedLocations: any = [];
-  altauserrol = { appUserId: ' ', roleId: ' ' };
-  msg= '';
-  datawork: any=[];
-  dataworkedit: any=[];
-  dataworkfracc: any=[];
+  msg           = '';
+  datawork      : any=[];
+  dataworkedit  : any=[];
   
   idCliProv	    : string;                                      
   numPart       : string;                                      
@@ -91,7 +74,6 @@ export class EditparteComponent implements OnInit {
   fechaMod      : string;                                      
   hora          : string;                                      
   userMod       : string;     
-  
 
   constructor(
     @Inject(LOCALE_ID) public locale  : string,
@@ -112,7 +94,6 @@ export class EditparteComponent implements OnInit {
     this.consultaDatosApl(this.clvap);
     this.formafb();
     this.consultaDatosPartes();
-//    this.consultaProdymat();
     this.usuari = JSON.parse(localStorage.getItem('currentUserLog'));
     let usuario = this.usuari["idUsuario"];
     let empresa = this.usuari["idEmpresa"];
@@ -121,6 +102,7 @@ export class EditparteComponent implements OnInit {
     this.empresa = empresa;
     this.recinto = recinto;
   }
+
 
   consultaDatosApl(clvap){
     this.consape.apeconscve(this.clvap)
@@ -171,6 +153,7 @@ formafb() {
     }); 
   } // Cierre del método formafb
   
+
 consultaDatosPartes(){
     this.activatedRoutee.params.subscribe( params =>{ 
         this.partesService.partesUnico(params['idCliProv'],params['numPart'],params['numPedimento'])
@@ -197,7 +180,6 @@ consultaDatosPartes(){
                     this.editparte.controls['netoConv'     ].setValue(this.currentPartes.netoConv     );
                     this.editparte.controls['brutoConv'    ].setValue(this.currentPartes.brutoConv    );
                     this.editparte.controls['fechaVenc'    ].setValue(this.currentPartes.fechaVenc    );
-             
 
                     this.idCliProv       = this.currentPartes.idCliProv    ,        
                     this.numPart         = this.currentPartes.numPart      ,        
@@ -266,7 +248,6 @@ consultaDatosPartes(){
                       this.editparte.controls['uMT'          ].setValue(this.dataworkprod.contenido.lDescripUMT[i]);
                       this.factor = this.dataworkprod.contenido.lFactor[i];
                       this.f.listaallprod.patchValue(this.descEsp);
-                      
                   }
                 }
             }else {
@@ -280,8 +261,10 @@ consultaDatosPartes(){
         });
   } // Cierre del método consultaProdymat
 
+
   // convenience getter for easy access to form fields
   get f() { return this.editparte.controls; }
+
   
   cambio(id1: any){
     this.editparte.controls['uMC'].setValue(this.dataworkprod.contenido.lDescripUMC[id1.target.value]);
@@ -320,10 +303,10 @@ consultaDatosPartes(){
       this.editparte.controls['costoTotaldls'].setValue(CTotalDLS);
       this.editparte.controls['costototalMXP'].setValue(CTotalMxp);
     }
-
     this.netoConvertido
     this.brutoConvertido
   }    // Cierre del método cambio
+
 
   TipoCambio(){
     if (this.MonManda){
@@ -348,7 +331,6 @@ consultaDatosPartes(){
 
 
   TotalUSD(){
-
     let CUnitMXP = this.f.costoUnitDLS.value * this.f.tipCambio.value ;
     this.editparte.controls['costoUnitMXP'].setValue(CUnitMXP);
 
@@ -409,9 +391,8 @@ consultaDatosPartes(){
     return
   } // Cierre del método enviar
 
-
   
-    armausuario(){
+  armausuario(){
       this.currentPartes = {
         idCliProv	    : this.f.listaallCte.value,
         numPart  	    : this.f.numPart.value,
@@ -443,14 +424,12 @@ consultaDatosPartes(){
         hora          : this.curr1, 
         userMod       : this.usuario.substring(0, 8),
       }
-
         if (this.f.listaallapC.value == ""){
             this.currentPartes.uMC = this.uMC
         } 
         if (this.f.listaallapT.value == ""){
             this.currentPartes.uMT = this.uMT
       } 
-
     }     // Cierre del metodo armausuario
 
    
@@ -459,6 +438,7 @@ consultaDatosPartes(){
     this.router.navigate([this.returnUrl]);   
   }     // Cierre del metodo cancelar
   
+
   msgokp(): void {
     const dialogRef = this.dialog.open(MsgokpComponent, {
       width: '400px',

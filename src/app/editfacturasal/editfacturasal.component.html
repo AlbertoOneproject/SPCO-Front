@@ -1,55 +1,38 @@
 <div class="content-container">
     <ul class="breadcrumb">
-        <li><a href="/facturas">Facturas Partes</a></li>
-        <li class="active">Crear Registro en Facturas Partes</li>
+        <li><a href="/facturasal">Facturas Partes</a></li>
+        <li class="active">Editar Registro en Facturas Partes Salida</li>
     </ul>
-    <form [formGroup]="altafacturas">
+    <form [formGroup]="editfacturasal">
         <div class="container-body form-horizontal">
             <api-validate></api-validate>
             <fieldset>
-                <legend>Crear Factura Partes</legend>
+                <legend>Editar Factura Partes</legend>
+
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Número de Cliente: <span
+                    <label class="control-label col-sm-2" for="idCliProv">Número de Cliente:<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallCte" id="listaallCte" style="height: 180px" style="width: 185px" (change)="catPartCte($event)">
-                        <option 
-                                *ngFor="let listaCte of dataCli" 
-                                [value]="listaCte.idCliProv" 
-                                >{{listaCte.idCliProv}}
-                        </option>
-                    </select>
+                        <input disabled type="text" id="idCliProv" name="idCliProv" formControlName="idCliProv" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Número de Parte: <span
+                    <label class="control-label col-sm-2" for="numPart">Número de Parte:<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallPartes" id="listaallPartes" style="height: 180px" style="width: 185px" (change)="obtenPedimento($event)">
-                        <option 
-                                *ngFor="let listaPart of dataPart" 
-                                [value]="listaPart" 
-                                >{{listaPart}}
-                        </option>
-                    </select>
+                        <input disabled type="text" id="numPart" name="numPart" formControlName="numPart" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Número de Pedimento Entrada: <span
+                    <label class="control-label col-sm-2" for="numPedimentoEntrada">Número de Pedimento Entrada:<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallPedimento" id="listaallPedimento" style="height: 180px" style="width: 185px" (change)="completarPartes($event)">
-                        <option 
-                                *ngFor="let listaPedimento of dataPedimento" 
-                                [value]="listaPedimento.numPedimento" 
-                                >{{listaPedimento.numPedimento}}
-                        </option>
-                    </select>
+                        <input disabled type="text" id="numPedimentoEntrada" name="numPedimentoEntrada" formControlName="numPedimentoEntrada" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
                     </div>
                 </div>
 
@@ -58,7 +41,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallcLVPedi" id="listaallcLVPedi" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallcLVPedi" id="listaallcLVPedi" style="height: 180px" style="width: 185px" value="{{cLVPedi}}">
                         <option 
                                 *ngFor="let listacLVPedi of datacLVPedi" 
                                 [value]="listacLVPedi.id1" 
@@ -82,11 +65,15 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <label *ngFor="let order of orders">
-                            <input formControlName="orders" type="radio" name="orders" [value]="order.id"
-                            />
-                            {{order.name}}&nbsp;&nbsp;
-                       </label>
+                        <div class="custom-control custom-radio">
+                            <input id="S" type="radio" class="custom-control-input" value="1" name="gender" formControlName="gender">
+                            <label class="custom-control-label" for="1">Importación</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input id="N" type="radio" class="custom-control-input" value="2" name="gender" formControlName="gender">
+                            <label class="custom-control-label" for="2">Exportación</label>
+                        </div>
                     </div>
                 </div>
 
@@ -113,7 +100,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallpais" id="listaallpais" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallpais" id="listaallpais" style="height: 180px" style="width: 185px" value="{{paisFact}}">
                         <option 
                                 *ngFor="let listapais of dataPais" 
                                 [value]="listapais.id1" 
@@ -128,7 +115,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallnumPate" id="listaallnumPate" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallnumPate" id="listaallnumPate" style="height: 180px" style="width: 185px" value="{{numPate}}">
                         <option 
                                 *ngFor="let listanumPate of datanumPate" 
                                 [value]="listanumPate.numPat" 
@@ -143,7 +130,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaalladuana" id="listaalladuana" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaalladuana" id="listaalladuana" style="height: 180px" style="width: 185px" value="{{aduana}}">
                         <option 
                                 *ngFor="let listaaduana of dataaduana" 
                                 [value]="listaaduana.id1" 
@@ -158,7 +145,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallincoterm" id="listaallincoterm" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallincoterm" id="listaallincoterm" style="height: 180px" style="width: 185px" value="{{iNCOTERM}}">
                         <option 
                                 *ngFor="let listaincoterm of dataincoterm" 
                                 [value]="listaincoterm.id1" 
@@ -191,9 +178,9 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaalltransport" id="listaalltransport" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaalltransport" id="listaalltransport" style="height: 180px" style="width: 185px" value="{{transport}}">
                         <option 
-                                *ngFor="let listatransport of datatransport" 
+                                *ngFor="let listatransport of datatransport; let i = index"
                                 [value]="listatransport" 
                                 >{{listatransport}}
                         </option>
@@ -260,9 +247,9 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallclieOrig" id="listaallclieOrig" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallclieOrig" id="listaallclieOrig" style="height: 180px" style="width: 185px" value="{{clieOrig}}">
                         <option 
-                                *ngFor="let listaclieOrig of dataclieOrig" 
+                                *ngFor="let listaclieOrig of dataclieOrig; let i = index"
                                 [value]="listaclieOrig" 
                                 >{{listaclieOrig}}
                         </option>
@@ -275,9 +262,9 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallclieDest" id="listaallclieDest" style="height: 180px" style="width: 185px">
+                        <select formControlName="listaallclieDest" id="listaallclieDest" style="height: 180px" style="width: 185px" value="{{clieDest}}">
                         <option 
-                                *ngFor="let listaclieDest of dataclieDest" 
+                                *ngFor="let listaclieDest of dataclieDest; let i = index"  
                                 [value]="listaclieDest" 
                                 >{{listaclieDest}}
                         </option>
@@ -293,7 +280,7 @@
                     </div>
                 </div>
                 <div class="col-md-offset-3">
-                    <a id="cancel" href="/facturas" class="btn btn-default">Cancelar</a>
+                    <a id="cancel" href="/facturasal" class="btn btn-default">Cancelar</a>
                     <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
                 </div>
             </fieldset>

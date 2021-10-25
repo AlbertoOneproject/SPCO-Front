@@ -67,7 +67,14 @@ import { ViewaduanalComponent } from './viewaduanal/viewaduanal.component';
 import { DeleteaduanalComponent } from './deleteaduanal/deleteaduanal.component';
 import { AltaaduanalComponent } from './altaaduanal/altaaduanal.component';
 import { EditaduanalComponent } from './editaduanal/editaduanal.component';
-import { MsgokaduanalComponent } from './msgokaduanal/msgokaduanal.component'
+import { MsgokaduanalComponent } from './msgokaduanal/msgokaduanal.component';
+import { EditfacturasComponent } from './editfacturas/editfacturas.component';
+import { PartessalComponent } from './partessal/partessal.component';
+import { ViewpartesalComponent } from './viewpartesal/viewpartesal.component';
+import { AltafacturasalComponent } from './altafacturasal/altafacturasal.component';
+import { EditfacturasalComponent } from './editfacturasal/editfacturasal.component';
+import { FacturasalComponent } from './facturasal/facturasal.component';
+import { ViewfacturasalComponent } from './viewfacturasal/viewfacturasal.component'
 
 
 @NgModule({
@@ -129,7 +136,14 @@ import { MsgokaduanalComponent } from './msgokaduanal/msgokaduanal.component'
     DeleteaduanalComponent,
     AltaaduanalComponent,
     EditaduanalComponent,
-    MsgokaduanalComponent
+    MsgokaduanalComponent,
+    EditfacturasComponent,
+    PartessalComponent,
+    ViewpartesalComponent,
+    AltafacturasalComponent,
+    EditfacturasalComponent,
+    FacturasalComponent,
+    ViewfacturasalComponent
   ],
   imports: [
     BrowserModule,

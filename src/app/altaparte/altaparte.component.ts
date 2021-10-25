@@ -205,7 +205,6 @@ export class AltaparteComponent implements OnInit {
 
 
   TotalMXP(){
-
     let CUnitUSD = this.f.costoUnitMXP.value / this.f.tipCambio.value ;
     this.altaparte.controls['costoUnitDLS'].setValue(CUnitUSD);
 
@@ -217,7 +216,6 @@ export class AltaparteComponent implements OnInit {
 
 
   TotalUSD(){
-
     let CUnitMXP = this.f.costoUnitDLS.value * this.f.tipCambio.value ;
     this.altaparte.controls['costoUnitMXP'].setValue(CUnitMXP);
 
@@ -339,6 +337,5 @@ export class AltaparteComponent implements OnInit {
       //this.email = result;
     });
   }
-
 
 } //Cierre principal

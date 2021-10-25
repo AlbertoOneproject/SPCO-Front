@@ -5,14 +5,12 @@ import { PartesService } from './../service';
 import { first } from 'rxjs/operators';
 import { AlertService } from './../service';
 import { Router, ActivatedRoute } from '@angular/router';
-
-
 @Component({
-  selector: 'app-partes',
-  templateUrl: './partes.component.html',
-  styleUrls: ['./partes.component.css']
+  selector: 'app-partessal',
+  templateUrl: './partessal.component.html',
+  styleUrls: ['./partessal.component.css']
 })
-export class PartesComponent implements OnInit {
+export class PartessalComponent implements OnInit {
   dataCli       : any[]=[];
   recinto       : string = "";
   login         : Login;  
@@ -100,7 +98,7 @@ export class PartesComponent implements OnInit {
   }  // Cierre del método consultaProdymat
 
   routeTo(idCliProv:string, parte:string, pedimento:string) : void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewpartes';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewpartesal';
     this.router.navigate([this.returnUrl,{idCliProv:idCliProv,parte:parte,pedimento:pedimento}]);   
   }  
   

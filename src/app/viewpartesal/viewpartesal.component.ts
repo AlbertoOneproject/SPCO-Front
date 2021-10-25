@@ -7,11 +7,11 @@ import { DeleteparteComponent } from '../deleteparte/deleteparte.component';
 import { Login, Partes } from './../model'
 
 @Component({
-  selector: 'app-viewpartes',
-  templateUrl: './viewpartes.component.html',
-  styleUrls: ['./viewpartes.component.css']
+  selector: 'app-viewpartesal',
+  templateUrl: './viewpartesal.component.html',
+  styleUrls: ['./viewpartesal.component.css']
 })
-export class ViewpartesComponent implements OnInit {
+export class ViewpartesalComponent implements OnInit {
   login         : Login;
   perfil        :boolean;
   currentPartes : Partes;

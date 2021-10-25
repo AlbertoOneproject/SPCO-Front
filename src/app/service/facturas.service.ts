@@ -100,4 +100,14 @@ altafacturas(facturas: Facturas){
     }));
 }
 
+//  Función: Modifica el registro en la tabla SYS_ADU_PART 
+//  Componentes que utilizan el servicio:
+//             - editpartes.component.ts  
+editfactura(facturas: Facturas){
+  return this.http.put<Facturas>(`${environment.SERVER_URL}/AduFact`,facturas)
+      .pipe(map(dataput => {
+    return dataput;
+  }));
+}  
+
 }

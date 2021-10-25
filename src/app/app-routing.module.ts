@@ -28,6 +28,15 @@ import { EditparteComponent } from './editparte/editparte.component';
 import { FacturasComponent } from './facturas/facturas.component';
 import { ViewfacturasComponent } from './viewfacturas/viewfacturas.component';
 import { AltafacturasComponent } from './altafacturas/altafacturas.component';
+import { EditfacturasComponent } from './editfacturas/editfacturas.component';
+
+import { PartessalComponent } from './partessal/partessal.component';
+import { ViewpartesalComponent } from './viewpartesal/viewpartesal.component';
+
+import { FacturasalComponent } from './facturasal/facturasal.component';
+import { ViewfacturasalComponent } from './viewfacturasal/viewfacturasal.component';
+import { AltafacturasalComponent } from './altafacturasal/altafacturasal.component';
+import { EditfacturasalComponent } from './editfacturasal/editfacturasal.component';
 
 import { AduanalComponent } from './aduanal/aduanal.component';
 import { ViewaduanalComponent } from './viewaduanal/viewaduanal.component';
@@ -79,6 +88,15 @@ const routes: Routes = [
   { path: 'facturas', component: FacturasComponent },
   { path: 'viewfacturas', component: ViewfacturasComponent },
   { path: 'altafactura/:Tipo', component: AltafacturasComponent },
+  { path: 'editfacturas', component: EditfacturasComponent },
+    
+  { path: 'partesal', component: PartessalComponent },
+  { path: 'viewpartesal', component: ViewpartesalComponent },
+
+  { path: 'facturasal', component: FacturasalComponent },
+  { path: 'viewfacturasal', component: ViewfacturasalComponent },
+  { path: 'altafacturasal/:Tipo', component: AltafacturasalComponent },
+  { path: 'editfacturasal', component: EditfacturasalComponent },
 
   { path: 'aduanal', component: AduanalComponent },
   { path: 'viewaduanal/:numPat', component: ViewaduanalComponent },

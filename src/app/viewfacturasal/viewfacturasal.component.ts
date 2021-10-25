@@ -7,11 +7,11 @@ import { DeletefacturaComponent } from '../deletefactura/deletefactura.component
 import { Login, Facturas } from './../model'
 
 @Component({
-  selector: 'app-viewfacturas',
-  templateUrl: './viewfacturas.component.html',
-  styleUrls: ['./viewfacturas.component.css']
+  selector: 'app-viewfacturasal',
+  templateUrl: './viewfacturasal.component.html',
+  styleUrls: ['./viewfacturasal.component.css']
 })
-export class ViewfacturasComponent implements OnInit {
+export class ViewfacturasalComponent implements OnInit {
   login               : Login;
   perfil              :boolean;
   currentFacturas     : Facturas;
@@ -189,7 +189,8 @@ export class ViewfacturasComponent implements OnInit {
 
   
   editfactura(idCliProv:string, numPart: string, numFact: string){
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/editfacturas';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/editfacturasal';
     this.router.navigate([this.returnUrl,{idCliProv: idCliProv, numPart: numPart, numFact: numFact}]);  
   }
 }
+

@@ -477,4 +477,3 @@ export class EditaduanalComponent implements OnInit {
     });
   }    // Cierre del método msgok
 }
-

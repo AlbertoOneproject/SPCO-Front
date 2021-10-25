@@ -9,11 +9,11 @@ import { MatDialog} from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-altafacturas',
-  templateUrl: './altafacturas.component.html',
-  styleUrls: ['./altafacturas.component.css']
+  selector: 'app-altafacturasal',
+  templateUrl: './altafacturasal.component.html',
+  styleUrls: ['./altafacturasal.component.css']
 })
-export class AltafacturasComponent implements OnInit {
+export class AltafacturasalComponent implements OnInit {
   dataPais      : Sysdtape
   dataCli       : any[]=[];
   dataPart      : any[]=[];
@@ -28,7 +28,7 @@ export class AltafacturasComponent implements OnInit {
   datawork      : any=[];
   clvap         : string;
   tipo          : string;
-  altafacturas  : FormGroup;
+  altafacturasal: FormGroup;
   msg           = '';
   CteSel        : string;
   usuari        : Login
@@ -176,7 +176,7 @@ export class AltafacturasComponent implements OnInit {
 
 
   formafb() {
-        this.altafacturas = this.fb.group({
+        this.altafacturasal = this.fb.group({
           'listaallCte':       new FormControl('',[Validators.required]),
           'listaallPartes':    new FormControl('',[Validators.required]),
           'listaallPedimento': new FormControl('',[Validators.required]),       
@@ -281,25 +281,25 @@ export class AltafacturasComponent implements OnInit {
     for (let i=0; i < this.dataPedimento.length; i++){
       if (this.dataPedimento[i].numPedimento == id1.target.value){
            this.currentPartes = this.dataPedimento[i];
-          this.altafacturas.controls['fechaEntrada'].setValue(this.dataPedimento[i].fechaEntrada);
-          this.altafacturas.controls['tipCambio'   ].setValue(this.dataPedimento[i].tipCambio);
+          this.altafacturasal.controls['fechaEntrada'].setValue(this.dataPedimento[i].fechaEntrada);
+          this.altafacturasal.controls['tipCambio'   ].setValue(this.dataPedimento[i].tipCambio);
       }
     }
   } // Cierre del método completarPartes
 
 
   cancelar(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturas';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturasal';
     this.router.navigate([this.returnUrl]);   
   }    // Cierre del método cancelar
 
 
 // convenience getter for easy access to form fields
-    get f() { return this.altafacturas.controls; }
+    get f() { return this.altafacturasal.controls; }
 
 
   enviar() {   
-    if (this.altafacturas.invalid) {
+    if (this.altafacturasal.invalid) {
         this.alertService.error("Es necesario capturar todos los campos que tienen * ");
         this.loading = false;
         return;
@@ -308,7 +308,7 @@ export class AltafacturasComponent implements OnInit {
         this.armausuario();
         console.log(this.currentFacturas)
         this.loading = true;
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturas';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturasal';
         this.facturasService.altafacturas(this.currentFacturas)
             .pipe(first())
             .subscribe(
@@ -322,7 +322,7 @@ export class AltafacturasComponent implements OnInit {
                         this.alertService.error(this.msg);
                     }
                     error => {
-                      this.alertService.error("Error en el Alta de Aduana Factruas");
+                      this.alertService.error("Error en el Alta de Aduana Facturasl Salida");
                       this.loading = false;
                     }
                 });       
