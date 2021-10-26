@@ -109,7 +109,7 @@ export class AduanalComponent implements OnInit {
           }
         },
         error => {
-          this.alertService.error("Error en la consulta del Catálogo de Clientes");              
+          this.alertService.error("Error en la consulta del Catálogo de Agente Aduanal");              
           this.loading = false;
         });
   } // Cierre del método catClientes

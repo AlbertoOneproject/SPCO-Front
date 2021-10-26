@@ -42,6 +42,8 @@ export class AltafacturasComponent implements OnInit {
   orders        = [];
   numPedimentoSalida: string = "";
   estatus       : string = "T";
+  CteParam      : string = "";
+  CteParamBol   : boolean = false;
 
 
   constructor(
@@ -58,6 +60,13 @@ export class AltafacturasComponent implements OnInit {
     private dialog                  : MatDialog,
   ) { 
     this.orders = this.getOrders();
+      if (this.route.snapshot.paramMap.get('cliente') != "0"  ){
+        this.CteParam = this.route.snapshot.paramMap.get('cliente');
+        this.CteParamBol = true;
+      }else{
+        this.CteParamBol = false;
+        this.CteParam = '0';
+      }
   }
 
 
@@ -76,6 +85,11 @@ export class AltafacturasComponent implements OnInit {
     this.tipo      = '5';
     this.consultaTipoCte(this.tipo);
     this.formafb();
+    if (this.CteParamBol) {
+        this.altafacturas.controls['idCliProv'].setValue(this.CteParam);
+        this.catPartCtee(this.CteParam);
+    }
+
     this.llenaAduanal();
     this.usuari    = JSON.parse(localStorage.getItem('currentUserLog'));
     let usuario    = this.usuari["idUsuario"];
@@ -177,7 +191,8 @@ export class AltafacturasComponent implements OnInit {
 
   formafb() {
         this.altafacturas = this.fb.group({
-          'listaallCte':       new FormControl('',[Validators.required]),
+          'idCliProv':         new FormControl(''),
+          'listaallCte':       new FormControl(''),
           'listaallPartes':    new FormControl('',[Validators.required]),
           'listaallPedimento': new FormControl('',[Validators.required]),       
           'numFact':           new FormControl('',[Validators.required]),
@@ -230,12 +245,14 @@ export class AltafacturasComponent implements OnInit {
         });
   }  // Cierre del método llenaAduanal
   
-
   catPartCte(id1: any){
-    console.log("catPartsinCte  id1")
-    console.log(id1.target.value)
-    this.CteSel  = id1.target.value;
-    this.partesService.catPartCte(id1.target.value)
+    this.catPartCtee(id1.target.value);
+  }
+
+
+  catPartCtee(Cte: string){
+    this.CteSel  = Cte;
+    this.partesService.catPartCte(Cte)
     .pipe(first())
     .subscribe(
         data => {
@@ -243,7 +260,7 @@ export class AltafacturasComponent implements OnInit {
              this.dataPart = data.contenido;
              console.log("dataPart")
              console.log(this.dataPart)
-//             this.f.listaallPartes.patchValue(this.dataPart);
+//             this.f.listaallPartes.patchValue(this.dataPart); 
           }
         },
         error => {
@@ -377,9 +394,10 @@ export class AltafacturasComponent implements OnInit {
           hora                  : this.currentPartes.hora               , 
           userMod               : this.currentPartes.userMod            , 
           estatus               : this.estatus                          , 
-
-
      }    
+     if ( this.CteParamBol ){
+         this.currentFacturas.idCliProv =  this.CteParam; 
+     }
   }     // Cierre del metodo armausuario
 
 

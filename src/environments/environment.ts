@@ -5,6 +5,7 @@
 export const environment = {
   //SERVER_URL: 'http://192.168.200.14:9898',
   //SERVER_URL: 'http://192.168.1.27:8080/spco-0.0.1',
+  //Robert SERVER_URL: 'http://192.168.1.7',
   SERVER_URL: 'https://localhost:9443',
   production: false,
   useHash: true,

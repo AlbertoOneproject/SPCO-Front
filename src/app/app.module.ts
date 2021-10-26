@@ -74,7 +74,8 @@ import { ViewpartesalComponent } from './viewpartesal/viewpartesal.component';
 import { AltafacturasalComponent } from './altafacturasal/altafacturasal.component';
 import { EditfacturasalComponent } from './editfacturasal/editfacturasal.component';
 import { FacturasalComponent } from './facturasal/facturasal.component';
-import { ViewfacturasalComponent } from './viewfacturasal/viewfacturasal.component'
+import { ViewfacturasalComponent } from './viewfacturasal/viewfacturasal.component';
+import { DashboardComponent } from './dashboard/dashboard.component'
 
 
 @NgModule({
@@ -143,7 +144,8 @@ import { ViewfacturasalComponent } from './viewfacturasal/viewfacturasal.compone
     AltafacturasalComponent,
     EditfacturasalComponent,
     FacturasalComponent,
-    ViewfacturasalComponent
+    ViewfacturasalComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

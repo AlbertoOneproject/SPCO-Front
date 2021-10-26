@@ -31,6 +31,7 @@ export class FacturasComponent implements OnInit {
   returnUrl       : string;
   currentFacturas : Facturas;
   descripcion     :string="";
+  cliente         :string="0";
 
   constructor(
     private formBuilder     : FormBuilder,
@@ -98,8 +99,9 @@ export class FacturasComponent implements OnInit {
 
 
   consultaFacturas(idCliProv:string, numParte:string, page: number, perPage: number, perName: string)  {    
-    this.idCliProv = idCliProv;
-    this.numParte  = numParte;
+    this.idCliProv  = idCliProv;
+    this.cliente    = idCliProv;
+    this.numParte   = numParte;
     this.facturasService.FacturasCte(idCliProv, numParte, page, perPage, perName)
     .pipe(first())
     .subscribe(

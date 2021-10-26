@@ -9,7 +9,7 @@
                 <div class="toolbar">
                     <h4>Lista de Facturas Partes</h4>
                     <div class="col-12 text-right" *ngIf="perfil">
-                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altafactura',idCliProv]">+</a>
+                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altafactura',cliente]">+</a>
                     </div>
                     <div class="col-12 text-right" *ngIf="!perfil">
                         <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
@@ -45,18 +45,18 @@
         <table class="table">
             <thead>
                 <tr class="graybg" *ngIf="detalle">
-                    <th>Número de Parte</th>
-                    <th>Número de Factura</th>
-                    <th>Número de Pedimento</th>
+                    <th style="text-align: center">Número de Parte</th>
+                    <th style="text-align: center">Número de Factura</th>
+                    <th style="text-align: center">Número de Pedimento</th>
                 </tr>
             </thead>
 
             <tbody>
 
                 <tr class="pointer-main" *ngFor="let listpartes of currentFacturas">
-                    <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numPart}}</td>
-                    <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numFact}}</td>
-                    <td class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numPedimentoEntrada}}</td>
+                    <td style="text-align: center" class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numPart}}</td>
+                    <td style="text-align: center" class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numFact}}</td>
+                    <td style="text-align: center"   class="pointer" (click)="routeTo(listpartes.idCliProv,listpartes.numPart,listpartes.numFact)">{{listpartes.numPedimentoEntrada}}</td>
                 </tr>
 
             </tbody>

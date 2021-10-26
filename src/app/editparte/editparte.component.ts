@@ -132,7 +132,7 @@ formafb() {
     'numPart':       new FormControl('',[Validators.required]),
     'numPedimento':  new FormControl('',[Validators.required]),
     'fechaEntrada':  new FormControl('',[Validators.required]),
-    'listaallpais':  new FormControl('',[Validators.required]),
+    'listaallpais':  new FormControl(''),
     'listaallprod':  new FormControl('',[Validators.required]),
     'producto':      new FormControl(''),
     'descIngles':    new FormControl(''),
@@ -394,7 +394,7 @@ consultaDatosPartes(){
   
   armausuario(){
       this.currentPartes = {
-        idCliProv	    : this.f.listaallCte.value,
+        idCliProv	    : this.f.idCliProv.value,
         numPart  	    : this.f.numPart.value,
         numPedimento	: this.f.numPedimento.value,
         fechaEntrada	: this.f.fechaEntrada.value,          
@@ -424,16 +424,10 @@ consultaDatosPartes(){
         hora          : this.curr1, 
         userMod       : this.usuario.substring(0, 8),
       }
-        if (this.f.listaallapC.value == ""){
-            this.currentPartes.uMC = this.uMC
-        } 
-        if (this.f.listaallapT.value == ""){
-            this.currentPartes.uMT = this.uMT
-      } 
     }     // Cierre del metodo armausuario
 
    
-  cancelar(idCliProv: string): void {
+  cancelar(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/partes';
     this.router.navigate([this.returnUrl]);   
   }     // Cierre del metodo cancelar
@@ -443,11 +437,19 @@ consultaDatosPartes(){
     const dialogRef = this.dialog.open(MsgokpComponent, {
       width: '400px',
       height: '200px',
-      //data: {idUsuario: this.idUsuario}
+      //data: {idUsuario: this.idUsuario} 
     });
   
     dialogRef.afterClosed().subscribe(result => {
       //this.email = result;
     });
   }    // Cierre del método msgok
+
+  factura(idCliProv: string): void {
+    console.log("hacía factura")
+    console.log(idCliProv)
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/altafactura/'+idCliProv;
+    console.log(this.returnUrl);
+    this.router.navigate([this.returnUrl]);
+  }
 }
