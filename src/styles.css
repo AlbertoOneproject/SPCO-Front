@@ -27854,8 +27854,8 @@ span.required {
 /* line 393, ../styles-dev/main/components/_content.scss */
 
 .card {
-    background: #fff;
-    display: block;
+    background: #fff; 
+    /*display: block;*/
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);

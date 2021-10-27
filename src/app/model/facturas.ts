@@ -44,6 +44,7 @@ export class Facturas {
     hora                : string;
     userMod             : string;
     estatus             : string;
+    entSal              : string;
 
     constructor(facturas) {
 
@@ -90,6 +91,7 @@ export class Facturas {
         this.fechaMod             = facturas.fechaMod             ,
         this.hora                 = facturas.hora                 ,
         this.userMod              = facturas.userMod              ,
-        this.estatus              = facturas.estatus              
+        this.estatus              = facturas.estatus              ,
+        this.entSal               = facturas.entSal              
     }
 }

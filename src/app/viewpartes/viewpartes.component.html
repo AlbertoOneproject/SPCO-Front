@@ -11,6 +11,9 @@
                 </button>
                 <button type="button" (click)="deleteparte()" class="btn btn-danger" has-permission='DELETE_USER'>
                     <i class="fa fa-trash-o"></i> Eliminar                 
+                </button>                
+                <button type="button" class="btn btn-primary" (click)="factura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Factura
                 </button>
             </div>
             <div class="form-group" *ngIf="!perfil">
@@ -18,8 +21,10 @@
                     Editar
                 </button>
                 <button disabled type="button" (click)="deleteparte()" class="btn btn-danger" has-permission='DELETE_USER'>
-                    <i class="fa fa-trash-o"></i> Eliminar
-                   
+                    <i class="fa fa-trash-o"></i> Eliminar                   
+                </button>
+                <button disabled type="button" class="btn btn-primary" (click)="factura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Factura
                 </button>
             </div>
         </div>

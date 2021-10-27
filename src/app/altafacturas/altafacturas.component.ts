@@ -42,6 +42,7 @@ export class AltafacturasComponent implements OnInit {
   orders        = [];
   numPedimentoSalida: string = "";
   estatus       : string = "T";
+  entSal        : string = "E";
   CteParam      : string = "";
   CteParamBol   : boolean = false;
 
@@ -394,6 +395,7 @@ export class AltafacturasComponent implements OnInit {
           hora                  : this.currentPartes.hora               , 
           userMod               : this.currentPartes.userMod            , 
           estatus               : this.estatus                          , 
+          entSal                : this.entSal                           , 
      }    
      if ( this.CteParamBol ){
          this.currentFacturas.idCliProv =  this.CteParam; 
@@ -412,5 +414,5 @@ export class AltafacturasComponent implements OnInit {
     });
   }
 
-
+  
 } //Cierre principal

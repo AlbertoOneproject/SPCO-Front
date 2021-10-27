@@ -152,9 +152,12 @@ export class ViewpartesalComponent implements OnInit {
     });
   }
 
-  editparte(idCliProv:string, numPart: string, numPedimento: string){
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/editpartes';
-    this.router.navigate([this.returnUrl,{idCliProv: idCliProv, numPart: numPart, numPedimento: numPedimento}]);  
+  factura(idCliProv: string): void {
+    console.log("hacía factura Sal")
+    console.log(idCliProv)
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/altafacturasal/'+idCliProv;
+    console.log(this.returnUrl);
+    this.router.navigate([this.returnUrl]);
   }
 
 }

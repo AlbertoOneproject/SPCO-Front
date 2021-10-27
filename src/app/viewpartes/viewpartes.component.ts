@@ -157,4 +157,12 @@ export class ViewpartesComponent implements OnInit {
     this.router.navigate([this.returnUrl,{idCliProv: idCliProv, numPart: numPart, numPedimento: numPedimento}]);  
   }
 
+  factura(idCliProv: string): void {
+    console.log("hacía factura")
+    console.log(idCliProv)
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/altafactura/'+idCliProv;
+    console.log(this.returnUrl);
+    this.router.navigate([this.returnUrl]);
+  }
+
 }

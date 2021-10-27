@@ -99,7 +99,7 @@ const routes: Routes = [
 
   { path: 'facturasal', component: FacturasalComponent },
   { path: 'viewfacturasal', component: ViewfacturasalComponent },
-  { path: 'altafacturasal/:Tipo', component: AltafacturasalComponent },
+  { path: 'altafacturasal/:cliente', component: AltafacturasalComponent },
   { path: 'editfacturasal', component: EditfacturasalComponent },
 
   { path: 'aduanal', component: AduanalComponent },

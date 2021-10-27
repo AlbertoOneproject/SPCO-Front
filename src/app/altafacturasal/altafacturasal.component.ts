@@ -42,6 +42,9 @@ export class AltafacturasalComponent implements OnInit {
   orders        = [];
   numPedimentoSalida: string = "";
   estatus       : string = "T";
+  entSal        : string = "S";
+  CteParam      : string = "";
+  CteParamBol   : boolean = false;
 
 
   constructor(
@@ -58,6 +61,13 @@ export class AltafacturasalComponent implements OnInit {
     private dialog                  : MatDialog,
   ) { 
     this.orders = this.getOrders();
+    if (this.route.snapshot.paramMap.get('cliente') != "0"  ){
+      this.CteParam = this.route.snapshot.paramMap.get('cliente');
+      this.CteParamBol = true;
+    }else{
+      this.CteParamBol = false;
+      this.CteParam = '0';
+    }
   }
 
 
@@ -77,6 +87,10 @@ export class AltafacturasalComponent implements OnInit {
     this.consultaTipoCte(this.tipo);
     this.formafb();
     this.llenaAduanal();
+    if (this.CteParamBol) {
+      this.altafacturasal.controls['idCliProv'].setValue(this.CteParam);
+      this.catPartCtee(this.CteParam);
+  }
     this.usuari    = JSON.parse(localStorage.getItem('currentUserLog'));
     let usuario    = this.usuari["idUsuario"];
     let empresa    = this.usuari["idEmpresa"];
@@ -177,9 +191,11 @@ export class AltafacturasalComponent implements OnInit {
 
   formafb() {
         this.altafacturasal = this.fb.group({
-          'listaallCte':       new FormControl('',[Validators.required]),
+          'idCliProv':         new FormControl(''),
+          'listaallCte':       new FormControl(''),
           'listaallPartes':    new FormControl('',[Validators.required]),
           'listaallPedimento': new FormControl('',[Validators.required]),       
+          'numPedimentoSalida':new FormControl(''),
           'numFact':           new FormControl('',[Validators.required]),
           'orders':            new FormControl('',[Validators.required]),
           'fechaEntrada':      new FormControl('',[Validators.required]),
@@ -229,13 +245,16 @@ export class AltafacturasalComponent implements OnInit {
             this.loading = false;
         });
   }  // Cierre del método llenaAduanal
-  
+ 
 
   catPartCte(id1: any){
-    console.log("catPartsinCte  id1")
-    console.log(id1.target.value)
-    this.CteSel  = id1.target.value;
-    this.partesService.catPartCte(id1.target.value)
+    this.catPartCtee(id1.target.value);
+  }  
+
+
+  catPartCtee(Cte: string){
+    this.CteSel  = Cte;
+    this.partesService.catPartCte(Cte)
     .pipe(first())
     .subscribe(
         data => {
@@ -332,31 +351,31 @@ export class AltafacturasalComponent implements OnInit {
 
   armausuario(){
       this.currentFacturas = {
-          idCliProv             : this.f.listaallCte.value      ,
-          numPart							  : this.f.listaallPartes.value   ,    
-          numFact               : this.f.numFact.value          ,   
-          iDImpoEexpo           : this.f.orders.value           ,   
-          fechaEntrada          : this.f.fechaEntrada.value     ,   
-          paisFact              : this.f.listaallpais.value     ,   
-          numPedimentoEntrada   : this.f.listaallPedimento.value,   
-          cLVPedi               : this.f.listaallcLVPedi.value  ,   
-          numPate               : this.f.listaallnumPate.value  ,   
-          aduana                : this.f.listaalladuana.value   ,   
-          transport             : this.f.listaalltransport.value,   
-          clieOrig              : this.f.listaallclieOrig.value ,   
-          clieDest              : this.f.listaallclieDest.value ,   
-          iNCOTERM              : this.f.listaallincoterm.value ,   
-          nUMPlacaTr            : this.f.nUMPlacaTr.value       ,   
-          nUMGuia               : this.f.nUMGuia.value          ,   
-          contCaja              : this.f.contCaja.value         ,   
-          selloCand1            : this.f.selloCand1.value       ,   
-          selloCand2            : this.f.selloCand2.value       ,   
-          selloCand3            : this.f.selloCand3.value       ,   
-          nombChofTr            : this.f.NombChofTR.value       ,   
-          pO                    : this.f.po.value               ,   
-          observaciones         : this.f.observaciones.value    ,   
+          idCliProv             : this.f.listaallCte.value       ,
+          numPart							  : this.f.listaallPartes.value    ,    
+          numFact               : this.f.numFact.value           ,   
+          iDImpoEexpo           : this.f.orders.value            ,   
+          fechaEntrada          : this.f.fechaEntrada.value      ,   
+          paisFact              : this.f.listaallpais.value      ,   
+          numPedimentoEntrada   : this.f.listaallPedimento.value ,   
+          numPedimentoSalida    : this.f.numPedimentoSalida.value, 
+          cLVPedi               : this.f.listaallcLVPedi.value   ,   
+          numPate               : this.f.listaallnumPate.value   ,   
+          aduana                : this.f.listaalladuana.value    ,   
+          transport             : this.f.listaalltransport.value ,   
+          clieOrig              : this.f.listaallclieOrig.value  ,   
+          clieDest              : this.f.listaallclieDest.value  ,   
+          iNCOTERM              : this.f.listaallincoterm.value  ,   
+          nUMPlacaTr            : this.f.nUMPlacaTr.value        ,   
+          nUMGuia               : this.f.nUMGuia.value           ,   
+          contCaja              : this.f.contCaja.value          ,   
+          selloCand1            : this.f.selloCand1.value        ,   
+          selloCand2            : this.f.selloCand2.value        ,   
+          selloCand3            : this.f.selloCand3.value        ,   
+          nombChofTr            : this.f.NombChofTR.value        ,   
+          pO                    : this.f.po.value                ,   
+          observaciones         : this.f.observaciones.value     ,   
 
-          numPedimentoSalida    : this.numPedimentoSalida               , 
           tipoCambio            : this.currentPartes.tipCambio          , 
           producto              : this.currentPartes.producto           , 
           cantidad              : this.currentPartes.cantidad           , 
@@ -377,9 +396,14 @@ export class AltafacturasalComponent implements OnInit {
           hora                  : this.currentPartes.hora               , 
           userMod               : this.currentPartes.userMod            , 
           estatus               : this.estatus                          , 
-
-
+          entSal                : this.entSal                           , 
      }    
+     if ( this.CteParamBol ){
+      this.currentFacturas.idCliProv =  this.CteParam; 
+     }
+     if (this.numPedimentoSalida == ""){
+         this.numPedimentoSalida = "0";
+     }
   }     // Cierre del metodo armausuario
 
 

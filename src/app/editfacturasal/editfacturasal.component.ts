@@ -62,6 +62,7 @@ export class EditfacturasalComponent implements OnInit {
   hora                : string;
   userMod             : string;
   estatus             : string;
+  entSal              : string;
   
   datacLVPedi         : any[]=[];
   datanumPate         : any[]=[];
@@ -188,6 +189,7 @@ export class EditfacturasalComponent implements OnInit {
       'idCliProv':           new FormControl('',[Validators.required]),
       'numPart':             new FormControl('',[Validators.required]),
       'numPedimentoEntrada': new FormControl('',[Validators.required]),       
+      'numPedimentoSalida':  new FormControl(''),       
       'numFact':             new FormControl('',[Validators.required]),
       'gender':              new FormControl('',[Validators.required]),
       'fechaEntrada':        new FormControl('',[Validators.required]),
@@ -250,6 +252,7 @@ export class EditfacturasalComponent implements OnInit {
                     this.editfacturasal.controls['idCliProv'           ].setValue(this.currentFacturas.idCliProv           );
                     this.editfacturasal.controls['numPart'             ].setValue(this.currentFacturas.idCliProv           );
                     this.editfacturasal.controls['numPedimentoEntrada' ].setValue(this.currentFacturas.numPedimentoEntrada );
+                    this.editfacturasal.controls['numPedimentoSalida'  ].setValue(this.currentFacturas.numPedimentoSalida  );
                     this.editfacturasal.controls['numFact'             ].setValue(this.currentFacturas.numFact             );
                     this.editfacturasal.controls['fechaEntrada'        ].setValue(this.currentFacturas.fechaEntrada        );
                     this.editfacturasal.controls['tipCambio'           ].setValue(this.currentFacturas.tipoCambio          );                    
@@ -307,6 +310,7 @@ export class EditfacturasalComponent implements OnInit {
                     this.hora                     = this.currentFacturas.hora                 ;
                     this.userMod                  = this.currentFacturas.userMod              ;
                     this.estatus                  = this.currentFacturas.estatus              ;         
+                    this.entSal                   = this.currentFacturas.entSal               ;         
 
                     if(this.iDImpoEexpo == '1'){
                       this.editfacturasal.controls['gender'].setValue('1');
@@ -362,28 +366,28 @@ export class EditfacturasalComponent implements OnInit {
 
     armausuario(){    
       this.currentFacturas = {
-        idCliProv             : this.f.idCliProv.value        ,
-        numPart							  : this.f.numPart.value          ,    
-        numFact               : this.f.numFact.value          ,   
-        iDImpoEexpo           : this.f.gender.value           , 
-        fechaEntrada          : this.f.fechaEntrada.value     ,   
-        paisFact              : this.f.listaallpais.value     ,   
+        idCliProv             : this.f.idCliProv.value          ,
+        numPart							  : this.f.numPart.value            ,    
+        numFact               : this.f.numFact.value            ,   
+        iDImpoEexpo           : this.f.gender.value             , 
+        fechaEntrada          : this.f.fechaEntrada.value       ,   
+        paisFact              : this.f.listaallpais.value       ,   
         numPedimentoEntrada   : this.f.numPedimentoEntrada.value,   
-        cLVPedi               : this.f.listaallcLVPedi.value  ,   
-        numPate               : this.f.listaallnumPate.value  ,   
-        aduana                : this.f.listaalladuana.value   ,   
-        iNCOTERM              : this.f.listaallincoterm.value ,   
-        nUMPlacaTr            : this.f.nUMPlacaTr.value       ,   
-        nUMGuia               : this.f.nUMGuia.value          ,   
-        contCaja              : this.f.contCaja.value         ,   
-        selloCand1            : this.f.selloCand1.value       ,   
-        selloCand2            : this.f.selloCand2.value       ,   
-        selloCand3            : this.f.selloCand3.value       ,   
-        nombChofTr            : this.f.NombChofTR.value       ,   
-        pO                    : this.f.po.value               ,   
-        observaciones         : this.f.observaciones.value    ,   
+        numPedimentoSalida    : this.f.numPedimentoSalida.value , 
+        cLVPedi               : this.f.listaallcLVPedi.value    ,   
+        numPate               : this.f.listaallnumPate.value    ,   
+        aduana                : this.f.listaalladuana.value     ,   
+        iNCOTERM              : this.f.listaallincoterm.value   ,   
+        nUMPlacaTr            : this.f.nUMPlacaTr.value         ,   
+        nUMGuia               : this.f.nUMGuia.value            ,   
+        contCaja              : this.f.contCaja.value           ,   
+        selloCand1            : this.f.selloCand1.value         ,   
+        selloCand2            : this.f.selloCand2.value         ,   
+        selloCand3            : this.f.selloCand3.value         ,   
+        nombChofTr            : this.f.NombChofTR.value         ,   
+        pO                    : this.f.po.value                 ,   
+        observaciones         : this.f.observaciones.value      ,   
 
-        numPedimentoSalida    : this.numPedimentoSalida                 , 
         tipoCambio            : this.currentFacturas.tipoCambio         , 
         producto              : this.currentFacturas.producto           , 
         cantidad              : this.currentFacturas.cantidad           , 
@@ -404,6 +408,7 @@ export class EditfacturasalComponent implements OnInit {
         hora                  : this.currentFacturas.hora               ,
         userMod               : this.currentFacturas.userMod            ,
         estatus               : this.estatus                            ,
+        entSal                : this.entSal                             ,
 
         clieOrig              : this.f.listaallclieOrig.value           ,
         clieDest              : this.f.listaallclieDest.value           ,
