@@ -19,7 +19,7 @@
                     class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input disabled="true" type="text" id="idEmpresa" name="idEmpresa" value="{{idEmpresa}}" formControlName="Empresa" class="form-control" late-Validate/>
+                        <input disabled="true" type="text" id="idEmpresa" name="idEmpresa" value="{{idEmpresa}}" formControlName="idEmpresa" class="form-control" late-Validate/>
                     </div>
                 </div>
 
@@ -42,11 +42,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="idPerfil">Perfil:<span
-                    class="required">*</span></label>
+                    <label class="control-label col-sm-2">Perfil<span
+	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="idPerfil" name="idPerfil" value="{{idPerfil}}" formControlName="idPerfil" class="form-control" minlength="1" maxlength="4" required late-Validate/>
+                        <select formControlName="listaallPerf" id="listaallPerf" value="{{idPerfil}}" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaPerf of dataPerfiles; let i = index" 
+                                [value]="listaPerf" 
+                                >{{listaPerf}}
+                        </option>
+                    </select>
                     </div>
                 </div>
 

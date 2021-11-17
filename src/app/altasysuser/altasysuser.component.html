@@ -12,20 +12,47 @@
                 <legend>Crear usuario</legend>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="idEmpresa">Empresa<span
+                    <label class="control-label col-sm-2">Empresa<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="idEmpresa" name="idEmpresa" formControlName="idEmpresa" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="4" required late-Validate/>
+                        <select formControlName="listaallEmp" id="listaallEmp" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaEmp of dataEmp" 
+                                [value]="listaEmp" 
+                                >{{listaEmp}}
+                        </option>
+                    </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="idRecinto">Recinto<span
+                    <label class="control-label col-sm-2">Recinto<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="idRecinto" name="idRecinto" formControlName="idRecinto" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="4" required late-Validate/>
+                        <select formControlName="listaallRec" id="listaallRec" style="height: 180px" style="width: 185px" (change)="obtenPerfil($event)">
+                        <option 
+                                *ngFor="let listaRec of dataRecintos" 
+                                [value]="listaRec" 
+                                >{{listaRec}}
+                        </option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Perfil<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <select formControlName="listaallPerf" id="listaallPerf" style="height: 180px" style="width: 185px">
+                        <option 
+                                *ngFor="let listaPerf of dataPerfiles" 
+                                [value]="listaPerf" 
+                                >{{listaPerf}}
+                        </option>
+                    </select>
                     </div>
                 </div>
 
@@ -35,16 +62,6 @@
 
                     <div class="col-sm-3">
                         <input type="text" id="idUsuario" name="idUsuario" formControlName="idUsuario" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="9" required late-Validate/>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="idPerfil">Perfil<span
-	                    class="required">*</span></label>
-
-                    <div class="col-sm-3">
-                        <input type="text" id="idPerfil" name="idPerfil" formControlName="idPerfil" class="form-control" minlength="1" maxlength="4" required late-Validate/>
                     </div>
                 </div>
 
@@ -66,7 +83,6 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="intentos">Intentos<span
 	                    class="required">*</span></label>
@@ -75,7 +91,6 @@
                         <input type="text" id="intentos" name="intentos" formControlName="intentos" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="1" required late-Validate/>
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="estatus">Estatus<span

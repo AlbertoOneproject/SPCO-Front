@@ -152,9 +152,15 @@ export class ViewpartesComponent implements OnInit {
     });
   }
 
+
   editparte(idCliProv:string, numPart: string, numPedimento: string){
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/editpartes';
+    this.returnUrl     = this.route.snapshot.queryParams['returnUrl'] || '/editpartes';
     this.router.navigate([this.returnUrl,{idCliProv: idCliProv, numPart: numPart, numPedimento: numPedimento}]);  
   }
 
+
+  altafactura(idCliProv:string){
+    this.returnUrl     = this.route.snapshot.queryParams['returnUrl'] || '/altafactura/'+idCliProv;
+    this.router.navigate([this.returnUrl,{idCliProv: idCliProv}]);  
+  }
 }

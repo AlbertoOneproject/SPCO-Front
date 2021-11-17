@@ -1,6 +1,6 @@
 <div class="content-container" ng-controller="cteyprov.component.ts">
     <ul class="breadcrumb">
-        <li class="active">Clientes y Proveedores</li>
+        <li class="active">Clientes - Proveedores</li>
     </ul>
     <form [formGroup]="ctesyprovForm">
         <div class="col-12 text-right">
@@ -12,7 +12,7 @@
 -->
             <div class="card col-sm-10">
                 <div class="toolbar">
-                    <h4>Lista de Clientes y Proveedores</h4>
+                    <h4>Clientes - Proveedores</h4>
                     <div class="col-12 text-right" *ngIf="perfil">
                         <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altactesyprov',tipocte]">+</a>
                     </div>
@@ -24,9 +24,6 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         TIPO
                         </a >
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="text" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            TIPO
-                            </a >                        
         
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
                         <a class="dropdown-item" *ngFor="let listacte of cteyprod; let i = index;" (click)="consultaCteyprov(listacte.Tipo, 1, this.perPage, this.perName)"> 
@@ -41,20 +38,20 @@
             <table class="table">
                 <thead>
                     <tr class="graybg" *ngIf="detalle">
-                        <th>Recinto</th>
-                        <th>Clave Tipo</th>
-                        <th>Nombre</th>
-                        <th>R.F.C.</th>
+                        <th style="text-align: center">Recinto</th>
+                        <th style="text-align: center">Clave Tipo</th>
+                        <th style="text-align: center">Nombre</th>
+                        <th style="text-align: center">R.F.C.</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <tr class="pointer-main" *ngFor="let listctes of currentCteyprov">
-                        <td class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.recinto}}</td>
-                        <td class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.idCliProv}}</td>
-                        <td class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.nomDenov}}</td>
-                        <td class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.rfc}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.recinto}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.idCliProv}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.nomDenov}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listctes.idCliProv)">{{listctes.rfc}}</td>
                     </tr>
 
                 </tbody>

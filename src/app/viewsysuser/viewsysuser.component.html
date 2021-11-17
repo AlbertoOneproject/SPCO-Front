@@ -6,14 +6,14 @@
     <div class="card well">
         <div class="pull-right">
             <div class="form-group" *ngIf="perfil">
-                <button type="button" class="btn btn-primary" (click)="ireditsysuser(idUsuario)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                <button type="button" class="btn btn-primary" (click)="ireditsysuser(idUsuario)" has-permission='UPDATE_USER'><i class="fa fa-edit"></i>
                     Editar código
                 </button>
                 <button type="button" (click)="deletesysusr()" class="btn btn-danger" has-permission='DELETE_USER'>
                     <i class="fa fa-trash-o"></i> Eliminar
                    
                 </button>
-                <button type="button" class="btn btn-primary" (click)="changepsw()" has-permission='UPDATE_USER'><i class="fa fa-cog "></i>
+                <button type="button" class="btn btn-primary" (click)="changepsw()" has-permission='UPDATE_USER'><i class="fa fa-cog"></i>
                     Cambiar contraseña
                 </button>
             </div>
@@ -62,14 +62,6 @@
                     <tr>
                         <td>Fec. Est.: </td>
                         <td>{{fecEst}}</td>
-                    </tr>
-                    <tr>
-                        <td>User Mod: </td>
-                        <td>{{userMod}}</td>
-                    </tr>
-                    <tr>
-                        <td>Usuario Prog: </td>
-                        <td>{{progUser}}</td>
                     </tr>
                 </table>
             </div>

@@ -12,3 +12,4 @@ export * from './cteyprov.service';
 export * from './partes.service';
 export * from './facturas.service';
 export * from './aduanal.service';
+export * from './share.service';

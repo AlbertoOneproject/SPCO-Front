@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { LoginComponent } from './login';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { UsersComponent } from './users/users.component';
 import { AltasysuserComponent } from './altasysuser/altasysuser.component';
 import { ViewsysuserComponent } from './viewsysuser/viewsysuser.component';
@@ -63,8 +65,10 @@ const routes: Routes = [
   
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
-
+//  { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
+//  { path: 'dashboard', component: DashboardComponent },
+  
   { path: 'users', component: UsersComponent },
   { path: 'altasysuser', component: AltasysuserComponent },
   { path: 'viewsysuser/:idUsuario', component: ViewsysuserComponent },
@@ -87,7 +91,7 @@ const routes: Routes = [
   
   { path: 'facturas', component: FacturasComponent },
   { path: 'viewfacturas', component: ViewfacturasComponent },
-  { path: 'altafactura/:Tipo', component: AltafacturasComponent },
+  { path: 'altafactura/:idCliProv', component: AltafacturasComponent },
   { path: 'editfacturas', component: EditfacturasComponent },
     
   { path: 'partesal', component: PartessalComponent },
@@ -95,7 +99,7 @@ const routes: Routes = [
 
   { path: 'facturasal', component: FacturasalComponent },
   { path: 'viewfacturasal', component: ViewfacturasalComponent },
-  { path: 'altafacturasal/:Tipo', component: AltafacturasalComponent },
+  { path: 'altafacturasal/:cliente', component: AltafacturasalComponent },
   { path: 'editfacturasal', component: EditfacturasalComponent },
 
   { path: 'aduanal', component: AduanalComponent },

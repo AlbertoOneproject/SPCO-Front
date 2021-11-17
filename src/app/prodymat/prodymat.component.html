@@ -1,19 +1,19 @@
 <div class="content-container" ng-controller="prodymat.component.ts">
     <ul class="breadcrumb">
-        <li class="active">Productos y Materiales</li>
+        <li class="active">Productos - Materiales</li>
     </ul>
     <form [formGroup]="prodymatForm">
         <div class=" text-right">
             <div class="card">
                 <div class="toolbar">
-                    <h4>Lista de Productos y Materiales</h4>
+                    <h4>Productos - Materiales</h4>
                     <div class="col-12 text-right" *ngIf="perfil">
                         <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altaprodymat',cveprod]">+</a>
                     </div>
                     <div class="col-12 text-right" *ngIf="!perfil">
                         <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
                     </div>
-                    <div class="col-02 text-right" class="nav-item dropdown" style="text-align: left">
+                    <div class="col-14 text-right" class="nav-item dropdown" style="text-align: left">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         TIPO
                         </a >
@@ -37,20 +37,20 @@
             <table class="table">
                 <thead>
                     <tr class="graybg" *ngIf="detalle">
-                        <th>Recinto</th>
-                        <th>Clave Prod</th>
-                        <th>Descripción Corta</th>
-                        <th>Unidad de Medida</th>
+                        <th style="text-align: center">Recinto</th>
+                        <th style="text-align: center">Clave Prod</th>
+                        <th style="text-align: center">Descripción Corta</th>
+                        <th style="text-align: center">Unidad de Medida</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <tr class="pointer-main" *ngFor="let listprods of currentProdmat">
-                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.recinto}}</td>
-                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.clveProduc}}</td>
-                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.descCorta}}</td>
-                        <td class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.uM}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.recinto}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.clveProduc}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.descCorta}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listprods.clveProduc)">{{listprods.uM}}</td>
                     </tr>
 
                 </tbody>

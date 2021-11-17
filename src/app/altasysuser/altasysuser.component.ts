@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, LOCALE_ID  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertService, UsersService, RolService } from './../service';
+import { AlertService, UsersService, ShareService } from './../service';
 import { User } from '../model/user'
 import { first } from 'rxjs/operators';
 import { MsgokComponent } from './../msgok/msgok.component'
@@ -18,54 +18,120 @@ export class AltasysuserComponent implements OnInit {
   CurrentDate = new Date();
   curr = formatDate(this.CurrentDate, 'yyyy-MM-dd' ,this.locale);
 
-  altasysuserform: FormGroup;
-  usuari = User;
-  submitted = false;
-  msg= '';
-  datawork: any=[];
-  dataworkrol: any=[];
-  disponibles: any;
-  selectedLocations: any = [];
-  currString: string;
+  altasysuserform    : FormGroup;
+  usuari             = User;
+  submitted          = false;
+  msg                = '';
+  dataEmp            : any=[];
+  dataRecintos       : any=[];
+  dataPerfiles       : any=[];
+  datawork           : any=[];
+  usuario            : string;
+  empresa            : string;
+  recinto            : string;
 
-  progUser='SYSALTAS';
-  userMod = '24210010';
-  
-  
-  loading = false;
-  returnUrl: string;
-  currentSysUser: User;
-  public altauserrol = { appUserId: ' ', roleId: ' ' };
+  progUser           ='SYSALTAS';
+  userMod            = '24210010';
+
+  loading            = false;
+  returnUrl          : string;
+  currentSysUser     : User;
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
-    private activatedRoutee: ActivatedRoute,
-    private fb: FormBuilder,
-    private usersService: UsersService, 
-    private rolService: RolService, 
-    private alertService: AlertService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private dialog: MatDialog,
+    private fb            : FormBuilder,
+    private usersService  : UsersService, 
+    private shareService  : ShareService,
+    private alertService  : AlertService,
+    private route         : ActivatedRoute,
+    private router        : Router,
+    private dialog        : MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.submitted = true;
+    this.obtenEmp();
+    this.obtenRecinto();
     this.formafb();
-    //this.usuari = JSON.parse(localStorage.getItem('currentUserLog'));
-    //let userMod = this.usuari["idUsuario"];
+    this.usuari    = JSON.parse(localStorage.getItem('currentUserLog'));
+    let usuario    = this.usuari["idUsuario"];
+    let empresa    = this.usuari["idEmpresa"];
+    let recinto    = this.usuari["idRecinto"];
+    this.usuario   = usuario;
+    this.empresa   = empresa;
+    this.recinto   = recinto;
   } // Cierre del método ngOnInit
+
+
+  obtenEmp(){
+    this.shareService.empresas()
+    .pipe(first())
+    .subscribe(
+        data => {
+            if (data.cr=="00"){
+                this.dataEmp   = data.contenido;
+            }else {
+                this.alertService.error("Error al obtener información de Empresas");
+                this.loading = false;
+            }
+          },
+          error => {
+            this.alertService.error("Error en el Consulta de Empresas");
+            this.loading = false;
+        });
+  } // Cierre del método obtenEmp
+
+
+  obtenRecinto(){
+    this.shareService.recintos()
+    .pipe(first())
+    .subscribe(
+        data => {
+          console.log("Recintos")
+          console.log(data)
+            if (data.cr=="00"){
+                this.dataRecintos   = data.contenido;
+            }else {
+                this.alertService.error("Error al obtener información de Recintos");
+                this.loading = false;
+            }
+          },
+          error => {
+            this.alertService.error("Error en el Consulta de Recintos");
+            this.loading = false;
+        });
+  } // Cierre del método obtenRecinto
+
+
+  obtenPerfil(tp: any){
+    this.shareService.perfiles(this.f.listaallEmp.value, tp.target.value)
+    .pipe(first())
+    .subscribe(
+      data => {
+          if (data.cr=="00"){
+              this.dataPerfiles   = data.contenido;
+          }else {
+              this.alertService.error("Error al obtener información de Perfiles");
+              this.loading = false;
+          }
+        },
+        error => {
+          this.alertService.error("Error en el Consulta de Perfiles");
+          this.loading = false;
+      });
+} // Cierre del método obtenPerfil
+
 
   formafb() {
         this.altasysuserform = this.fb.group({
-          'idEmpresa': new FormControl('',[Validators.required]),
-          'idRecinto': new FormControl('',[Validators.required]),
-          'idUsuario': new FormControl('',[Validators.required]),
-          'idPerfil':  new FormControl('',[Validators.required]),
-          'password':  new FormControl('',[Validators.required]),
-          'repeatPassword':  new FormControl('',[Validators.required]),
-          'intentos':  new FormControl('',[Validators.required]),
-          'estatus':   new FormControl('',[Validators.required])
+          'listaallEmp'     : new FormControl('',[Validators.required]),
+          'listaallRec'     : new FormControl('',[Validators.required]),
+          'listaallPerf'    : new FormControl('',[Validators.required]),
+          'idUsuario'       : new FormControl('',[Validators.required]),
+          'password'        : new FormControl('',[Validators.required]),
+          'repeatPassword'  : new FormControl('',[Validators.required]),
+          'intentos'        : new FormControl('',[Validators.required]),
+          'estatus'         : new FormControl('',[Validators.required])
     }); 
   } // Cierre del método formafb
 
@@ -78,6 +144,7 @@ export class AltasysuserComponent implements OnInit {
 // convenience getter for easy access to form fields
     get f() { return this.altasysuserform.controls; }
 
+
   enviar() {
     
     if (this.altasysuserform.invalid) {
@@ -85,7 +152,6 @@ export class AltasysuserComponent implements OnInit {
         this.loading = false;
         return;
     }
-
 
     if (this.f.password.value === this.f.repeatPassword.value) {
         this.armausuario();
@@ -97,8 +163,11 @@ export class AltasysuserComponent implements OnInit {
                 data => {
                     this.datawork = data;
                     if (data.cr=="00"){
-                      this.msgok();
-                  }
+                        this.msgok();
+                    }else{
+                        this.alertService.error(data.descripcion);
+                        this.loading = false;                    
+                    }
                 error => {
                   this.alertService.error("Error en el Alta de Usuario");
                   this.loading = false;
@@ -115,18 +184,19 @@ export class AltasysuserComponent implements OnInit {
     
   armausuario(){
       this.currentSysUser = {
-          idEmpresa: this.f.idEmpresa.value,
-          idRecinto: this.f.idRecinto.value,
-          idUsuario: this.f.idUsuario.value,
-          idPerfil:  this.f.idPerfil.value,  
-          password:  this.f.password.value,  
-          intentos:  this.f.intentos.value,  
-          estatus:   this.f.estatus.value,  
-          fecEst:    this.curr,  
-          userMod:   this.userMod, 
-          progUser:  this.progUser,  
+          idEmpresa     : this.f.listaallEmp.value,
+          idRecinto     : this.f.listaallRec.value,
+          idPerfil      : this.f.listaallPerf.value,  
+          idUsuario     : this.f.idUsuario.value,
+          password      : this.f.password.value,  
+          intentos      : this.f.intentos.value,  
+          estatus       : this.f.estatus.value,  
+          fecEst        : this.curr,  
+          userMod       : this.usuario.substring(0, 8),
+          progUser      : this.progUser,  
       }        
   }     // Cierre del metodo armausuario
+
 
   msgok(): void {
     const dialogRef = this.dialog.open(MsgokComponent, {
