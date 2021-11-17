@@ -72,6 +72,7 @@ export class EditfacturasComponent implements OnInit {
   hora                : string;
   userMod             : string;
   estatus             : string;
+  entSal              : string;
   
   datacLVPedi         : any[]=[];
   datanumPate         : any[]=[];
@@ -317,6 +318,7 @@ export class EditfacturasComponent implements OnInit {
                     this.hora                     = this.currentFacturas.hora                 ;
                     this.userMod                  = this.currentFacturas.userMod              ;
                     this.estatus                  = this.currentFacturas.estatus              ;         
+                    this.entSal                   = this.currentFacturas.entSal               ;         
 
                     if(this.iDImpoEexpo == '1'){
                       this.editfacturas.controls['gender'].setValue('1');
@@ -414,6 +416,7 @@ export class EditfacturasComponent implements OnInit {
         hora                  : this.currentFacturas.hora               ,
         userMod               : this.currentFacturas.userMod            ,
         estatus               : this.estatus                            ,
+        entSal                : this.entSal                             ,
 
         clieOrig              : this.f.listaallclieOrig.value           ,
         clieDest              : this.f.listaallclieDest.value           ,

@@ -1,18 +1,18 @@
 <div class="content-container" ng-controller="viewpartes.component">
     <ul class="breadcrumb">
-        <li><a href="/partesal">Detalle de Apuntes Partes</a></li>
+        <li><a href="/partesal">Detalle de Apuntes Partes Salida</a></li>
         <li class="active">{{idCliProv}}&nbsp;{{numPart}}</li>
     </ul>
     <div class="card well">
         <div class="pull-right">
             <div class="form-group" *ngIf="perfil">
-                <button type="button" class="btn btn-primary" (click)="editparte(idCliProv, numPart, numPedimento)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
-                    Editar
+                <button type="button" class="btn btn-primary" (click)="factura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Factura
                 </button>
             </div>
             <div class="form-group" *ngIf="!perfil">
-                <button disabled type="button" class="btn btn-primary" (click)="editparte(idCliProv, numPart, numPedimento)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
-                    Editar
+                <button disabled type="button" class="btn btn-primary" (click)="factura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Factura
                 </button>
             </div>
         </div>

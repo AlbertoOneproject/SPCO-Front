@@ -10,10 +10,9 @@
                     Editar
                 </button>
                 <button type="button" (click)="deleteparte()" class="btn btn-danger" has-permission='DELETE_USER'>
-                    <i class="fa fa-trash-o"></i> 
-                    Eliminar                 
+                    <i class="fa fa-trash-o"></i> Eliminar                 
                 </button>
-                <button type="button" class="btn btn-primary" (click)="altafactura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                <button type="button" class="btn btn-primary" (click)="factura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
                     Factura
                 </button>
             </div>
@@ -22,10 +21,9 @@
                     Editar
                 </button>
                 <button disabled type="button" (click)="deleteparte()" class="btn btn-danger" has-permission='DELETE_USER'>
-                    <i class="fa fa-trash-o"></i> Eliminar
-                   
+                    <i class="fa fa-trash-o"></i> Eliminar                   
                 </button>
-                <button disabled type="button" class="btn btn-primary" (click)="altafactura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                <button disabled type="button" class="btn btn-primary" (click)="factura(idCliProv)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
                     Factura
                 </button>
             </div>

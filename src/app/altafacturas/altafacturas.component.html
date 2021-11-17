@@ -9,10 +9,14 @@
             <fieldset>
                 <legend>Crear Factura Partes</legend>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Número de Cliente: <span
-	                    class="required">*</span></label>
+                    <label class="control-label col-sm-2" for="idCliProv">Número de Cliente: <span
+	                    >*</span></label>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-3" *ngIf="CteParamBol">
+                        <input disabled type="text" id="idCliProv" name="idCliProv" formControlName="idCliProv" class="form-control" minlength="1" maxlength="10" />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="!CteParamBol">
                         <select formControlName="listaallCte" id="listaallCte" style="height: 180px" style="width: 185px" (change)="catPartCte($event)">
                         <option 
                                 *ngFor="let listaCte of dataCli" 

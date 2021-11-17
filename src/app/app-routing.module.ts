@@ -91,7 +91,7 @@ const routes: Routes = [
   
   { path: 'facturas', component: FacturasComponent },
   { path: 'viewfacturas', component: ViewfacturasComponent },
-  { path: 'altafactura/:idCliProv', component: AltafacturasComponent },
+  { path: 'altafactura/:cliente', component: AltafacturasComponent },
   { path: 'editfacturas', component: EditfacturasComponent },
     
   { path: 'partesal', component: PartessalComponent },
