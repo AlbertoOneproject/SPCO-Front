@@ -143,7 +143,6 @@ export class EditprodymatComponent implements OnInit {
       'costoUnitDLS':  new FormControl('',[Validators.required]),
       'costoUnitMXP':  new FormControl('',[Validators.required]),
       'monedaMandataria':  new FormControl('',[Validators.required]),
-//      'fraccAranc':    new FormControl('',[Validators.required]),
       'nico':          new FormControl('',[Validators.required]),
     }); 
   } // Cierre del método formafb
@@ -176,30 +175,33 @@ consultaDatosProdymat(){
 //                    this.editprodymat.controls['fraccAranc'].setValue(this.currentProdymat.fraccAranc)    ;
                     this.editprodymat.controls['nico'].setValue(this.currentProdymat.nico)                ;
 
-                    this.clveProduc			= this.currentProdymat.clveProduc  ;
-                    this.tipProd        = this.currentProdymat.tipProd     ;
-                    this.indVis         = this.currentProdymat.indVis      ;
-                    this.descCorta      = this.currentProdymat.descCorta   ;
-                    this.descLarga      = this.currentProdymat.descLarga   ;
-                    this.descCorIng     = this.currentProdymat.descCorIng  ;
-                    this.descLarIng     = this.currentProdymat.descLarIng  ;
-                    this.uMC            = this.currentProdymat.uMC         ;
-                    this.uMT            = this.currentProdymat.uMT         ;
-                    this.tipMat         = this.currentProdymat.tipMat      ;       
-                    this.empresa        = this.currentProdymat.empresa     ;
-                    this.recinto        = this.currentProdymat.recinto     ;
-                    this.fechaAlta      = this.currentProdymat.fechaAlta   ;
-                    this.fechaMod       = this.currentProdymat.fechaMod    ;
-                    this.hora           = this.currentProdymat.hora        ;
-                    this.userMod        = this.currentProdymat.userMod     ;
-                    this.convers        = this.currentProdymat.convers     ;
-                    this.costoUnitDLS   = this.currentProdymat.costoUnitDLS;
-                    this.costoUnitMXP   = this.currentProdymat.costoUnitMXP;
-                    this.costoUnitMXP   = this.currentProdymat.costoUnitMXP;
+                    this.clveProduc		  	= this.currentProdymat.clveProduc  ;
+                    this.tipProd          = this.currentProdymat.tipProd     ;
+                    this.indVis           = this.currentProdymat.indVis      ;
+                    this.descCorta        = this.currentProdymat.descCorta   ;
+                    this.descLarga        = this.currentProdymat.descLarga   ;
+                    this.descCorIng       = this.currentProdymat.descCorIng  ;
+                    this.descLarIng       = this.currentProdymat.descLarIng  ;
+                    this.uMC              = this.currentProdymat.uMC         ;
+                    this.uMT              = this.currentProdymat.uMT         ;
+                    this.tipMat           = this.currentProdymat.tipMat      ;       
+                    this.empresa          = this.currentProdymat.empresa     ;
+                    this.recinto          = this.currentProdymat.recinto     ;
+                    this.fechaAlta        = this.currentProdymat.fechaAlta   ;
+                    this.fechaMod         = this.currentProdymat.fechaMod    ;
+                    this.hora             = this.currentProdymat.hora        ;
+                    this.userMod          = this.currentProdymat.userMod     ;
+                    this.convers          = this.currentProdymat.convers     ;
+                    this.costoUnitDLS     = this.currentProdymat.costoUnitDLS;
+                    this.costoUnitMXP     = this.currentProdymat.costoUnitMXP;
+                    this.costoUnitMXP     = this.currentProdymat.costoUnitMXP;
                     this.monedaMandataria = this.currentProdymat.monedaMandataria  ;
-                    this.nico           = this.currentProdymat.nico        ;
+                    this.fraccAranc       = this.currentProdymat.fraccAranc  ;
+                    this.nico             = this.currentProdymat.nico        ;
                     console.log("editprodymat consultaDatosProdymat fraccAranc");
                     console.log(this.fraccAranc);
+                    this.editprodymat.controls['listaallFracc'].setValue(this.currentProdymat.fraccAranc);
+//                    this.editprodymat.controls['gender'].setValue('S');
                     if(this.indVis == 'S'){
                       this.editprodymat.controls['gender'].setValue('S');
                     }else if(this.indVis == 'N'){
