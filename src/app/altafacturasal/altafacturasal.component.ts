@@ -322,10 +322,8 @@ export class AltafacturasalComponent implements OnInit {
         cliente   = this.f.listaallCte.value; 
     }
     this.obtenExistencia(cliente, this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
-    
-
+  
     if (this.dataworkprod.contenido.sysCatProductos[id1.target.value].monedaMandataria == 'MXP'){
-        console.log("PESOS ==>" + this.f.cantidad.value)
         this.MonManda = true;
 
         this.altafacturasal.controls['costoUnitMXP'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitMXP);
@@ -339,7 +337,6 @@ export class AltafacturasalComponent implements OnInit {
     }
 
     if (this.dataworkprod.contenido.sysCatProductos[id1.target.value].monedaMandataria == 'USD'){
-      console.log("DOLARES")
       this.MonManda = false;
 
       this.altafacturasal.controls['costoUnitDLS'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitDLS);
