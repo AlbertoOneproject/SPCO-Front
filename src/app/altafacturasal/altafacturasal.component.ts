@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject, LOCALE_ID  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertService, PartesService, FacturasService, CteyprovService,SysdtapeService, AduanalService } from './../service';
-import { Facturas,Partes, Sysdtape, Login } from '../model'
+import { AlertService, PartesService, FacturasService, CteyprovService,SysdtapeService, AduanalService, ProdymatService } from './../service';
+import { Facturas,Partes, Sysdtape, Login, Prodymat } from '../model'
 import { first } from 'rxjs/operators';
 import { MsgokfComponent } from './../msgokf/msgokf.component'
 import { MatDialog} from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -15,6 +16,14 @@ import { MatDialog} from '@angular/material/dialog';
 })
 export class AltafacturasalComponent implements OnInit {
   dataPais      : Sysdtape
+  dataProd      : Prodymat;
+  dataExist     : any[]=[];
+  datadesMC     : any[];
+  datadesMT     : any[];
+  datafact      : any[];
+  dataworkprod  : any=[];
+  MonManda      : boolean=false;
+  ConDescr      : boolean=false;
   dataCli       : any[]=[];
   dataPart      : any[]=[];
   datacLVPedi   : any[]=[];
@@ -40,15 +49,22 @@ export class AltafacturasalComponent implements OnInit {
   currentPartes : Partes;
   currentFacturas : Facturas;
   orders        = [];
+  factor        : number;
+  nico          : string;
+  uMC           : string;
+  uMT           : string;
   numPedimentoSalida: string = "";
+  opc           : string = '0';
   estatus       : string = "T";
   entSal        : string = "S";
   CteParam      : string = "";
   CteParamBol   : boolean = false;
+  totalExist    : number=0;
 
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
+    private consprod                : ProdymatService,
     private consape                 : SysdtapeService,
     private conscte                 : CteyprovService,
     private fb                      : FormBuilder,
@@ -72,6 +88,7 @@ export class AltafacturasalComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.consultaProdymat();
     this.catClientes();
     this.clvap     = 'AP01';
     this.consultaDatosApl(this.clvap);    
@@ -98,6 +115,9 @@ export class AltafacturasalComponent implements OnInit {
     this.usuario   = usuario;
     this.empresa   = empresa;
     this.recinto   = recinto;
+    this.altafacturasal.controls['empresa'].setValue(this.empresa);
+    this.altafacturasal.controls['recinto'].setValue(this.recinto);
+
 
     //let userMod = this.usuari["idUsuario"];
   } // Cierre del método ngOnInit
@@ -192,6 +212,8 @@ export class AltafacturasalComponent implements OnInit {
   formafb() {
         this.altafacturasal = this.fb.group({
           'idCliProv':         new FormControl(''),
+          'empresa':           new FormControl(''),
+          'recinto':           new FormControl(''),
           'listaallCte':       new FormControl(''),
           'listaallPartes':    new FormControl('',[Validators.required]),
           'listaallPedimento': new FormControl('',[Validators.required]),       
@@ -216,9 +238,194 @@ export class AltafacturasalComponent implements OnInit {
           'po':                new FormControl('',[Validators.required]),
           'listaallclieOrig':  new FormControl('',[Validators.required]),
           'listaallclieDest':  new FormControl('',[Validators.required]),
-          'observaciones':     new FormControl('',[Validators.required])
+          'producto':          new FormControl(''),
+          'listaallprod':      new FormControl('',[Validators.required]),
+          'descIngles':        new FormControl('',[Validators.required]),
+          'cantidad':          new FormControl('',[Validators.required]),
+          'uMC':               new FormControl('',[Validators.required]),
+          'uMT':               new FormControl('',[Validators.required]),
+          'fraccAranc':        new FormControl('',[Validators.required]),
+          'costoUnitMXP':      new FormControl('',[Validators.required]),
+          'costototalMXP':     new FormControl('',[Validators.required]),
+          'costoUnitDLS':      new FormControl('',[Validators.required]),
+          'costoTotaldls':     new FormControl('',[Validators.required]),
+          'netoOriginal':      new FormControl('',[Validators.required]),
+          'brutoOriginal':     new FormControl('',[Validators.required]),
+          'netoConv':          new FormControl('',[Validators.required]),
+          'brutoConv':         new FormControl('',[Validators.required])
     }); 
   } // Cierre del método formafb
+
+  consultaProdymat(){    
+    this.consprod.prodymatTodos(this.opc)
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.dataworkprod = data;
+            if (this.dataworkprod.cr=="00"){
+                console.log("altafacturasal.component consultaProdymat dataworkprod data/dataworkprod")
+                console.log(data)
+                console.log(this.dataworkprod)
+                this.dataProd    = this.dataworkprod.contenido.sysCatProductos;
+                this.datadesMC   = this.dataworkprod.contenido.lDescripUMC
+                this.datadesMT   = this.dataworkprod.contenido.lDescripuMT
+                this.datafact    = this.dataworkprod.contenido.lFactor
+            }else {
+                this.alertService.error("Error al obtener información de Productos");
+                this.loading = false;
+            }
+          },
+          error => {
+            this.alertService.error("Error en el Consulta de Prodcutos");
+            this.loading = false;
+        });
+  } // Cierre del método consultaProdymat
+
+  cambExist(cant: any){
+    console.log("cambExist")
+    console.log(cant)
+    console.log(cant.target.value)
+    console.log(this.totalExist)
+    if (cant.target.value > this.totalExist){
+      this.alertService.error("Error la cantidad no puede ser mayor a " + this.totalExist);
+      this.loading = false;
+    }else{
+      if (this.dataworkprod.contenido.sysCatProductos[this.f.listaallprod.value].monedaMandataria == 'MXP'){
+        console.log("PESOS")
+        this.TotalMXP()
+      }else{
+        console.log("DOLARES")
+        this.TotalUSD()
+      }        
+    }
+
+  } // Cierre del método cambExist
+
+  cambio(id1: any){
+    this.altafacturasal.controls['uMC'].setValue(this.dataworkprod.contenido.lDescripUMC[id1.target.value]);
+    this.altafacturasal.controls['uMT'].setValue(this.dataworkprod.contenido.lDescripUMT[id1.target.value]);
+    this.altafacturasal.controls['producto'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
+    this.altafacturasal.controls['descIngles'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].descCorIng);
+    this.altafacturasal.controls['fraccAranc'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].fraccAranc);
+    this.factor = this.dataworkprod.contenido.lFactor[id1.target.value]
+
+    this.nico        = this.dataworkprod.contenido.sysCatProductos[id1.target.value].nico
+    this.uMC         = this.dataworkprod.contenido.sysCatProductos[id1.target.value].uMC
+    this.uMT         = this.dataworkprod.contenido.sysCatProductos[id1.target.value].uMT
+
+    this.ConDescr = true;
+
+    let cliente   : string;
+    if (this.CteParamBol){
+        cliente   = this.f.idCliProv.value;  
+    }else{
+        cliente   = this.f.listaallCte.value; 
+    }
+    this.obtenExistencia(cliente, this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
+    
+
+    if (this.dataworkprod.contenido.sysCatProductos[id1.target.value].monedaMandataria == 'MXP'){
+        console.log("PESOS ==>" + this.f.cantidad.value)
+        this.MonManda = true;
+
+        this.altafacturasal.controls['costoUnitMXP'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitMXP);
+        let CUnitUSD = this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitMXP / this.f.tipCambio.value ;
+        this.altafacturasal.controls['costoUnitDLS'].setValue(CUnitUSD);
+
+        let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+        let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+        this.altafacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+        this.altafacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+    }
+
+    if (this.dataworkprod.contenido.sysCatProductos[id1.target.value].monedaMandataria == 'USD'){
+      console.log("DOLARES")
+      this.MonManda = false;
+
+      this.altafacturasal.controls['costoUnitDLS'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitDLS);
+      let CUnitMXP = this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitDLS * this.f.tipCambio.value ;
+      this.altafacturasal.controls['costoUnitMXP'].setValue(CUnitMXP);
+
+      let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+      let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+      this.altafacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+      this.altafacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+    }
+  }    // Cierre del método cambio
+
+
+  TotalMXP(){
+    let CUnitUSD = this.f.costoUnitMXP.value / this.f.tipCambio.value ;
+    this.altafacturasal.controls['costoUnitDLS'].setValue(CUnitUSD);
+
+    let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+    let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+    this.altafacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+    this.altafacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+  }
+
+
+  TotalUSD(){
+    let CUnitMXP = this.f.costoUnitDLS.value * this.f.tipCambio.value ;
+    this.altafacturasal.controls['costoUnitMXP'].setValue(CUnitMXP);
+
+    let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+    let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+    this.altafacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+    this.altafacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+  }
+
+
+  netoConvertido(){
+    console.log("factor")
+    console.log(this.factor)
+    let NetoConv     = this.factor * this.f.netoOriginal.value
+    this.altafacturasal.controls['netoConv'].setValue(NetoConv);
+  }    // Cierre del método netoConvertido
+
+
+  brutoConvertido(){
+    console.log("factor")
+    console.log(this.factor)
+    let BrutoConv    = this.factor * this.f.brutoOriginal.value
+    this.altafacturasal.controls['brutoConv'].setValue(BrutoConv);
+  }    // Cierre del método brutoConvertido
+
+
+  obtenExistencia(idCliProv, producto){
+    this.totalExist   = 0;
+    console.log("obtenCantdidad parráfo")
+    console.log(idCliProv);
+    console.log(producto)
+    this.facturasService.obtenExistencia(idCliProv, producto)
+    .pipe(first())
+    .subscribe(
+      data => {
+        this.dataExist = data.contenido
+        console.log("obten Cantidad data contenido dataExist ")   
+        console.log(this.dataExist)
+          if (data.cr=="00"){
+              console.log("obtenExistencia CR = 0")
+              let listExist = [];
+              this.dataExist.forEach(item =>{
+                listExist.push({"idCliProv": item[0],"NumPart": item[1],"NumPedEnt": item[2],"FecEnt": item[3],"Producto": item[4],"idImpExp": item[5],"Existencia": item[6]});
+                this.totalExist = this.totalExist + item[6]
+                console.log(listExist)
+                console.log(this.totalExist)
+             });
+             this.altafacturasal.controls['cantidad'].setValue(this.totalExist);
+             console.log (" acabo de calcular cantidad " + this.f.cantidad.value)
+          }else{
+              this.loading = false;
+              this.msg = data.descripcion;
+              this.alertService.error(this.msg);
+        }
+      },
+        error => {
+            this.alertService.error("No hay conexión con la Base de Datos");
+            this.loading = false;
+        });
+  }  // Cierre del método obtenCantidad
 
 
   llenaAduanal()  {    
@@ -406,6 +613,9 @@ export class AltafacturasalComponent implements OnInit {
      }
   }     // Cierre del metodo armausuario
 
+  traspaso(){
+    
+  }
 
   msgokf(): void {
     const dialogRef = this.dialog.open(MsgokfComponent, {

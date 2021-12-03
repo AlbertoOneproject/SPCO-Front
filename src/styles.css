@@ -8436,7 +8436,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 /* line 16, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_breadcrumbs.scss */
 
 .breadcrumb>li+li:before {
-    content: "/Â ";
+    content: "/ ";
     padding: 0 5px;
     color: #ccc;
 }
@@ -20289,7 +20289,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 /* line 16, ../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_breadcrumbs.scss */
 
 .breadcrumb>li+li:before {
-    content: "/Â ";
+    content: "/ ";
     padding: 0 5px;
     color: #ccc;
 }
@@ -24031,126 +24031,126 @@ button.close {
 /* line 4, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-glass:before {
-    content: "ï€€";
+    content: "";
 }
 
 
 /* line 5, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-music:before {
-    content: "ï€";
+    content: "";
 }
 
 
 /* line 6, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-search:before {
-    content: "ï€‚";
+    content: "";
 }
 
 
 /* line 7, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-envelope-o:before {
-    content: "ï€ƒ";
+    content: "";
 }
 
 
 /* line 8, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-heart:before {
-    content: "ï€„";
+    content: "";
 }
 
 
 /* line 9, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-star:before {
-    content: "ï€…";
+    content: "";
 }
 
 
 /* line 10, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-star-o:before {
-    content: "ï€†";
+    content: "";
 }
 
 
 /* line 11, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-user:before {
-    content: "ï€‡";
+    content: "";
 }
 
 
 /* line 12, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-film:before {
-    content: "ï€ˆ";
+    content: "";
 }
 
 
 /* line 13, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-th-large:before {
-    content: "ï€‰";
+    content: "";
 }
 
 
 /* line 14, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-th:before {
-    content: "ï€Š";
+    content: "";
 }
 
 
 /* line 15, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-th-list:before {
-    content: "ï€‹";
+    content: "";
 }
 
 
 /* line 16, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-check:before {
-    content: "ï€Œ";
+    content: "";
 }
 
 
 /* line 17, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-times:before {
-    content: "ï€";
+    content: "";
 }
 
 
 /* line 18, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-search-plus:before {
-    content: "ï€Ž";
+    content: "";
 }
 
 
 /* line 19, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-search-minus:before {
-    content: "ï€";
+    content: "";
 }
 
 
 /* line 20, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-power-off:before {
-    content: "ï€‘";
+    content: "";
 }
 
 
 /* line 21, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-signal:before {
-    content: "ï€’";
+    content: "";
 }
 
 
@@ -24158,77 +24158,77 @@ button.close {
 
 .fa-gear:before,
 .fa-cog:before {
-    content: "ï€“";
+    content: "";
 }
 
 
 /* line 24, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-trash-o:before {
-    content: "ï€”";
+    content: "";
 }
 
 
 /* line 25, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-home:before {
-    content: "ï€•";
+    content: "";
 }
 
 
 /* line 26, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-o:before {
-    content: "ï€–";
+    content: "";
 }
 
 
 /* line 27, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-clock-o:before {
-    content: "ï€—";
+    content: "";
 }
 
 
 /* line 28, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-road:before {
-    content: "ï€˜";
+    content: "";
 }
 
 
 /* line 29, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-download:before {
-    content: "ï€™";
+    content: "";
 }
 
 
 /* line 30, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-o-down:before {
-    content: "ï€š";
+    content: "";
 }
 
 
 /* line 31, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-o-up:before {
-    content: "ï€›";
+    content: "";
 }
 
 
 /* line 32, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-inbox:before {
-    content: "ï€œ";
+    content: "";
 }
 
 
 /* line 33, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-play-circle-o:before {
-    content: "ï€";
+    content: "";
 }
 
 
@@ -24236,189 +24236,189 @@ button.close {
 
 .fa-rotate-right:before,
 .fa-repeat:before {
-    content: "ï€ž";
+    content: "";
 }
 
 
 /* line 36, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-refresh:before {
-    content: "ï€¡";
+    content: "";
 }
 
 
 /* line 37, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-list-alt:before {
-    content: "ï€¢";
+    content: "";
 }
 
 
 /* line 38, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-lock:before {
-    content: "ï€£";
+    content: "";
 }
 
 
 /* line 39, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-flag:before {
-    content: "ï€¤";
+    content: "";
 }
 
 
 /* line 40, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-headphones:before {
-    content: "ï€¥";
+    content: "";
 }
 
 
 /* line 41, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-volume-off:before {
-    content: "ï€¦";
+    content: "";
 }
 
 
 /* line 42, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-volume-down:before {
-    content: "ï€§";
+    content: "";
 }
 
 
 /* line 43, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-volume-up:before {
-    content: "ï€¨";
+    content: "";
 }
 
 
 /* line 44, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-qrcode:before {
-    content: "ï€©";
+    content: "";
 }
 
 
 /* line 45, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-barcode:before {
-    content: "ï€ª";
+    content: "";
 }
 
 
 /* line 46, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tag:before {
-    content: "ï€«";
+    content: "";
 }
 
 
 /* line 47, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tags:before {
-    content: "ï€¬";
+    content: "";
 }
 
 
 /* line 48, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-book:before {
-    content: "ï€­";
+    content: "";
 }
 
 
 /* line 49, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bookmark:before {
-    content: "ï€®";
+    content: "";
 }
 
 
 /* line 50, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-print:before {
-    content: "ï€¯";
+    content: "";
 }
 
 
 /* line 51, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-camera:before {
-    content: "ï€°";
+    content: "";
 }
 
 
 /* line 52, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-font:before {
-    content: "ï€±";
+    content: "";
 }
 
 
 /* line 53, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bold:before {
-    content: "ï€²";
+    content: "";
 }
 
 
 /* line 54, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-italic:before {
-    content: "ï€³";
+    content: "";
 }
 
 
 /* line 55, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-text-height:before {
-    content: "ï€´";
+    content: "";
 }
 
 
 /* line 56, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-text-width:before {
-    content: "ï€µ";
+    content: "";
 }
 
 
 /* line 57, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-align-left:before {
-    content: "ï€¶";
+    content: "";
 }
 
 
 /* line 58, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-align-center:before {
-    content: "ï€·";
+    content: "";
 }
 
 
 /* line 59, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-align-right:before {
-    content: "ï€¸";
+    content: "";
 }
 
 
 /* line 60, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-align-justify:before {
-    content: "ï€¹";
+    content: "";
 }
 
 
 /* line 61, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-list:before {
-    content: "ï€º";
+    content: "";
 }
 
 
@@ -24426,21 +24426,21 @@ button.close {
 
 .fa-dedent:before,
 .fa-outdent:before {
-    content: "ï€»";
+    content: "";
 }
 
 
 /* line 64, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-indent:before {
-    content: "ï€¼";
+    content: "";
 }
 
 
 /* line 65, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-video-camera:before {
-    content: "ï€½";
+    content: "";
 }
 
 
@@ -24449,35 +24449,35 @@ button.close {
 .fa-photo:before,
 .fa-image:before,
 .fa-picture-o:before {
-    content: "ï€¾";
+    content: "";
 }
 
 
 /* line 69, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-pencil:before {
-    content: "ï€";
+    content: "";
 }
 
 
 /* line 70, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-map-marker:before {
-    content: "ï";
+    content: "";
 }
 
 
 /* line 71, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-adjust:before {
-    content: "ï‚";
+    content: "";
 }
 
 
 /* line 72, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tint:before {
-    content: "ïƒ";
+    content: "";
 }
 
 
@@ -24485,210 +24485,210 @@ button.close {
 
 .fa-edit:before,
 .fa-pencil-square-o:before {
-    content: "ï„";
+    content: "";
 }
 
 
 /* line 75, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-share-square-o:before {
-    content: "ï…";
+    content: "";
 }
 
 
 /* line 76, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-check-square-o:before {
-    content: "ï†";
+    content: "";
 }
 
 
 /* line 77, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrows:before {
-    content: "ï‡";
+    content: "";
 }
 
 
 /* line 78, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-step-backward:before {
-    content: "ïˆ";
+    content: "";
 }
 
 
 /* line 79, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-fast-backward:before {
-    content: "ï‰";
+    content: "";
 }
 
 
 /* line 80, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-backward:before {
-    content: "ïŠ";
+    content: "";
 }
 
 
 /* line 81, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-play:before {
-    content: "ï‹";
+    content: "";
 }
 
 
 /* line 82, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-pause:before {
-    content: "ïŒ";
+    content: "";
 }
 
 
 /* line 83, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-stop:before {
-    content: "ï";
+    content: "";
 }
 
 
 /* line 84, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-forward:before {
-    content: "ïŽ";
+    content: "";
 }
 
 
 /* line 85, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-fast-forward:before {
-    content: "ï";
+    content: "";
 }
 
 
 /* line 86, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-step-forward:before {
-    content: "ï‘";
+    content: "";
 }
 
 
 /* line 87, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-eject:before {
-    content: "ï’";
+    content: "";
 }
 
 
 /* line 88, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-left:before {
-    content: "ï“";
+    content: "";
 }
 
 
 /* line 89, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-right:before {
-    content: "ï”";
+    content: "";
 }
 
 
 /* line 90, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-plus-circle:before {
-    content: "ï•";
+    content: "";
 }
 
 
 /* line 91, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-minus-circle:before {
-    content: "ï–";
+    content: "";
 }
 
 
 /* line 92, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-times-circle:before {
-    content: "ï—";
+    content: "";
 }
 
 
 /* line 93, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-check-circle:before {
-    content: "ï˜";
+    content: "";
 }
 
 
 /* line 94, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-question-circle:before {
-    content: "ï™";
+    content: "";
 }
 
 
 /* line 95, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-info-circle:before {
-    content: "ïš";
+    content: "";
 }
 
 
 /* line 96, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-crosshairs:before {
-    content: "ï›";
+    content: "";
 }
 
 
 /* line 97, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-times-circle-o:before {
-    content: "ïœ";
+    content: "";
 }
 
 
 /* line 98, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-check-circle-o:before {
-    content: "ï";
+    content: "";
 }
 
 
 /* line 99, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-ban:before {
-    content: "ïž";
+    content: "";
 }
 
 
 /* line 100, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-left:before {
-    content: "ï ";
+    content: "";
 }
 
 
 /* line 101, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-right:before {
-    content: "ï¡";
+    content: "";
 }
 
 
 /* line 102, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-up:before {
-    content: "ï¢";
+    content: "";
 }
 
 
 /* line 103, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-down:before {
-    content: "ï£";
+    content: "";
 }
 
 
@@ -24696,84 +24696,84 @@ button.close {
 
 .fa-mail-forward:before,
 .fa-share:before {
-    content: "ï¤";
+    content: "";
 }
 
 
 /* line 106, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-expand:before {
-    content: "ï¥";
+    content: "";
 }
 
 
 /* line 107, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-compress:before {
-    content: "ï¦";
+    content: "";
 }
 
 
 /* line 108, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-plus:before {
-    content: "ï§";
+    content: "";
 }
 
 
 /* line 109, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-minus:before {
-    content: "ï¨";
+    content: "";
 }
 
 
 /* line 110, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-asterisk:before {
-    content: "ï©";
+    content: "";
 }
 
 
 /* line 111, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-exclamation-circle:before {
-    content: "ïª";
+    content: "";
 }
 
 
 /* line 112, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-gift:before {
-    content: "ï«";
+    content: "";
 }
 
 
 /* line 113, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-leaf:before {
-    content: "ï¬";
+    content: "";
 }
 
 
 /* line 114, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-fire:before {
-    content: "ï­";
+    content: "";
 }
 
 
 /* line 115, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-eye:before {
-    content: "ï®";
+    content: "";
 }
 
 
 /* line 116, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-eye-slash:before {
-    content: "ï°";
+    content: "";
 }
 
 
@@ -24781,133 +24781,133 @@ button.close {
 
 .fa-warning:before,
 .fa-exclamation-triangle:before {
-    content: "ï±";
+    content: "";
 }
 
 
 /* line 119, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-plane:before {
-    content: "ï²";
+    content: "";
 }
 
 
 /* line 120, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-calendar:before {
-    content: "ï³";
+    content: "";
 }
 
 
 /* line 121, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-random:before {
-    content: "ï´";
+    content: "";
 }
 
 
 /* line 122, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-comment:before {
-    content: "ïµ";
+    content: "";
 }
 
 
 /* line 123, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-magnet:before {
-    content: "ï¶";
+    content: "";
 }
 
 
 /* line 124, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-up:before {
-    content: "ï·";
+    content: "";
 }
 
 
 /* line 125, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-down:before {
-    content: "ï¸";
+    content: "";
 }
 
 
 /* line 126, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-retweet:before {
-    content: "ï¹";
+    content: "";
 }
 
 
 /* line 127, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-shopping-cart:before {
-    content: "ïº";
+    content: "";
 }
 
 
 /* line 128, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-folder:before {
-    content: "ï»";
+    content: "";
 }
 
 
 /* line 129, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-folder-open:before {
-    content: "ï¼";
+    content: "";
 }
 
 
 /* line 130, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrows-v:before {
-    content: "ï½";
+    content: "";
 }
 
 
 /* line 131, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrows-h:before {
-    content: "ï¾";
+    content: "";
 }
 
 
 /* line 132, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bar-chart-o:before {
-    content: "ï‚€";
+    content: "";
 }
 
 
 /* line 133, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-twitter-square:before {
-    content: "ï‚";
+    content: "";
 }
 
 
 /* line 134, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-facebook-square:before {
-    content: "ï‚‚";
+    content: "";
 }
 
 
 /* line 135, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-camera-retro:before {
-    content: "ï‚ƒ";
+    content: "";
 }
 
 
 /* line 136, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-key:before {
-    content: "ï‚„";
+    content: "";
 }
 
 
@@ -24915,301 +24915,301 @@ button.close {
 
 .fa-gears:before,
 .fa-cogs:before {
-    content: "ï‚…";
+    content: "";
 }
 
 
 /* line 139, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-comments:before {
-    content: "ï‚†";
+    content: "";
 }
 
 
 /* line 140, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-thumbs-o-up:before {
-    content: "ï‚‡";
+    content: "";
 }
 
 
 /* line 141, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-thumbs-o-down:before {
-    content: "ï‚ˆ";
+    content: "";
 }
 
 
 /* line 142, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-star-half:before {
-    content: "ï‚‰";
+    content: "";
 }
 
 
 /* line 143, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-heart-o:before {
-    content: "ï‚Š";
+    content: "";
 }
 
 
 /* line 144, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sign-out:before {
-    content: "ï‚‹";
+    content: "";
 }
 
 
 /* line 145, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-linkedin-square:before {
-    content: "ï‚Œ";
+    content: "";
 }
 
 
 /* line 146, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-thumb-tack:before {
-    content: "ï‚";
+    content: "";
 }
 
 
 /* line 147, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-external-link:before {
-    content: "ï‚Ž";
+    content: "";
 }
 
 
 /* line 148, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sign-in:before {
-    content: "ï‚";
+    content: "";
 }
 
 
 /* line 149, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-trophy:before {
-    content: "ï‚‘";
+    content: "";
 }
 
 
 /* line 150, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-github-square:before {
-    content: "ï‚’";
+    content: "";
 }
 
 
 /* line 151, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-upload:before {
-    content: "ï‚“";
+    content: "";
 }
 
 
 /* line 152, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-lemon-o:before {
-    content: "ï‚”";
+    content: "";
 }
 
 
 /* line 153, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-phone:before {
-    content: "ï‚•";
+    content: "";
 }
 
 
 /* line 154, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-square-o:before {
-    content: "ï‚–";
+    content: "";
 }
 
 
 /* line 155, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bookmark-o:before {
-    content: "ï‚—";
+    content: "";
 }
 
 
 /* line 156, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-phone-square:before {
-    content: "ï‚˜";
+    content: "";
 }
 
 
 /* line 157, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-twitter:before {
-    content: "ï‚™";
+    content: "";
 }
 
 
 /* line 158, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-facebook:before {
-    content: "ï‚š";
+    content: "";
 }
 
 
 /* line 159, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-github:before {
-    content: "ï‚›";
+    content: "";
 }
 
 
 /* line 160, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-unlock:before {
-    content: "ï‚œ";
+    content: "";
 }
 
 
 /* line 161, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-credit-card:before {
-    content: "ï‚";
+    content: "";
 }
 
 
 /* line 162, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-rss:before {
-    content: "ï‚ž";
+    content: "";
 }
 
 
 /* line 163, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-hdd-o:before {
-    content: "ï‚ ";
+    content: "";
 }
 
 
 /* line 164, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bullhorn:before {
-    content: "ï‚¡";
+    content: "";
 }
 
 
 /* line 165, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bell:before {
-    content: "ïƒ³";
+    content: "";
 }
 
 
 /* line 166, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-certificate:before {
-    content: "ï‚£";
+    content: "";
 }
 
 
 /* line 167, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-hand-o-right:before {
-    content: "ï‚¤";
+    content: "";
 }
 
 
 /* line 168, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-hand-o-left:before {
-    content: "ï‚¥";
+    content: "";
 }
 
 
 /* line 169, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-hand-o-up:before {
-    content: "ï‚¦";
+    content: "";
 }
 
 
 /* line 170, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-hand-o-down:before {
-    content: "ï‚§";
+    content: "";
 }
 
 
 /* line 171, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-left:before {
-    content: "ï‚¨";
+    content: "";
 }
 
 
 /* line 172, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-right:before {
-    content: "ï‚©";
+    content: "";
 }
 
 
 /* line 173, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-up:before {
-    content: "ï‚ª";
+    content: "";
 }
 
 
 /* line 174, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-down:before {
-    content: "ï‚«";
+    content: "";
 }
 
 
 /* line 175, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-globe:before {
-    content: "ï‚¬";
+    content: "";
 }
 
 
 /* line 176, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-wrench:before {
-    content: "ï‚­";
+    content: "";
 }
 
 
 /* line 177, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tasks:before {
-    content: "ï‚®";
+    content: "";
 }
 
 
 /* line 178, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-filter:before {
-    content: "ï‚°";
+    content: "";
 }
 
 
 /* line 179, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-briefcase:before {
-    content: "ï‚±";
+    content: "";
 }
 
 
 /* line 180, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrows-alt:before {
-    content: "ï‚²";
+    content: "";
 }
 
 
@@ -25217,7 +25217,7 @@ button.close {
 
 .fa-group:before,
 .fa-users:before {
-    content: "ïƒ€";
+    content: "";
 }
 
 
@@ -25225,21 +25225,21 @@ button.close {
 
 .fa-chain:before,
 .fa-link:before {
-    content: "ïƒ";
+    content: "";
 }
 
 
 /* line 185, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-cloud:before {
-    content: "ïƒ‚";
+    content: "";
 }
 
 
 /* line 186, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-flask:before {
-    content: "ïƒƒ";
+    content: "";
 }
 
 
@@ -25247,7 +25247,7 @@ button.close {
 
 .fa-cut:before,
 .fa-scissors:before {
-    content: "ïƒ„";
+    content: "";
 }
 
 
@@ -25255,14 +25255,14 @@ button.close {
 
 .fa-copy:before,
 .fa-files-o:before {
-    content: "ïƒ…";
+    content: "";
 }
 
 
 /* line 191, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-paperclip:before {
-    content: "ïƒ†";
+    content: "";
 }
 
 
@@ -25270,14 +25270,14 @@ button.close {
 
 .fa-save:before,
 .fa-floppy-o:before {
-    content: "ïƒ‡";
+    content: "";
 }
 
 
 /* line 194, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-square:before {
-    content: "ïƒˆ";
+    content: "";
 }
 
 
@@ -25286,126 +25286,126 @@ button.close {
 .fa-navicon:before,
 .fa-reorder:before,
 .fa-bars:before {
-    content: "ïƒ‰";
+    content: "";
 }
 
 
 /* line 198, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-list-ul:before {
-    content: "ïƒŠ";
+    content: "";
 }
 
 
 /* line 199, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-list-ol:before {
-    content: "ïƒ‹";
+    content: "";
 }
 
 
 /* line 200, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-strikethrough:before {
-    content: "ïƒŒ";
+    content: "";
 }
 
 
 /* line 201, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-underline:before {
-    content: "ïƒ";
+    content: "";
 }
 
 
 /* line 202, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-table:before {
-    content: "ïƒŽ";
+    content: "";
 }
 
 
 /* line 203, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-magic:before {
-    content: "ïƒ";
+    content: "";
 }
 
 
 /* line 204, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-truck:before {
-    content: "ïƒ‘";
+    content: "";
 }
 
 
 /* line 205, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-pinterest:before {
-    content: "ïƒ’";
+    content: "";
 }
 
 
 /* line 206, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-pinterest-square:before {
-    content: "ïƒ“";
+    content: "";
 }
 
 
 /* line 207, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-google-plus-square:before {
-    content: "ïƒ”";
+    content: "";
 }
 
 
 /* line 208, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-google-plus:before {
-    content: "ïƒ•";
+    content: "";
 }
 
 
 /* line 209, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-money:before {
-    content: "ïƒ–";
+    content: "";
 }
 
 
 /* line 210, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-caret-down:before {
-    content: "ïƒ—";
+    content: "";
 }
 
 
 /* line 211, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-caret-up:before {
-    content: "ïƒ˜";
+    content: "";
 }
 
 
 /* line 212, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-caret-left:before {
-    content: "ïƒ™";
+    content: "";
 }
 
 
 /* line 213, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-caret-right:before {
-    content: "ïƒš";
+    content: "";
 }
 
 
 /* line 214, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-columns:before {
-    content: "ïƒ›";
+    content: "";
 }
 
 
@@ -25413,7 +25413,7 @@ button.close {
 
 .fa-unsorted:before,
 .fa-sort:before {
-    content: "ïƒœ";
+    content: "";
 }
 
 
@@ -25421,7 +25421,7 @@ button.close {
 
 .fa-sort-down:before,
 .fa-sort-desc:before {
-    content: "ïƒ";
+    content: "";
 }
 
 
@@ -25429,21 +25429,21 @@ button.close {
 
 .fa-sort-up:before,
 .fa-sort-asc:before {
-    content: "ïƒž";
+    content: "";
 }
 
 
 /* line 221, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-envelope:before {
-    content: "ïƒ ";
+    content: "";
 }
 
 
 /* line 222, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-linkedin:before {
-    content: "ïƒ¡";
+    content: "";
 }
 
 
@@ -25451,7 +25451,7 @@ button.close {
 
 .fa-rotate-left:before,
 .fa-undo:before {
-    content: "ïƒ¢";
+    content: "";
 }
 
 
@@ -25459,7 +25459,7 @@ button.close {
 
 .fa-legal:before,
 .fa-gavel:before {
-    content: "ïƒ£";
+    content: "";
 }
 
 
@@ -25467,21 +25467,21 @@ button.close {
 
 .fa-dashboard:before,
 .fa-tachometer:before {
-    content: "ïƒ¤";
+    content: "";
 }
 
 
 /* line 229, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-comment-o:before {
-    content: "ïƒ¥";
+    content: "";
 }
 
 
 /* line 230, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-comments-o:before {
-    content: "ïƒ¦";
+    content: "";
 }
 
 
@@ -25489,21 +25489,21 @@ button.close {
 
 .fa-flash:before,
 .fa-bolt:before {
-    content: "ïƒ§";
+    content: "";
 }
 
 
 /* line 233, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sitemap:before {
-    content: "ïƒ¨";
+    content: "";
 }
 
 
 /* line 234, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-umbrella:before {
-    content: "ïƒ©";
+    content: "";
 }
 
 
@@ -25511,217 +25511,217 @@ button.close {
 
 .fa-paste:before,
 .fa-clipboard:before {
-    content: "ïƒª";
+    content: "";
 }
 
 
 /* line 237, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-lightbulb-o:before {
-    content: "ïƒ«";
+    content: "";
 }
 
 
 /* line 238, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-exchange:before {
-    content: "ïƒ¬";
+    content: "";
 }
 
 
 /* line 239, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-cloud-download:before {
-    content: "ïƒ­";
+    content: "";
 }
 
 
 /* line 240, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-cloud-upload:before {
-    content: "ïƒ®";
+    content: "";
 }
 
 
 /* line 241, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-user-md:before {
-    content: "ïƒ°";
+    content: "";
 }
 
 
 /* line 242, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-stethoscope:before {
-    content: "ïƒ±";
+    content: "";
 }
 
 
 /* line 243, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-suitcase:before {
-    content: "ïƒ²";
+    content: "";
 }
 
 
 /* line 244, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bell-o:before {
-    content: "ï‚¢";
+    content: "";
 }
 
 
 /* line 245, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-coffee:before {
-    content: "ïƒ´";
+    content: "";
 }
 
 
 /* line 246, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-cutlery:before {
-    content: "ïƒµ";
+    content: "";
 }
 
 
 /* line 247, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-text-o:before {
-    content: "ïƒ¶";
+    content: "";
 }
 
 
 /* line 248, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-building-o:before {
-    content: "ïƒ·";
+    content: "";
 }
 
 
 /* line 249, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-hospital-o:before {
-    content: "ïƒ¸";
+    content: "";
 }
 
 
 /* line 250, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-ambulance:before {
-    content: "ïƒ¹";
+    content: "";
 }
 
 
 /* line 251, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-medkit:before {
-    content: "ïƒº";
+    content: "";
 }
 
 
 /* line 252, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-fighter-jet:before {
-    content: "ïƒ»";
+    content: "";
 }
 
 
 /* line 253, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-beer:before {
-    content: "ïƒ¼";
+    content: "";
 }
 
 
 /* line 254, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-h-square:before {
-    content: "ïƒ½";
+    content: "";
 }
 
 
 /* line 255, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-plus-square:before {
-    content: "ïƒ¾";
+    content: "";
 }
 
 
 /* line 256, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-double-left:before {
-    content: "ï„€";
+    content: "";
 }
 
 
 /* line 257, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-double-right:before {
-    content: "ï„";
+    content: "";
 }
 
 
 /* line 258, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-double-up:before {
-    content: "ï„‚";
+    content: "";
 }
 
 
 /* line 259, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-double-down:before {
-    content: "ï„ƒ";
+    content: "";
 }
 
 
 /* line 260, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-left:before {
-    content: "ï„„";
+    content: "";
 }
 
 
 /* line 261, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-right:before {
-    content: "ï„…";
+    content: "";
 }
 
 
 /* line 262, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-up:before {
-    content: "ï„†";
+    content: "";
 }
 
 
 /* line 263, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-angle-down:before {
-    content: "ï„‡";
+    content: "";
 }
 
 
 /* line 264, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-desktop:before {
-    content: "ï„ˆ";
+    content: "";
 }
 
 
 /* line 265, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-laptop:before {
-    content: "ï„‰";
+    content: "";
 }
 
 
 /* line 266, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tablet:before {
-    content: "ï„Š";
+    content: "";
 }
 
 
@@ -25729,42 +25729,42 @@ button.close {
 
 .fa-mobile-phone:before,
 .fa-mobile:before {
-    content: "ï„‹";
+    content: "";
 }
 
 
 /* line 269, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-circle-o:before {
-    content: "ï„Œ";
+    content: "";
 }
 
 
 /* line 270, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-quote-left:before {
-    content: "ï„";
+    content: "";
 }
 
 
 /* line 271, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-quote-right:before {
-    content: "ï„Ž";
+    content: "";
 }
 
 
 /* line 272, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-spinner:before {
-    content: "ï„";
+    content: "";
 }
 
 
 /* line 273, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-circle:before {
-    content: "ï„‘";
+    content: "";
 }
 
 
@@ -25772,91 +25772,91 @@ button.close {
 
 .fa-mail-reply:before,
 .fa-reply:before {
-    content: "ï„’";
+    content: "";
 }
 
 
 /* line 276, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-github-alt:before {
-    content: "ï„“";
+    content: "";
 }
 
 
 /* line 277, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-folder-o:before {
-    content: "ï„”";
+    content: "";
 }
 
 
 /* line 278, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-folder-open-o:before {
-    content: "ï„•";
+    content: "";
 }
 
 
 /* line 279, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-smile-o:before {
-    content: "ï„˜";
+    content: "";
 }
 
 
 /* line 280, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-frown-o:before {
-    content: "ï„™";
+    content: "";
 }
 
 
 /* line 281, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-meh-o:before {
-    content: "ï„š";
+    content: "";
 }
 
 
 /* line 282, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-gamepad:before {
-    content: "ï„›";
+    content: "";
 }
 
 
 /* line 283, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-keyboard-o:before {
-    content: "ï„œ";
+    content: "";
 }
 
 
 /* line 284, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-flag-o:before {
-    content: "ï„";
+    content: "";
 }
 
 
 /* line 285, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-flag-checkered:before {
-    content: "ï„ž";
+    content: "";
 }
 
 
 /* line 286, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-terminal:before {
-    content: "ï„ ";
+    content: "";
 }
 
 
 /* line 287, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-code:before {
-    content: "ï„¡";
+    content: "";
 }
 
 
@@ -25864,7 +25864,7 @@ button.close {
 
 .fa-mail-reply-all:before,
 .fa-reply-all:before {
-    content: "ï„¢";
+    content: "";
 }
 
 
@@ -25873,28 +25873,28 @@ button.close {
 .fa-star-half-empty:before,
 .fa-star-half-full:before,
 .fa-star-half-o:before {
-    content: "ï„£";
+    content: "";
 }
 
 
 /* line 293, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-location-arrow:before {
-    content: "ï„¤";
+    content: "";
 }
 
 
 /* line 294, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-crop:before {
-    content: "ï„¥";
+    content: "";
 }
 
 
 /* line 295, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-code-fork:before {
-    content: "ï„¦";
+    content: "";
 }
 
 
@@ -25902,266 +25902,266 @@ button.close {
 
 .fa-unlink:before,
 .fa-chain-broken:before {
-    content: "ï„§";
+    content: "";
 }
 
 
 /* line 298, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-question:before {
-    content: "ï„¨";
+    content: "";
 }
 
 
 /* line 299, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-info:before {
-    content: "ï„©";
+    content: "";
 }
 
 
 /* line 300, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-exclamation:before {
-    content: "ï„ª";
+    content: "";
 }
 
 
 /* line 301, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-superscript:before {
-    content: "ï„«";
+    content: "";
 }
 
 
 /* line 302, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-subscript:before {
-    content: "ï„¬";
+    content: "";
 }
 
 
 /* line 303, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-eraser:before {
-    content: "ï„­";
+    content: "";
 }
 
 
 /* line 304, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-puzzle-piece:before {
-    content: "ï„®";
+    content: "";
 }
 
 
 /* line 305, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-microphone:before {
-    content: "ï„°";
+    content: "";
 }
 
 
 /* line 306, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-microphone-slash:before {
-    content: "ï„±";
+    content: "";
 }
 
 
 /* line 307, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-shield:before {
-    content: "ï„²";
+    content: "";
 }
 
 
 /* line 308, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-calendar-o:before {
-    content: "ï„³";
+    content: "";
 }
 
 
 /* line 309, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-fire-extinguisher:before {
-    content: "ï„´";
+    content: "";
 }
 
 
 /* line 310, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-rocket:before {
-    content: "ï„µ";
+    content: "";
 }
 
 
 /* line 311, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-maxcdn:before {
-    content: "ï„¶";
+    content: "";
 }
 
 
 /* line 312, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-circle-left:before {
-    content: "ï„·";
+    content: "";
 }
 
 
 /* line 313, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-circle-right:before {
-    content: "ï„¸";
+    content: "";
 }
 
 
 /* line 314, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-circle-up:before {
-    content: "ï„¹";
+    content: "";
 }
 
 
 /* line 315, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-chevron-circle-down:before {
-    content: "ï„º";
+    content: "";
 }
 
 
 /* line 316, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-html5:before {
-    content: "ï„»";
+    content: "";
 }
 
 
 /* line 317, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-css3:before {
-    content: "ï„¼";
+    content: "";
 }
 
 
 /* line 318, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-anchor:before {
-    content: "ï„½";
+    content: "";
 }
 
 
 /* line 319, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-unlock-alt:before {
-    content: "ï„¾";
+    content: "";
 }
 
 
 /* line 320, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bullseye:before {
-    content: "ï…€";
+    content: "";
 }
 
 
 /* line 321, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-ellipsis-h:before {
-    content: "ï…";
+    content: "";
 }
 
 
 /* line 322, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-ellipsis-v:before {
-    content: "ï…‚";
+    content: "";
 }
 
 
 /* line 323, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-rss-square:before {
-    content: "ï…ƒ";
+    content: "";
 }
 
 
 /* line 324, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-play-circle:before {
-    content: "ï…„";
+    content: "";
 }
 
 
 /* line 325, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-ticket:before {
-    content: "ï……";
+    content: "";
 }
 
 
 /* line 326, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-minus-square:before {
-    content: "ï…†";
+    content: "";
 }
 
 
 /* line 327, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-minus-square-o:before {
-    content: "ï…‡";
+    content: "";
 }
 
 
 /* line 328, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-level-up:before {
-    content: "ï…ˆ";
+    content: "";
 }
 
 
 /* line 329, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-level-down:before {
-    content: "ï…‰";
+    content: "";
 }
 
 
 /* line 330, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-check-square:before {
-    content: "ï…Š";
+    content: "";
 }
 
 
 /* line 331, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-pencil-square:before {
-    content: "ï…‹";
+    content: "";
 }
 
 
 /* line 332, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-external-link-square:before {
-    content: "ï…Œ";
+    content: "";
 }
 
 
 /* line 333, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-share-square:before {
-    content: "ï…";
+    content: "";
 }
 
 
 /* line 334, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-compass:before {
-    content: "ï…Ž";
+    content: "";
 }
 
 
@@ -26169,7 +26169,7 @@ button.close {
 
 .fa-toggle-down:before,
 .fa-caret-square-o-down:before {
-    content: "ï…";
+    content: "";
 }
 
 
@@ -26177,7 +26177,7 @@ button.close {
 
 .fa-toggle-up:before,
 .fa-caret-square-o-up:before {
-    content: "ï…‘";
+    content: "";
 }
 
 
@@ -26185,7 +26185,7 @@ button.close {
 
 .fa-toggle-right:before,
 .fa-caret-square-o-right:before {
-    content: "ï…’";
+    content: "";
 }
 
 
@@ -26193,14 +26193,14 @@ button.close {
 
 .fa-euro:before,
 .fa-eur:before {
-    content: "ï…“";
+    content: "";
 }
 
 
 /* line 343, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-gbp:before {
-    content: "ï…”";
+    content: "";
 }
 
 
@@ -26208,7 +26208,7 @@ button.close {
 
 .fa-dollar:before,
 .fa-usd:before {
-    content: "ï…•";
+    content: "";
 }
 
 
@@ -26216,7 +26216,7 @@ button.close {
 
 .fa-rupee:before,
 .fa-inr:before {
-    content: "ï…–";
+    content: "";
 }
 
 
@@ -26226,7 +26226,7 @@ button.close {
 .fa-rmb:before,
 .fa-yen:before,
 .fa-jpy:before {
-    content: "ï…—";
+    content: "";
 }
 
 
@@ -26235,7 +26235,7 @@ button.close {
 .fa-ruble:before,
 .fa-rouble:before,
 .fa-rub:before {
-    content: "ï…˜";
+    content: "";
 }
 
 
@@ -26243,7 +26243,7 @@ button.close {
 
 .fa-won:before,
 .fa-krw:before {
-    content: "ï…™";
+    content: "";
 }
 
 
@@ -26251,357 +26251,357 @@ button.close {
 
 .fa-bitcoin:before,
 .fa-btc:before {
-    content: "ï…š";
+    content: "";
 }
 
 
 /* line 359, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file:before {
-    content: "ï…›";
+    content: "";
 }
 
 
 /* line 360, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-text:before {
-    content: "ï…œ";
+    content: "";
 }
 
 
 /* line 361, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sort-alpha-asc:before {
-    content: "ï…";
+    content: "";
 }
 
 
 /* line 362, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sort-alpha-desc:before {
-    content: "ï…ž";
+    content: "";
 }
 
 
 /* line 363, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sort-amount-asc:before {
-    content: "ï… ";
+    content: "";
 }
 
 
 /* line 364, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sort-amount-desc:before {
-    content: "ï…¡";
+    content: "";
 }
 
 
 /* line 365, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sort-numeric-asc:before {
-    content: "ï…¢";
+    content: "";
 }
 
 
 /* line 366, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sort-numeric-desc:before {
-    content: "ï…£";
+    content: "";
 }
 
 
 /* line 367, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-thumbs-up:before {
-    content: "ï…¤";
+    content: "";
 }
 
 
 /* line 368, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-thumbs-down:before {
-    content: "ï…¥";
+    content: "";
 }
 
 
 /* line 369, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-youtube-square:before {
-    content: "ï…¦";
+    content: "";
 }
 
 
 /* line 370, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-youtube:before {
-    content: "ï…§";
+    content: "";
 }
 
 
 /* line 371, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-xing:before {
-    content: "ï…¨";
+    content: "";
 }
 
 
 /* line 372, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-xing-square:before {
-    content: "ï…©";
+    content: "";
 }
 
 
 /* line 373, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-youtube-play:before {
-    content: "ï…ª";
+    content: "";
 }
 
 
 /* line 374, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-dropbox:before {
-    content: "ï…«";
+    content: "";
 }
 
 
 /* line 375, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-stack-overflow:before {
-    content: "ï…¬";
+    content: "";
 }
 
 
 /* line 376, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-instagram:before {
-    content: "ï…­";
+    content: "";
 }
 
 
 /* line 377, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-flickr:before {
-    content: "ï…®";
+    content: "";
 }
 
 
 /* line 378, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-adn:before {
-    content: "ï…°";
+    content: "";
 }
 
 
 /* line 379, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bitbucket:before {
-    content: "ï…±";
+    content: "";
 }
 
 
 /* line 380, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bitbucket-square:before {
-    content: "ï…²";
+    content: "";
 }
 
 
 /* line 381, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tumblr:before {
-    content: "ï…³";
+    content: "";
 }
 
 
 /* line 382, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tumblr-square:before {
-    content: "ï…´";
+    content: "";
 }
 
 
 /* line 383, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-long-arrow-down:before {
-    content: "ï…µ";
+    content: "";
 }
 
 
 /* line 384, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-long-arrow-up:before {
-    content: "ï…¶";
+    content: "";
 }
 
 
 /* line 385, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-long-arrow-left:before {
-    content: "ï…·";
+    content: "";
 }
 
 
 /* line 386, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-long-arrow-right:before {
-    content: "ï…¸";
+    content: "";
 }
 
 
 /* line 387, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-apple:before {
-    content: "ï…¹";
+    content: "";
 }
 
 
 /* line 388, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-windows:before {
-    content: "ï…º";
+    content: "";
 }
 
 
 /* line 389, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-android:before {
-    content: "ï…»";
+    content: "";
 }
 
 
 /* line 390, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-linux:before {
-    content: "ï…¼";
+    content: "";
 }
 
 
 /* line 391, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-dribbble:before {
-    content: "ï…½";
+    content: "";
 }
 
 
 /* line 392, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-skype:before {
-    content: "ï…¾";
+    content: "";
 }
 
 
 /* line 393, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-foursquare:before {
-    content: "ï†€";
+    content: "";
 }
 
 
 /* line 394, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-trello:before {
-    content: "ï†";
+    content: "";
 }
 
 
 /* line 395, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-female:before {
-    content: "ï†‚";
+    content: "";
 }
 
 
 /* line 396, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-male:before {
-    content: "ï†ƒ";
+    content: "";
 }
 
 
 /* line 397, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-gittip:before {
-    content: "ï†„";
+    content: "";
 }
 
 
 /* line 398, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sun-o:before {
-    content: "ï†…";
+    content: "";
 }
 
 
 /* line 399, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-moon-o:before {
-    content: "ï††";
+    content: "";
 }
 
 
 /* line 400, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-archive:before {
-    content: "ï†‡";
+    content: "";
 }
 
 
 /* line 401, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bug:before {
-    content: "ï†ˆ";
+    content: "";
 }
 
 
 /* line 402, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-vk:before {
-    content: "ï†‰";
+    content: "";
 }
 
 
 /* line 403, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-weibo:before {
-    content: "ï†Š";
+    content: "";
 }
 
 
 /* line 404, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-renren:before {
-    content: "ï†‹";
+    content: "";
 }
 
 
 /* line 405, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-pagelines:before {
-    content: "ï†Œ";
+    content: "";
 }
 
 
 /* line 406, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-stack-exchange:before {
-    content: "ï†";
+    content: "";
 }
 
 
 /* line 407, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-o-right:before {
-    content: "ï†Ž";
+    content: "";
 }
 
 
 /* line 408, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-arrow-circle-o-left:before {
-    content: "ï†";
+    content: "";
 }
 
 
@@ -26609,28 +26609,28 @@ button.close {
 
 .fa-toggle-left:before,
 .fa-caret-square-o-left:before {
-    content: "ï†‘";
+    content: "";
 }
 
 
 /* line 411, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-dot-circle-o:before {
-    content: "ï†’";
+    content: "";
 }
 
 
 /* line 412, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-wheelchair:before {
-    content: "ï†“";
+    content: "";
 }
 
 
 /* line 413, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-vimeo-square:before {
-    content: "ï†”";
+    content: "";
 }
 
 
@@ -26638,49 +26638,49 @@ button.close {
 
 .fa-turkish-lira:before,
 .fa-try:before {
-    content: "ï†•";
+    content: "";
 }
 
 
 /* line 416, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-plus-square-o:before {
-    content: "ï†–";
+    content: "";
 }
 
 
 /* line 417, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-space-shuttle:before {
-    content: "ï†—";
+    content: "";
 }
 
 
 /* line 418, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-slack:before {
-    content: "ï†˜";
+    content: "";
 }
 
 
 /* line 419, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-envelope-square:before {
-    content: "ï†™";
+    content: "";
 }
 
 
 /* line 420, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-wordpress:before {
-    content: "ï†š";
+    content: "";
 }
 
 
 /* line 421, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-openid:before {
-    content: "ï†›";
+    content: "";
 }
 
 
@@ -26689,7 +26689,7 @@ button.close {
 .fa-institution:before,
 .fa-bank:before,
 .fa-university:before {
-    content: "ï†œ";
+    content: "";
 }
 
 
@@ -26697,63 +26697,63 @@ button.close {
 
 .fa-mortar-board:before,
 .fa-graduation-cap:before {
-    content: "ï†";
+    content: "";
 }
 
 
 /* line 427, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-yahoo:before {
-    content: "ï†ž";
+    content: "";
 }
 
 
 /* line 428, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-google:before {
-    content: "ï† ";
+    content: "";
 }
 
 
 /* line 429, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-reddit:before {
-    content: "ï†¡";
+    content: "";
 }
 
 
 /* line 430, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-reddit-square:before {
-    content: "ï†¢";
+    content: "";
 }
 
 
 /* line 431, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-stumbleupon-circle:before {
-    content: "ï†£";
+    content: "";
 }
 
 
 /* line 432, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-stumbleupon:before {
-    content: "ï†¤";
+    content: "";
 }
 
 
 /* line 433, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-delicious:before {
-    content: "ï†¥";
+    content: "";
 }
 
 
 /* line 434, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-digg:before {
-    content: "ï†¦";
+    content: "";
 }
 
 
@@ -26761,119 +26761,119 @@ button.close {
 
 .fa-pied-piper-square:before,
 .fa-pied-piper:before {
-    content: "ï†§";
+    content: "";
 }
 
 
 /* line 437, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-pied-piper-alt:before {
-    content: "ï†¨";
+    content: "";
 }
 
 
 /* line 438, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-drupal:before {
-    content: "ï†©";
+    content: "";
 }
 
 
 /* line 439, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-joomla:before {
-    content: "ï†ª";
+    content: "";
 }
 
 
 /* line 440, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-language:before {
-    content: "ï†«";
+    content: "";
 }
 
 
 /* line 441, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-fax:before {
-    content: "ï†¬";
+    content: "";
 }
 
 
 /* line 442, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-building:before {
-    content: "ï†­";
+    content: "";
 }
 
 
 /* line 443, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-child:before {
-    content: "ï†®";
+    content: "";
 }
 
 
 /* line 444, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-paw:before {
-    content: "ï†°";
+    content: "";
 }
 
 
 /* line 445, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-spoon:before {
-    content: "ï†±";
+    content: "";
 }
 
 
 /* line 446, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-cube:before {
-    content: "ï†²";
+    content: "";
 }
 
 
 /* line 447, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-cubes:before {
-    content: "ï†³";
+    content: "";
 }
 
 
 /* line 448, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-behance:before {
-    content: "ï†´";
+    content: "";
 }
 
 
 /* line 449, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-behance-square:before {
-    content: "ï†µ";
+    content: "";
 }
 
 
 /* line 450, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-steam:before {
-    content: "ï†¶";
+    content: "";
 }
 
 
 /* line 451, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-steam-square:before {
-    content: "ï†·";
+    content: "";
 }
 
 
 /* line 452, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-recycle:before {
-    content: "ï†¸";
+    content: "";
 }
 
 
@@ -26881,7 +26881,7 @@ button.close {
 
 .fa-automobile:before,
 .fa-car:before {
-    content: "ï†¹";
+    content: "";
 }
 
 
@@ -26889,70 +26889,70 @@ button.close {
 
 .fa-cab:before,
 .fa-taxi:before {
-    content: "ï†º";
+    content: "";
 }
 
 
 /* line 457, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tree:before {
-    content: "ï†»";
+    content: "";
 }
 
 
 /* line 458, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-spotify:before {
-    content: "ï†¼";
+    content: "";
 }
 
 
 /* line 459, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-deviantart:before {
-    content: "ï†½";
+    content: "";
 }
 
 
 /* line 460, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-soundcloud:before {
-    content: "ï†¾";
+    content: "";
 }
 
 
 /* line 461, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-database:before {
-    content: "ï‡€";
+    content: "";
 }
 
 
 /* line 462, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-pdf-o:before {
-    content: "ï‡";
+    content: "";
 }
 
 
 /* line 463, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-word-o:before {
-    content: "ï‡‚";
+    content: "";
 }
 
 
 /* line 464, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-excel-o:before {
-    content: "ï‡ƒ";
+    content: "";
 }
 
 
 /* line 465, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-powerpoint-o:before {
-    content: "ï‡„";
+    content: "";
 }
 
 
@@ -26961,7 +26961,7 @@ button.close {
 .fa-file-photo-o:before,
 .fa-file-picture-o:before,
 .fa-file-image-o:before {
-    content: "ï‡…";
+    content: "";
 }
 
 
@@ -26969,7 +26969,7 @@ button.close {
 
 .fa-file-zip-o:before,
 .fa-file-archive-o:before {
-    content: "ï‡†";
+    content: "";
 }
 
 
@@ -26977,7 +26977,7 @@ button.close {
 
 .fa-file-sound-o:before,
 .fa-file-audio-o:before {
-    content: "ï‡‡";
+    content: "";
 }
 
 
@@ -26985,35 +26985,35 @@ button.close {
 
 .fa-file-movie-o:before,
 .fa-file-video-o:before {
-    content: "ï‡ˆ";
+    content: "";
 }
 
 
 /* line 475, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-file-code-o:before {
-    content: "ï‡‰";
+    content: "";
 }
 
 
 /* line 476, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-vine:before {
-    content: "ï‡Š";
+    content: "";
 }
 
 
 /* line 477, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-codepen:before {
-    content: "ï‡‹";
+    content: "";
 }
 
 
 /* line 478, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-jsfiddle:before {
-    content: "ï‡Œ";
+    content: "";
 }
 
 
@@ -27023,14 +27023,14 @@ button.close {
 .fa-life-saver:before,
 .fa-support:before,
 .fa-life-ring:before {
-    content: "ï‡";
+    content: "";
 }
 
 
 /* line 483, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-circle-o-notch:before {
-    content: "ï‡Ž";
+    content: "";
 }
 
 
@@ -27038,7 +27038,7 @@ button.close {
 
 .fa-ra:before,
 .fa-rebel:before {
-    content: "ï‡";
+    content: "";
 }
 
 
@@ -27046,42 +27046,42 @@ button.close {
 
 .fa-ge:before,
 .fa-empire:before {
-    content: "ï‡‘";
+    content: "";
 }
 
 
 /* line 488, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-git-square:before {
-    content: "ï‡’";
+    content: "";
 }
 
 
 /* line 489, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-git:before {
-    content: "ï‡“";
+    content: "";
 }
 
 
 /* line 490, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-hacker-news:before {
-    content: "ï‡”";
+    content: "";
 }
 
 
 /* line 491, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-tencent-weibo:before {
-    content: "ï‡•";
+    content: "";
 }
 
 
 /* line 492, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-qq:before {
-    content: "ï‡–";
+    content: "";
 }
 
 
@@ -27089,7 +27089,7 @@ button.close {
 
 .fa-wechat:before,
 .fa-weixin:before {
-    content: "ï‡—";
+    content: "";
 }
 
 
@@ -27097,7 +27097,7 @@ button.close {
 
 .fa-send:before,
 .fa-paper-plane:before {
-    content: "ï‡˜";
+    content: "";
 }
 
 
@@ -27105,63 +27105,63 @@ button.close {
 
 .fa-send-o:before,
 .fa-paper-plane-o:before {
-    content: "ï‡™";
+    content: "";
 }
 
 
 /* line 499, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-history:before {
-    content: "ï‡š";
+    content: "";
 }
 
 
 /* line 500, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-circle-thin:before {
-    content: "ï‡›";
+    content: "";
 }
 
 
 /* line 501, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-header:before {
-    content: "ï‡œ";
+    content: "";
 }
 
 
 /* line 502, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-paragraph:before {
-    content: "ï‡";
+    content: "";
 }
 
 
 /* line 503, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-sliders:before {
-    content: "ï‡ž";
+    content: "";
 }
 
 
 /* line 504, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-share-alt:before {
-    content: "ï‡ ";
+    content: "";
 }
 
 
 /* line 505, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-share-alt-square:before {
-    content: "ï‡¡";
+    content: "";
 }
 
 
 /* line 506, ../bower_components/fontawesome/scss/_icons.scss */
 
 .fa-bomb:before {
-    content: "ï‡¢";
+    content: "";
 }
 
 
@@ -34510,7 +34510,7 @@ fieldset .form-group {
 }
 
 .dd3-handle:before {
-    content: 'â‰¡';
+    content: '≡';
     display: block;
     position: absolute;
     left: 0;

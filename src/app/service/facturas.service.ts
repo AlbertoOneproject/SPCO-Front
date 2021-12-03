@@ -110,4 +110,22 @@ editfactura(facturas: Facturas){
   }));
 }  
 
+//  Función: Consulta el numero total de existencia sobre un Cliente/Producto SYS_ADU_PART 
+//  Componentes que utilizan el servicio:
+//             - altafacturasal.component.ts  
+obtenExistencia(idCliu:string, prod:string){
+  console.log("obten Existencia parametros")
+  console.log(idCliu)
+  console.log(prod)
+  let consCuantos  =  "Cuantos?"
+  let consCli      =  "cli="
+  let consPro      =  "&prod="
+  console.log("AduFact/"+consCuantos+consCli+idCliu+consPro+prod)
+  return this.http.get<any>(`${environment.SERVER_URL}/AduFact/`+consCuantos+consCli+idCliu+consPro+prod, {})
+      .pipe(map(dataExist => {
+        console.log("obtenExistencia")
+        console.log(dataExist)
+    return dataExist;
+  }));
+}  
 }

@@ -454,6 +454,11 @@ export class EditfacturasalComponent implements OnInit {
     this.router.navigate([this.returnUrl]);   
   }     // Cierre del metodo cancelar
 
+
+  traspaso(){
+
+  }
+
   
   msgokf(): void {
     const dialogRef = this.dialog.open(MsgokfComponent, {

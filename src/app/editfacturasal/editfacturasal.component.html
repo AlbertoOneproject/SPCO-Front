@@ -50,7 +50,7 @@
                     </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="numPedimentoSalida">Número de Pedimento de Salida :<span
 	                    class="required">*</span></label>
@@ -58,7 +58,7 @@
                     <div class="col-sm-3">
                         <input type="text" id="numPedimentoSalida" name="numPedimentoSalida" formControlName="numPedimentoSalida" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="7" />
                     </div>
-                </div>                
+                </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="numFact">Número de Factura:<span
@@ -291,6 +291,7 @@
                 <div class="col-md-offset-3">
                     <a id="cancel" href="/facturasal" class="btn btn-default">Cancelar</a>
                     <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="traspaso()">Traspaso</button>
                 </div>
             </fieldset>
         </div>
