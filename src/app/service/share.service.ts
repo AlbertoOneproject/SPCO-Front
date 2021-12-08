@@ -51,4 +51,19 @@ perfiles(emp, rec){
     }));
 } //Cierre del método Perfiles
 
+
+//  Función: obtiene el Tipo de Cambio de Banco de México
+//  Componentes que utilizan el servicio:
+//             - altafacturasal.component.ts
+tipoCambio(){
+  console.log("tipoCambio")
+  let constTC   ="TCLinea"
+  return this.http.get<any>(`${environment.SERVER_URL}/TipoCambio/`+constTC, {})
+    .pipe(map(dataTC => {
+    if(dataTC){
+    } 
+    return dataTC;
+    }));
+} //Cierre del método tipoCambio
+
 }

@@ -1,12 +1,12 @@
 import { Component, OnInit, Inject, LOCALE_ID  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertService, PartesService, FacturasService, CteyprovService,SysdtapeService, AduanalService, ProdymatService } from './../service';
+import { AlertService, PartesService, FacturasService, CteyprovService,SysdtapeService, AduanalService, ProdymatService, ShareService } from './../service';
 import { Facturas,Partes, Sysdtape, Login, Prodymat } from '../model'
 import { first } from 'rxjs/operators';
 import { MsgokfComponent } from './../msgokf/msgokf.component'
 import { MatDialog} from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -15,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./altafacturasal.component.css']
 })
 export class AltafacturasalComponent implements OnInit {
+  CurrentDate   = new Date();
+  curr          = formatDate(this.CurrentDate, 'yyyy-MM-dd' ,this.locale);
+  curr1         = formatDate(this.CurrentDate, 'hh:mm:ss' ,this.locale);
+  dataTC        : string;
   dataPais      : Sysdtape
   dataProd      : Prodymat;
   dataExist     : any[]=[];
@@ -59,12 +63,17 @@ export class AltafacturasalComponent implements OnInit {
   entSal        : string = "S";
   CteParam      : string = "";
   CteParamBol   : boolean = false;
-  totalExist    : number=0;
-
+  totalExist    : number =0;
+  contExist     : number = 0;
+  listExist     : any[]=[];
+  cantSdo       : number = 0;
+  cantDisp      : number = 0;
+  cantCont      : number = 0;
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     private consprod                : ProdymatService,
+    private shareService            : ShareService,
     private consape                 : SysdtapeService,
     private conscte                 : CteyprovService,
     private fb                      : FormBuilder,
@@ -88,6 +97,7 @@ export class AltafacturasalComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.obtenTC();
     this.consultaProdymat();
     this.catClientes();
     this.clvap     = 'AP01';
@@ -107,7 +117,7 @@ export class AltafacturasalComponent implements OnInit {
     if (this.CteParamBol) {
       this.altafacturasal.controls['idCliProv'].setValue(this.CteParam);
       this.catPartCtee(this.CteParam);
-  }
+    }
     this.usuari    = JSON.parse(localStorage.getItem('currentUserLog'));
     let usuario    = this.usuari["idUsuario"];
     let empresa    = this.usuari["idEmpresa"];
@@ -128,6 +138,23 @@ export class AltafacturasalComponent implements OnInit {
       { id: "2", name: "Exportación" }
     ];
   }
+
+  
+  obtenTC(){
+    this.shareService.tipoCambio()
+    .pipe(first())
+    .subscribe(
+        data => {
+          if (data.bmx.series[0].idSerie ==  "SF43718"){          
+             this.dataTC  = data.bmx.series[0].datos[0].dato;
+             this.altafacturasal.controls['tipCambio'   ].setValue(this.dataTC);
+        }},
+        error => {
+          this.alertService.error("Error en la consulta del Catálogo de Clientes");              
+          this.loading = false;
+        });
+  } // Cierre del método obtenTC
+
 
   catClientes(){
     this.partesService.catClientes()
@@ -215,12 +242,12 @@ export class AltafacturasalComponent implements OnInit {
           'empresa':           new FormControl(''),
           'recinto':           new FormControl(''),
           'listaallCte':       new FormControl(''),
-          'listaallPartes':    new FormControl('',[Validators.required]),
-          'listaallPedimento': new FormControl('',[Validators.required]),       
+//          'listaallPartes':    new FormControl('',[Validators.required]),
+//          'listaallPedimento': new FormControl('',[Validators.required]),       
           'numPedimentoSalida':new FormControl(''),
           'numFact':           new FormControl('',[Validators.required]),
           'orders':            new FormControl('',[Validators.required]),
-          'fechaEntrada':      new FormControl('',[Validators.required]),
+//          'fechaEntrada':      new FormControl('',[Validators.required]),
           'listaallpais':      new FormControl('',[Validators.required]),
           'tipCambio':         new FormControl('',[Validators.required]),
           'listaallcLVPedi':   new FormControl('',[Validators.required]),
@@ -286,11 +313,13 @@ export class AltafacturasalComponent implements OnInit {
     console.log(cant)
     console.log(cant.target.value)
     console.log(this.totalExist)
-    if (cant.target.value > this.totalExist){
-      this.alertService.error("Error la cantidad no puede ser mayor a " + this.totalExist);
+    if (cant.target.value > this.totalExist) {
+      this.alertService.error("La cantidad no puede ser mayor a " + this.totalExist);
       this.loading = false;
-    }else{
-      if (this.dataworkprod.contenido.sysCatProductos[this.f.listaallprod.value].monedaMandataria == 'MXP'){
+    }else{ if (cant.target.value == 0) {
+      this.alertService.error("La cantidad debe ser mayor a cero");
+      this.loading = false;
+    }else{if (this.dataworkprod.contenido.sysCatProductos[this.f.listaallprod.value].monedaMandataria == 'MXP'){
         console.log("PESOS")
         this.TotalMXP()
       }else{
@@ -298,10 +327,15 @@ export class AltafacturasalComponent implements OnInit {
         this.TotalUSD()
       }        
     }
-
+   }
   } // Cierre del método cambExist
 
+
   cambio(id1: any){
+    console.log("cambio dataworkprod")
+    console.log(this.dataworkprod.contenido[id1.target.value])
+    console.log(this.dataworkprod.contenido.sysCatProductos[id1.target.value])
+
     this.altafacturasal.controls['uMC'].setValue(this.dataworkprod.contenido.lDescripUMC[id1.target.value]);
     this.altafacturasal.controls['uMT'].setValue(this.dataworkprod.contenido.lDescripUMT[id1.target.value]);
     this.altafacturasal.controls['producto'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
@@ -316,12 +350,6 @@ export class AltafacturasalComponent implements OnInit {
     this.ConDescr = true;
 
     let cliente   : string;
-    if (this.CteParamBol){
-        cliente   = this.f.idCliProv.value;  
-    }else{
-        cliente   = this.f.listaallCte.value; 
-    }
-    this.obtenExistencia(cliente, this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
   
     if (this.dataworkprod.contenido.sysCatProductos[id1.target.value].monedaMandataria == 'MXP'){
         this.MonManda = true;
@@ -348,6 +376,15 @@ export class AltafacturasalComponent implements OnInit {
       this.altafacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
       this.altafacturasal.controls['costototalMXP'].setValue(CTotalMxp);
     }
+    
+    if (this.CteParamBol){
+        cliente   = this.f.idCliProv.value; 
+        console.log("cliente param"+ cliente) 
+       }else{
+        cliente   = this.f.listaallCte.value; 
+        console.log("cliente sin param"+ cliente) 
+       }
+    this.obtenExistencia(cliente, this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
   }    // Cierre del método cambio
 
 
@@ -391,6 +428,8 @@ export class AltafacturasalComponent implements OnInit {
 
   obtenExistencia(idCliProv, producto){
     this.totalExist   = 0;
+    this.contExist    = 0;
+    this.listExist    = [];
     console.log("obtenCantdidad parráfo")
     console.log(idCliProv);
     console.log(producto)
@@ -403,14 +442,27 @@ export class AltafacturasalComponent implements OnInit {
         console.log(this.dataExist)
           if (data.cr=="00"){
               console.log("obtenExistencia CR = 0")
-              let listExist = [];
+
               this.dataExist.forEach(item =>{
-                listExist.push({"idCliProv": item[0],"NumPart": item[1],"NumPedEnt": item[2],"FecEnt": item[3],"Producto": item[4],"idImpExp": item[5],"Existencia": item[6]});
-                this.totalExist = this.totalExist + item[6]
-                console.log(listExist)
+                this.listExist.push({
+                      "idCliProv"  : item[0],
+                      "NumPart"    : item[1]  ,
+                      "NumPedEnt"  : item[2],
+                      "FecEnt"     : item[3],
+                      "Producto"   : item[4],
+                      "idImpExp"   : item[5],
+                      "NumFact"    : item[6],
+                      "Existencia" : item[7]});
+                this.totalExist = this.totalExist + item[7]
+                this.contExist  = this.contExist + 1
+                console.log(this.listExist)
                 console.log(this.totalExist)
              });
              this.altafacturasal.controls['cantidad'].setValue(this.totalExist);
+             let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+             let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+             this.altafacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+             this.altafacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
              console.log (" acabo de calcular cantidad " + this.f.cantidad.value)
           }else{
               this.loading = false;
@@ -499,7 +551,7 @@ export class AltafacturasalComponent implements OnInit {
 
   } // Cierre del método obtenPedimento
 
-
+/*
   completarPartes(id1: any){
     for (let i=0; i < this.dataPedimento.length; i++){
       if (this.dataPedimento[i].numPedimento == id1.target.value){
@@ -509,7 +561,7 @@ export class AltafacturasalComponent implements OnInit {
       }
     }
   } // Cierre del método completarPartes
-
+*/
 
   cancelar(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturasal';
@@ -521,14 +573,50 @@ export class AltafacturasalComponent implements OnInit {
     get f() { return this.altafacturasal.controls; }
 
 
-  enviar() {   
+  enviar() {
+    this.cantSdo = 0;   
+    this.cantCont = 0;
+    this.cantSdo = this.f.cantidad.value;   
     if (this.altafacturasal.invalid) {
         this.alertService.error("Es necesario capturar todos los campos que tienen * ");
         this.loading = false;
         return;
-    }    
-    
-        this.armausuario();
+    }  
+//    this.totalExist = this.totalExist + item[7]
+//    this.contExist  = this.contExist + 1
+/*    if (this.f.cantidad.value  == this.totalExist){
+      this.cantDisp                  = this.listExist[i].Existencia;
+      this.cantSdo                   = this.cantSdo - this.cantDisp;
+      this.currentFacturas.cantidad  = this.cantDisp;
+      console.log("Saldo")
+      console.log(this.cantSdo)
+    }else{
+*/      
+    if (this.f.cantidad.value <= this.totalExist){
+      for (let y=0; y < this.contExist; y++){ 
+        if (this.cantSdo > 0){
+          console.log("dentro de Y ")
+          console.log(y)
+          console.log(this.cantCont)
+          this.cantCont = this.cantCont + 1;
+          this.cantSdo  =  this.cantSdo - this.listExist[y].Existencia
+          console.log("Despues ")
+          console.log(this.cantCont)
+        }
+      }
+    }
+
+    for (let i=0; i < this.cantCont; i++){ 
+        console.log("enviar for ")
+        console.log(i)
+        this.armausuario(i);
+ 
+//        this.listExist.push({"idCliProv": item[0],"NumPart": item[1],"NumPedEnt": item[2],"FecEnt": item[3],"Producto": item[4],"idImpExp": item[5],"Existencia": item[6]});
+//        this.currentFacturas.numPart                = this.listExist[i].NumPart   ,   
+//        this.currentFacturas.numFact                = this.listExist[i].NumFact   ,    
+//        this.currentFacturas.numPedimentoEntrada    = this.listExist[i].NumPedEnt ,   
+//        this.currentFacturas.fechaEntrada           = this.listExist[i].FecEnt    ,   
+        console.log(" ENVIAR currentFacturas ==> ")        
         console.log(this.currentFacturas)
         this.loading = true;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturasal';
@@ -550,64 +638,70 @@ export class AltafacturasalComponent implements OnInit {
                     }
                 });       
         return   
+      }
     } // Cierre del método enviar
 
 
-  armausuario(){
+  armausuario(i){
       this.currentFacturas = {
-          idCliProv             : this.f.listaallCte.value       ,
-          numPart							  : this.f.listaallPartes.value    ,    
-          numFact               : this.f.numFact.value           ,   
-          iDImpoEexpo           : this.f.orders.value            ,   
-          fechaEntrada          : this.f.fechaEntrada.value      ,   
-          paisFact              : this.f.listaallpais.value      ,   
-          numPedimentoEntrada   : this.f.listaallPedimento.value ,   
-          numPedimentoSalida    : this.f.numPedimentoSalida.value, 
-          cLVPedi               : this.f.listaallcLVPedi.value   ,   
-          numPate               : this.f.listaallnumPate.value   ,   
-          aduana                : this.f.listaalladuana.value    ,   
-          transport             : this.f.listaalltransport.value ,   
-          clieOrig              : this.f.listaallclieOrig.value  ,   
-          clieDest              : this.f.listaallclieDest.value  ,   
-          iNCOTERM              : this.f.listaallincoterm.value  ,   
-          nUMPlacaTr            : this.f.nUMPlacaTr.value        ,   
-          nUMGuia               : this.f.nUMGuia.value           ,   
-          contCaja              : this.f.contCaja.value          ,   
-          selloCand1            : this.f.selloCand1.value        ,   
-          selloCand2            : this.f.selloCand2.value        ,   
-          selloCand3            : this.f.selloCand3.value        ,   
-          nombChofTr            : this.f.NombChofTR.value        ,   
-          pO                    : this.f.po.value                ,   
-          observaciones         : this.f.observaciones.value     ,   
+          idCliProv             : this.f.listaallCte.value              ,
+          numPart							  : this.listExist[i].NumPart             ,   
+          numFact               : this.f.numFact.value                  ,    
+          iDImpoEexpo           : this.f.orders.value                   ,   
+          fechaEntrada          : this.listExist[i].FecEnt              ,   
+          numPedimentoEntrada   : this.listExist[i].NumPedEnt           ,   
+          paisFact              : this.f.listaallpais.value             ,   
+          numPedimentoSalida    : this.f.numPedimentoSalida.value       , 
+          cLVPedi               : this.f.listaallcLVPedi.value          ,     
+          numPate               : this.f.listaallnumPate.value          ,   
+          aduana                : this.f.listaalladuana.value           ,   
+          transport             : this.f.listaalltransport.value        ,   
+          clieOrig              : this.f.listaallclieOrig.value         ,   
+          clieDest              : this.f.listaallclieDest.value         ,     
+          iNCOTERM              : this.f.listaallincoterm.value         ,   
+          nUMPlacaTr            : this.f.nUMPlacaTr.value               ,   
+          nUMGuia               : this.f.nUMGuia.value                  ,   
+          contCaja              : this.f.contCaja.value                 ,   
+          selloCand1            : this.f.selloCand1.value               ,     
+          selloCand2            : this.f.selloCand2.value               ,     
+          selloCand3            : this.f.selloCand3.value               ,   
+          nombChofTr            : this.f.NombChofTR.value               ,   
+          pO                    : this.f.po.value                       ,   
+          observaciones         : this.f.NombChofTR.value               ,   
 
-          tipoCambio            : this.currentPartes.tipCambio          , 
-          producto              : this.currentPartes.producto           , 
-          cantidad              : this.currentPartes.cantidad           , 
-          costounitdls          : this.currentPartes.costounitdls       , 
-          costoTotaldls         : this.currentPartes.costoTotaldls      , 
-          costounitMXP          : this.currentPartes.costounitMXP       , 
-          costototalMXP         : this.currentPartes.costototalMXP      , 
-          unidadDeMedida        : this.currentPartes.uMC                , 
-          fraccAranc            : this.currentPartes.fraccAranc         , 
-          netoOriginal          : this.currentPartes.netoOriginal       , 
-          brutoOriginal         : this.currentPartes.brutoOriginal      , 
-          netoConv              : this.currentPartes.netoConv           , 
-          brutoConv             : this.currentPartes.brutoConv          , 
-          empresa               : this.currentPartes.empresa            , 
-          recinto               : this.currentPartes.recinto            , 
-          fechaAlta             : this.currentPartes.fechaAlta          , 
-          fechaMod              : this.currentPartes.fechaMod           , 
-          hora                  : this.currentPartes.hora               , 
-          userMod               : this.currentPartes.userMod            , 
+          tipoCambio            : this.f.tipCambio.value                , 
+          producto              : this.f.producto.value                 , 
+          cantidad              : this.f.cantidad.value                 , 
+          costounitdls          : this.f.costoUnitDLS.value             , 
+          costoTotaldls         : this.f.costoTotaldls.value            , 
+          costounitMXP          : this.f.costoUnitMXP.value             , 
+          costototalMXP         : this.f.costototalMXP.value            , 
+          unidadDeMedida        : this.uMC                              , 
+          fraccAranc            : this.f.fraccAranc.value               , 
+          netoOriginal          : this.f.netoOriginal.value             , 
+          brutoOriginal         : this.f.brutoOriginal.value            , 
+          netoConv              : this.f.netoConv.value                 , 
+          brutoConv             : this.f.brutoConv.value                , 
+          empresa               : this.f.empresa.value                  , 
+          recinto               : this.f.recinto.value                  , 
+          numFactEnt            : this.listExist[i].NumFact             ,
+
           estatus               : this.estatus                          , 
-          entSal                : this.entSal                           , 
+          entSal                : this.entSal                           ,
+          fechaAlta             : this.curr                             , 
+          fechaMod              : this.curr                             ,
+          hora                  : this.curr1                            , 
+          userMod               : this.usuario.substring(0, 8)          ,
      }    
+
      if ( this.CteParamBol ){
       this.currentFacturas.idCliProv =  this.CteParam; 
      }
+
      if (this.numPedimentoSalida == ""){
          this.numPedimentoSalida = "0";
      }
+
   }     // Cierre del metodo armausuario
 
   traspaso(){

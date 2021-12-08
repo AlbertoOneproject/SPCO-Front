@@ -396,6 +396,7 @@ export class AltafacturasComponent implements OnInit {
           userMod               : this.currentPartes.userMod            , 
           estatus               : this.estatus                          , 
           entSal                : this.entSal                           , 
+          numFactEnt            : ''                                    ,
      }    
      if ( this.CteParamBol ){
          this.currentFacturas.idCliProv =  this.CteParam; 

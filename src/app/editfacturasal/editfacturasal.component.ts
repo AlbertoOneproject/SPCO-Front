@@ -409,6 +409,7 @@ export class EditfacturasalComponent implements OnInit {
         userMod               : this.currentFacturas.userMod            ,
         estatus               : this.estatus                            ,
         entSal                : this.entSal                             ,
+        numFactEnt            : this.currentFacturas.numFactEnt         ,
 
         clieOrig              : this.f.listaallclieOrig.value           ,
         clieDest              : this.f.listaallclieDest.value           ,
