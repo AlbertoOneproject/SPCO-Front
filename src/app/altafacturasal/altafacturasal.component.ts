@@ -97,6 +97,7 @@ export class AltafacturasalComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loading = true;
     this.obtenTC();
     this.consultaProdymat();
     this.catClientes();
@@ -148,6 +149,7 @@ export class AltafacturasalComponent implements OnInit {
           if (data.bmx.series[0].idSerie ==  "SF43718"){          
              this.dataTC  = data.bmx.series[0].datos[0].dato;
              this.altafacturasal.controls['tipCambio'   ].setValue(this.dataTC);
+             this.loading = true;
         }},
         error => {
           this.alertService.error("Error en la consulta del Catálogo de Clientes");              
@@ -320,9 +322,11 @@ export class AltafacturasalComponent implements OnInit {
       this.alertService.error("La cantidad debe ser mayor a cero");
       this.loading = false;
     }else{if (this.dataworkprod.contenido.sysCatProductos[this.f.listaallprod.value].monedaMandataria == 'MXP'){
+        this.loading = true;
         console.log("PESOS")
         this.TotalMXP()
       }else{
+        this.loading = true;
         console.log("DOLARES")
         this.TotalUSD()
       }        
@@ -455,9 +459,20 @@ export class AltafacturasalComponent implements OnInit {
                       "Existencia" : item[7]});
                 this.totalExist = this.totalExist + item[7]
                 this.contExist  = this.contExist + 1
+                console.log(" FOREACH ==> ")
                 console.log(this.listExist)
                 console.log(this.totalExist)
              });
+             if (this.totalExist == 0){
+              console.log("ENTRE A BORRAR LOS CAMPOS POR SER CERO")
+              this.altafacturasal.controls['uMC'].setValue("");
+              this.altafacturasal.controls['uMT'].setValue("");
+              this.altafacturasal.controls['producto'].setValue("");
+              this.altafacturasal.controls['descIngles'].setValue("");
+              this.altafacturasal.controls['fraccAranc'].setValue("");
+              this.altafacturasal.controls['costoUnitMXP'].setValue(0);
+              this.altafacturasal.controls['costoUnitDLS'].setValue(0);
+            }
              this.altafacturasal.controls['cantidad'].setValue(this.totalExist);
              let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
              let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
@@ -574,6 +589,11 @@ export class AltafacturasalComponent implements OnInit {
 
 
   enviar() {
+    console.log("Enviar")
+    console.log(this.totalExist)
+    console.log(this.contExist)
+    console.log(this.f.cantidad.value)
+
     this.cantSdo = 0;   
     this.cantCont = 0;
     this.cantSdo = this.f.cantidad.value;   
@@ -606,10 +626,25 @@ export class AltafacturasalComponent implements OnInit {
       }
     }
 
+    console.log("VOY AL FOR ")
+    console.log(this.cantCont)
+    this.cantSdo = this.f.cantidad.value; 
     for (let i=0; i < this.cantCont; i++){ 
         console.log("enviar for ")
         console.log(i)
+        console.log(this.cantSdo)
         this.armausuario(i);
+        if (this.cantSdo >= this.listExist[i].Existencia){
+             console.log("dentro del if ")
+             console.log(this.cantSdo)
+            this.currentFacturas.cantidad = this.listExist[i].Existencia
+            this.cantSdo  =  this.cantSdo - this.listExist[i].Existencia
+        }else{
+            console.log("dentro del if 2")
+            console.log(this.cantSdo)
+            this.currentFacturas.cantidad        = this.cantSdo
+        }
+
  
 //        this.listExist.push({"idCliProv": item[0],"NumPart": item[1],"NumPedEnt": item[2],"FecEnt": item[3],"Producto": item[4],"idImpExp": item[5],"Existencia": item[6]});
 //        this.currentFacturas.numPart                = this.listExist[i].NumPart   ,   
@@ -637,8 +672,8 @@ export class AltafacturasalComponent implements OnInit {
                       this.loading = false;
                     }
                 });       
-        return   
       }
+      return   
     } // Cierre del método enviar
 
 
