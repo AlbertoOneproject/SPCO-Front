@@ -450,7 +450,7 @@ export class AltafacturasalComponent implements OnInit {
               this.dataExist.forEach(item =>{
                 this.listExist.push({
                       "idCliProv"  : item[0],
-                      "NumPart"    : item[1]  ,
+                      "NumPart"    : item[1],
                       "NumPedEnt"  : item[2],
                       "FecEnt"     : item[3],
                       "Producto"   : item[4],
@@ -644,13 +644,6 @@ export class AltafacturasalComponent implements OnInit {
             console.log(this.cantSdo)
             this.currentFacturas.cantidad        = this.cantSdo
         }
-
- 
-//        this.listExist.push({"idCliProv": item[0],"NumPart": item[1],"NumPedEnt": item[2],"FecEnt": item[3],"Producto": item[4],"idImpExp": item[5],"Existencia": item[6]});
-//        this.currentFacturas.numPart                = this.listExist[i].NumPart   ,   
-//        this.currentFacturas.numFact                = this.listExist[i].NumFact   ,    
-//        this.currentFacturas.numPedimentoEntrada    = this.listExist[i].NumPedEnt ,   
-//        this.currentFacturas.fechaEntrada           = this.listExist[i].FecEnt    ,   
         console.log(" ENVIAR currentFacturas ==> ")        
         console.log(this.currentFacturas)
         this.loading = true;
@@ -660,11 +653,13 @@ export class AltafacturasalComponent implements OnInit {
             .subscribe(
                 data => {
                     this.datawork = data;
-                    if (this.datawork.cr=="00"){
-                        this.msgokf();
+                    if (this.datawork.cr == "00"){
+                        if (i == this.cantCont ){
+                            this.msgokf();
+                        }
                     }else{
-                        this.loading = false;
-                        this.msg     = this.datawork.descripcion;
+                        this.loading   = false;
+                        this.msg       = this.datawork.descripcion;
                         this.alertService.error(this.msg);
                     }
                     error => {

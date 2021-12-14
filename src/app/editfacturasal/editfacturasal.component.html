@@ -7,7 +7,7 @@
         <div class="container-body form-horizontal">
             <api-validate></api-validate>
             <fieldset>
-                <legend>Editar Factura Partes</legend>
+                <legend>Editar Factura Partes Salida</legend>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="idCliProv">Número de Cliente:<span
@@ -19,20 +19,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="numPart">Número de Parte:<span
+                    <label class="control-label col-sm-2" for="empresa">Empresa:<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input disabled type="text" id="numPart" name="numPart" formControlName="numPart" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                        <input disabled type="text" id="empresa" name="empresa" formControlName="empresa" class="form-control" value="{{empresa}}" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="numPedimentoEntrada">Número de Pedimento Entrada:<span
+                    <label class="control-label col-sm-2" for="recinto">Recinto:<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input disabled type="text" id="numPedimentoEntrada" name="numPedimentoEntrada" formControlName="numPedimentoEntrada" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="7" />
+                        <input disabled type="text" id="recinto" name="recinto" formControlName="recinto" class="form-control" />
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallcLVPedi" id="listaallcLVPedi" style="height: 180px" style="width: 185px" value="{{cLVPedi}}">
+                        <select formControlName="listaallcLVPedi" id="listaallcLVPedi" style="height: 180px" style="width: 185px">
                         <option 
                                 *ngFor="let listacLVPedi of datacLVPedi" 
                                 [value]="listacLVPedi.id1" 
@@ -74,24 +74,11 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <div class="custom-control custom-radio">
-                            <input id="S" type="radio" class="custom-control-input" value="1" name="gender" formControlName="gender">
-                            <label class="custom-control-label" for="1">Importación</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input id="N" type="radio" class="custom-control-input" value="2" name="gender" formControlName="gender">
-                            <label class="custom-control-label" for="2">Exportación</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="fechaEntrada">Fecha de Entrada:<span
-	                    class="required">*</span></label>
-
-                    <div class="col-sm-3">
-                        <input disabled type="date" id="fechaEntrada" name="fechaEntrada" formControlName="fechaEntrada" class="form-control" min="2021-01-01" max="9999-12-31" />
+                        <label *ngFor="let order of orders">
+                            <input formControlName="orders" type="radio" name="orders" [value]="order.id"
+                            />
+                            {{order.name}}&nbsp;&nbsp;
+                       </label>
                     </div>
                 </div>
 
@@ -109,7 +96,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallpais" id="listaallpais" style="height: 180px" style="width: 185px" value="{{paisFact}}">
+                        <select formControlName="listaallpais" id="listaallpais" style="height: 180px" style="width: 185px">
                         <option 
                                 *ngFor="let listapais of dataPais" 
                                 [value]="listapais.id1" 
@@ -124,7 +111,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallnumPate" id="listaallnumPate" style="height: 180px" style="width: 185px" value="{{numPate}}">
+                        <select formControlName="listaallnumPate" id="listaallnumPate" style="height: 180px" style="width: 185px">
                         <option 
                                 *ngFor="let listanumPate of datanumPate" 
                                 [value]="listanumPate.numPat" 
@@ -139,7 +126,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaalladuana" id="listaalladuana" style="height: 180px" style="width: 185px" value="{{aduana}}">
+                        <select formControlName="listaalladuana" id="listaalladuana" style="height: 180px" style="width: 185px">
                         <option 
                                 *ngFor="let listaaduana of dataaduana" 
                                 [value]="listaaduana.id1" 
@@ -154,7 +141,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallincoterm" id="listaallincoterm" style="height: 180px" style="width: 185px" value="{{iNCOTERM}}">
+                        <select formControlName="listaallincoterm" id="listaallincoterm" style="height: 180px" style="width: 185px">
                         <option 
                                 *ngFor="let listaincoterm of dataincoterm" 
                                 [value]="listaincoterm.id1" 
@@ -187,9 +174,9 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaalltransport" id="listaalltransport" style="height: 180px" style="width: 185px" value="{{transport}}">
+                        <select formControlName="listaalltransport" id="listaalltransport" style="height: 180px" style="width: 185px">
                         <option 
-                                *ngFor="let listatransport of datatransport; let i = index"
+                                *ngFor="let listatransport of datatransport" 
                                 [value]="listatransport" 
                                 >{{listatransport}}
                         </option>
@@ -256,9 +243,9 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallclieOrig" id="listaallclieOrig" style="height: 180px" style="width: 185px" value="{{clieOrig}}">
+                        <select formControlName="listaallclieOrig" id="listaallclieOrig" style="height: 180px" style="width: 185px">
                         <option 
-                                *ngFor="let listaclieOrig of dataclieOrig; let i = index"
+                                *ngFor="let listaclieOrig of dataclieOrig" 
                                 [value]="listaclieOrig" 
                                 >{{listaclieOrig}}
                         </option>
@@ -271,23 +258,179 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <select formControlName="listaallclieDest" id="listaallclieDest" style="height: 180px" style="width: 185px" value="{{clieDest}}">
+                        <select formControlName="listaallclieDest" id="listaallclieDest" style="height: 180px" style="width: 185px">
                         <option 
-                                *ngFor="let listaclieDest of dataclieDest; let i = index"  
+                                *ngFor="let listaclieDest of dataclieDest" 
                                 [value]="listaclieDest" 
                                 >{{listaclieDest}}
                         </option>
                     </select>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="observaciones">Observaciones :<span
+                    <label class="control-label col-sm-2">Descripción en Español :<span
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input type="text" id="observaciones" name="observaciones" formControlName="observaciones" class="form-control" minlength="1" maxlength="250" />
+                        <select formControlName="listaallprod" id="listaallprod" style="height: 180px" style="width: 185px" (change)="cambio($event)">
+                        <option 
+                                *ngFor="let listaprod of dataProd; let i = index" 
+                                [value]="i" 
+                                >{{listaprod.descCorta}}
+                        </option>
+                    </select>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cantidad">Cantidad:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3" *ngIf="!ConDescr">
+                        <input disabled type="number" id="cantidad" name="cantidad" formControlName="cantidad" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="ConDescr">
+                        <input type="number" id="cantidad" name="cantidad" formControlName="cantidad" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" (change)="cambExist($event)" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="producto">Producto:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="text" id="producto" name="producto" formControlName="producto" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="descIngles">Descripción en Inglés:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="text" id="descIngles" name="descIngles" formControlName="descIngles" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="costoUnitMXP">Costo Unitario (MX):<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3" *ngIf="MonManda">
+                        <input type="number" id="costoUnitMXP" name="costoUnitMXP" formControlName="costoUnitMXP" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 (change)="TotalMXP()" />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="!MonManda">
+                        <input disabled type="number" id="costoUnitMXP" name="costoUnitMXP" formControlName="costoUnitMXP" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="costototalMXP">Costo Total (MX):<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3" *ngIf="MonManda">
+                        <input type="number" id="costototalMXP" name="costototalMXP" formControlName="costototalMXP" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001/>
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="!MonManda">
+                        <input disabled type="number" id="costototalMXP" name="costototalMXP" formControlName="costototalMXP" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="costoUnitDLS">Costo Unitario (DLS):<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3" *ngIf="MonManda">
+                        <input disabled type="number" id="costoUnitDLS" name="costoUnitDLS" formControlName="costoUnitDLS" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+                    <div class="col-sm-3" *ngIf="!MonManda">
+                        <input type="number" id="costoUnitDLS" name="costoUnitDLS" formControlName="costoUnitDLS" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 (change)="TotalUSD()" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="costoTotaldls">Costo Total (DLS):<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3" *ngIf="MonManda">
+                        <input disabled type="number" id="costoTotaldls" name="costoTotaldls" formControlName="costoTotaldls" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="!MonManda">
+                        <input type="number" id="costoTotaldls" name="costoTotaldls" formControlName="costoTotaldls" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" step=0.001 />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="uMC">Unidad de Medida Comercial:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="text" id="uMC" name="uMC" formControlName="uMC" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="uMT">Unidad de Medida Tarífa:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="text" id="uMT" name="uMT" formControlName="uMT" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="fraccAranc">Fracción Arancelaria:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="text" id="fraccAranc" name="fraccAranc" formControlName="fraccAranc" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="netoOriginal">Neto Original:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="number" id="netoOriginal" name="netoOriginal" formControlName="netoOriginal" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" (change)="netoConvertido()" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="brutoOriginal">Bruto Original:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input type="number" id="brutoOriginal" name="brutoOriginal" formControlName="brutoOriginal" class="form-control" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" minlength="1" maxlength="10" (change)="brutoConvertido()" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="netoConv">Neto Convertido:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="text" id="netoConv" name="netoConv" formControlName="netoConv" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="brutoConv">Bruto Convertido:<span
+	                    class="required">*</span></label>
+
+                    <div class="col-sm-3">
+                        <input disabled type="text" id="brutoConv" name="brutoConv" formControlName="brutoConv" class="form-control" />
+                    </div>
+                </div>
+
                 <div class="col-md-offset-3">
                     <a id="cancel" href="/facturasal" class="btn btn-default">Cancelar</a>
                     <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
