@@ -566,6 +566,7 @@ export class AltafacturasalComponent implements OnInit {
 
   } // Cierre del método obtenPedimento
 
+  
 /*
   completarPartes(id1: any){
     for (let i=0; i < this.dataPedimento.length; i++){
@@ -587,7 +588,7 @@ export class AltafacturasalComponent implements OnInit {
 // convenience getter for easy access to form fields
     get f() { return this.altafacturasal.controls; }
 
-
+    
   enviar() {
     console.log("Enviar")
     console.log(this.totalExist)

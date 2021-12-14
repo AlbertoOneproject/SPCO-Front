@@ -13,6 +13,9 @@ import { MatDialog} from '@angular/material/dialog';
   styleUrls: ['./editfacturasal.component.css']
 })
 export class EditfacturasalComponent implements OnInit {
+  pais                : string;
+  descEsp             : string;
+  descIng             : string;
   dataPais            : Sysdtape;
   editfacturasal      : FormGroup;
   dataworkedit        : any=[];
@@ -109,9 +112,11 @@ export class EditfacturasalComponent implements OnInit {
     this.clvap     = 'AP14';
     this.consultaDatosApl(this.clvap);
     this.tipo      = '2';
+/*    
     this.consultaTipoCte(this.tipo);
     this.tipo      = '5';
     this.consultaTipoCte(this.tipo);
+*/    
     this.llenaAduanal();
     this.consultaDatosFactura();
     this.formafb();
@@ -122,10 +127,8 @@ export class EditfacturasalComponent implements OnInit {
     this.usuario   = usuario;
     this.empresa   = empresaa;
     this.recinto   = recintoo;
-
-
-
     this.loading = true;
+/*    
     this.obtenTC();
     this.consultaProdymat();
     this.catClientes();
@@ -133,8 +136,7 @@ export class EditfacturasalComponent implements OnInit {
       this.altafacturasal.controls['idCliProv'].setValue(this.CteParam);
       this.catPartCtee(this.CteParam);
     }
-
-
+*/
   }
 
  
@@ -169,7 +171,7 @@ export class EditfacturasalComponent implements OnInit {
         });
   } // Cierre del método consultaDatosApl 
 
-
+/*
   consultaTipoCte(tipo){
     this.conscte.consTipoCte(tipo)
     .pipe(first())
@@ -195,6 +197,7 @@ export class EditfacturasalComponent implements OnInit {
             this.loading = false;
         });
   } // Cierre del método consultaTipoCte 
+  */
 
 
   formafb() {
@@ -205,15 +208,15 @@ export class EditfacturasalComponent implements OnInit {
       'listaallCte':       new FormControl(''),
       'numPedimentoSalida':new FormControl(''),
       'numFact':           new FormControl('',[Validators.required]),
-      'orders':            new FormControl('',[Validators.required]),
-      'paisFact':          new FormControl('',[Validators.required]),
+      'indImpExpo':        new FormControl('',[Validators.required]),
+      'pais':              new FormControl('',[Validators.required]),
       'tipCambio':         new FormControl('',[Validators.required]),
-      'listaallcLVPedi':   new FormControl('',[Validators.required]),
-      'listaallnumPate':   new FormControl('',[Validators.required]),
-      'listaalladuana':    new FormControl('',[Validators.required]),
-      'listaallincoterm':  new FormControl('',[Validators.required]),
+      'cLVPedi':           new FormControl('',[Validators.required]),
+      'numPate':           new FormControl('',[Validators.required]),
+      'aduana':            new FormControl('',[Validators.required]),
+      'iNCOTERM':          new FormControl('',[Validators.required]),
       'nUMGuia':           new FormControl('',[Validators.required]),
-      'listaalltransport': new FormControl('',[Validators.required]),
+      'transport':         new FormControl('',[Validators.required]),
       'nUMPlacaTr':        new FormControl('',[Validators.required]),
       'contCaja':          new FormControl('',[Validators.required]),
       'selloCand1':        new FormControl('',[Validators.required]),
@@ -221,11 +224,11 @@ export class EditfacturasalComponent implements OnInit {
       'selloCand3':        new FormControl('',[Validators.required]),
       'NombChofTR':        new FormControl('',[Validators.required]),
       'po':                new FormControl('',[Validators.required]),
-      'listaallclieOrig':  new FormControl('',[Validators.required]),
-      'listaallclieDest':  new FormControl('',[Validators.required]),
+      'clieOrig':          new FormControl('',[Validators.required]),
+      'clieDest':          new FormControl('',[Validators.required]),
       'producto':          new FormControl(''),
-      'listaallprod':      new FormControl('',[Validators.required]),
-      'descIngles':        new FormControl('',[Validators.required]),
+      'descEsp':           new FormControl('',[Validators.required]),
+      'descIng':           new FormControl('',[Validators.required]),
       'cantidad':          new FormControl('',[Validators.required]),
       'uMC':               new FormControl('',[Validators.required]),
       'uMT':               new FormControl('',[Validators.required]),
@@ -283,12 +286,12 @@ export class EditfacturasalComponent implements OnInit {
                     this.editfacturasal.controls['recinto'           ].setValue(this.currentFacturas.recinto            );
                     this.editfacturasal.controls['numPedimentoSalida'].setValue(this.currentFacturas.numPedimentoSalida );
                     this.editfacturasal.controls['numFact'           ].setValue(this.currentFacturas.numFact		        );
-                    this.editfacturasal.controls['paisFact'          ].setValue(this.currentFacturas.paisFact           );
+                    this.editfacturasal.controls['pais'              ].setValue(this.currentFacturas.paisFact           );
                     this.editfacturasal.controls['tipCambio'         ].setValue(this.currentFacturas.tipoCambio         );
                     this.editfacturasal.controls['cLVPedi'   				 ].setValue(this.currentFacturas.cLVPedi            );
                     this.editfacturasal.controls['numPate'   				 ].setValue(this.currentFacturas.numPate            );
                     this.editfacturasal.controls['aduana'    				 ].setValue(this.currentFacturas.aduana             );
-                    this.editfacturasal.controls['incoterm'  			   ].setValue(this.currentFacturas.iNCOTERM           );
+                    this.editfacturasal.controls['iNCOTERM'  			   ].setValue(this.currentFacturas.iNCOTERM           );
                     this.editfacturasal.controls['nUMGuia'           ].setValue(this.currentFacturas.nUMGuia            );
                     this.editfacturasal.controls['transport' 				 ].setValue(this.currentFacturas.transport          );
                     this.editfacturasal.controls['nUMPlacaTr'        ].setValue(this.currentFacturas.nUMPlacaTr         );
@@ -301,7 +304,7 @@ export class EditfacturasalComponent implements OnInit {
                     this.editfacturasal.controls['clieOrig'  				 ].setValue(this.currentFacturas.clieOrig           );
                     this.editfacturasal.controls['clieDest'  				 ].setValue(this.currentFacturas.clieDest           );
                     this.editfacturasal.controls['producto'          ].setValue(this.currentFacturas.producto           );
-                    this.editfacturasal.controls['descIngles'        ].setValue(this.currentFacturas.descIngles         );
+//                    this.editfacturasal.controls['descIngles'        ].setValue(this.currentFacturas.descIngles         );
                     this.editfacturasal.controls['cantidad'          ].setValue(this.currentFacturas.cantidad           );
                     this.editfacturasal.controls['uMC'               ].setValue(this.currentFacturas.unidadDeMedida     );
                     this.editfacturasal.controls['fraccAranc'        ].setValue(this.currentFacturas.fraccAranc         );
@@ -317,6 +320,7 @@ export class EditfacturasalComponent implements OnInit {
                     this.idCliProv      		       = this.currentFacturas.idCliProv		      ;   
                     this.empresa                   = this.currentFacturas.empresa           ;  
                     this.recinto                   = this.currentFacturas.recinto           ;  
+                    this.iDImpoEexpo               = this.currentFacturas.iDImpoEexpo       ;  
                     this.numPedimentoSalida        = this.currentFacturas.numPedimentoSalida;  
                     this.numFact      		         = this.currentFacturas.numFact		        ;   
                     this.paisFact                  = this.currentFacturas.paisFact          ;  
@@ -337,7 +341,7 @@ export class EditfacturasalComponent implements OnInit {
                     this.clieOrig                  = this.currentFacturas.clieOrig          ;  
                     this.clieDest                  = this.currentFacturas.clieDest          ;  
                     this.producto                  = this.currentFacturas.producto          ;  
-                    this.descIngles                = this.currentFacturas.descIngles        ;  
+//                    this.descIngles                = this.currentFacturas.descIngles        ;  
                     this.cantidad                  = this.currentFacturas.cantidad          ;  
                     this.unidadDeMedida            = this.currentFacturas.unidadDeMedida    ;  
                     this.fraccAranc                = this.currentFacturas.fraccAranc        ;  
@@ -350,10 +354,22 @@ export class EditfacturasalComponent implements OnInit {
                     this.netoConv                  = this.currentFacturas.netoConv          ;  
                     this.brutoConv                 = this.currentFacturas.brutoConv         ;  
 
+                    console.log("iDImpoEexpo")
+                    console.log(this.iDImpoEexpo)
+                    if(this.iDImpoEexpo == "1"){
+                      this.iDImpoEexpo = "Importación"
+                   }
+                   if(this.iDImpoEexpo == "2"){
+                      this.iDImpoEexpo = "Exportación"
+                   }
+                   this.pais   = this.paisFact;
+
+
+
                     if(this.iDImpoEexpo == '1'){
-                      this.editfacturasal.controls['gender'].setValue('1');
+                       this.editfacturasal.controls['indImpExpo'].setValue('Importación');
                     }else if(this.iDImpoEexpo == '2'){
-                      this.editfacturasal.controls['gender'].setValue('2');
+                       this.editfacturasal.controls['indImpExpo'].setValue('Exportación');
                     }                    
                 }else{
                     this.loading = false;
@@ -403,56 +419,7 @@ export class EditfacturasalComponent implements OnInit {
   
 
     armausuario(){    
-      this.currentFacturas = {
-        idCliProv             : this.f.idCliProv.value          ,
-        numPart							  : this.f.numPart.value            ,    
-        numFact               : this.f.numFact.value            ,   
-        iDImpoEexpo           : this.f.gender.value             , 
-        fechaEntrada          : this.f.fechaEntrada.value       ,   
-        paisFact              : this.f.listaallpais.value       ,   
-        numPedimentoEntrada   : this.f.numPedimentoEntrada.value,   
-        numPedimentoSalida    : this.f.numPedimentoSalida.value , 
-        cLVPedi               : this.f.listaallcLVPedi.value    ,   
-        numPate               : this.f.listaallnumPate.value    ,   
-        aduana                : this.f.listaalladuana.value     ,   
-        iNCOTERM              : this.f.listaallincoterm.value   ,   
-        nUMPlacaTr            : this.f.nUMPlacaTr.value         ,   
-        nUMGuia               : this.f.nUMGuia.value            ,   
-        contCaja              : this.f.contCaja.value           ,   
-        selloCand1            : this.f.selloCand1.value         ,   
-        selloCand2            : this.f.selloCand2.value         ,   
-        selloCand3            : this.f.selloCand3.value         ,   
-        nombChofTr            : this.f.NombChofTR.value         ,   
-        pO                    : this.f.po.value                 ,   
-        observaciones         : this.f.observaciones.value      ,   
-
-        tipoCambio            : this.currentFacturas.tipoCambio         , 
-        producto              : this.currentFacturas.producto           , 
-        cantidad              : this.currentFacturas.cantidad           , 
-        costounitdls          : this.currentFacturas.costounitdls       , 
-        costoTotaldls         : this.currentFacturas.costoTotaldls      , 
-        costounitMXP          : this.currentFacturas.costounitMXP       , 
-        costototalMXP         : this.currentFacturas.costototalMXP      , 
-        unidadDeMedida        : this.currentFacturas.unidadDeMedida     , 
-        fraccAranc            : this.currentFacturas.fraccAranc         ,
-        netoOriginal          : this.currentFacturas.netoOriginal       ,
-        brutoOriginal         : this.currentFacturas.brutoOriginal      ,
-        netoConv              : this.currentFacturas.netoConv           ,
-        brutoConv             : this.currentFacturas.brutoConv          ,
-        empresa               : this.currentFacturas.empresa            ,
-        recinto               : this.currentFacturas.recinto            ,
-        fechaAlta             : this.currentFacturas.fechaAlta          ,
-        fechaMod              : this.currentFacturas.fechaMod           ,
-        hora                  : this.currentFacturas.hora               ,
-        userMod               : this.currentFacturas.userMod            ,
-        estatus               : this.estatus                            ,
-        entSal                : this.entSal                             ,
-        numFactEnt            : this.currentFacturas.numFactEnt         ,
-
-        clieOrig              : this.f.listaallclieOrig.value           ,
-        clieDest              : this.f.listaallclieDest.value           ,
-        transport             : this.f.listaalltransport.value          ,
-      }      
+      this.currentFacturas.numFact = this.f.numPate.value;       
 
       if (this.currentFacturas.aduana   == "" ) {
           this.currentFacturas.aduana   = this.aduana
