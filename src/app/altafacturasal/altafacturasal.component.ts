@@ -59,7 +59,7 @@ export class AltafacturasalComponent implements OnInit {
   uMT           : string;
   numPedimentoSalida: string = "";
   opc           : string = '0';
-  estatus       : string = "T";
+  estatus       : string = "G";
   entSal        : string = "S";
   CteParam      : string = "";
   CteParamBol   : boolean = false;
@@ -586,8 +586,8 @@ export class AltafacturasalComponent implements OnInit {
     get f() { return this.altafacturasal.controls; }
 
     
-  enviar() {
-    console.log("Enviar")
+  guardar() {
+    console.log("Guardar")
     console.log(this.totalExist)
     console.log(this.contExist)
     console.log(this.f.cantidad.value)
@@ -628,7 +628,7 @@ export class AltafacturasalComponent implements OnInit {
     console.log(this.cantCont)
     this.cantSdo = this.f.cantidad.value; 
     for (let i=0; i < this.cantCont; i++){ 
-        console.log("enviar for ")
+        console.log("guardar for ")
         console.log(i)
         console.log(this.cantSdo)
         this.armausuario(i);
@@ -642,7 +642,7 @@ export class AltafacturasalComponent implements OnInit {
             console.log(this.cantSdo)
             this.currentFacturas.cantidad        = this.cantSdo
         }
-        console.log(" ENVIAR currentFacturas ==> ")        
+        console.log(" guardar currentFacturas ==> ")        
         console.log(this.currentFacturas)
         this.loading = true;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturasal';
@@ -667,7 +667,7 @@ export class AltafacturasalComponent implements OnInit {
                 });       
       }
       return   
-    } // Cierre del método enviar
+    } // Cierre del método guardar
 
 
   armausuario(i){
@@ -731,6 +731,10 @@ export class AltafacturasalComponent implements OnInit {
      }
 
   }     // Cierre del metodo armausuario
+
+  enviar(){
+    
+  }
 
   traspaso(){
     

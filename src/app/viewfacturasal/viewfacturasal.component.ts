@@ -144,6 +144,7 @@ export class ViewfacturasalComponent implements OnInit {
                   this.hora                    = this.currentFacturas.hora               ,
                   this.userMod                 = this.currentFacturas.userMod            ,
                   this.estatus                 = this.currentFacturas.estatus            
+                  
                   if(this.iDImpoEexpo == "1"){
                      this.iDImpoEexpo = "Importación"
                   }

@@ -90,6 +90,10 @@ export class EditfacturasalComponent implements OnInit {
   orders              = [];
   listExist           : any[]=[];
   dataExist           : any[]=[];
+  dataworkprod        : any=[];
+  datadesMC           : any[];
+  datadesMT           : any[];
+  datafact            : any[];
 
   clvap               : string;
   tipo                : string;
@@ -100,6 +104,16 @@ export class EditfacturasalComponent implements OnInit {
   recintoo            : string;
   loading             = false;
   returnUrl           : string;
+  factor              : number;
+  nico                : string;
+  uMC                 : string;
+  uMT                 : string;
+  MonManda            : boolean=false;
+  ConDescr            : boolean=false;
+  opc                 : string = '0';
+  CteParam            : string = "";
+
+
   
 
   constructor(
@@ -121,6 +135,7 @@ export class EditfacturasalComponent implements OnInit {
   }
      
   ngOnInit(): void {
+    this.obtenTC();
     this.clvap     = 'AP01';
     this.consultaDatosApl(this.clvap);    
     this.clvap     = 'AP02';
@@ -133,10 +148,10 @@ export class EditfacturasalComponent implements OnInit {
     this.consultaTipoCte(this.tipo);
     this.tipo      = '5';
     this.consultaTipoCte(this.tipo);
-    
     this.llenaAduanal();
     this.consultaDatosFactura();
     this.formafb();
+    this.consultaProdymat();
     this.usuari    = JSON.parse(localStorage.getItem('currentUserLog'));
     let usuario    = this.usuari["idUsuario"];
     let empresaa   = this.usuari["idEmpresa"];
@@ -146,9 +161,7 @@ export class EditfacturasalComponent implements OnInit {
     this.recinto   = recintoo;
     this.loading = true;
     
-    this.obtenTC();
 /*    
-    this.consultaProdymat();
     this.catClientes();
     if (this.CteParamBol) {
       this.editfacturasal.controls['idCliProv'].setValue(this.CteParam);
@@ -179,7 +192,8 @@ export class EditfacturasalComponent implements OnInit {
           this.loading = false;
         });
   } // Cierre del método obtenTC
- 
+
+  
   consultaDatosApl(clvap){
     this.consape.apeconscve(clvap)
     .pipe(first())
@@ -237,114 +251,8 @@ export class EditfacturasalComponent implements OnInit {
             this.loading = false;
         });
   } // Cierre del método consultaTipoCte 
+
   
-
-
-  formafb() {
-    this.editfacturasal = this.fb.group({
-      'idCliProv':         new FormControl(''),
-      'empresa':           new FormControl(''),
-      'recinto':           new FormControl(''),
-      'listaallCte':       new FormControl(''),     
-      'numPedimentoSalida':new FormControl(''),
-      'numFact':           new FormControl('',[Validators.required]),
-      'orders':            new FormControl('',[Validators.required]),
-      'listaallpais':      new FormControl('',[Validators.required]),
-      'tipCambio':         new FormControl('',[Validators.required]),
-      'listaallcLVPedi':   new FormControl('',[Validators.required]),
-      'listaallnumPate':   new FormControl('',[Validators.required]),
-      'listaalladuana':    new FormControl('',[Validators.required]),
-      'listaallincoterm':  new FormControl('',[Validators.required]),
-      'nUMGuia':           new FormControl('',[Validators.required]),
-      'listaalltransport': new FormControl('',[Validators.required]),
-      'nUMPlacaTr':        new FormControl('',[Validators.required]),
-      'contCaja':          new FormControl('',[Validators.required]),
-      'selloCand1':        new FormControl('',[Validators.required]),
-      'selloCand2':        new FormControl('',[Validators.required]),
-      'selloCand3':        new FormControl('',[Validators.required]),
-      'NombChofTR':        new FormControl('',[Validators.required]),
-      'po':                new FormControl('',[Validators.required]),
-      'listaallclieOrig':  new FormControl('',[Validators.required]),
-      'listaallclieDest':  new FormControl('',[Validators.required]),
-      'producto':          new FormControl(''),
-      'listaallprod':      new FormControl('',[Validators.required]),
-      'descIngles':        new FormControl('',[Validators.required]),
-      'cantidad':          new FormControl('',[Validators.required]),
-      'uMC':               new FormControl('',[Validators.required]),
-      'uMT':               new FormControl('',[Validators.required]),
-      'fraccAranc':        new FormControl('',[Validators.required]),
-      'costoUnitMXP':      new FormControl('',[Validators.required]),
-      'costototalMXP':     new FormControl('',[Validators.required]),
-      'costoUnitDLS':      new FormControl('',[Validators.required]),
-      'costoTotaldls':     new FormControl('',[Validators.required]),
-      'netoOriginal':      new FormControl('',[Validators.required]),
-      'brutoOriginal':     new FormControl('',[Validators.required]),
-      'netoConv':          new FormControl('',[Validators.required]),
-      'brutoConv':         new FormControl('',[Validators.required])
-}); 
-  } // Cierre del método formafb
-
-  obtenExistencia(idCliProv, producto){
-    this.totalExist   = 0;
-    this.contExist    = 0;
-    this.listExist    = [];
-    console.log("obtenCantdidad parráfo")
-    console.log(idCliProv);
-    console.log(producto)
-    this.facturasService.obtenExistencia(idCliProv, producto)
-    .pipe(first())
-    .subscribe(
-      data => {
-        this.dataExist = data.contenido
-        console.log("obten Cantidad data contenido dataExist ")   
-        console.log(this.dataExist)
-          if (data.cr=="00"){
-              console.log("obtenExistencia CR = 0")
-
-              this.dataExist.forEach(item =>{
-                this.listExist.push({
-                      "idCliProv"  : item[0],
-                      "NumPart"    : item[1],
-                      "NumPedEnt"  : item[2],
-                      "FecEnt"     : item[3],
-                      "Producto"   : item[4],
-                      "idImpExp"   : item[5],
-                      "NumFact"    : item[6],
-                      "Existencia" : item[7]});
-                this.totalExist = this.totalExist + item[7]
-                this.contExist  = this.contExist + 1
-                console.log(" FOREACH ==> ")
-                console.log(this.listExist)
-                console.log(this.totalExist)
-             });
-             if (this.totalExist == 0){
-              console.log("ENTRE A BORRAR LOS CAMPOS POR SER CERO")
-              this.editfacturasal.controls['uMC'].setValue("");
-              this.editfacturasal.controls['uMT'].setValue("");
-              this.editfacturasal.controls['producto'].setValue("");
-              this.editfacturasal.controls['descIngles'].setValue("");
-              this.editfacturasal.controls['fraccAranc'].setValue("");
-              this.editfacturasal.controls['costoUnitMXP'].setValue(0);
-              this.editfacturasal.controls['costoUnitDLS'].setValue(0);
-            }
-             this.editfacturasal.controls['cantidad'].setValue(this.totalExist);
-             let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
-             let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
-             this.editfacturasal.controls['costototalMXP'].setValue(CTotalMxp);
-             this.editfacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
-             console.log (" acabo de calcular cantidad " + this.f.cantidad.value)
-          }else{
-              this.loading = false;
-              this.msg = data.descripcion;
-              this.alertService.error(this.msg);
-        }
-      },
-        error => {
-            this.alertService.error("No hay conexión con la Base de Datos");
-            this.loading = false;
-        });
-  }  // Cierre del método obtenCantidad
-
   llenaAduanal()  {    
     this.aduanalService.llenaAduanal(1, 6)
     .pipe(first())
@@ -376,11 +284,14 @@ export class EditfacturasalComponent implements OnInit {
         .subscribe( 
             data => {
                 this.datawork = data;
+                console.log(" data consultaDatosFactrua ")
+                console.log(this.orders)
                 if (this.datawork.cr=="00"){
                     this.currentFacturas     = this.datawork.contenido;
                     this.editfacturasal.controls['idCliProv'         ].setValue(this.currentFacturas.idCliProv					); 
                     this.editfacturasal.controls['empresa'           ].setValue(this.currentFacturas.empresa            ); 
                     this.editfacturasal.controls['recinto'           ].setValue(this.currentFacturas.recinto            ); 
+                    this.editfacturasal.controls['orders'            ].setValue(this.currentFacturas.iDImpoEexpo        );
                     this.editfacturasal.controls['numPedimentoSalida'].setValue(this.currentFacturas.numPedimentoSalida ); 
                     this.editfacturasal.controls['numFact'           ].setValue(this.currentFacturas.numFact            ); 
                     this.editfacturasal.controls['tipCambio'         ].setValue(this.currentFacturas.tipoCambio         ); 
@@ -440,24 +351,9 @@ export class EditfacturasalComponent implements OnInit {
                     this.brutoOriginal             = this.currentFacturas.brutoOriginal     ;  
                     this.netoConv                  = this.currentFacturas.netoConv          ;  
                     this.brutoConv                 = this.currentFacturas.brutoConv         ;  
-
-                    console.log("iDImpoEexpo")
-                    console.log(this.iDImpoEexpo)
-                    if(this.iDImpoEexpo == "1"){
-                      this.iDImpoEexpo = "Importación"
-                   }
-                   if(this.iDImpoEexpo == "2"){
-                      this.iDImpoEexpo = "Exportación"
-                   }
+/*
                    this.pais   = this.paisFact;
-
-
-
-                    if(this.iDImpoEexpo == '1'){
-                       this.editfacturasal.controls['indImpExpo'].setValue('Importación');
-                    }else if(this.iDImpoEexpo == '2'){
-                       this.editfacturasal.controls['indImpExpo'].setValue('Exportación');
-                    }                    
+*/
                 }else{
                     this.loading = false;
                     this.msg     = this.datawork.descripcion;
@@ -475,6 +371,263 @@ export class EditfacturasalComponent implements OnInit {
   // convenience getter for easy access to form fields
     get f() { return this.editfacturasal.controls; }
 
+
+  formafb() {
+    this.editfacturasal = this.fb.group({
+      'idCliProv':         new FormControl(''),
+      'empresa':           new FormControl(''),
+      'recinto':           new FormControl(''),
+      'listaallCte':       new FormControl(''),     
+      'numPedimentoSalida':new FormControl(''),
+      'numFact':           new FormControl('',[Validators.required]),
+      'orders':            new FormControl('',[Validators.required]),
+      'listaallpais':      new FormControl('',[Validators.required]),
+      'tipCambio':         new FormControl('',[Validators.required]),
+      'listaallcLVPedi':   new FormControl('',[Validators.required]),
+      'listaallnumPate':   new FormControl('',[Validators.required]),
+      'listaalladuana':    new FormControl('',[Validators.required]),
+      'listaallincoterm':  new FormControl('',[Validators.required]),
+      'nUMGuia':           new FormControl('',[Validators.required]),
+      'listaalltransport': new FormControl('',[Validators.required]),
+      'nUMPlacaTr':        new FormControl('',[Validators.required]),
+      'contCaja':          new FormControl('',[Validators.required]),
+      'selloCand1':        new FormControl('',[Validators.required]),
+      'selloCand2':        new FormControl('',[Validators.required]),
+      'selloCand3':        new FormControl('',[Validators.required]),
+      'NombChofTR':        new FormControl('',[Validators.required]),
+      'po':                new FormControl('',[Validators.required]),
+      'listaallclieOrig':  new FormControl('',[Validators.required]),
+      'listaallclieDest':  new FormControl('',[Validators.required]),
+      'producto':          new FormControl(''),
+      'listaallprod':      new FormControl('',[Validators.required]),
+      'descIngles':        new FormControl('',[Validators.required]),
+      'cantidad':          new FormControl('',[Validators.required]),
+      'uMC':               new FormControl('',[Validators.required]),
+      'fraccAranc':        new FormControl('',[Validators.required]),
+      'costoUnitMXP':      new FormControl('',[Validators.required]),
+      'costototalMXP':     new FormControl('',[Validators.required]),
+      'costoUnitDLS':      new FormControl('',[Validators.required]),
+      'costoTotaldls':     new FormControl('',[Validators.required]),
+      'netoOriginal':      new FormControl('',[Validators.required]),
+      'brutoOriginal':     new FormControl('',[Validators.required]),
+      'netoConv':          new FormControl('',[Validators.required]),
+      'brutoConv':         new FormControl('',[Validators.required])
+}); 
+  } // Cierre del método formafb
+
+  
+  consultaProdymat(){    
+    this.consprod.prodymatTodos(this.opc)
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.dataworkprod = data;
+            if (this.dataworkprod.cr=="00"){
+                console.log("editfacturasal.component consultaProdymat dataworkprod data/dataworkprod")
+                console.log(data)
+                console.log(this.dataworkprod)
+                this.dataProd    = this.dataworkprod.contenido.sysCatProductos;
+                this.datadesMC   = this.dataworkprod.contenido.lDescripUMC
+                this.datadesMT   = this.dataworkprod.contenido.lDescripuMT
+                this.datafact    = this.dataworkprod.contenido.lFactor
+                console.log(this.producto)
+                for (let y=0; y < this.dataworkprod.contenido.sysCatProductos.length; y++){ 
+                    console.log(this.dataworkprod.contenido.sysCatProductos[y].clveProduc);
+                    if (this.dataworkprod.contenido.sysCatProductos[y].clveProduc == this.producto){
+                        console.log(this.dataworkprod.contenido.sysCatProductos[y].descCorIng)
+                        console.log(this.dataworkprod.contenido.sysCatProductos[y].descCorta)
+                        this.editfacturasal.controls['descIngles'].setValue(this.dataworkprod.contenido.sysCatProductos[y].descCorIng);
+                        this.descEsp      = this.dataworkprod.contenido.sysCatProductos[y].descCorta;
+                        this.editfacturasal.controls['listaallprod'].setValue(this.dataworkprod.contenido.sysCatProductos[y].descCorta);
+                        this.descEsp      = this.dataworkprod.contenido.sysCatProductos[y].descCorta;
+                        y = this.dataworkprod.contenido.sysCatProductos.length;
+                    }
+                }
+            }else {
+                this.alertService.error("Error al obtener información de Productos");
+                this.loading = false;
+            }
+          },
+          error => {
+            this.alertService.error("Error en el Consulta de Prodcutos");
+            this.loading = false;
+        });
+  } // Cierre del método consultaProdymat
+
+  cambio(id1: any){
+    console.log("cambio dataworkprod")
+    console.log(this.dataworkprod.contenido[id1.target.value])
+    console.log(this.dataworkprod.contenido.sysCatProductos[id1.target.value])
+
+    this.editfacturasal.controls['uMC'].setValue(this.dataworkprod.contenido.lDescripUMC[id1.target.value]);
+    this.editfacturasal.controls['producto'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
+    this.editfacturasal.controls['descIngles'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].descCorIng);
+    this.editfacturasal.controls['fraccAranc'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].fraccAranc);
+    this.factor = this.dataworkprod.contenido.lFactor[id1.target.value]
+
+    this.descEsp      = this.dataworkprod.contenido.sysCatProductos[id1.target.value].descCorta;
+//    this.editfacturasal.controls['listaallprod'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].descCorta);
+
+    this.nico        = this.dataworkprod.contenido.sysCatProductos[id1.target.value].nico
+    this.uMC         = this.dataworkprod.contenido.sysCatProductos[id1.target.value].uMC
+    this.uMT         = this.dataworkprod.contenido.sysCatProductos[id1.target.value].uMT
+
+    this.ConDescr = true;
+
+    let cliente   : string;
+  
+    if (this.dataworkprod.contenido.sysCatProductos[id1.target.value].monedaMandataria == 'MXP'){
+        this.MonManda = true;
+
+        this.editfacturasal.controls['costoUnitMXP'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitMXP);
+        let CUnitUSD = this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitMXP / this.f.tipCambio.value ;
+        this.editfacturasal.controls['costoUnitDLS'].setValue(CUnitUSD);
+
+        let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+        let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+        this.editfacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+        this.editfacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+    }
+
+    if (this.dataworkprod.contenido.sysCatProductos[id1.target.value].monedaMandataria == 'USD'){
+      this.MonManda = false;
+
+      this.editfacturasal.controls['costoUnitDLS'].setValue(this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitDLS);
+      let CUnitMXP = this.dataworkprod.contenido.sysCatProductos[id1.target.value].costoUnitDLS * this.f.tipCambio.value ;
+      this.editfacturasal.controls['costoUnitMXP'].setValue(CUnitMXP);
+
+      let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+      let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+      this.editfacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+      this.editfacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+    }
+    cliente   = this.f.idCliProv.value; 
+    this.obtenExistencia(cliente, this.dataworkprod.contenido.sysCatProductos[id1.target.value].clveProduc);
+  }    // Cierre del método cambio
+
+
+  TotalMXP(){
+    let CUnitUSD = this.f.costoUnitMXP.value / this.f.tipCambio.value ;
+    this.editfacturasal.controls['costoUnitDLS'].setValue(CUnitUSD);
+
+    let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+    let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+    this.editfacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+    this.editfacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+  }
+
+
+  TotalUSD(){
+    let CUnitMXP = this.f.costoUnitDLS.value * this.f.tipCambio.value ;
+    this.editfacturasal.controls['costoUnitMXP'].setValue(CUnitMXP);
+
+    let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+    let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+    this.editfacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+    this.editfacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+  }
+
+
+  netoConvertido(){
+    console.log("factor")
+    console.log(this.factor)
+    let NetoConv     = this.factor * this.f.netoOriginal.value
+    this.editfacturasal.controls['netoConv'].setValue(NetoConv);
+  }    // Cierre del método netoConvertido
+
+
+  brutoConvertido(){
+    console.log("factor")
+    console.log(this.factor)
+    let BrutoConv    = this.factor * this.f.brutoOriginal.value
+    this.editfacturasal.controls['brutoConv'].setValue(BrutoConv);
+  }    // Cierre del método brutoConvertido
+
+  
+  cambExist(cant: any){
+    console.log("cambExist")
+    console.log(cant)
+    console.log(cant.target.value)
+    console.log(this.totalExist)
+    if (cant.target.value > this.totalExist) {
+      this.alertService.error("La cantidad no puede ser mayor a " + this.totalExist);
+      this.loading = false;
+    }else{ if (cant.target.value == 0) {
+      this.alertService.error("La cantidad debe ser mayor a cero");
+      this.loading = false;
+    }else{if (this.dataworkprod.contenido.sysCatProductos[this.f.listaallprod.value].monedaMandataria == 'MXP'){
+        this.loading = true;
+        console.log("PESOS")
+        this.TotalMXP()
+      }else{
+        this.loading = true;
+        console.log("DOLARES")
+        this.TotalUSD()
+      }        
+    }
+   }
+  } // Cierre del método cambExist
+  
+
+  obtenExistencia(idCliProv, producto){
+    this.totalExist   = 0;
+    this.contExist    = 0;
+    this.listExist    = [];
+    console.log("obtenCantdidad parráfo")
+    console.log(idCliProv);
+    console.log(producto)
+    this.facturasService.obtenExistenciaInv(idCliProv, producto)
+    .pipe(first())
+    .subscribe(
+      data => {
+        this.dataExist = data.contenido
+        console.log("obten Cantidad data contenido dataExist ")   
+        console.log(this.dataExist)
+          if (data.cr=="00"){
+              console.log("obtenExistencia CR = 0")
+
+              this.dataExist.forEach(item =>{
+                this.listExist.push({
+                      "idCliProv"  : item[0],
+                      "NumPart"    : item[1],
+                      "NumPedEnt"  : item[2],
+                      "FecEnt"     : item[3],
+                      "Producto"   : item[4],
+                      "idImpExp"   : item[5],
+                      "NumFact"    : item[6],
+                      "Existencia" : item[7]});
+                this.totalExist = this.totalExist + item[7]
+                this.contExist  = this.contExist + 1
+                console.log(" FOREACH INV==> ")
+                console.log(this.listExist)
+                console.log(this.totalExist)
+             });
+             if (this.totalExist == 0){
+              console.log("ENTRE A BORRAR LOS CAMPOS POR SER CERO")
+              this.editfacturasal.controls['uMC'].setValue("");
+              this.editfacturasal.controls['producto'].setValue("");
+              this.editfacturasal.controls['descIngles'].setValue("");
+              this.editfacturasal.controls['fraccAranc'].setValue("");
+              this.editfacturasal.controls['costoUnitMXP'].setValue(0);
+              this.editfacturasal.controls['costoUnitDLS'].setValue(0);
+            }
+             this.editfacturasal.controls['cantidad'].setValue(this.totalExist);
+             let CTotalMxp = this.f.costoUnitMXP.value * this.f.cantidad.value
+             let CTotalDLS = this.f.costoUnitDLS.value * this.f.cantidad.value
+             this.editfacturasal.controls['costototalMXP'].setValue(CTotalMxp);
+             this.editfacturasal.controls['costoTotaldls'].setValue(CTotalDLS);
+             console.log (" acabo de calcular cantidad " + this.f.cantidad.value)
+          }else{
+              this.loading = false;
+              this.msg = data.descripcion;
+              this.alertService.error(this.msg);
+        }
+      },
+        error => {
+            this.alertService.error("No hay conexión con la Base de Datos");
+            this.loading = false;
+        });
+  }  // Cierre del método obtenCantidad
 
   enviar() {
     if (this.editfacturasal.invalid) {
@@ -573,7 +726,7 @@ export class EditfacturasalComponent implements OnInit {
           costoTotaldls         : this.f.costoTotaldls.value            , 
           costounitMXP          : this.f.costoUnitMXP.value             , 
           costototalMXP         : this.f.costototalMXP.value            , 
-          unidadDeMedida        : this.uMC                              , 
+          unidadDeMedida        : this.f.uMC.value                      , 
           fraccAranc            : this.f.fraccAranc.value               , 
           netoOriginal          : this.f.netoOriginal.value             , 
           brutoOriginal         : this.f.brutoOriginal.value            , 
