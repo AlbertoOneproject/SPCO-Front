@@ -75,7 +75,14 @@ import { AltafacturasalComponent } from './altafacturasal/altafacturasal.compone
 import { EditfacturasalComponent } from './editfacturasal/editfacturasal.component';
 import { FacturasalComponent } from './facturasal/facturasal.component';
 import { ViewfacturasalComponent } from './viewfacturasal/viewfacturasal.component';
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TraspasosComponent } from './traspasos/traspasos.component';
+import { ViewtraspasosComponent } from './viewtraspasos/viewtraspasos.component';
+import { EdittraspasosComponent } from './edittraspasos/edittraspasos.component';
+import { AltatraspasosComponent } from './altatraspasos/altatraspasos.component';
+import { MsgoktComponent } from './msgokt/msgokt.component';
+import { MsgoktrComponent } from './msgoktr/msgoktr.component';
+import { DeletetraspComponent } from './deletetrasp/deletetrasp.component'
 
 
 @NgModule({
@@ -145,7 +152,14 @@ import { DashboardComponent } from './dashboard/dashboard.component'
     EditfacturasalComponent,
     FacturasalComponent,
     ViewfacturasalComponent,
-    DashboardComponent
+    DashboardComponent,
+    TraspasosComponent,
+    ViewtraspasosComponent,
+    EdittraspasosComponent,
+    AltatraspasosComponent,
+    MsgoktComponent,
+    MsgoktrComponent,
+    DeletetraspComponent
   ],
   imports: [
     BrowserModule,

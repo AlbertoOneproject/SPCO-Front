@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertService, FacturasService, CteyprovService,SysdtapeService, AduanalService, ProdymatService, ShareService } from './../service';
 import { Facturas, Sysdtape, Login, Prodymat } from '../model'
-import { first } from 'rxjs/operators';
+import { delay, first } from 'rxjs/operators';
 import { MsgokfComponent } from './../msgokf/msgokf.component'
 import { MatDialog} from '@angular/material/dialog';
 import { formatDate } from '@angular/common';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-editfacturasal',
@@ -76,8 +77,9 @@ export class EditfacturasalComponent implements OnInit {
   fechaMod            : string;
   hora                : string;
   userMod             : string;
-  estatus             : string;
-  entSal              : string;
+  estatus             : string = 'G';
+  entSal              : string = 'S';
+  consParm            : string = 'F';
   
   datacLVPedi         : any[]=[];
   datanumPate         : any[]=[];
@@ -90,6 +92,7 @@ export class EditfacturasalComponent implements OnInit {
   orders              = [];
   listExist           : any[]=[];
   dataExist           : any[]=[];
+  dataTrasp           : any[]=[];
   dataworkprod        : any=[];
   datadesMC           : any[];
   datadesMT           : any[];
@@ -110,6 +113,10 @@ export class EditfacturasalComponent implements OnInit {
   uMT                 : string;
   MonManda            : boolean=false;
   ConDescr            : boolean=false;
+  bandDelete          : boolean=false;
+  bandAut             : boolean=false;
+  bandDelReg          : string = '0';
+  bandDelReg1         : string;
   opc                 : string = '0';
   CteParam            : string = "";
 
@@ -305,7 +312,7 @@ export class EditfacturasalComponent implements OnInit {
                     this.editfacturasal.controls['po'                ].setValue(this.currentFacturas.pO                 ); 
                     this.editfacturasal.controls['producto'          ].setValue(this.currentFacturas.producto           ); 
                     this.editfacturasal.controls['cantidad'          ].setValue(this.currentFacturas.cantidad           ); 
-                    this.editfacturasal.controls['uMC'               ].setValue(this.currentFacturas.unidadDeMedida     ); 
+//                    this.editfacturasal.controls['uMC'               ].setValue(this.currentFacturas.unidadDeMedida     ); 
                     this.editfacturasal.controls['fraccAranc'        ].setValue(this.currentFacturas.fraccAranc         ); 
                     this.editfacturasal.controls['costoUnitMXP'      ].setValue(this.currentFacturas.costounitMXP       ); 
                     this.editfacturasal.controls['costototalMXP'     ].setValue(this.currentFacturas.costototalMXP      ); 
@@ -354,6 +361,12 @@ export class EditfacturasalComponent implements OnInit {
 /*
                    this.pais   = this.paisFact;
 */
+                  if (this.currentFacturas.estatus == "A"){
+                    this.loading   = false;
+                    this.msg       = "  REGISTRO AUTORIZADO, FAVOR DE REALIZAR EL TRASPASO  ";
+                    this.alertService.error(this.msg);
+                  }
+                  else{}
                 }else{
                     this.loading = false;
                     this.msg     = this.datawork.descripcion;
@@ -434,12 +447,14 @@ export class EditfacturasalComponent implements OnInit {
                 for (let y=0; y < this.dataworkprod.contenido.sysCatProductos.length; y++){ 
                     console.log(this.dataworkprod.contenido.sysCatProductos[y].clveProduc);
                     if (this.dataworkprod.contenido.sysCatProductos[y].clveProduc == this.producto){
-                        console.log(this.dataworkprod.contenido.sysCatProductos[y].descCorIng)
-                        console.log(this.dataworkprod.contenido.sysCatProductos[y].descCorta)
+//                        console.log(this.dataworkprod.contenido.sysCatProductos[y].descCorIng)
+//                        console.log(this.dataworkprod.contenido.sysCatProductos[y].descCorta)
                         this.editfacturasal.controls['descIngles'].setValue(this.dataworkprod.contenido.sysCatProductos[y].descCorIng);
                         this.descEsp      = this.dataworkprod.contenido.sysCatProductos[y].descCorta;
                         this.editfacturasal.controls['listaallprod'].setValue(this.dataworkprod.contenido.sysCatProductos[y].descCorta);
                         this.descEsp      = this.dataworkprod.contenido.sysCatProductos[y].descCorta;
+                        this.editfacturasal.controls['uMC'].setValue(this.dataworkprod.contenido.lDescripUMC[y]);
+                        this.uMC          = this.dataworkprod.contenido.sysCatProductos[y].uMC;
                         y = this.dataworkprod.contenido.sysCatProductos.length;
                     }
                 }
@@ -573,18 +588,18 @@ export class EditfacturasalComponent implements OnInit {
     this.totalExist   = 0;
     this.contExist    = 0;
     this.listExist    = [];
-    console.log("obtenCantdidad parráfo")
+    console.log("obtenExistencia parráfo")
     console.log(idCliProv);
     console.log(producto)
-    this.facturasService.obtenExistenciaInv(idCliProv, producto)
+    this.facturasService.obtenExistenciaInv(idCliProv, producto, this.consParm)
     .pipe(first())
     .subscribe(
       data => {
         this.dataExist = data.contenido
-        console.log("obten Cantidad data contenido dataExist ")   
+        console.log("obten Cantidad INV data contenido dataExist ")   
         console.log(this.dataExist)
           if (data.cr=="00"){
-              console.log("obtenExistencia CR = 0")
+              console.log("obtenExistenciaInv  CR = 0")
 
               this.dataExist.forEach(item =>{
                 this.listExist.push({
@@ -595,8 +610,9 @@ export class EditfacturasalComponent implements OnInit {
                       "Producto"   : item[4],
                       "idImpExp"   : item[5],
                       "NumFact"    : item[6],
-                      "Existencia" : item[7]});
-                this.totalExist = this.totalExist + item[7]
+                      "Consumidas" : item[7],
+                      "Total"      : item[8]});
+                this.totalExist = this.totalExist + item[8] - item[7]
                 this.contExist  = this.contExist + 1
                 console.log(" FOREACH INV==> ")
                 console.log(this.listExist)
@@ -629,12 +645,31 @@ export class EditfacturasalComponent implements OnInit {
         });
   }  // Cierre del método obtenCantidad
 
-  enviar() {
+
+  
+  guardar() {
+    console.log("guardar")
+    console.log(this.totalExist)
+    console.log(this.contExist)
+    console.log(this.f.cantidad.value)
+
+    this.cantSdo   = 0;   
+    this.cantCont  = 0;
+    this.cantSdo   = this.f.cantidad.value;   
+/*    
     if (this.editfacturasal.invalid) {
         this.alertService.error("Es necesario capturar todos los campos que tienen * ");
         this.loading = false;
         return;
     }
+*/    
+      this.borraFacturas(this.f.idCliProv.value, this.f.producto.value, this.f.numFact.value); 
+  }
+
+  enviar1(){
+    console.log("banDelete enviar1")
+    console.log(this.bandDelete)    
+    if (this.bandDelete){
 
     if (this.f.cantidad.value <= this.totalExist){
       for (let y=0; y < this.contExist; y++){ 
@@ -643,7 +678,7 @@ export class EditfacturasalComponent implements OnInit {
           console.log(y)
           console.log(this.cantCont)
           this.cantCont = this.cantCont + 1;
-          this.cantSdo  =  this.cantSdo - this.listExist[y].Existencia
+          this.cantSdo  =  this.cantSdo - this.listExist[y].Total
           console.log("Despues ")
           console.log(this.cantCont)
         }
@@ -659,11 +694,11 @@ export class EditfacturasalComponent implements OnInit {
         console.log(this.cantSdo)
   
         this.armausuario(i);
-        if (this.cantSdo >= this.listExist[i].Existencia){
+        if (this.cantSdo >= this.listExist[i].Total){
           console.log("dentro del if ")
           console.log(this.cantSdo)
-         this.currentFacturas.cantidad = this.listExist[i].Existencia
-         this.cantSdo  =  this.cantSdo - this.listExist[i].Existencia
+         this.currentFacturas.cantidad = this.listExist[i].Total
+         this.cantSdo  =  this.cantSdo - this.listExist[i].Total
      }else{
          console.log("dentro del if 2")
          console.log(this.cantSdo)
@@ -673,28 +708,85 @@ export class EditfacturasalComponent implements OnInit {
         console.log(this.currentFacturas)
 
         this.loading = true;
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/aduanal';
-        this.facturasService.editfactura(this.currentFacturas)
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/facturasal';
+        this.facturasService.altafacturas(this.currentFacturas)
           .pipe(first())
           .subscribe(
               data => {
                 this.dataworkedit = data;
                 if (this.dataworkedit.cr=="00"){
-                    this.msgokf();                    
-                }
-              },
+                  console.log("Di uno de alta ")
+                  console.log(i)
+                  console.log(this.cantCont)
+                  if (i+1 == this.cantCont ){
+                    this.msgokf();
+                  }
+                }else{
+                  this.loading   = false;
+                  this.msg       = this.datawork.descripcion;
+                  this.alertService.error(this.msg);
+              }              
               error => {
                 this.alertService.error("Error al enviar el agente aduanal");
                 this.loading = false;
-              });    
-              return
-            }
-    } //     Cierre del metodo enviar
+              }
+            });
+          }
+        }else{
+          this.loading   = false;
+          this.msg       = this.datawork.descripcion;
+          this.alertService.error("No existen registros a borrar");
+        }
+              return ;
+  } //     Cierre del metodo enviar
   
+  //borraFacturas(idCliProv, producto, factSal){
+  borraFacturas(idCliProv, producto, factSal){
+    console.log("Borra Facturas método")
+    console.log(idCliProv)
+    console.log(producto)
+    console.log(factSal)
+    this.facturasService.borrarFacturas(idCliProv, producto, factSal)
+    .pipe(first())
+    .subscribe(
+      data => {
+        console.log("borraFacturas método1 ")   
+        console.log(data)
+          if (data.cr=="00"){
+              console.log("borraFacturas  CR = 0")
+              this.bandDelete = true;
+              this.bandDelReg = '1';  
+              this.enviar1();            
+          }else{
+              this.bandDelReg = '0';
+              this.loading = false;
+              this.msg = data.descripcion;
+              this.alertService.error(this.msg);
+        }
+      },
+        error => {
+            this.alertService.error("No hay conexión con la Base de Datos");
+            this.loading = false;
+        });
+        console.log("Return")
+        console.log(this.bandDelete)
+        console.log(this.bandDelReg)
+        return
+  }  // Cierre del método borraFacturas
+
+    
+    autorizar() {
+      console.log("autorizar ")
+      this.bandAut  = true;      
+      console.log("Band Aut ")
+      console.log(this.bandAut)
+      this.guardar();
+    }
+
 
     armausuario(i){    
       this.currentFacturas = {
-          idCliProv             : this.f.listaallCte.value              ,
+          idCliProv             : this.f.idCliProv.value                ,
           numPart							  : this.listExist[i].NumPart             ,   
           numFact               : this.f.numFact.value                  ,    
           iDImpoEexpo           : this.f.orders.value                   ,   
@@ -726,7 +818,7 @@ export class EditfacturasalComponent implements OnInit {
           costoTotaldls         : this.f.costoTotaldls.value            , 
           costounitMXP          : this.f.costoUnitMXP.value             , 
           costototalMXP         : this.f.costototalMXP.value            , 
-          unidadDeMedida        : this.f.uMC.value                      , 
+          unidadDeMedida        : this.uMC                              , 
           fraccAranc            : this.f.fraccAranc.value               , 
           netoOriginal          : this.f.netoOriginal.value             , 
           brutoOriginal         : this.f.brutoOriginal.value            , 
@@ -743,6 +835,14 @@ export class EditfacturasalComponent implements OnInit {
           hora                  : this.curr1                            , 
           userMod               : this.usuario.substring(0, 8)          ,
      }    
+      console.log("  this.bandAut en armausuario  ")
+      console.log(this.bandAut)
+
+      if (this.bandAut){
+          this.currentFacturas.estatus  = "A" 
+          console.log("  this.currentFacturas en armausuario  ")
+          console.log(this.currentFacturas)
+      }
 
       if (this.currentFacturas.aduana   == "" ) {
           this.currentFacturas.aduana   = this.aduana
@@ -784,9 +884,10 @@ export class EditfacturasalComponent implements OnInit {
   }     // Cierre del metodo cancelar
 
 
-  traspaso(){
-
-  }
+  traspaso(idCliProv, producto){
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/altatraspasos/:idCliProv';
+    this.router.navigate([this.returnUrl]);   
+  }  // Cierre del método traspaso
 
   
   msgokf(): void {

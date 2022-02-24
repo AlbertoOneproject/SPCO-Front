@@ -320,7 +320,7 @@
 	                    class="required">*</span></label>
 
                     <div class="col-sm-3">
-                        <input disabled type="text" id="descIngles" name="descIngles" formControlName="descIngles" class="form-control"/>
+                        <input disabled type="text" id="descIngles" name="descIngles" formControlName="descIngles" class="form-control" />
                     </div>
                 </div>
 
@@ -433,8 +433,9 @@
 
                 <div class="col-md-offset-3">
                     <a id="cancel" href="/facturasal" class="btn btn-default">Cancelar</a>
-                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="enviar()">Enviar</button>
-                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="traspaso()">Traspaso</button>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="guardar()">Guardar</button>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="autorizar()">Autorizar</button>
+                    <button style="margin-left:1%;" class="btn btn-primary" type="button" (click)="traspaso(idCliProv,producto)">Traspaso</button>
                 </div>
             </fieldset>
         </div>

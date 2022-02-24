@@ -1,0 +1,96 @@
+<div class="content-container" ng-controller="viewfacturasal.component">
+    <ul class="breadcrumb">
+        <li><a href="/traspaso">Detalle del Traspaso </a></li>
+        <li class="active">{{idCliProv}}&nbsp;{{numPart}}&nbsp;{{numFact}}&nbsp;{{numPedimentoEntrada}}</li>
+    </ul>
+    <div class="card well">
+        <div class="pull-right">
+            <div class="form-group" *ngIf="perfil">
+                <button type="button" class="btn btn-primary" (click)="edittraspaso(idCliProv, numPart, numFact, numPedimentoEntrada)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button type="button" (click)="deletetraspaso(idCliProv, numPart, numFact,numPedimentoEntrada)" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+            <div class="form-group" *ngIf="!perfil">
+                <button disabled type="button" class="btn btn-primary" (click)="edittraspaso(idCliProv, numPart, numFact, numPedimentoEntrada)" has-permission='UPDATE_USER'><i class="fa fa-edit "></i>
+                    Editar
+                </button>
+                <button disabled type="button" (click)="deletetraspaso(idCliProv, numPart, numFact,numPedimentoEntrada)" class="btn btn-danger" has-permission='DELETE_USER'>
+                    <i class="fa fa-trash-o"></i> Eliminar
+                   
+                </button>
+            </div>
+        </div>
+        <h3 class="bolder">{{idCliProv}}&nbsp;{{numPart}}&nbsp;{{numFact}}&nbsp;{{numPedimentoEntrada}}</h3>
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>Empresa :</td>
+                        <td>{{empresa }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cte Origen:</td>
+                        <td>{{idCliProv }}</td>
+                    </tr>
+                    <tr>
+                        <td>Recinto :</td>
+                        <td>{{recinto }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cte Destino:</td>
+                        <td>{{idCliProvDest}}</td>
+                    </tr>
+                    <tr>
+                        <td>Recinto Dest:</td>
+                        <td>{{recintoDest}}</td>
+                    </tr>
+                    <tr>
+                        <td>Numero Parte :</td>
+                        <td>{{numPart}}</td>
+                    </tr>
+                    <tr>
+                        <td>Numero Factura :</td>
+                        <td>{{numFact}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pedimento Entrada :</td>
+                        <td>{{numPedimentoEntrada }}</td>
+                    </tr>
+                    <tr>
+                        <td>producto :</td>
+                        <td>{{this.descrProd }}</td>
+                    </tr>
+                    <tr>
+                        <td>cantidad :</td>
+                        <td>{{cantidad }}</td>
+                    </tr>
+                    <tr>
+                        <td>fechaAlta :</td>
+                        <td>{{fechaAlta }}</td>
+                        +
+                    </tr>
+                    <tr>
+                        <td>fechaMod :</td>
+                        <td>{{fechaMod }}</td>
+                    </tr>
+                    <tr>
+                        <td>hora :</td>
+                        <td>{{hora }}</td>
+                    </tr>
+                    <tr>
+                        <td>userMod :</td>
+                        <td>{{userMod }}</td>
+                    </tr>
+                    <tr>
+                        <td>estatus :</td>
+                        <td>{{estatus }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

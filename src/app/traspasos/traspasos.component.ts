@@ -6,31 +6,32 @@ import { first } from 'rxjs/operators';
 import { AlertService } from './../service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
-  selector: 'app-facturasal',
-  templateUrl: './facturasal.component.html',
-  styleUrls: ['./facturasal.component.css']
+  selector: 'app-traspasos',
+  templateUrl: './traspasos.component.html',
+  styleUrls: ['./traspasos.component.css']
 })
-export class FacturasalComponent implements OnInit {
-  dataCli         : any[]=[];
-  dataPart        : any[]=[];
-  recinto         : string = "";
-  login           : Login;  
-  facturasForm    : FormGroup;
-  detalle         : boolean;
-  perfil          :boolean;
-  loading         = false;
-  page            : number = 1;
-  perPage         : number = 6;
-  perName         : string = "";
-  total           : number;
-  totalPages      : number;
-  msg             = '';
-  idCliProv       : string = "0";
-  numParte        : string = "0";
-  returnUrl       : string;
-  currentFacturas : Facturas;
-  descripcion     :string="";
+export class TraspasosComponent implements OnInit {
+  dataCli          : any[]=[];
+  dataPart         : any[]=[];
+  recinto          : string = "";
+  login            : Login;  
+  traspasosForm    : FormGroup;
+  detalle          : boolean;
+  perfil           : boolean;
+  loading          = false;
+  page             : number = 1;
+  perPage          : number = 6;
+  perName          : string = "";
+  total            : number;
+  totalPages       : number;
+  msg              = '';
+  idCliProv        : string = "0";
+  numParte         : string = "0";
+  returnUrl        : string;
+  currentTraspasos : Facturas;
+  descripcion      : string="";
 
   constructor(
     private formBuilder     : FormBuilder,
@@ -42,10 +43,11 @@ export class FacturasalComponent implements OnInit {
   ) {
   }
 
+
   ngOnInit(): void {
     this.catClientes();
-    this.catPartsinCte();
-    this.facturasForm = this.formBuilder.group({
+//    this.catPartsinCte();
+    this.traspasosForm = this.formBuilder.group({
       'listaCtes':new FormControl('', [Validators.required]),
       'listaPart':new FormControl('', [Validators.required]),
     });
@@ -62,8 +64,8 @@ export class FacturasalComponent implements OnInit {
     this.detalle=false;      
   }
     // convenience getter for easy access to form fields
-    get f() { return this.facturasForm.controls; }
-
+    get f() { return this.traspasosForm.controls; }
+    
     
   catClientes(){
     this.partesService.catClientes()
@@ -80,7 +82,7 @@ export class FacturasalComponent implements OnInit {
         });
   } // Cierre del método catClientes
 
-  
+/*  
   catPartsinCte(){
     this.partesService.catPartsinCte()
     .pipe(first())
@@ -95,25 +97,27 @@ export class FacturasalComponent implements OnInit {
           this.loading = false;
         });
   } // Cierre del método catPartes
+*/
 
-
-  consultaFacturas(idCliProv:string, numParte:string, page: number, perPage: number, perName: string)  {    
+  consultaTraspasos(idCliProv:string, numParte:string, page: number, perPage: number, perName: string)  {    
     this.idCliProv = idCliProv;
     this.numParte  = numParte;
-    this.facturasService.FacturasCte2(idCliProv, numParte, page, perPage, perName)
+    this.facturasService.obtenTraspasosCte(idCliProv, page, perPage)
     .pipe(first())
     .subscribe(
       data => {
+          console.log("consultaTraspasos  servicio:obtenTraspasosCte")
+          console.log(data)
           if (data.cr=="00"){
-              this.detalle       = true;       
-              this.page          = data.contenido.page;
-              this.perPage       = data.contenido.perPage;
-              this.total         = data.contenido.total;
-              this.totalPages    = data.contenido.totalPages;
-              this.currentFacturas = data.contenido.sysAduFacturas;
+              this.detalle           = true;
+              this.page              = data.contenido.page;
+              this.perPage           = data.contenido.perPage;
+              this.total             = data.contenido.total;
+              this.totalPages        = data.contenido.totalPages;
+              this.currentTraspasos  = data.contenido.sysCatTrasp;
           }else{
-              this.loading = false;
-              this.msg = data.descripcion;
+              this.loading           = false;
+              this.msg               = data.descripcion;
               this.alertService.error(this.msg);
         }
       },
@@ -124,15 +128,16 @@ export class FacturasalComponent implements OnInit {
   }  // Cierre del método consultaProdymat
 
 
-  routeTo(idCliProv:string, numParte:string, numFact:string) : void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewfacturasal';
-    this.router.navigate([this.returnUrl,{cliente:idCliProv,parte:numParte,factura:numFact}]);   
+  routeTo(idCliProv:string, numParte:string, numFact:string, numPedi:string) : void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/viewtraspasos';
+    this.router.navigate([this.returnUrl,{cliente:idCliProv,parte:numParte,factura:numFact,pedimento:numPedi}]);   
   }  
  
   
   mudouPagina(evento) {
     this.perName = ""
-    this.consultaFacturas(this.idCliProv, this.numParte, evento.valor, this.perPage, this.perName); 
+    this.consultaTraspasos(this.idCliProv, this.numParte, evento.valor, this.perPage, this.perName); 
   }
 
 }
+

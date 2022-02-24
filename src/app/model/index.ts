@@ -14,3 +14,4 @@ export * from './catcte';
 export * from './partes';
 export * from './facturas';
 export * from './aduanal';
+export * from './traspasos';

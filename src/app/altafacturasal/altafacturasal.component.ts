@@ -62,6 +62,7 @@ export class AltafacturasalComponent implements OnInit {
   estatus       : string = "G";
   entSal        : string = "S";
   CteParam      : string = "";
+  consParm      : string = 'F';
   CteParamBol   : boolean = false;
   totalExist    : number =0;
   contExist     : number = 0;
@@ -434,7 +435,7 @@ export class AltafacturasalComponent implements OnInit {
     console.log("obtenCantdidad parráfo")
     console.log(idCliProv);
     console.log(producto)
-    this.facturasService.obtenExistencia(idCliProv, producto)
+    this.facturasService.obtenExistencia(idCliProv, producto, this.consParm)
     .pipe(first())
     .subscribe(
       data => {
@@ -651,8 +652,12 @@ export class AltafacturasalComponent implements OnInit {
             .subscribe(
                 data => {
                     this.datawork = data;
+                    console.log(" datawork ===>  ")
+                    console.log(this.datawork)
+                    console.log(i)
+                    console.log(this.cantCont)
                     if (this.datawork.cr == "00"){
-                        if (i == this.cantCont ){
+                        if (i+1 == this.cantCont ){
                             this.msgokf();
                         }
                     }else{
@@ -732,14 +737,7 @@ export class AltafacturasalComponent implements OnInit {
 
   }     // Cierre del metodo armausuario
 
-  enviar(){
-    
-  }
-
-  traspaso(){
-    
-  }
-
+   
   msgokf(): void {
     const dialogRef = this.dialog.open(MsgokfComponent, {
       width: '400px',

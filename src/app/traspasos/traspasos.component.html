@@ -1,0 +1,59 @@
+<div class="content-container" ng-controller="traspasos.component.ts">
+    <ul class="breadcrumb">
+        <li class="active">Traspasos</li>
+    </ul>
+
+    <form [formGroup]="traspasosForm">
+        <div class=" text-right">
+            <div class="card">
+                <div class="toolbar">
+                    <h4>Lista de Traspasos</h4>
+                    <div class="col-12 text-right" *ngIf="perfil">
+                        <a class="btn btn-success btn-lg rounded-circle" [routerLink]="['/altatraspasos',idCliProv]">+</a>
+                    </div>
+                    <div class="col-12 text-right" *ngIf="!perfil">
+                        <a disabled class="btn btn-success btn-lg rounded-circle">+</a>
+                    </div>
+
+                    <div class="col-04 text-right" class="nav-item dropdown" style="text-align: left">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        CLIENTE
+                        </a >
+       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                                <a class="dropdown-item" *ngFor="let listaCtes of dataCli; let i = index;" (click)="consultaTraspasos(listaCtes.idCliProv,'0000000000', 1, this.perPage, this.perName)"> 
+                                        {{listaCtes.idCliProv}}
+                            </a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr/>
+            <table class="table">
+                <thead>
+                    <tr class="graybg" *ngIf="detalle">
+                        <th style="text-align: center">Recinto Origen</th>
+                        <th style="text-align: center">Recinto Destino</th>
+                        <th style="text-align: center">Numero de Parte</th>
+                        <th style="text-align: center">Num Factura</th>
+                        <th style="text-align: center">Num Pedimento</th>
+                        <th style="text-align: center">Estatus</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="pointer-main" *ngFor="let listtraspasos of currentTraspasos">
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listtraspasos.idCliProv,listtraspasos.numPart,listtraspasos.numFact,listtraspasos.numPedimentoEntrada)">{{listtraspasos.recinto}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listtraspasos.idCliProv,listtraspasos.numPart,listtraspasos.numFact,listtraspasos.numPedimentoEntrada)">{{listtraspasos.recintoDest}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listtraspasos.idCliProv,listtraspasos.numPart,listtraspasos.numFact,listtraspasos.numPedimentoEntrada)">{{listtraspasos.numPart}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listtraspasos.idCliProv,listtraspasos.numPart,listtraspasos.numFact,listtraspasos.numPedimentoEntrada)">{{listtraspasos.numFact}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listtraspasos.idCliProv,listtraspasos.numPart,listtraspasos.numFact,listtraspasos.numPedimentoEntrada)">{{listtraspasos.numPedimentoEntrada}}</td>
+                        <td style="text-align: center" class="pointer" (click)="routeTo(listtraspasos.idCliProv,listtraspasos.numPart,listtraspasos.numFact,listtraspasos.numPedimentoEntrada)">{{listtraspasos.estatus}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-paginacion style="text-align: left" [page]="page" total="total" [totalPages]="totalPages" (mudouPagina)="mudouPagina($event)">
+            </app-paginacion>
+        </div>
+</div>
+</form>

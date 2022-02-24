@@ -40,6 +40,11 @@ import { ViewfacturasalComponent } from './viewfacturasal/viewfacturasal.compone
 import { AltafacturasalComponent } from './altafacturasal/altafacturasal.component';
 import { EditfacturasalComponent } from './editfacturasal/editfacturasal.component';
 
+import { TraspasosComponent } from './traspasos/traspasos.component';
+import { ViewtraspasosComponent } from './viewtraspasos/viewtraspasos.component';
+import { AltatraspasosComponent } from './altatraspasos/altatraspasos.component';
+import { EdittraspasosComponent } from './edittraspasos/edittraspasos.component';
+
 import { AduanalComponent } from './aduanal/aduanal.component';
 import { ViewaduanalComponent } from './viewaduanal/viewaduanal.component';
 import { AltaaduanalComponent } from './altaaduanal/altaaduanal.component';
@@ -101,6 +106,12 @@ const routes: Routes = [
   { path: 'viewfacturasal', component: ViewfacturasalComponent },
   { path: 'altafacturasal/:cliente', component: AltafacturasalComponent },
   { path: 'editfacturasal', component: EditfacturasalComponent },
+
+  { path: 'traspasos', component: TraspasosComponent },
+  { path: 'viewtraspasos', component: ViewtraspasosComponent },
+  { path: 'altatraspasos/:cliente', component: AltatraspasosComponent },
+  { path: 'edittraspasos', component: EdittraspasosComponent },
+
 
   { path: 'aduanal', component: AduanalComponent },
   { path: 'viewaduanal/:numPat', component: ViewaduanalComponent },

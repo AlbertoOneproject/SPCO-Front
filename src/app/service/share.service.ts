@@ -27,6 +27,7 @@ empresas(){
 //  Función: Consulta de todos los regs de la tabla SYS_RECINTOS
 //  Componentes que utilizan el servicio:
 //             - altasysuser.component.ts
+//             - altatraspasos.component.ts
 recintos(){
   return this.http.get<any>(`${environment.SERVER_URL}/Recintos/Lista`, {})
     .pipe(map(listRecintos => {
